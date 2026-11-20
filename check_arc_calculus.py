@@ -36,6 +36,8 @@ CHECK_MODULES = [
     ("m10_cayley_dickson.py", "All seven NumPy check groups passed.", None),                  # Section 5E
     ("m11_walks_compilation.py", "All ten m11 check groups passed.", None),               # Sections 6B, 10D
     ("m9_numeration.py", "All 9 check groups passed.", None),                            # Section 10C
+    ("m12_gram_planar.py", "PASS coloring equivalences and all orientation census values", None),   # Section 0A
+    ("m13_golden_model_sets.py", "All 7 check groups passed.", None),                      # Section 10E
     # register new modules here: (file in checks/, success marker, optional predicate)
 ]
 _chk = _os.path.join(_os.path.dirname(_os.path.abspath(__file__)), "checks")
@@ -4292,6 +4294,441 @@ s1 = _cut42(_slater42(V1), 4, [0, 2]); s2 = _cut42(_slater42(V2), 4, [0, 2])
 PI1 = V1[[0, 2]] @ V1[[0, 2]].T; PI2 = V2[[0, 2]] @ V2[[0, 2]].T
 e = max(e, np.abs(s1[:2] - [.5, .5]).max(), np.abs(s2[:1] - [1]).max(), np.abs(PI1 - PI2).max())
 report("42 Thm m9:chain, Prop. m9:localization, m9:readouts, m9:slater: delta_{rho,j}<=73728/N_j (j=4..12); sine identity; collision fraction and mean fiber; Cauchy-Binet; interval cuts give Bernoulli-product spectra; interlaced 4-site example: same P_I, spectra (1/2,1/2) vs pure", e, 1e-9)
+
+
+# =========================================================== 43. Referee items B1-B5 and part A (counterexamples behind the corrected wording)
+import itertools as _it43
+from fractions import Fraction as _F43
+_r43 = np.random.default_rng(33043)
+def _F43s(s):   # F(s)=sum (-1)^j s^j/(2j)!  = cos(sqrt s) or cosh(sqrt(-s))
+    return np.cos(np.sqrt(s)) if s >= 0 else np.cosh(np.sqrt(-s))
+# B1: abelian R^3 with indefinite h satisfies the round-trip law: F(4u)=2F(u)^2-1 for u of both signs
+e = 0.0
+h3 = np.diag([1.0, 1.0, -1.0])
+for _ in range(200):
+    x, w = _r43.normal(size=(2, 3)); d = x - w; u = 2 * d @ h3 @ d
+    e = max(e, abs(_F43s(4 * u) - (2 * _F43s(u) ** 2 - 1)) / (1 + abs(_F43s(4 * u))))
+report("43 B1: abelian R^3 with indefinite h obeys (Omega3): F(4u)=2F(u)^2-1 for u>0 and u<0, so dimension three alone does not force SL(2,R)", e, 1e-10)
+# B2: delta_ij on two points (rank 2) encodes its two comparison maps exactly
+e = 0.0
+P = [np.eye(2), np.array([[0, 1], [1, 0.]])]
+C = np.array([[np.trace(a.T @ b) / 2 for b in P] for a in P]); e = max(e, np.abs(C - np.eye(2)).max())
+report("43 B2: r=2 kernel delta_ij: identity and swap have C=I_2, encoded by the two states (rank 2 < r^2=4)", e, 1e-14)
+# B3: consecutive inverse pairs of angle k^{-1/2}: product converges (to 1 on even n) while sum of angles diverges
+def _qe43(u, t):
+    return np.r_[np.cos(t), np.sin(t) * u]
+u = np.array([1, 0, 0.]); P_ = np.r_[1.0, 0, 0, 0]; angs = 0.0
+for k in range(1, 4001):
+    t = k ** -0.5; P_ = qmul(qmul(P_, _qe43(u, t)), _qe43(u, -t)); angs += 2 * t
+report("43 B3: inverse pairs exp(+-u/sqrt k) converge (product 1) while the angle sum %.1f diverges" % angs, abs(P_[0] - 1) + (0 if angs > 100 else 1), 1e-9)
+# B4: the minimal midpoint of 1 and i is (1+i)/sqrt2, not rational
+mid = (np.r_[1, 0, 0, 0] + np.r_[0, 1, 0, 0]) / np.sqrt(2)
+report("43 B4: midpoint of 1 and i has coordinate 1/sqrt2, irrational (not exactly rational)", abs(mid[0] ** 2 - 0.5), 1e-15)
+# B5 converse: balanced product tree over a finite group (2I) has depth ceil(log2 l)
+def _depth43(l):
+    d = 0
+    while l > 1: l = (l + 1) // 2; d += 1
+    return d
+report("43 B5: balanced evaluation depth of a length-l word over a finite group is ceil(log2 l)",
+       max(abs(_depth43(l) - int(np.ceil(np.log2(l)))) for l in range(2, 5000)), 0.5)
+# Part A, 5C depth model: optimal depth over rise positions = ceil((N+1)/(k+1)) for 1<=k, 2k<=N
+bad = 0
+for N in range(2, 14):
+    for k in range(1, N // 2 + 1):
+        best = min(max(len(list(g)) + 1 for _, g in _it43.groupby([1 if i in R else 0 for i in range(N)])) for R in map(set, _it43.combinations(range(N), k)))
+        bad += best != -(-(N + 1) // (k + 1))
+report("43 A(5C): path precedence model, optimal layer depth = ceil((N+1)/(k0+1)) for N<=13 (examples (8,2)->3, (11,2)->4)", bad, 0.5)
+# Part A, 5B: points over p(x) and -p(x): for odd m, T_m(-1)=-1 (kappa=0); even m gives kappa=1
+e = 0.0
+for m in range(1, 9):
+    Tm = np.cos(m * np.arccos(-1.0)); e = max(e, abs(Tm - (-1) ** m))
+report("43 A(5B): T_m(-1)=(-1)^m, so x z^{odd} over -p(x) has kappa=0 for odd m", e, 1e-12)
+
+
+# =========================================================== 44. Section 0A (independent checks of the m12 module)
+import itertools as _it44
+import heapq as _hq44
+_r44 = np.random.default_rng(33044)
+def _odd_ok44(th):
+    n = len(th)
+    for k in range(1, n + 1, 2):
+        for F in _it44.combinations(range(n), k):
+            if sum(np.pi - th[i] if i in F else th[i] for i in range(n)) < np.pi - 1e-9: return False
+    return True
+def _unit44(d=3):
+    v = _r44.normal(size=d); return v / np.linalg.norm(v)
+# (1) necessity on cycles in R^3 and in R^5
+e = 0.0
+for n in range(3, 8):
+    for d in (3, 5):
+        for _ in range(30):
+            P = [_unit44(d) for _ in range(n)]; th = [np.arccos(np.clip(P[i] @ P[(i + 1) % n], -1, 1)) for i in range(n)]
+            e = max(e, 0 if _odd_ok44(th) else 1)
+report("44 Thm m12:completion (necessity): odd-subset cycle inequalities hold for unit vectors in R^3 and R^5 on C_3..C_7", e, 0.5)
+# (2) triangle lemma interval and construction
+e = 0.0
+for _ in range(400):
+    a, b = _r44.uniform(0, np.pi, 2); lo, hi = abs(a - b), min(a + b, 2 * np.pi - a - b)
+    if hi < lo: continue
+    g = _r44.uniform(lo, hi); x = np.r_[1., 0, 0]; y = np.r_[np.cos(g), np.sin(g), 0]
+    ts = np.linspace(0, np.pi, 20001); zs = np.stack([np.full_like(ts, np.cos(a)), np.sin(a) * np.cos(ts), np.sin(a) * np.sin(ts)], 1)
+    vals = zs @ y; e = max(e, max(0, np.abs(vals - np.cos(b)).min() - 1e-3))
+report("44 Lemma m12:triangle: for gamma in [|a-b|, min(a+b,2pi-a-b)] a third unit vector with angles a,b exists (grid search)", e, 1e-3)
+# (3) sufficiency on cycles: joint angle table via lifted shortest paths, fan triangulation, sequential triangle insertion
+def _lift_dist44(n, ang):  # ang: dict edge->angle on vertices 0..n-1
+    adj = {}
+    for (i, j), t in ang.items():
+        for bi in (0, 1):
+            for bj in (0, 1):
+                c = t if bi == bj else np.pi - t
+                adj.setdefault((i, bi), []).append(((j, bj), c)); adj.setdefault((j, bj), []).append(((i, bi), c))
+    def dij(src):
+        dist = {src: 0.0}; pq = [(0.0, src)]
+        while pq:
+            dd, v = _hq44.heappop(pq)
+            if dd > dist.get(v, 1e18): continue
+            for w, c in adj.get(v, []):
+                if dd + c < dist.get(w, 1e18): dist[w] = dd + c; _hq44.heappush(pq, (dd + c, w))
+        return dist
+    return dij
+def _complete_cycle44(th):
+    n = len(th); ang = {(i, (i + 1) % n): th[i] for i in range(n)}
+    for j in range(2, n - 1):   # add chords 0-j
+        dist = _lift_dist44(n, ang)((0, 0)); d0 = dist.get((j, 0), np.inf); d1 = dist.get((j, 1), np.inf)
+        x = 0.0 if d1 == np.inf else max(0.0, np.pi - d1); ang[(0, j)] = x
+    G = lambda i, j: ang.get((i, j), ang.get((j, i)))
+    V = {0: np.r_[1., 0, 0], 1: np.r_[np.cos(G(0, 1)), np.sin(G(0, 1)), 0]}
+    for j in range(2, n):
+        a, b, c = G(0, j), G(j - 1, j), G(0, j - 1)
+        p, q = V[0], V[j - 1]
+        # solve for unit v with <p,v>=cos a, <q,v>=cos b
+        e1 = p; w = q - (q @ e1) * e1
+        if np.linalg.norm(w) < 1e-12: w = np.cross(e1, _unit44())
+        e2 = w / np.linalg.norm(w); e3 = np.cross(e1, e2)
+        ca = np.cos(a); qe1, qe2 = q @ e1, q @ e2
+        c2 = (np.cos(b) - qe1 * ca) / qe2 if abs(qe2) > 1e-12 else 0.0
+        r2 = 1 - ca ** 2 - c2 ** 2
+        V[j] = ca * e1 + c2 * e2 + np.sqrt(max(r2, 0)) * e3
+    return V, ang
+e = 0.0; tried = 0
+while tried < 150:
+    n = int(_r44.integers(3, 8)); th = list(_r44.uniform(0, np.pi, n))
+    if not _odd_ok44(th): continue
+    tried += 1; V, ang = _complete_cycle44(th)
+    e = max(e, max(abs(V[i] @ V[(i + 1) % n] - np.cos(th[i])) for i in range(n)), max(abs(np.linalg.norm(V[i]) - 1) for i in range(n)))
+report("44 Thm m12:completion (sufficiency on cycles), Lemma m12:joint: 150 random feasible angle cycles n=3..7 realized in R^3 via lifted shortest-path chords and fan insertion", e, 1e-7)
+# (4) K4 with -1/2, examples, rank-two condition
+e = 0.0
+th = [2 * np.pi / 3] * 3; e = max(e, 0 if _odd_ok44(th) and _odd_ok44([2 * np.pi / 3] * 4) else 1)
+K = np.full((4, 4), -0.5) + 1.5 * np.eye(4); e = max(e, abs(np.linalg.eigvalsh(K).min() + 0.5), abs((K @ np.ones(4) + 0.5 * np.ones(4))).max())
+I3 = np.eye(3)
+for n in (4, 5, 6):
+    P = [I3[0], I3[1], I3[2]] + [I3[0]] * (n - 3); th = [np.arccos(np.clip(P[i] @ P[(i + 1) % n], -1, 1)) for i in range(n)]
+    rank2 = any(abs(((sum(s * t for s, t in zip(sg, th)) / (2 * np.pi)) % 1 + 1e-9) % 1) < 1e-6 for sg in _it44.product((1, -1), repeat=n))
+    e = max(e, 1 if rank2 else 0, abs(np.linalg.matrix_rank(np.array(P)) - 3))
+for (a, b), iv in (((np.pi / 3, np.pi / 3), (0, 2 * np.pi / 3)), ((np.pi / 3, np.pi / 2), (np.pi / 6, 5 * np.pi / 6)), ((np.pi / 2, np.pi / 2), (0, np.pi))):
+    e = max(e, abs(abs(a - b) - iv[0]), abs(min(a + b, 2 * np.pi - a - b) - iv[1]), 0 if iv[0] <= np.pi / 2 <= iv[1] else 1)
+report("44 Ex. m12:gram-examples: K4 with -1/2 passes all cycle inequalities but has eigenvalue -1/2; C4..C6 (e1,e2,e3,e1..) rank 3, rank-two condition fails; K_{2,3} intervals share pi/2", e, 1e-12)
+# (5) principal minors
+e = 0.0
+B = np.zeros((5, 5)); B[:2, :2] = 1; B[2:, 2:] = np.full((3, 3), -0.75) + 1.75 * np.eye(3)
+lead = [np.linalg.det(B[:k, :k]) for k in range(1, 6)]; e = max(e, np.abs(np.array(lead) - [1, 0, 0, 0, 0]).max(), abs(np.linalg.eigvalsh(B).min() + 0.5))
+C = np.eye(5); C[0, 1:] = C[1:, 0] = 11 / 20
+lead = [np.linalg.det(C[:k, :k]) for k in range(1, 6)]; e = max(e, np.abs(np.array(lead) - [1 - (j - 1) * (11 / 20) ** 2 for j in range(1, 6)]).max(), 0 if (min(lead[:4]) > 0 and lead[4] < 0) else 1)
+for _ in range(50):
+    M = _r44.normal(size=(5, 5)); M = M + M.T
+    allmin = all(np.linalg.det(M[np.ix_(S, S)]) >= -1e-10 for k in range(1, 6) for S in _it44.combinations(range(5), k))
+    e = max(e, 0 if allmin == (np.linalg.eigvalsh(M).min() >= -1e-10) else 1)
+report("44 Rem. m12:minors: leading minors 1,0,0,0,0 yet eigenvalue -1/2; 11/20 example fails first at order 5; all principal minors >=0 iff PSD (50 random)", e, 1e-12)
+# (6) rotation systems: faces, Euler, boundary rank, face-odd orientation iff |V| even, Pfaffian = +-#matchings
+def _faces44(rot):   # rot: dict v -> list of neighbours in cyclic order
+    darts = [(u, v) for u in rot for v in rot[u]]; seen = set(); faces = []
+    for d in darts:
+        if d in seen: continue
+        f = []; x = d
+        while x not in seen:
+            seen.add(x); f.append(x); u, v = x; i = rot[v].index(u); x = (v, rot[v][(i + 1) % len(rot[v])])
+        faces.append(f)
+    return faces
+def _gf2_rank44(M):
+    M = M.copy() % 2; r = 0
+    for c in range(M.shape[1]):
+        piv = [i for i in range(r, M.shape[0]) if M[i, c]]
+        if not piv: continue
+        M[[r, piv[0]]] = M[[piv[0], r]]
+        for i in range(M.shape[0]):
+            if i != r and M[i, c]: M[i] ^= M[r]
+        r += 1
+    return r
+def _gf2_solve44(A, b):
+    A = np.hstack([A % 2, (b % 2)[:, None]]).astype(np.int64); r = 0; piv = []
+    for c in range(A.shape[1] - 1):
+        rows = [i for i in range(r, A.shape[0]) if A[i, c]]
+        if not rows: continue
+        A[[r, rows[0]]] = A[[rows[0], r]]
+        for i in range(A.shape[0]):
+            if i != r and A[i, c]: A[i] ^= A[r]
+        piv.append(c); r += 1
+    if any(A[i, -1] and not A[i, :-1].any() for i in range(A.shape[0])): return None
+    x = np.zeros(A.shape[1] - 1, dtype=np.int64)
+    for i, c in enumerate(piv): x[c] = A[i, -1]
+    return x
+def _pf44(A):
+    n = len(A)
+    if n == 0: return 1.0
+    tot = 0.0
+    for j in range(1, n):
+        if A[0, j] != 0:
+            idx = [k for k in range(1, n) if k != j]; tot += (-1) ** (j - 1) * A[0, j] * _pf44(A[np.ix_(idx, idx)])
+    return tot
+def _matchings44(n, E):
+    Es = set(map(frozenset, E))
+    def rec(rem):
+        if not rem: return 1
+        a = rem[0]; return sum(rec([x for x in rem if x not in (a, b)]) for b in rem[1:] if frozenset((a, b)) in Es)
+    return rec(list(range(n)))
+def _grid44(r, c):
+    idx = lambda i, j: i * c + j; rot = {}
+    for i in range(r):
+        for j in range(c):
+            nb = []
+            for di, dj in ((0, 1), (-1, 0), (0, -1), (1, 0)):   # counterclockwise: E, N, W, S (rows grow downward)
+                ii, jj = i + di, j + dj
+                if 0 <= ii < r and 0 <= jj < c: nb.append(idx(ii, jj))
+            rot[idx(i, j)] = nb
+    return rot
+def _ico44():
+    pts = []
+    for s1 in (1, -1):
+        for s2 in (1, -1):
+            pts += [(0, s1, s2 * (1 + 5 ** .5) / 2), (s1, s2 * (1 + 5 ** .5) / 2, 0), (s2 * (1 + 5 ** .5) / 2, 0, s1)]
+    P = np.array(pts, float); rot = {}
+    for i in range(12):
+        nb = [j for j in range(12) if j != i and abs(np.linalg.norm(P[i] - P[j]) - 2) < 1e-9]
+        n0 = P[i] / np.linalg.norm(P[i]); a = P[nb[0]] - (P[nb[0]] @ n0) * n0; b = np.cross(n0, a)
+        nb.sort(key=lambda j: np.arctan2((P[j] - (P[j] @ n0) * n0) @ b, (P[j] - (P[j] @ n0) * n0) @ a)); rot[i] = nb
+    return rot
+e = 0.0
+examples = {'triangle': {0: [1, 2], 1: [2, 0], 2: [0, 1]}, 'edge': {0: [1], 1: [0]}, 'grid2x3': _grid44(2, 3), 'grid4x4': _grid44(4, 4), 'icosa': _ico44()}
+counts = {}
+for name, rot in examples.items():
+    V = sorted(rot); E = sorted(set(tuple(sorted((u, v))) for u in rot for v in rot[u])); F = _faces44(rot)
+    e = max(e, abs(len(V) - len(E) + len(F) - 2))
+    D = np.zeros((len(E), len(F)), dtype=np.int64)
+    for fi, f in enumerate(F):
+        for (u, v) in f: D[E.index(tuple(sorted((u, v)))), fi] ^= 1
+    e = max(e, abs(_gf2_rank44(D) - (len(F) - 1)), abs((len(E) - len(V) + 1) - (len(F) - 1)))
+    # orientation odd on every face: unknown t_e flips; face parity of base orientation (u<v)
+    base = np.array([sum(1 for (u, v) in f if u > v) % 2 for f in F])
+    sol = _gf2_solve44(D.T.copy(), (1 - base) % 2)
+    e = max(e, 0 if ((sol is not None) == (len(V) % 2 == 0)) else 1)
+    if sol is not None and len(V) > 2:
+        orient = {ed: (ed if not sol[k] else ed[::-1]) for k, ed in enumerate(E)}
+        A = np.zeros((len(V), len(V)))
+        for ed, (a, b) in orient.items(): A[a, b] = 1; A[b, a] = -1
+        Z = _matchings44(len(V), E); pf = _pf44(A) if len(V) <= 16 else None
+        counts[name] = Z; e = max(e, abs(abs(pf) - Z), abs(np.linalg.det(A) - Z * Z) / max(1, Z * Z))
+e = max(e, abs(counts['grid2x3'] - 3), abs(counts['grid4x4'] - 36))
+report("44 Thms m12:face-exact, m12:face-odd, m12:pfaffian: Euler, boundary rank |F|-1 = cycle-space dimension; face-odd orientation exists iff |V| even (triangle fails); |Pf|=#matchings, det=Z^2 (2x3 grid 3, 4x4 grid 36, icosahedron %d)" % counts.get('icosa', -1), e, 1e-6)
+# (7) Gallai-Hasse-Roy-Vitaver: chi = min_D L(D); census; cyclic triangle and maximal acyclic subset
+def _L44(n, arcs):
+    out = {v: [] for v in range(n)}
+    for a, b in arcs: out[a].append(b)
+    best = 0
+    def rec(v, S):
+        return 1 + max([rec(w, S | {w}) for w in out[v] if w not in S], default=0)
+    return max([rec(v, frozenset([v])) for v in range(n)], default=0)
+def _chi44(n, E):
+    for k in range(1, n + 1):
+        for col in _it44.product(range(k), repeat=n):
+            if all(col[a] != col[b] for a, b in E): return k
+    return 0
+C5 = [(i, (i + 1) % 5) for i in range(5)]; K4 = list(_it44.combinations(range(4), 2))
+outer = [(i, (i + 1) % 5) for i in range(5)]; inner = [(5 + i, 5 + (i + 2) % 5) for i in range(5)]; spokes = [(i, 5 + i) for i in range(5)]; PET = outer + inner + spokes
+e = 0.0; cens = {}
+for name, n, E in (("C5", 5, C5), ("K4", 4, K4), ("Pet", 10, PET)):
+    hist = {}
+    for bits in _it44.product((0, 1), repeat=len(E)):
+        arcs = [(a, b) if t == 0 else (b, a) for (a, b), t in zip(E, bits)]; L = _L44(n, arcs); hist[L] = hist.get(L, 0) + 1
+    cens[name] = hist; e = max(e, abs(min(hist) - _chi44(n, E)))
+e = max(e, 0 if cens["C5"] == {3: 10, 4: 10, 5: 12} else 1, 0 if cens["K4"] == {4: 64} else 1, abs(cens["Pet"].get(3, 0) - 80), abs(sum(cens["Pet"].values()) - 32768), abs(min(cens["Pet"]) - 3))
+h5 = {}
+for ch in _it44.product((0, 1, 2), repeat=5):
+    arcs = []
+    for (a, b), t in zip(C5, ch): arcs += [(a, b)] if t == 0 else ([(b, a)] if t == 1 else [(a, b), (b, a)])
+    L = _L44(5, arcs); h5[L] = h5.get(L, 0) + 1
+e = max(e, abs(min(h5) - 3), abs(h5[min(h5)] - 20), abs(sum(h5.values()) - 243))
+cyc = [(0, 1), (1, 2), (2, 0)]
+def _height44(n, arcs, v):
+    out = {x: [] for x in range(n)}
+    for a, b in arcs: out[a].append(b)
+    def rec(x, S): return max([1 + rec(w, S | {w}) for w in out[x] if w not in S], default=0)
+    return rec(v, frozenset([v]))
+raw = [_height44(3, cyc, v) for v in range(3)]; acyc = [(0, 1), (1, 2)]; hts = [_height44(3, acyc, v) for v in range(3)]
+e = max(e, 0 if raw == [2, 2, 2] else 1, 0 if all(hts[a] != hts[b] for a, b in cyc) else 1)
+report("44 Thm m12:ghrv, Ex. m12:census: chi=min_D L(D) on C5,K4,Petersen; census C5 {3:10,4:10,5:12}, K4 {4:64}, Petersen min 3 on 80 of 32768; both-direction C5 min 3 on 20 of 243; cyclic triangle raw heights 2,2,2, maximal acyclic subset colours", e, 0.5)
+# (8) gradient-flow remark refuted: V=(x^2-1)^2 stationary at 0 with V=1>0
+dV = lambda x: 4 * x * (x * x - 1)
+report("44 Rem. m12:programme (refuted universal convergence): V=(x^2-1)^2 has V'(0)=0, V(0)=1 > V(+-1)=0", abs(dV(0.0)) + abs((0 ** 2 - 1) ** 2 - 1), 1e-15)
+
+
+# =========================================================== 45. Section 10E (independent checks of the m13 module)
+import itertools as _it45
+from fractions import Fraction as _F45
+_r45 = np.random.default_rng(33045)
+_ph = (1 + 5 ** .5) / 2; _phc = 1 - _ph; _rho = 1 / _ph
+_fib45 = [0, 1]
+for _ in range(60): _fib45.append(_fib45[-1] + _fib45[-2])
+# (1) the golden strip: closed vs half-open window, gaps, radii, prefixes, inflation
+e = 0.0
+l45, u45 = _ph - 2, _ph - 1
+pts_closed, pts_half = [], []
+for b in range(-300, 301):
+    for a in range(-800, 800):
+        t = a + b * _phc
+        if l45 - 1e-12 <= t <= u45 + 1e-12:
+            x = a + b * _ph; pts_closed.append((x, a, b))
+            if t > l45 + 1e-12: pts_half.append((x, a, b))
+xs_c = np.sort([p[0] for p in pts_closed]); xs_h = np.sort([p[0] for p in pts_half])
+extra = sorted(set(map(lambda p: (p[1], p[2]), pts_closed)) - set(map(lambda p: (p[1], p[2]), pts_half)))
+e = max(e, 0 if extra == [(-1, -1)] else 1, abs((-1 - _ph) + _ph ** 2))
+for b in range(-300, 301):
+    ab = int(np.floor((b + 1) * _ph)) - b - 1
+    e = max(e, 0 if any(p[1] == ab and p[2] == b for p in pts_half) else 1)
+mid = (np.abs(xs_h) < 300)
+gh = np.round(np.diff(xs_h[mid]), 9); gc = np.round(np.diff(xs_c[np.abs(xs_c) < 300]), 9)
+e = max(e, 0 if set(gh) == {round(_ph, 9), round(_ph ** 2, 9)} else 1)
+e = max(e, 0 if set(gc) == {round(_ph, 9), round(_ph ** 2, 9), 1.0} else 1, abs(np.sum(gc == 1.0) - 1))
+i1 = np.where(gc == 1.0)[0][0]; e = max(e, abs(xs_c[np.abs(xs_c) < 300][i1] + _ph ** 2))
+e = max(e, abs(gc.min() / 2 - 0.5), abs(gc.max() / 2 - _ph ** 2 / 2))
+def _beta45(v):
+    digs = []; k = 60
+    while v > 0:
+        while _fib45[k] > v: k -= 1
+        digs.append(k - 2); v -= _fib45[k]; k -= 2
+    return sum(_ph ** (j + 2) for j in digs), digs
+for v in range(0, 400):
+    bv, _ = _beta45(v); ab = int(np.floor((v + 1) * _ph)) - v - 1; e = max(e, abs(bv - (ab + v * _ph)) / (1 + bv))
+B = np.array([_beta45(v)[0] for v in range(2000)])
+e = max(e, 0 if np.all(np.diff(B) > 0) else 1, max(0, abs(2000 / _beta45(2000)[0] - 1 / 5 ** .5) - 1 / _beta45(2000)[0]), max(abs(B - 5 ** .5 * np.arange(2000))) > 1)
+Bs = set(np.round(B[B < 500], 7)); img = set(np.round(_ph * B[B < 500 / _ph], 7)) | set(np.round(_ph ** 2 + _ph ** 2 * B[B < (500 - _ph ** 2) / _ph ** 2], 7))
+e = max(e, 0 if Bs == img else 1, 0 if not (set(np.round(_ph * B[B < 300], 7)) & set(np.round(_ph ** 2 + _ph ** 2 * B[B < 200], 7))) else 1)
+Lc = set(np.round(xs_c, 7)); Lw = set(np.round(_ph * xs_c[np.abs(xs_c) < 150], 7)) & set(np.round(_ph ** 2 + _ph ** 2 * xs_c[np.abs(xs_c) < 60], 7))
+e = max(e, 0 if Lw == {round(-_ph ** 3, 7)} else 1)
+report("45 Thm m13:golden, Cor. m13:closed-inflation: closed window adds only -phi^2 (a,b)=(-1,-1); half-open gaps {phi,phi^2}, closed adds one gap of length 1 at [-phi^2,-phi]; radii 1/2, phi^2/2; beta(v)=x_v, |beta-sqrt5 v|<1, n/beta(n)->1/sqrt5; B=phiB u (phi^2+phi^2 B) disjoint; closed overlap {-phi^3}", e, 1e-6)
+# (2) readout fibers and norm sign
+e = 0.0
+s = [int(np.floor((v + 1) * _ph)) - 1 for v in range(3000)]
+for v in range(1, 1500):
+    bv, digs = _beta45(v); conj = sum(_phc ** (j + 2) for j in digs); e = max(e, 0 if np.sign(bv * conj) == (-1) ** min(digs) else 1)
+A = [2 * s[v] - 3 * v for v in range(3000)]; D = [2 * v - s[v] for v in range(3000)]
+fa = {}; fd = {}
+for v in range(3000): fa[A[v]] = fa.get(A[v], 0) + 1; fd[D[v]] = fd.get(D[v], 0) + 1
+e = max(e, 0 if set(fa[a] for a in range(1, 300)) <= {4, 5} else 1, 0 if set(fd[b] for b in range(0, 600)) <= {2, 3} else 1, abs(_beta45(2)[0] - _beta45(1)[0] - _ph))
+report("45 Cor. m13:readout-fibers: norm sign (-1)^{least digit}; A-fibres of size 4 or 5, D-fibres of size 2 or 3; beta(2)-beta(1)=phi", e, 1e-9)
+# (3) window density 1/sqrt5 for the unit window; |W|/sqrt5 in general; rescaled physical coordinate gives |W|
+e = 0.0
+def _count45(W, s0, T):
+    lo, hi = W; c = 0
+    for b in range(int(np.floor((s0 - 10) / 5 ** .5)) - 2, int(np.ceil((s0 + T + 10) / 5 ** .5)) + 3):
+        for a in range(int(np.floor(lo - b * _phc)) - 1, int(np.ceil(hi - b * _phc)) + 2):
+            t = a + b * _phc; x = a + b * _ph
+            if lo <= t <= hi and s0 <= x < s0 + T: c += 1
+    return c
+for W in ((l45, u45), (-0.3, 0.9), (-1.2, 1.4)):
+    for s0 in (0.0, -523.7, 1e4 + 0.31):
+        T = 40000.0; dens = _count45(W, s0, T) / T; e = max(e, abs(dens - (W[1] - W[0]) / 5 ** .5) * 50)
+e = max(e, abs((_count45((l45, u45), 0.0, 40000.0) / (40000.0 / 5 ** .5)) - 1) * 50)
+report("45 Prop. m13:density: counts in [s,s+T) give |W|/sqrt5 (unit window 1/sqrt5; |W|=1.2, 2.6); in the coordinate x/sqrt5 the density is |W|", e, 0.5)
+# (4) return example, doubling example
+e = 0.0
+vis = [n for n in range(89) if 0.2 < np.cos(2 * np.pi * ((n * _ph) % 1)) < 0.8]
+e = max(e, abs(len(vis) - 21), abs(max(np.diff(vis)) - 7))
+freq = (np.arccos(0.2) - np.arccos(0.8)) / np.pi; e = max(e, abs(sum(1 for n in range(200000) if 0.2 < np.cos(2 * np.pi * ((n * _ph) % 1)) < 0.8) / 200000 - freq) * 10)
+for x0, tgt in ((_F45(0), (1, 1)), (_F45(1, 7), (_F45(2, 3), _F45(1, 3))), (_F45(1, 3), (_F45(1, 2), 0)), (_F45(2, 5), (_F45(1, 2), _F45(1, 4)))):
+    x = x0; c1 = c2 = 0; Nn = 840
+    for _ in range(Nn):
+        c1 += x < _F45(1, 2); c2 += x < _F45(1, 4); x = (2 * x) % 1
+    e = max(e, abs(_F45(c1, Nn) - tgt[0]), abs(_F45(c2, Nn) - tgt[1]))
+report("45 Ex. m13:return-example, m13:doubling-example: 21 visits for n<89, largest gap 7, frequency (arccos 1/5 - arccos 4/5)/pi; doubling frequencies (1,1),(2/3,1/3),(1/2,0),(1/2,1/4)", float(e), 1e-3)
+# (5) Hurwitz: the corrected quantifiers
+from decimal import Decimal as _D45, getcontext as _gc45
+_gc45().prec = 60; _P45 = (1 + _D45(5).sqrt()) / 2; _i5 = 1 / _D45(5).sqrt()
+e = 0.0
+for q in range(1, 1500):
+    p = round(q * _ph)
+    for pp in (p - 1, p, p + 1):
+        eps = abs(_ph - pp / q); lb = 2 / (q * q * (np.sqrt(5 + 4 / q ** 2) + 5 ** .5))
+        e = max(e, max(0, lb - eps - 1e-15), 0 if eps > 1 / (5 ** .5 * q * q + q) else 1)
+e = max(e, 0 if abs(2 - _ph) < 1 / 5 ** .5 else 1)
+below = [k for k in range(2, 23) if abs(_ph - _fib45[k + 1] / _fib45[k]) < 1 / (5 ** .5 * _fib45[k] ** 2)]  # double precision suffices to k=22
+e = max(e, 0 if (below and all(k % 2 == 0 for k in below) and len(below) >= 10) else 1)
+for k in range(1, 30): e = max(e, float(abs(_D45(5).sqrt() * _fib45[k] ** 2 * abs(_P45 - _D45(_fib45[k + 1]) / _fib45[k]) - (1 - (-1) ** k * (1 / _P45) ** (2 * k)))))
+for n in range(0, 40): e = max(e, abs(_fib45[n] * _fib45[n + 2] - _fib45[n + 1] ** 2 - (-1) ** (n + 1)))
+from decimal import Decimal as _D45, getcontext as _gc45
+_gc45().prec = 60; _P45 = (1 + _D45(5).sqrt()) / 2; _i5 = 1 / _D45(5).sqrt()
+vals = [(q, q * abs(q * _P45 - round(q * _P45))) for q in range(1000, 6000)]
+qmin, vmin = min(vals, key=lambda t: t[1])
+e = max(e, 0 if (qmin in _fib45 and abs(vmin - _i5) <= _i5 * _D45(_rho) ** (2 * _fib45.index(qmin)) * 2) else 1, float(abs(_fib45[50] * abs(_fib45[50] * _P45 - _fib45[51]) - _i5)) * 1e10)  # minimum at a Fibonacci q, within rho^{2k}/sqrt5 of 1/sqrt5
+report("45 Thm m13:hurwitz, Rem. m13:universal: lower bound and strict +q bound for all q<1500; 2/1 has error 0.382 < 1/sqrt5; F_{k+1}/F_k below 1/(sqrt5 F_k^2) exactly for even k; Cassini; liminf q||q phi|| = 1/sqrt5", e, 1e-6)
+# (6) shortest gaps, pi-3 example
+e = 0.0
+al2 = 2 - _ph; best = (9, 0)
+for N in range(2, 2001):
+    p = np.sort((np.arange(N) * al2) % 1); g = np.diff(np.r_[p, p[0] + 1]); v = N * g.min()
+    e = max(e, 0 if v > 1 / 5 ** .5 else 1)
+    if v < best[0]: best = (v, N)
+e = max(e, abs(best[1] - 1598), abs(round(best[0], 5) - 0.44749))
+p = (np.arange(114) * (np.pi - 3)) % 1; o = np.argsort(p); ps = p[o]; g = np.diff(np.r_[ps, ps[0] + 1]); k = np.argmin(g)
+pair = {int(o[k]), int(o[(k + 1) % 114])}
+e = max(e, 0 if pair == {0, 113} else 1, abs(round(g.min(), 6) - 3.0e-5) * 1e3 if abs(g.min() - 3.0e-5) > 5e-7 else 0, abs(round(g.max() / g.min()) - 294) > 1)
+report("45 Cor. m13:shortest-gap, Ex. m13:gap-example: N d_N > 1/sqrt5 for N<=2000, minimum 0.44749 at N=1598; pi-3 at N=114: shortest gap between indices 0,113 ~3.0e-5, ratio ~294", e, 1e-3)
+# (7) survivor coding
+def _grid45(Q):
+    vals = set()
+    for w in _it45.product((0, 1), repeat=Q):
+        if any(w[j] and w[j + 1] for j in range(Q - 1)): continue
+        vals.add(sum(w[j] * _rho ** (j + 1) for j in range(Q)))
+    return np.sort(np.array(list(vals)))
+e = 0.0
+grids = {Q: _grid45(Q) for Q in range(1, 17)}
+for Q in (2, 3, 4):
+    G = grids[Q]
+    for x in _r45.uniform(G[0], G[-1], 30):
+        i = np.searchsorted(G, x) - 1; i = min(max(i, 0), len(G) - 2); L = G[i + 1] - G[i]
+        kind = 'L' if abs(L - _rho ** Q) < 1e-12 else 'S'; tt = (x - G[i]) / L
+        for nstep in range(0, 12 - Q):
+            Hs = min(tt, 1 - tt) * (1 if kind == 'L' else _rho)
+            S = _ph ** (Q + nstep) * np.abs(grids[Q + nstep] - x).min()
+            e = max(e, abs(S - Hs))
+            if kind == 'L':
+                if tt <= _rho: tt = _ph * tt
+                else: kind, tt = 'S', _ph ** 2 * tt - _ph
+            else: kind = 'L'
+report("45 Prop. m13:survivor: S_{Q+n}(x)=H(T^n(kind,t)) along refinements (Q=2,3,4, n up to 9)", e, 1e-8)
+# (8) icosahedral cut: Gram identities, index, zonotope counts
+e = 0.0
+v = []
+for s in (1, -1): v.append(np.array([0, 1, s * _ph]))
+for s in (1, -1): v.append(np.array([1, s * _ph, 0]))
+for s in (1, -1): v.append(np.array([s * _ph, 0, 1]))
+A = np.array(v).T; Ac = A.copy(); Ac[np.abs(np.abs(Ac) - _ph) < 1e-12] *= _phc / _ph
+e = max(e, np.abs(A @ A.T - 2 * (1 + _ph ** 2) * np.eye(3)).max(), np.abs(Ac @ Ac.T - 2 * (1 + _phc ** 2) * np.eye(3)).max(), np.abs(A @ Ac.T).max())
+cov = (4 * (1 + _ph ** 2) * (1 + _phc ** 2)) ** 1.5; e = max(e, abs(cov - 40 * 5 ** .5), abs(cov / (5 * 5 ** .5) - 8))
+gens = [Ac[:, i] for i in range(6)]; faces = 0; verts = set()
+for i, j in _it45.combinations(range(6), 2):   # each pair spans a facet normal; both signs give opposite facets
+    nrm = np.cross(gens[i], gens[j]); others = [k for k in range(6) if k not in (i, j)]
+    if all(abs(nrm @ gens[k]) > 1e-9 for k in others): faces += 2
+# vertices: generic directions -> sign patterns of <d, g_i>
+dirs = _r45.normal(size=(40000, 3)); S = np.sign(dirs @ np.array(gens).T)
+verts = set(map(tuple, S.astype(int)))
+nv = len(verts); e = max(e, abs(faces - 30), abs(nv - 32), abs(nv - 60 + 30 - 2))
+ng = [g / np.linalg.norm(g) for g in gens]
+e = max(e, max(abs(abs(ng[i] @ ng[j]) - 1 / 5 ** .5) for i, j in _it45.combinations(range(6), 2)), abs(np.sqrt((1 + 1 / 5 ** .5) / (1 - 1 / 5 ** .5)) - _ph))
+report("45 Thm m13:icosian: AA^T=2(1+phi^2)I, A'A'^T=2(1+phi'^2)I, AA'^T=0; covolume 40 sqrt5, index 8; zonotope 30 faces, 32 vertices (sign patterns), Euler gives 60 edges; generator cosines 1/sqrt5; diagonal ratio phi", e, 1e-9)
+# (9) Lorenz divergence
+sig, rr, bb = 10.0, 28.0, 8 / 3
+report("45 Rem. m13:lorenz: divergence of the Lorenz field at (10,28,8/3) is -41/3", abs((-sig - 1 - bb) + 41 / 3), 1e-12)
 
 
 # =========================================================== registered module scripts (checks/)

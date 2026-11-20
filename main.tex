@@ -62,52 +62,29 @@
 \raggedbottom
 
 \begin{abstract}
-A \emph{comparison structure} is a connected manifold with a ternary transport $\hp xyz$ obeying the
-heap identities (a group with its identity forgotten) and a comparison $\kappa\colon M\times M\to[0,1]$ that is continuous,
-symmetric, invariant under transports, equal to $1$ exactly on the diagonal, has exactly one zero partner for each point, and
-satisfies the round-trip law $\kappa(w,\hp xwx)=(2\kappa(w,x)-1)^2$.  We prove that there are exactly two: the unit circle and the
-unit quaternions $S^3$, with $\hp xyz=xy^{-1}z$ and $\kappa(x,y)=\lVert(x+y)/2\rVert^2$.  Beyond continuity of the heap operation and of
-$\kappa$ nothing is assumed: dimension, compactness, smoothness and positive semidefiniteness are derived.  Associativity is not needed for the
-geometry: if the heap identities are replaced by a binary operation with a two-sided unit at one point whose left and right
-translations are continuous and preserve $\kappa$, with the round-trip law at that point, the space is still a round sphere $S^1$, $S^3$ or $S^7$ with
-this $\kappa$, and the operations are then classified by Hurwitz's theorem (two unit sedenions can multiply to zero).  Keeping only the reflections $s_x(w)=\hp xwx$ on a smooth manifold, the
-round-trip law characterises the compact rank-one symmetric spaces; unique zero partners select the spheres, which are exactly the cases
-where the reflected comparison is affine in two readouts, and on the higher projective spaces the missing term is the real part of the
-Bargmann invariant.  Allowing an indefinite second-order germ instead of a bounded faithful comparison gives, in dimension three, the
-central quotients of $\widetilde{\mathrm{SL}}(2,\R)$ with Chebyshev comparisons (anti-de Sitter space), and on the positive Hermitian
-matrices the arc calculus becomes hyperbolic: the Thomas--Wigner rotation of a triangle is a rational function of its vertices and
-rotates through minus its area.  A space of finite comparison rank $r$ cannot encode the full family of its
-comparison-preserving maps, which needs rank $r^2$; and the logarithm of an exponentially scaled Gram elimination tends to the
-shortest-path value under a sign condition, which cannot be dropped.  Inserting a clock phase at each step of the geodesic recurrence
-realises exactly the polynomials of the comparison bounded by one on $[-1,1]$ with the permitted degree and parity, and a two-chart
-rational atlas makes the whole arc calculus bounded and exactly rational on $S^3$ (errors add in round angle).  For ordered products of rotations the deterministic
-convergence criterion is the angular sum, not the sagitta sum (both directions fail), and holonomy words in the binary icosahedral
-group recognise exactly nonuniform $\mathrm{NC}^1$, while commutative words cannot compute two-input AND under a two-output promise.
-The diagonal operation is an involutory quandle whose closed-braid colouring spaces on $S^3$ are $S^3\times(\{1\}\sqcup S^2)$ for the
-trefoil and $S^3\times(\{1\}\sqcup S^2\sqcup S^2)$ for the figure-eight, and no nonconstant function of the comparison is a crossing
-cocycle there.  On $S^3$, generic configurations of $N\ge5$ points are recovered locally from $3N-6$ and globally from $3N-5$ scalar
-comparisons, and the Maxwell count does not ensure global rigidity.  Before any manifold, the chord--sagitta identity and an
-elliptic/parabolic/hyperbolic trichotomy already hold for fair elements of a star algebra, and sparse comparisons on a chordal graph
-with triangle defects at most $\varepsilon$ come from a potential up to $(|V|-2)\varepsilon$, the obstruction on other graphs being a
-lattice gauge connection.  The key step concerns the duplication equation $f(x^2)=2f(x)^2-1$: on the line it has continuous non-cosine
-solutions, none of them faithful, and on a connected Lie group every faithful continuous solution that is an even class
-function is the cosine of an angle ($\re$ on $S^1$ and $\SU(2)$, the cosine of the rotation angle on $\SO(3)$).  The round-trip law can be replaced by an operational one: along a uniform transport, the comparison of any test point with the next point is an
-affine function of its comparisons with the two previous points.  We also describe the geometry of the heap $S^3$.
+A \emph{comparison structure} is a connected manifold with a ternary transport $\hp xyz$ obeying the heap identities and a
+continuous comparison $\kappa\colon M\times M\to[0,1]$ that is symmetric, transport-invariant, equal to $1$ exactly on the diagonal,
+has exactly one zero partner for each point, and satisfies the round-trip law $\kappa(w,\hp xwx)=(2\kappa(w,x)-1)^2$.  We prove that
+there are exactly two: the unit circle and the unit quaternions $S^3$, with $\hp xyz=xy^{-1}z$ and $\kappa(x,y)=\lVert(x+y)/2\rVert^2$;
+dimension, compactness and smoothness are derived.  Without associativity, a binary operation with a two-sided unit and
+$\kappa$-preserving translations already forces a round $S^1$, $S^3$ or $S^7$, and Hurwitz's theorem classifies the operations.
+Keeping only the reflections $\hp xwx$, the round-trip law characterises the compact rank-one symmetric spaces.  Replacing the bounded
+comparison by a nondegenerate second-order germ gives, for a noncommutative three-dimensional heap with indefinite form, the central
+quotients of $\widetilde{\mathrm{SL}}(2,\R)$, and, if the comparison is globally analytic, exactly the Chebyshev comparisons
+$T_m(\tfrac12\operatorname{tr})$.  A round sphere of comparison rank $r\ge2$ cannot encode its full orthogonal family of
+comparison-preserving maps, which needs rank $r^2$.
 
-On this basis we develop a calculus of minimal arcs in which differences are replaced by transports.
-The recurrence $x_{n+1}=\hp{x_n}{x_{n-1}}{x_n}$ generates sampled geodesics exactly, in Chebyshev form
-and over $\Q$; for fixed ends at distance $\Theta<\pi$ it is the unique minimiser of the discrete action $\sum(1-\cos d)$, and
-its residual on a smooth curve is $h^2$ times the covariant acceleration.  Every step splits exactly into
-a tangential rotation and a radial \emph{sagitta} $1-\cos d=2(1-\kappa)$; sums of sagittas vanish for
-rectifiable paths and converge to half the quadratic variation for paths with a pathwise quadratic
-variation, giving $3T/2$ and the It\^o drift for Brownian motion on $S^3$.  Levi-Civita transport along
-a minimal arc is conjugation by the square root of the displacement; the product of these square roots
-around a triangle, which has the algebraic form of the Bargmann--Pancharatnam invariant evaluated on the three vertices as unit vectors
-of their span, has real part $(\sum\kappa-1)/(2\sqrt{\prod\kappa})=\cos(E/2)$, $E$ the spherical excess,
-and the exact finite form of the lasso decomposition bounds the rotation angle of the Levi-Civita holonomy of a closed
-polygon of minimal arcs by the total area of the geodesic triangles of any simplicial triangulated filling with
-non-antipodal neighbours.  For rational vertices all transports and holonomies are
-rational rotations.
+On this basis we develop a calculus of minimal arcs in which differences are replaced by transports.  The recurrence
+$x_{n+1}=\hp{x_n}{x_{n-1}}{x_n}$ generates sampled geodesics exactly, in Chebyshev form; sums of the sagittas $1-\cos d$ converge to half
+the quadratic variation for paths that have one; Levi-Civita transport along a minimal arc is conjugation by the square root of the
+displacement, and the product of these square roots around a triangle has real part $\cos(E/2)$, $E$ the spherical excess.  With a
+clock phase at each step, the attainable comparisons are exactly the polynomials of the centred comparison $2\kappa-1$ bounded by one
+with the permitted degree and parity (the quantum-signal-processing theorem in heap form).  A two-chart rational atlas makes products,
+comparisons, sagittas and adjoint transports bounded and exactly rational on $S^3$.  For products of rotations, convergence for every
+choice of axes is equivalent to a finite angular sum, and a finite sagitta sum is neither necessary nor sufficient; at polynomial
+length, holonomy words in the binary icosahedral group recognise exactly the languages in nonuniform $\mathrm{NC}^1$.  Further sections
+treat sparse Gram completions, quandles and braids, rigidity counts, the Cayley--Dickson ladder, walks and compilation, numeration
+and golden model sets.
 \end{abstract}
 
 \maketitle
@@ -126,7 +103,9 @@ the height of the arc from $y$ through $x$ to the mirror image $\hp xyx$ above i
 \emph{Roadmap.}  Part~\ref{part:alg} (Section~\ref{sec:m1}) works before any manifold: in a star algebra a fair comparison already
 has the chord--sagitta identity and an elliptic/parabolic/hyperbolic trichotomy by growth of powers, and on a graph sparse
 comparisons are reconstructed from a potential on chordal graphs, with explicit error constants, while on other graphs the
-obstruction is a lattice gauge connection (cycle holonomies modulo simultaneous conjugacy).  Part~\ref{part:axiom}
+obstruction is a lattice gauge connection (cycle holonomies modulo simultaneous conjugacy); Section~\ref{sec:m12} decides rank-three
+realizability of scalar comparisons on graphs without a $K_4$ minor by odd-subset angle inequalities, and on planar rotation systems
+obtains face-odd orientations and Pfaffian matching counts.  Part~\ref{part:axiom}
 (Sections~\ref{sec:def}--\ref{sec:geom}) states the axiom and classifies its models: it
 characterises the heap $S^3$ together with its comparison $\kappa(x,y)=\lVert (x+y)/2\rVert^2=\cos^2(d/2)$ by axioms that do not mention a
 unit, describes the geometry of the heap, develops the theory without associativity (Mal'cev identities, Hurwitz's theorem, the
@@ -134,12 +113,13 @@ octonionic family), proves that two-sided invariance alone forces a round sphere
 invariance gives and does not give (Section~\ref{sec:onesided}).  Part~\ref{part:beyond} (Section~\ref{sec:m2}) keeps only the reflections
 $s_x(w)=\hp xwx$: with the round-trip law they characterise the compact rank-one symmetric spaces, unique zero partners select the spheres,
 and on the higher projective spaces the reflected comparison carries a real three-point (Bargmann) term that two readouts cannot
-determine.  Section~\ref{sec:m3} drops boundedness, separation and unique zeros in favour of a nondegenerate second-order germ: in
-dimension three the solutions are central quotients of $\widetilde{\mathrm{SL}}(2,\R)$ (anti-de Sitter space, with its null cone as the
-local level $\kappa=1$), $\mathrm{SL}(2,\C)$ carries a complex comparison, and on the positive Hermitian matrices the arc calculus of
+determine.  Section~\ref{sec:m3} drops boundedness, separation and unique zeros in favour of a nondegenerate second-order germ: for a
+noncommutative three-dimensional heap with indefinite form the groups are central quotients of $\widetilde{\mathrm{SL}}(2,\R)$, and if
+the comparison is globally analytic it is exactly a Chebyshev comparison $T_m(\tfrac12\operatorname{tr})$ (anti-de Sitter space, with
+its null cone as the local level $\kappa=1$; abelian $\R^3$ with an indefinite form is also a solution), $\mathrm{SL}(2,\C)$ carries a complex comparison, and on the positive Hermitian matrices the arc calculus of
 Part~\ref{part:arc} transfers with the signs of curvature reversed (Remark~\ref{m3:transfer}).  Section~\ref{sec:d4} asks when a
-comparison space can encode its own maps: exactly when the span rank of the specified family fits the target budget, with a spectral
-error otherwise; the sphere list is a classification, not an encoding tower, and a clock follows from finite rank only under an added
+comparison space can encode its own maps: for a target whose state set is a full round sphere, exactly when the span rank of the
+specified family fits the target budget (for a general target the rank condition is necessary only), with a spectral error otherwise; the sphere list is a classification, not an encoding tower, and a clock follows from finite rank only under an added
 symmetry or differential-rank hypothesis.  Section~\ref{sec:m7} reads the diagonal operation as an involutory quandle: braids act on
 colourings, the trefoil and figure-eight colouring spaces of $S^3$ are computed, comparison-valued crossing weights are shown to be
 trivial on $S^3$, and Pauli syndromes are read as heap commutators.  Section~\ref{sec:m10} follows Cayley--Dickson doubling to the
@@ -156,13 +136,15 @@ Section~\ref{sec:m11} iterates two reflections (walks, the secular equation of t
 cut scope);
 Section~\ref{sec:m4atlas} replaces the Cayley chart by a bounded two-chart rational atlas on all of $S^3$ with uniform error bounds.
 Part~\ref{part:arith} (Section~\ref{sec:m6}) treats the arithmetic of $S^3$: prime-norm gates and their covering exponents (from the
-cited spectral gap), products of rotations (the angular sum decides deterministic convergence, the sagitta sum only the random
-dispersion), a prime-indexed example with its scope, finite Hermite--Biehler kernels, fixed points, and word holonomy (Barrington's
+cited spectral gap), products of rotations (convergence for every choice of axes is equivalent to a finite angular sum, and a finite sagitta sum is
+neither necessary nor sufficient; for independent factors the dispersion condition is $\sum_k(s_k-r_kv(b_k))<\infty$, which reduces to
+a finite expected sagitta sum for centred laws), a prime-indexed example with its scope, finite Hermite--Biehler kernels, fixed points, and word holonomy (Barrington's
 theorem in the icosahedral group against the commutative obstruction).  Section~\ref{sec:m9} reads numeration from the circle: the round
 trip is a factor of angle doubling, a fixed step gives three gaps, words avoiding $1^K$ give the greedy Pisot numeration and the Parry
 law, and absolutely convergent Euler products become a positive scale times oriented arcs.  Section~\ref{sec:m11b} bounds compilation
 errors in round angle and in the square root of the sagitta, identifies the comparison Hessian with the Fubini--Study metric, and
-reads the parameter-shift rule as the two-readout law.  Part~\ref{part:final}
+reads the parameter-shift rule as the two-readout law.  Section~\ref{sec:m13} treats the golden model set (window, Delone radii,
+density $|W|/\sqrt5$, inflation), the Hurwitz bound with its quantifiers, ergodic readouts and the icosian cut.  Part~\ref{part:final}
 (Sections~\ref{sec:known}--\ref{sec:open}) places the results in the literature, records what is formalised, and lists the open problems.
 In the arc calculus the guiding observation is that linear calculus discards two second-order quantities
 that are exact and computable in the heap: the radial sagitta of each step, and the failure of the
@@ -1213,7 +1195,856 @@ the finite counterparts of the positive semidefiniteness and rank in Theorems~\r
 Gram test of Proposition~\ref{prop:onesidedpos}(ii); Example~\ref{m1:negative-gram} shows why such a test is needed as an input.
 \end{remark}
 
+% Section 0A: lettered so that Sections 1 onwards keep their numbers.
+\setcounter{section}{0}
+\renewcommand{\thesection}{0\Alph{section}}
+\renewcommand{\theHsection}{alg.\arabic{section}}
+\section{Sparse Gram completions and planar orientations of comparison graphs}\label{sec:m12}
+
+Which scalar edge comparisons arise from real unit vectors in dimension
+three? On a cycle and, more generally, on a
+graph with no $K_4$ minor, odd-subset angle inequalities give a complete
+test. The proof chooses common angles on missing edges before applying
+chordal Gram completion. With a rotation system satisfying the
+spherical Euler equality, cycles also control a different problem.
+Face boundaries generate the binary cycle space and, when the
+vertex count is even, the face equations give one orientation that
+aligns the perfect-matching terms in a Pfaffian.
+
+These are scalar comparisons in the sense of Theorem~\ref{m8:counts}
+of Section~\ref{sec:m8}. That theorem gives sharp generic measurement
+counts for recovery at rank at most four. Here we test existence at rank
+at most three. The chordal gain theorem (Theorem~\ref{m1:chordal}) of
+Section~\ref{sec:m1} reconstructs vertex potentials from group-valued
+comparisons. Here a chordal supergraph can have unspecified comparisons on
+its additional edges. Relative to the companion paper's theorem on gluing
+local windows \cite{Companion}, the present cycle test extends the chordal
+clique test to real nonchordal masks of the indicated class.
+
+\emph{Placement.} The cycle conditions on a simple cycle are due to
+Barrett, Johnson and Tarazaga \cite{m12:BJT}; the graphs on which they
+suffice are those of Barrett, Johnson and Loewy for positive definite
+completion \cite{m12:BJL} and of Laurent for positive semidefinite
+completion \cite{m12:Laurent}. What is added is the rank bound three, with a
+proof through a joint angle table and rank-bounded chordal completion.
+The Gallai--Hasse--Roy--Vitaver theorem, Kasteleyn's construction and the
+principal-minor test are classical and proved here in the form used.
+Remark~\ref{m12:refuted} collects the refuted readings with their
+counterexamples; Hypothesis~\ref{m12:records} is a model input and
+Remark~\ref{m12:programme} a programme.
+
+\begin{definition}\label{m12:angles}
+Let $G=(V,E)$ be a finite simple graph. A scalar comparison table has
+diagonal $1$ and a real entry $a_{ij}=a_{ji}\in[-1,1]$ on each
+$\{i,j\}\in E$. Its edge angles are $\theta_{ij}=\arccos a_{ij}$. A
+completion is a real positive semidefinite matrix $B$ agreeing on the
+diagonal and edges. By Proposition~\ref{m1:gram}, a completion with
+$\rk B\le d$ is equivalent to unit vectors in $\R^d$ having these
+inner products. A simple cycle is a cyclic list of at least three
+distinct vertices with adjacent successors. It may have chords.
+On its edge list the cycle inequalities are
+\begin{equation}\label{m12:cycle-ineq}
+ \sum_{i\in F}\theta_i-\sum_{i\notin F}\theta_i
+ \le (|F|-1)\pi \qquad (|F|\ \text{odd}).
+\end{equation}
+Equivalently the cost
+$D_\theta(F)=\sum_{i\in F}(\pi-\theta_i)+\sum_{i\notin F}\theta_i$
+is at least $\pi$ for every odd $F$. Complements range over the
+entire edge list.
+\end{definition}
+
+\begin{theorem}[Cycle and partial $2$-tree completion]\label{m12:completion}
+A real positive semidefinite completion implies
+\eqref{m12:cycle-ineq} on every simple cycle of $G$.
+Conversely, suppose $G$ has a chordal supergraph on $V$ whose cliques
+have size at most three. Then these inequalities imply a real
+positive semidefinite completion of rank at most three.
+In particular, on a cycle of length at least three, arbitrary-rank
+feasibility, rank-at-most-three feasibility and \eqref{m12:cycle-ineq}
+are equivalent. The supergraph condition is equivalent to excluding
+a $K_4$ minor.
+\end{theorem}
+
+\begin{proof}[Necessity]
+Factor a completion into unit vectors $p_i$ as in
+Proposition~\ref{m1:gram}. On a closed chain, start with $p_0$ and
+change the running sign exactly on the edges indexed by $F$. Each
+change replaces $\theta_i$ by $\pi-\theta_i$. For odd $F$ the last
+vector is $-p_0$, so the angular triangle inequality gives
+$D_\theta(F)\ge\pi$. This triangle inequality holds in every real
+dimension. For consecutive angles $\alpha,\beta$, Cauchy--Schwarz
+on the components orthogonal to the middle unit vector bounds the
+endpoint inner product below by
+$\cos\alpha\cos\beta-\sin\alpha\sin\beta=\cos(\alpha+\beta)$.
+If $\alpha+\beta\le\pi$, use monotonicity of cosine. If
+$\alpha+\beta\ge\pi$, use the upper bound $\pi$ on the endpoint angle.
+\end{proof}
+
+\begin{lemma}[The three-vector condition]\label{m12:triangle}
+Three angles $\alpha,\beta,\gamma\in[0,\pi]$ occur between three
+unit vectors in $\R^3$ exactly when each is at most the sum of the
+other two and their sum is at most $2\pi$. The admissible $\gamma$ form
+\begin{equation}\label{m12:triangle-interval}
+ [\,|\alpha-\beta|,\ \min(\alpha+\beta,2\pi-\alpha-\beta)\,].
+\end{equation}
+The middle vector can be inserted between any two prescribed unit
+vectors in $\R^3$ at angle $\gamma$ in this interval.
+\end{lemma}
+
+\begin{proof}
+Necessity is the odd-subset test for a triangle. For sufficiency take
+$x=(1,0,0)$, $y=(\cos\gamma,\sin\gamma,0)$ and
+$z(t)=(\cos\alpha,\sin\alpha\cos t,\sin\alpha\sin t)$.
+The values of $y\cdot z(t)$ at $t=\pi$ and $t=0$ are
+$\cos(\alpha+\gamma)$ and $\cos(\alpha-\gamma)$.
+The bounds on $\beta$ put $\cos\beta$ between these values, using
+$\cos(\alpha+\gamma)=\cos(2\pi-\alpha-\gamma)$ when
+$\alpha+\gamma>\pi$. The intermediate value theorem applies even
+when the endpoint values coincide. The two endpoint vectors $x,y$
+can be transported to the prescribed pair by the equal-Gram isometry
+of Proposition~\ref{m1:gram} in ambient dimension three. Its extension
+on orthogonal complements works for coincident and antipodal endpoints.
+Finally, rearranging the triangle and perimeter inequalities for
+$\gamma$ gives \eqref{m12:triangle-interval}, whose right endpoint
+is at most $\pi$.
+\end{proof}
+
+\begin{lemma}[Joint angle table]\label{m12:joint}
+Suppose angles in $[0,\pi]$ are assigned to the edges of $G$ and
+satisfy \eqref{m12:cycle-ineq} on every simple cycle. There is a
+symmetric extension $\Gamma:V\times V\to[0,\pi]$ with
+$\Gamma_{ii}=0$ and, for all $i,j,k\in V$,
+\begin{equation}\label{m12:joint-ineq}
+ \Gamma_{ij}\le\Gamma_{ik}+\Gamma_{kj},\qquad
+ \Gamma_{ij}+\Gamma_{jk}+\Gamma_{ki}\le2\pi.
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+Lift each vertex to $(v,0),(v,1)$. Each graph edge has lifts joining
+equal bits at cost $\theta_{ij}$ and lifts joining opposite bits at
+cost $\pi-\theta_{ij}$. Costs are nonnegative and invariant under
+reversal and simultaneous bit flip. A walk from $(v,0)$ to $(v,1)$
+has cost at least $\pi$. If its projected closed walk has a repeated
+vertex other than its closing repetition, split it into two shorter
+closed walks by cutting out the repeated segment. The flip parities
+sum to one and the odd part has no greater cost. Iteration ends at
+a simple cycle with odd flips, or a two-edge backtrack with one flip
+and cost $\pi$. A closed walk of length zero has even parity.
+
+To add a missing edge $uv$, let $d_0,d_1$ be the minimal costs of
+old walks from $(u,0)$ to $(v,0),(v,1)$ respectively, with $+\infty$
+for no walk. Finite minima exist because loops in the lift can be
+erased without increasing cost. When both minima are finite, the
+first walk followed by the reversed bit-flip of the second changes
+the bit at $u$ and costs $d_0+d_1\ge\pi$. Hence
+\begin{equation}\label{m12:lift-choice}
+ x=\max(0,\pi-d_1),\qquad x\le d_0,\qquad \pi-x\le d_1
+\end{equation}
+lies in $[0,\pi]$, with $x=0$ when $d_1=+\infty$.
+Every new simple cycle containing $uv$ uses it once. After starting
+at $(u,0)$ and following its old path to $v$, the odd-flip condition
+requires the new edge to cost $\pi-x$ for a same-bit path and $x$
+for an opposite-bit path. The cost is at least $d_0+\pi-x$ or
+$d_1+x$, respectively, and each bound is at least $\pi$ when the
+corresponding path exists. Old cycles keep their inequalities.
+Repeat on all missing pairs. Triangles in the resulting complete
+graph give \eqref{m12:joint-ineq} on distinct vertices. For repeated
+vertices use the diagonal, symmetry and $0\le\Gamma_{ij}\le\pi$.
+\end{proof}
+
+\begin{proof}[Sufficiency]
+On the chordal supergraph $H$ fill each edge with $\cos\Gamma_{ij}$.
+Every clique of size three has a Gram representation by
+Lemma~\ref{m12:triangle}. Pairs have a two-vector representation at
+their assigned angle, and singleton and empty cliques have their
+unit and empty representations. These are clique blocks of one
+table. Apply the rank-bounded real chordal completion theorem
+\cite{m1:Grone}\cite[Lemma 2]{m12:LV}\cite[Theorem 10.1]{m12:VA}, in the form used in the companion paper's
+gluing theorem \cite{Companion}. The largest clique rank is at most three, and the
+completion realizes the original table in $\R^3$. On zero vertices
+use the empty matrix. Different components may use the same
+ambient space. For a cycle graph, chords from one vertex give a
+chordal supergraph with cliques of size at most three. One can
+also realize this fan by inserting vectors along its triangles
+using Lemma~\ref{m12:triangle}.
+\end{proof}
+
+\begin{proof}[Minor characterization]
+A minor model of $K_4$ consists of four disjoint nonempty connected
+vertex sets with an edge between each pair. A chordal graph with
+clique size at most three has a simplicial vertex with at most two
+neighbors, by the simplicial-vertex argument in
+Theorem~\ref{m1:chordal}. This vertex cannot alone be a branch set
+in a $K_4$ model. In a larger branch set its clique of neighbors preserves both
+connectivity and any adjacency to another set formerly supplied by
+the removed vertex. Induction
+excludes $K_4$ in the supergraph and in $G$.
+
+Conversely, induct on $|V|$, completing any graph on at most three
+vertices to a clique. Disconnected graphs split into components.
+At a cut vertex complete the pieces separately and glue there.
+If a connected graph with no cut vertex has a separating pair
+$\{u,v\}$, split the components off the pair into two nonempty
+groups. Each component has a neighbor at both $u$ and $v$, since
+otherwise one of the two would be a cut vertex. Put $uv$ in each
+side. Each side with $uv$ is a minor of $G$: contract an internal
+$u$--$v$ path in the other side to supply the edge and discard the
+other vertices. Apply induction to both sides. The union of their
+chordal completions has no larger clique because the exclusive
+vertices on the two sides have no edges between them. A simple
+cycle meeting both exclusive sides must meet both $u$ and $v$,
+with one path between them in each side. Both paths have internal
+vertices, so $uv$ is a chord. At a cut vertex no simple cycle can
+meet both exclusive sides.
+
+The remaining case is a $3$-connected graph on at least four
+vertices. It has minimum degree at least three and a shortest
+cycle, which is induced. Some vertex is outside this cycle, since
+otherwise the graph would be a cycle. An outside component has at
+least three neighbors on the cycle, since deleting fewer would
+disconnect it from the remaining cycle. Contract the component
+to one vertex and the three arcs between three selected cycle
+neighbors to a triangle, retaining the three neighbors in separate
+branch sets. This gives a $K_4$ minor.
+\end{proof}
+
+\begin{remark}[The angle and rank hypotheses]\label{m12:gram-literature}
+The normalized variables are $\theta_{ij}/\pi$ in the metric
+polytope. Laurent's completion theorem identifies the graphs for
+which its cosine image is the projected elliptope
+\cite[report, (2.2), Theorems 4.2 and 4.7 and Proposition 4.3]{m12:Laurent}.
+The cycle inequalities and the rank-three cycle bound also appear
+in \cite[Section 2]{m12:ENV}. The joint table extends the given
+angles to the complete metric polytope. Its full cosine matrix need
+not be positive semidefinite. Chordal completion in
+Theorem~\ref{m12:completion} uses the clique entries of that matrix.
+
+For rank at most two on a single cycle the exact condition is
+\begin{equation}\label{m12:rank-two}
+ \sum_i \varepsilon_i\theta_i\in 2\pi\Z
+ \quad\text{for some }\varepsilon_i\in\{-1,1\}.
+\end{equation}
+Identify unit vectors in $\R^2$ with complex numbers of modulus
+one. Successive quotients have the form
+$\exp(\mathrm i\varepsilon_i\theta_i)$ and multiply to one.
+Conversely take their prefix products. This covers angles $0,\pi$
+and rank one \cite[Definition 1.1 and Lemma 2.1]{m12:ENV}.
+\end{remark}
+
+\begin{example}[Cycles and shared filling]\label{m12:gram-examples}
+On $C_4,C_5,C_6$ take the cyclic list $e_1,e_2,e_3$ followed by
+$n-3$ copies of $e_1$. There are three right angles and the
+remaining angles are zero. Hence \eqref{m12:rank-two} fails, while
+the displayed vectors give rank three. The subcase $C_3$ with
+three zero comparisons forces the full Gram matrix $I_3$.
+On each of these cycles, angles $\pi$ on one edge and zero
+elsewhere violate the singleton inequality on that edge. On a
+four-cycle with all comparisons zero, $(e_1,e_2,e_1,e_2)$ and
+$(e_1,e_2,e_3,e_2)$ give different missing comparisons.
+
+For $K_{2,3}$ let the three two-edge paths between the degree-three
+vertices have angle pairs $(\pi/3,\pi/3),(\pi/3,\pi/2),(\pi/2,\pi/2)$.
+Their common endpoint angle must lie in the three intervals
+$[0,2\pi/3]$, $[\pi/6,5\pi/6]$ and $[0,\pi]$. A single choice
+$\pi/2$ fits all three paths. On $K_4$, prescribe $a_{ij}=-1/2$
+on every edge, so $\theta_{ij}=2\pi/3$. Every cycle inequality
+holds, since each edge costs at least $\pi/3$ and every cycle
+has at least three edges. For the full set on a triangle equality
+holds. However, the full unit-diagonal matrix sends the all-ones
+vector to $-\tfrac12$ times itself, so there is no positive
+semidefinite completion of any rank.
+\end{example}
+
+\begin{hypothesis}[Real comparison records; model input]\label{m12:records}
+In a finite record model, suppose windows agree on shared real
+overlaps and require one common unit-vector realization in $\R^3$.
+For a partial $2$-tree mask the cycle inequalities then decide
+consistency. A periodic nearest-neighbor mask of length at least
+three is covered by the cycle case. Physical readings of such records
+are those of the companion paper \cite{Companion}.
+\end{hypothesis}
+
+\begin{remark}[Windows and parameter dependence]\label{m12:window}
+For a band mask $0<|i-j|\le M$ on $0,\ldots,N$, increasing index
+order is a perfect elimination order. The later neighbors are
+consecutive and form a clique, and every nonempty clique lies in
+the window starting at its least vertex. Compatible positive
+semidefinite window blocks of rank at most $d$ therefore suffice
+for a common realization in $\R^d$, with $M=0$ giving singleton
+windows \cite[Theorem 10.1]{m12:VA}\cite[Lemma 2]{m12:LV}.
+For a fixed history, adding prescribed comparisons intersects
+the candidate set with further constraints.
+Proposition~\ref{m5:gram-interval} supplies the two-anchor
+interval, which is all of $[-1,1]$ for two consecutive zero
+comparisons.
+
+Even a complete, continuous table of constant rank can have a
+topological obstruction to a continuous factor of that rank.
+For $z=x+\mathrm i y$ on the unit circle set
+$A(z)=\tfrac12\left(\begin{smallmatrix}1+x&y\\y&1-x\end{smallmatrix}\right)$.
+It is a symmetric projection of trace one since $x^2+y^2=1$,
+so it is positive semidefinite of rank one. A continuous one-row
+factor $(p,q)$ would give $(p+\mathrm i q)^2=z$ and $p^2+q^2=1$.
+Along $z=\exp(\mathrm i t)$ for $0\le t\le2\pi$, the ratio
+$(p+\mathrm i q)\exp(-\mathrm i t/2)$ would be a continuous sign.
+Its constancy contradicts agreement of the values of $(p,q)$ at
+the endpoints. The two-row factor $A(z)$ is continuous and
+satisfies $A(z)^{\mathsf T}A(z)=A(z)$. This example uses a
+variable diagonal.
+\end{remark}
+
+\subsection{Rotation systems and cycle spaces}
+
+\begin{definition}\label{m12:rotation}
+In this subsection $G$ is connected and has an edge. A dart
+$d=(u,v)$ is an ordered edge with tail $u$ and reverse
+$\bar d=(v,u)$. A rotation is a permutation $\rho$ of the darts
+whose cycles are the cyclic orders of the outgoing darts at each
+vertex. Write $f(d)$ for the orbit of $d$ under
+$d\mapsto \rho(\bar d)$, and $\mathcal F$ for the set of these
+face orbits. These are closed dart walks, with both occurrences
+retained when an edge occurs in both directions. The spherical
+Euler condition is
+\begin{equation}\label{m12:euler}
+ |V|-|E|+|\mathcal F|=2.
+\end{equation}
+Write $Z_1(G;\mathbb F_2)$ for the span of the edge indicators
+of simple cycles.
+\end{definition}
+
+\begin{theorem}[Exactness of face boundaries]\label{m12:face-exact}
+The binary face boundary map
+$\partial:\mathbb F_2^{\mathcal F}\to\mathbb F_2^E$ is
+\begin{equation}\label{m12:face-map}
+ (\partial x)_{\{u,v\}}=x_{f(d)}+x_{f(\bar d)},\qquad d=(u,v).
+\end{equation}
+Its kernel consists of the constant face functions. Its image is
+contained in $Z_1(G;\mathbb F_2)$, with equality exactly when
+\eqref{m12:euler} holds. Under this equality all but any one of
+the face boundaries form a basis.
+\end{theorem}
+
+\begin{proof}
+Each face lists one occurrence of every dart in its orbit.
+Summing these walks modulo two gives \eqref{m12:face-map} and
+an even degree at each vertex. The space of even-degree edge
+vectors is exactly the cycle space. Relative to a spanning tree,
+every edge outside the tree gives a fundamental cycle. These are
+independent by their distinct non-tree edges and subtracting them
+clears all non-tree edges from any even-degree vector. A nonzero
+edge set in a tree has a leaf, so the residual vector vanishes.
+The dimension is therefore $|E|-|V|+1$.
+
+In the dual graph, join the two faces incident to an edge,
+allowing a loop when the faces agree. This dual is connected.
+Indeed $\rho$ and dart reversal act transitively on the darts
+by rotating at vertices and crossing graph edges. They are
+generated by the face permutation and reversal, so face orbits
+can be linked by reversals. Thus $\partial x=0$ means that $x$
+is constant. The image dimension is $|\mathcal F|-1$ because
+the dart set, and hence the face set, is nonempty. The dimension
+comparison proves the equality criterion. The kernel description
+also gives the stated basis.
+\end{proof}
+
+\begin{theorem}[The two sides of a simple cycle]\label{m12:sides}
+Assume \eqref{m12:euler}. A simple cycle $C$ determines a
+partition $\mathcal F=\mathcal F_0\sqcup\mathcal F_1$ into
+nonempty face sets, unique up to exchange, with boundary $C$
+on each side. Each set is connected in the dual graph. For a
+suitable traversal $q$ of $C$, the darts with face on side $1$
+and reverse face on side $0$ are exactly the darts of $q$.
+For the opposite traversal the roles of the sides are exchanged.
+
+For $b\in\{0,1\}$ let $I_b$ be the off-cycle vertices whose
+outgoing darts have faces on side $b$. These sets partition
+$V\setminus V(C)$ and no edge connects them. The region graph
+$H_b$ has vertices $V(C)\cup I_b$ and consists of the cycle edges
+and every other edge whose two darts have faces in $\mathcal F_b$.
+It is connected and satisfies, in $\Z$,
+\begin{equation}\label{m12:region-euler}
+ |V(H_b)|-|E(H_b)|+|\mathcal F_b|=1,\qquad
+ |I_b|-|E(H_b)\setminus E(C)|+|\mathcal F_b|=1 .
+\end{equation}
+Every perfect matching of the induced graph $G[V\setminus V(C)]$
+restricts to perfect matchings of both $G[I_b]$. In particular
+each $|I_b|$ is even in that case.
+\end{theorem}
+
+\begin{proof}
+By Theorem~\ref{m12:face-exact}, the indicator of $C$ has two
+complementary preimages. Since it is nonzero, each corresponding
+face set is nonempty. Each edge of $C$ has one dart on each side.
+For any dual component of one side, its face boundary is supported
+in $C$. It is nonzero by the kernel statement, since the component
+is a nonempty proper subset of the faces. The only nonzero
+even-degree subset of the edges of a simple cycle is the whole
+cycle. Two components of one side could not both supply the same
+cycle edge, so each side is dual-connected.
+
+For the directed assertion, sum the directed face walks on
+side $1$ over the integers. Opposite darts cancel along every
+non-cycle edge, leaving one directed dart per cycle edge. The
+in-degree equals the out-degree at each vertex because the face
+walks close. On the simple cycle this forces the indicated
+traversal. Summing on the other side reverses it.
+
+Consecutive outgoing darts at any vertex have the form $d$ and
+$\rho(d)$, and $f(\rho(d))=f(\bar d)$. The face label can change
+there only when the edge of $d$ is in $C$. Hence the label at
+an off-cycle vertex is constant around the vertex. An edge
+between two such vertices forces equal labels because it has
+the same label on both darts. All edges incident to an off-cycle
+vertex in $I_b$ belong to $H_b$, and a path first reaching $C$
+therefore connects it to $C$ inside $H_b$. A non-cycle edge with
+both endpoints on $C$ is allocated by its face labels as well.
+
+For each $b$, take face functions supported on $\mathcal F_b$.
+Their boundary vectors are supported on $H_b$ and their degrees
+there are even. The map restricted to those functions is injective
+because the other side is nonempty. Consequently
+$|\mathcal F_b|\le |E(H_b)|-|V(H_b)|+1$.
+The two edges-and-vertices counts on the right sum to
+$|E|-|V|+2$, since the graphs cover $G$ and intersect precisely
+in $C$, which has equally many edges and vertices. By
+\eqref{m12:euler} this is the sum of the two face counts.
+Both inequalities are therefore equalities. Cancelling the
+cycle count proves the second identity in \eqref{m12:region-euler}.
+The induced graph off $C$ is the disjoint union of $G[I_0]$ and
+$G[I_1]$, so every matching edge stays in a single side. The
+restrictions cover each side and pair its vertices.
+\end{proof}
+
+\begin{remark}[Embedded graphs and binary boundaries]\label{m12:embedding}
+For a connected planar drawing, use an orientation of the sphere
+and the cyclic orders in the drawing, with the convention that a
+traversal keeps its face on a fixed side. Take a regular
+neighborhood made from vertex disks and edge strips of the
+drawing. The boundary follows an edge strip side and the next
+corner at its terminal disk, giving precisely $\rho(\bar d)$.
+Each component of the complement of this neighborhood is a disk.
+To see this, thicken a spanning tree first, giving a disk by
+adding one leaf and strip at a time. Its complement on the sphere
+is a disk. Each remaining strip divides the current complementary
+disk into two disks along a crosscut, by the planar
+Jordan--Schoenflies theorem \cite{m12:Thomassen}. This construction
+applies to the usual piecewise-linear drawing of a planar graph.
+It includes the unbounded face of a plane drawing after adjoining
+the point at infinity, and each bridge contributes both its darts
+to one boundary walk. Counting the initial complementary disk
+and one extra per non-tree edge gives \eqref{m12:euler}.
+A connected singleton has one geometric face and zero darts.
+Its cycle space and face boundary image are both zero if this
+one geometric face is used.
+
+The finite boundary identity is over $\mathbb F_2$. In a
+geometric embedding it describes an unoriented edge set. In
+particular, it gives a face-chain description of any Hamiltonian
+cycle of an embedded icosahedron. An explicit graph uses two
+five-cycles $u_0,\ldots,u_4$ and $v_0,\ldots,v_4$, poles $N,S$
+joined to all $u_i,v_i$ respectively, and the annular edges
+$u_i v_i,u_i v_{i-1}$ with indices modulo five. The pole fans
+and annular triangles give its spherical embedding. The cycle
+\[
+ N,u_0,v_0,S,v_1,v_2,v_3,v_4,u_4,u_3,u_2,u_1,N
+\]
+uses the $12$ vertices, so each side has $I_b=\varnothing$.
+Each face is a triangle. Thus with $h_b=|E(H_b)\setminus E(C)|$
+we have $3|\mathcal F_b|=12+2h_b$ by dart counting and
+$|\mathcal F_b|-h_b=1$ by \eqref{m12:region-euler}.
+Each side has ten faces. An application to signed slice crossings
+would separately need a map from the embedded graph to the slice
+and an oriented intersection rule.
+\end{remark}
+
+\subsection{Pfaffian orientations and matching counts}
+
+\begin{definition}\label{m12:nice}
+An orientation chooses one direction per edge. Put $\varepsilon(d)=0$
+if $d$ follows that direction and $\varepsilon(d)=1$ otherwise, in
+$\mathbb F_2$. Then $\varepsilon(\bar d)=1+\varepsilon(d)$. The
+opposition of a face or a directed traversal is the sum of these
+bits over its dart occurrences. A nice cycle is a simple even
+cycle whose vertex-deleted induced graph has a perfect matching.
+Opposition on an even cycle is independent of which way it is
+traversed.
+\end{definition}
+
+\begin{theorem}[Face-odd and nice-cycle-odd orientation]\label{m12:face-odd}
+Assume \eqref{m12:euler}. There is an orientation odd on every
+face exactly when $|V|$ is even. Every such orientation has
+opposition $1+|I_b|$ modulo two on a cycle traversed along the
+darts with faces on side $b$. In particular one orientation
+works on all faces and all nice cycles whenever $|V|$ is even.
+\end{theorem}
+
+\begin{proof}
+Start with any orientation. Reversing the edges indicated by a
+binary vector $t$ changes the face oppositions by $\partial^{\mathsf T}t$.
+By Theorem~\ref{m12:face-exact}, its image consists of all face
+vectors of sum zero. The sum of all current oppositions is
+$|E|$ modulo two, since each edge contributes its two opposite
+darts. The all-ones face target is attainable exactly when
+$|\mathcal F|\equiv |E|\pmod2$, which by \eqref{m12:euler} is
+equivalent to even $|V|$. This also explains the alternate plane
+convention of prescribing only bounded faces. The omitted face
+opposition is forced by the total sum, and equals one when
+$|V|$ is even.
+
+Add the face oppositions on side $b$ of a simple cycle. Each
+non-cycle edge of the region contributes one and the cycle darts
+contribute the oriented opposition of the cycle by
+Theorem~\ref{m12:sides}. Thus that opposition equals
+\begin{equation}\label{m12:side-parity}
+ |\mathcal F_b|+|E(H_b)\setminus E(C)|=1+|I_b|
+ \quad\text{in }\mathbb F_2.
+\end{equation}
+On a nice cycle a complement matching pairs the vertices on
+each side. Both side sizes are even, and reversing the traversal
+changes the sum by the even cycle length.
+\end{proof}
+
+This is the sphere instance of the Kasteleyn parity construction
+\cite{m12:Kasteleyn,m12:TF,m12:KasteleynGraph}\cite[Theorem 3.1]{m12:CR}. The parity
+sum counts dart occurrences even when the two sides of an edge
+belong to the same face.
+
+\begin{lemma}[Alternating components]\label{m12:interlace}
+On a finite ordered set, ordered pairs of partner involutions
+without fixed points correspond bijectively to permutations $q$
+all of whose full orbits have even length. The orbits of $q$ are
+the two-colored components. For the smallest vertex $m$ of each
+component and input involutions $s,t$, the correspondence has
+\begin{equation}\label{m12:interlace-formula}
+ q^{2k}(m)=(ts)^k(m),\qquad q^{2k+1}(m)=s((ts)^k(m))
+ \qquad(k\ge0),
+\end{equation}
+where $ts$ applies $s$ first. A common pair is a two-cycle.
+\end{lemma}
+
+\begin{proof}
+Each vertex is incident to one edge of each color. Starting
+at $m$ with the $s$ edge and continuing by alternating colors
+traverses a cycle, with a parallel pair allowed in the
+two-colored graph. There is no earlier return to an internal
+vertex because both its incident edges have already been used.
+The first return to $m$ must use its other incident edge,
+hence uses an even number of steps. The cycle exhausts its
+component, since no unused incidence remains. These steps
+give the displayed formula. Conversely, start each even
+$q$-orbit at its least vertex. At even iterates define
+$s(x)=q(x)$ and $t(x)=q^{-1}(x)$, and at odd iterates exchange
+the two definitions. Each map is an involution without fixed
+points because successor and predecessor change parity. The
+constructions recover each other, including the two-cycle and
+empty cases. Cf.~\cite{m12:Egecioglu} for an interlacing
+description in terms of involutions.
+\end{proof}
+
+\begin{theorem}[Weighted matching identity]\label{m12:pfaffian}
+Let $G$ have an even number $2n$ of ordered vertices and an
+orientation odd on all nice cycles. For edge weights $w_e$ in
+any commutative ring $R$ form the alternating matrix $A$ with
+$A_{uv}=(-1)^{\varepsilon(u,v)}w_{\{u,v\}}$ on darts and zero on
+nonedges and the diagonal. For some $u\in\{+1,-1\}$ depending
+only on the orientation, graph and vertex order,
+\begin{equation}\label{m12:weighted}
+ \operatorname{Pf}(A)=u Z(w),\qquad
+ Z(w)=\sum_{M\text{ perfect}}\prod_{e\in M}w_e .
+\end{equation}
+If there is no perfect matching, take $u=1$. The empty graph
+has $Z=1$. For real nonnegative weights this gives
+$Z=|\operatorname{Pf}(A)|=\sqrt{\det A}$.
+\end{theorem}
+
+\begin{proof}
+The Pfaffian sums over all pairings of the $2n$ labels.
+Each listing puts the lower label first in each pair and
+orders the pairs by lower label. Its term is the sign of the
+listing permutation times the product of the listed matrix
+entries. Exchanging two pairs changes the permutation by an
+even permutation. Reversing one pair changes both signs,
+so arbitrary listings give the same signed term for an
+alternating matrix. For the canonical listing, the inversion
+count is the number of crossing pairs plus twice the number
+of nested pairs. For pairs $(a,b),(c,d)$ with $a<c$, there
+are respectively zero, one or two inversions as $b<c$,
+$a<c<b<d$, or $a<c<d<b$. Thus the canonical sign can
+equivalently be taken as $(-1)$ to the number of crossings.
+Pairings unsupported on $G$ contribute zero. For a perfect
+matching $M$, write $\tau(M)\in\{+1,-1\}$ for the listing sign
+times the product of its listed dart signs.
+
+If $C$ alternates with $M$, then $M$ pairs the vertices of
+$C$ within $C$ and restricts to a perfect matching on its
+complement. Flipping the alternating edges on $C$ gives
+another perfect matching $M'$. To compute its sign, list the
+cycle vertices in traversal order for $M$, choosing the initial
+vertex so that the first pair of this list is an $M$ edge.
+Use the one-step cyclic shift of that block for $M'$ and
+keep the common pairs after the block unchanged. The sign
+of the shift of an even block is $-1$. Every dart on $C$
+appears in exactly one of the two lists. The resulting identity is
+\begin{equation}\label{m12:flip}
+ \tau(M)\tau(M')=-\prod_{d\in C}(-1)^{\varepsilon(d)}.
+\end{equation}
+As the cycle is nice, the right side equals $1$.
+For any two actual perfect matchings their symmetric
+difference is a union of disjoint simple even alternating
+cycles, by Lemma~\ref{m12:interlace} after ignoring common
+pairs. Flip these cycles one at a time. Each remains
+alternating at its turn and each flip preserves the sign.
+Thus all $\tau(M)$ agree, proving \eqref{m12:weighted}
+over $R$ by the integer sign computation. If no supported
+pairings exist, the Pfaffian is zero. The empty pairing has
+sign and product one. These arguments include negative
+and zero weights and rings of characteristic two.
+
+For the determinant identity, work first over a characteristic-zero
+field. With coordinate covectors $e_i$ set
+$\omega=\sum_{i<j}A_{ij}e_i\wedge e_j$. Then
+$\omega^n/n!=\operatorname{Pf}(A)e_1\wedge\cdots\wedge e_{2n}$
+by the pairing expansion. A change of basis $P$ therefore
+multiplies the Pfaffian of $P^{\mathsf T}AP$ by $\det P$
+relative to $\operatorname{Pf}(A)$. An alternating bilinear
+form admits a block basis with $2$-by-$2$ blocks
+$\left(\begin{smallmatrix}0&a\\-a&0\end{smallmatrix}\right)$
+and possible zero blocks. Indeed, choose a pair with nonzero
+pairing, split off its nonsingular span by subtracting the unique
+component giving the same pairings with that span, and repeat on
+its orthogonal complement. Pair the remaining zero directions
+into zero blocks, since their dimension is even. For the block
+matrix the Pfaffian is the product of the $a$'s and the
+determinant is its square. The two sides transform by the same
+factor $(\det P)^2$. Applying this argument to a generic
+alternating matrix over a rational function field proves equality
+as an identity of polynomials with integer coefficients, hence
+also after specializing to $R$. For real nonnegative weights
+$Z\ge0$, so the identity gives the indicated absolute value and
+square root.
+\end{proof}
+
+\begin{corollary}[Planar matching enumeration]\label{m12:enumeration}
+On a planar graph the partition function for nonnegative rational edge weights is
+computable exactly in polynomial bit complexity. In particular the
+unweighted function counts perfect matchings. On general bipartite
+graphs unweighted perfect-matching counting is $\#\mathrm P$-complete
+\cite[the $0$--$1$ permanent theorem]{m12:Valiant}.
+\end{corollary}
+
+\begin{proof}
+An odd-order connected component precludes a perfect matching.
+Otherwise the partition function factors over the even-order
+components. Use the rotations of a supplied drawing or compute
+planar rotations from the graph by the embedding algorithm of
+Boyer and Myrvold \cite{m12:BM}. Apply
+Theorem~\ref{m12:face-odd}, then Theorem~\ref{m12:pfaffian}.
+Compute the face orbits and solve the face parity equations by
+binary elimination, both polynomial in the graph size.
+In a component of order $2n$, multiply $A$ by the product $Q$
+of the positive denominators. The integer matrix $QA$ has
+polynomial bit length and its determinant equals $Q^{2n}Z^2$.
+It is a nonnegative integer square and its integer square root,
+divided by $Q^n$, gives the answer. Integer determinants have
+polynomial bit complexity. For example, elimination over
+reduced rationals with row pivoting represents each active
+Schur-complement entry as the ratio of a bordered minor to the
+pivot-block determinant. This follows by eliminating the pivot
+block in the bordered determinant. Each minor has polynomial
+bit length by the determinant expansion bound $k!B^k$ for
+order $k$ and entry bound $B$, so the arithmetic and square
+root have polynomial bit complexity. For a bipartite graph
+with equal parts, the $0$--$1$ biadjacency permanent is its
+unweighted matching count by the defining permutation sum.
+\end{proof}
+
+\begin{example}[Planar face and matching calculations]\label{m12:planar-examples}
+In the $2$-by-$3$ grid with top row $0,1,2$ and bottom row $3,4,5$,
+take arrows
+$0\to1$, $1\to2$, $3\to4$, $4\to5$, $0\to3$, $4\to1$, $2\to5$.
+The face walks $(0,1,4,3)$, $(1,2,5,4)$ and $(0,3,4,5,2,1)$
+have oppositions $3,1,3$ as integer counts.
+The vertical matching and the matching $\{01,34,25\}$ differ
+by the first face flip and both have $\tau=+1$ in vertex order
+$0,\ldots,5$. The third matching is $\{03,12,45\}$: each perfect
+matching pairs $0$ with $1$ or $3$, leaving respectively one
+or two possibilities. Thus for all weights
+\[
+ \operatorname{Pf}(A)
+ =\bigl(w_{03}w_{14}w_{25}+w_{01}w_{34}w_{25}
+                     +w_{03}w_{12}w_{45}\bigr).
+\]
+For unit weights $Z=3$ and $\det A=9$.
+
+For a $4$-by-$4$ grid with rows numbered $0,\ldots,3$ from
+top to bottom, direct horizontal edges right and direct vertical
+edges down in the even columns and up in the odd columns.
+Each clockwise square traversal has one horizontal opposition.
+Its two vertical darts are either both opposed or both aligned,
+so all nine bounded faces are odd. The outer walk goes down
+column $0$, right along row $3$, up column $3$, and left along
+row $0$, giving three oppositions. The boundary of the upper
+two rows of squares is a nice cycle of length ten. It has six
+faces on that side and two interior vertices, joined by an edge.
+The four vertices on the last row form a path and have a perfect
+matching. The clockwise cycle has seven opposed darts, three leftward
+horizontal darts and two on each vertical side. This agrees with \eqref{m12:side-parity}.
+
+For a single edge the face walk has two darts and opposition
+one in either orientation. For an embedded triangle the two
+face oppositions sum to three as integer counts. They therefore
+cannot both be odd.
+\end{example}
+
+\subsection{Colorings and directed paths}
+
+\begin{theorem}[Gallai--Hasse--Roy--Vitaver; classical]\label{m12:ghrv}
+A finite simple graph is $k$-colorable if and only if it has
+an orientation in which every directed path has at most $k$
+vertices. A path has distinct vertices. The equivalence also
+holds if both directions are allowed on an edge. With $L(D)$
+the maximum number of vertices of a directed path in $D$, and
+$L(D)=0$ on the empty graph, this says
+$\chi(G)=\min_D L(D)$
+\cite[Theorem 1 and the following sharpness discussion]{m12:Roy}.
+\end{theorem}
+
+\begin{proof}
+From a coloring by $0,\ldots,k-1$ point edges toward higher
+colors. A directed path has strictly increasing colors.
+Conversely, in a relation of arcs with the given path bound,
+take an inclusion-maximal acyclic subset $T$. It exists by
+finiteness. If the graph is nonempty, singleton paths give
+$k\ge1$. Let $h(v)$ be the maximum number of edges in a
+directed path starting at $v$ in $T$. It lies in
+$\{0,\ldots,k-1\}$. If $a$ reaches $b$ by a nonempty directed
+path in $T$, appending a longest path from $b$ preserves
+simplicity by acyclicity, so $h(a)>h(b)$.
+For each original arc $a\to b$, either it is in $T$ or adding
+it would close a directed cycle. In the latter case $b$ already
+reaches $a$ in $T$. Thus its endpoints have different heights
+in either case, giving a coloring. The empty graph, including
+$k=0$, admits the empty coloring and orientation. Deleting one
+of two opposite arcs per edge cannot increase the path bound.
+Taking the least admissible $k$ gives the minimization formula.
+\end{proof}
+
+\begin{example}[Orientation census]\label{m12:census}
+On $C_5$ the coloring $(0,1,0,1,2)$ gives longest path
+$2\to3\to4$ of order three. The heights for that orientation are
+$(1,0,2,1,0)$. On the cyclic orientation of $C_5$ all five
+raw longest-path heights equal four. A maximal acyclic subset
+deletes one of the five arcs. Deleting $4\to0$ gives heights
+$(4,3,2,1,0)$. More generally, the cyclic orientation of a
+triangle makes all raw heights equal two, so the acyclic
+subset step in the proof is essential to the height rule.
+
+For the following finite census, recursively extend a path
+from its last vertex $v$ by any out-neighbor outside the set
+$S$ of vertices used. In detail, count the longest continuation
+in vertices by
+$B(v,S)=1+\max_{v\to w,\ w\notin S}B(w,S\cup\{w\})$ with
+empty maximum zero, and take $L=\max_v B(v,\{v\})$.
+Summing by $L$ over the $2^{|E|}$ choices of edge directions
+gives
+\[
+\begin{array}{c|r|r|l}
+G & |V| & |E| & \text{Path orders and multiplicities}\\ \hline
+C_5&5&5&3:10,\ 4:10,\ 5:12\\
+K_4&4&6&4:64\\
+\text{Petersen graph}&10&15&\text{minimum }3:80\text{ of }32768 .
+\end{array}
+\]
+For the Petersen graph use an outer $5$-cycle, an inner
+$5$-cycle in step-two order, and five corresponding spokes.
+With both directions also allowed, the minimum for $C_5$
+is still three and is achieved by $20$ of $243$ relations.
+For $K_4$ all $729$ relations have a path of order four.
+The recurrence enumerates every simple continuation exactly
+at its first step and terminates because $S$ grows. In
+particular the chromatic numbers are $3,4,3$ by
+Theorem~\ref{m12:ghrv}. The complete-graph case gives a
+Hamiltonian directed path in every tournament, the theorem
+of R\'edei \cite{m12:Redei}.
+\end{example}
+
+\begin{remark}[Color verification and search]\label{m12:complexity}
+A proposed coloring is verified edge by edge. Two-coloring is
+decided in linear time by breadth-first search and depth parity
+in each component. An edge with equal depth parity joins two
+tree paths from their last common ancestor to form an odd cycle,
+and if there is no such edge the parity coloring works.
+Three-colorability is $\mathrm{NP}$-complete even for planar
+graphs of maximum degree four \cite{m12:GJS}. In particular
+a polynomial-time algorithm for three-colorability would
+imply $\mathrm P=\mathrm{NP}$ \cite{m12:Karp,m12:GJS}.
+\end{remark}
+
+\begin{remark}[Principal-minor tests]\label{m12:minors}
+For a real symmetric matrix, nonnegativity of all principal
+minors is equivalent to positive semidefiniteness. In one
+direction restrict a Gram factor to the submatrix. In the
+other, the coefficients of $\det(tI+B)$ are the sums of
+principal minors of the corresponding orders, by expansion in
+the diagonal copies of $t$. With nonnegative coefficients
+and leading coefficient one this polynomial is positive for
+$t>0$, excluding negative eigenvalues of $B$.
+
+Nonnegative leading principal minors alone give a different
+condition. For instance, take the block diagonal matrix with
+a $2$-by-$2$ all-ones block and a $3$-by-$3$ unit-diagonal
+block with off-diagonals $-3/4$. The leading minors are
+$1,0,0,0,0$, yet the latter block has eigenvalue $-1/2$ on
+its constant vector. A fifth-order failure with earlier
+positive leading minors is also possible on a unit-diagonal
+table. Put an identity block on the last four coordinates,
+with each comparison to the first coordinate $11/20$.
+The leading minor of order $j$ is
+$1-(j-1)(11/20)^2$ by eliminating the identity block.
+It is positive through $j=4$ and negative at $j=5$.
+\end{remark}
+
+\begin{remark}[From graph consistency to a dynamics]\label{m12:programme}
+A time-dependent record model would require a parameter space,
+compatible transition maps or a probability law, and a proof that
+the resulting histories preserve the comparison constraints.
+The rank-one example in Remark~\ref{m12:window} gives a specific
+selection problem when continuous factors at fixed rank are required.
+Likewise a model using configuration-space flows to find graph
+witnesses would require a specified encoding, a flow, a convergence
+theorem and a bound on the resources needed to find and read out a
+witness. For instance a conservative flow may have stationary points
+above its global minimum. For $V(x)=(x^2-1)^2$ the trajectory
+starting at $0$ is stationary with value $1$, while $V(\pm1)=0$.
+\end{remark}
+
+\begin{remark}[Refuted readings]\label{m12:refuted}
+Each reading fails at the indicated example; the corrected statement is the
+one proved above.
+(i) \emph{The cycle inequalities suffice on every graph.} The complete
+graph $K_4$ with all off-diagonals $-1/2$ satisfies every cycle inequality,
+yet the all-ones vector has eigenvalue $-1/2$
+(Example~\ref{m12:gram-examples}); sufficiency needs a chordal supergraph
+with cliques of size at most three, that is, no $K_4$ minor.
+(ii) \emph{Some orientation is odd on every face.} The two faces of an
+embedded triangle have oppositions summing to three; under
+\eqref{m12:euler} an all-face-odd orientation exists exactly when $|V|$ is
+even (Theorem~\ref{m12:face-odd}).
+(iii) \emph{Raw longest-path heights colour any orientation.} On the cyclic
+triangle all raw heights equal two; the colouring uses a maximal acyclic
+subset of arcs (proof of Theorem~\ref{m12:ghrv}).
+(iv) \emph{Nonnegative leading principal minors imply positive
+semidefiniteness.} The block example of Remark~\ref{m12:minors} has leading
+minors $1,0,0,0,0$ and eigenvalue $-1/2$; all principal minors are needed.
+(v) \emph{A gradient flow reaches a global minimum from every start.} For
+$V(x)=(x^2-1)^2$ the trajectory from $0$ is stationary at value $1$
+(Remark~\ref{m12:programme}).
+\end{remark}
+
 \setcounter{section}{1}
+\renewcommand{\thesection}{\arabic{section}}
+\renewcommand{\theHsection}{\arabic{section}}
 
 \paperpart{part:axiom}{The axiom and its classification}
 
@@ -3200,7 +4031,7 @@ condition. For the other axioms, use conjugation invariance, inversion
 invariance and the displayed nondegenerate Hessian.
 \end{proof}
 
-\begin{corollary}\label{m3:interference}
+\begin{corollary}[cf.\ the trace theorem for non-abelian d'Alembert equations \cite{m3:Davison}]\label{m3:interference}
 If the two-variable interference law
 \(f(gu)+f(gu^{-1})=2f(g)f(u)\) is imposed for all \(g,u\),
 then \(f\) is real analytic. In the three-dimensional indefinite
@@ -3317,9 +4148,11 @@ so geodesics extend for all real parameters. A null geodesic is the line
 \(x+tV\) with \(B(x,V)=0=\det V\). If \(B(x,y)=1\), then
 \(V=y-x\) satisfies these two equations by polarization, and conversely.
 The metric, connection and comparison pull back to covers. In the universal
-cover, a distinct lift of \(x\) is at comparison one but cannot lie on a
-null geodesic from \(x\), since a nonconstant projected null line meets
-its starting point only once. The local relation recovers the unoriented
+cover, every other point over \(p(x)\), that is \(xz^{2j}\) with \(j\ne0\), is
+at comparison one but cannot lie on a null geodesic from \(x\), since a
+nonconstant projected null line meets its starting point only once. The
+points \(xz^{2j+1}\) lie over \(-p(x)\); for odd \(m\) they have
+comparison \(T_m(-1)=-1\), that is \(\kappa=0\). The local relation recovers the unoriented
 null directions, and the sign of \(g\) selects the timelike component
 type. A choice of future sheet is extra data. At \(m>1\), the same local
 null relation holds by \(T_m'(1)=m^2\), whereas other global levels can occur.
@@ -3327,7 +4160,8 @@ null relation holds by \(T_m'(1)=m^2\), whereas other global levels can occur.
 
 \begin{remark}[the causal level set]\label{m3:causal}
 The statement that in the universal cover the level $\kappa(x,\cdot)=1$ is the set of endpoints of null geodesics from $x$ is false: every
-other lift of $x$ lies in this level and on no null geodesic from $x$.  The correct statements are those of Proposition~\ref{m3:ads}.
+other point over $p(x)$, namely $xz^{2j}$ with $j\ne0$, lies in this level and on no null geodesic from $x$ (for odd $m$ the points
+$xz^{2j+1}$ over $-p(x)$ have $\kappa=0$ instead).  The correct statements are those of Proposition~\ref{m3:ads}.
 \emph{Globally}, on a cover carrying the normalised trace reading, $\{y:\kappa(x,y)=1\}$ is the full preimage of the matrix cone
 $\{y:\det(y-p(x))=0\}$ through $p(x)$, which in $\mathrm{SL}(2,\R)$ is exactly the union of null geodesics through the point.
 \emph{Locally}, near $x$, the level is the null cone of $g$ at $x$ (for every $m$), so the comparison determines the unoriented null
@@ -3823,7 +4657,7 @@ equal-step assertion. This extends Theorem~\ref{thm:sagitta} with an outward rad
 and the ambient Lorentz form for the squared chord.
 \end{proof}
 
-\begin{proposition}\label{m3:brownian}
+\begin{proposition}[cf.\ the explicit heat kernel of \(\mathbb H^3\) \cite{m3:GN}]\label{m3:brownian}
 Let \(x\) be Brownian motion on \(\mathcal P\) with generator \(\Delta/2\).
 The weighted sagitta limit in Proposition~\ref{m3:sagitta} holds
 with \(\mu=3\,dt\) in probability on every deterministic mesh
@@ -4481,7 +5315,8 @@ of an area minimizer.  The spherical counterpart is Q4 of Section~\ref{sec:open}
 
 \begin{remark}\label{m3:programme}
 The group classification outside dimension three asks which
-invariant quadratic Lie algebras admit a continuous global
+invariant quadratic Lie algebras (classified inductively by
+Medina and Revoy \cite{m3:MR}) admit a continuous global
 extension of \(F(2h(X,X))\) from the exponential image
 subject to duplication. In dimension three, dropping global
 analyticity asks how continuity and squaring constrain comparison
@@ -4990,18 +5825,22 @@ catalogue upper bound then permits deficit at most \(8\cdot2^{-N}\).
 Thus a tick count without a constraint on the decoder's range gives no
 universal inverse-tick lower bound, even in fixed dimension. Serial
 comparisons, gate count, parallel depth, storage, and physical time
-require distinct resource models. For instance \(N+1\) gates along
-an open path with \(\kappa_0\) oriented rises and with all other
-edges falling have optimal parallel depth
-\(\lceil(N+1)/(\kappa_0+1)\rceil\) over rise positions if
-\(1\le\kappa_0\) and \(2\kappa_0\le N\).
-Cutting at the rises gives the lower bound by the largest block.
-Write \(N+1\) as \(\kappa_0+1\) block lengths differing by at most one.
-If there is a block of length one, put such a block first if it is the
-only one. More generally, the hypothesis gives at most one singleton
-in this balanced choice. Number each block in decreasing order down
-to layer zero. The first layer number of each later block is positive,
-so every rise is respected. With \((N,\kappa_0)=(8,2)\) and \((11,2)\)
+require distinct resource models. For instance, let \(N+1\) gates sit at
+the vertices \(0,\ldots,N\) of a path, and let each edge be a precedence
+constraint: \(\kappa_0\) of the edges are rises (the right gate runs in a
+strictly later layer) and the others are falls (the left gate runs in a
+strictly later layer). A schedule into \(D\) layers respecting all
+constraints exists exactly when \(D\) is at least the number of vertices of
+a longest directed path, which is one more than the longest run of
+consecutive equally oriented edges (layer each vertex by the length of the
+longest directed path ending at it). Over all positions of the rises the
+optimal depth is \(\lceil(N+1)/(\kappa_0+1)\rceil\) if \(1\le\kappa_0\) and
+\(2\kappa_0\le N\). The rises cut the path into \(\kappa_0+1\) blocks of
+consecutive vertices joined by falls, and each block is a directed path,
+which gives the lower bound. For the upper bound take balanced blocks;
+since \(N+1\ge2\kappa_0+1\) at most one block is a singleton, and putting it
+first leaves no two rises adjacent, so every run of equal edges lies in
+one block or is a single rise. With \((N,\kappa_0)=(8,2)\) and \((11,2)\)
 the depths are \(3\) and \(4\), respectively. A physical relation
 between such a depth and time, or a bulk volume, requires its own
 dynamics and calibration \cite{d4-nielsen,d4-brown}.
@@ -5165,9 +6004,11 @@ Each \(Q\)-fibre contains the full embedded circle
 its points \(x\). If in addition two classes have zero class-correlation
 \(s_K(x,y)=\sup_{k\in K}c(kx,y)\), then \(K=T\).
 Thus positive Lie dimension of the common indistinguishability group,
-with left covariance and a nonconstant readout, suffices for Paper~II's
-input \([\mathrm{Cl}]\). The extra orthogonality input \([\mathrm{NT}]\)
-selects the circle itself.
+with left covariance and a nonconstant readout, suffices for the
+companion paper's input \([\mathrm{Cl}]\): the unobservable group \(K\) of a
+reading contains a clock, a one-parameter group of right transports
+\cite{Companion}. The companion's further input \([\mathrm{NT}]\), that some
+pair of classes is orthogonal (\(s_K=0\)), selects the circle itself.
 \end{corollary}
 
 \begin{proof}
@@ -7586,7 +8427,7 @@ For $n\ge0$, a real polynomial $p$ is $c(a,aF_\phi)$ on the entire signed circle
 For $n>0$ one may set $\phi_0=0$ for this real readout, with one freely chosen phase after each signal step. The same polynomials result if the experiment uses the open comparison interval and the endpoint values are taken by continuity.
 \end{theorem}
 
-The factorization below is the rotation-convention result of Gily\'en, Su, Low and Wiebe \cite[Theorems 3 and 5 and Lemma 6, arXiv v1]{m4:GSLW}. Low and Chuang use phase modulation for optimal Hamiltonian simulation \cite{m4:LC}. The translation to the heap identifies the operational readout with Paper I's comparison and shows covariance of the frame and word. Setting every phase to zero recovers the comparison recurrence in Theorem~\ref{thm:recur}. The additional result concerns the attainable comparisons when the phases can vary.
+The factorization below is the rotation-convention result of Gily\'en, Su, Low and Wiebe \cite[Theorems 3 and 5 and Lemma 6, arXiv v1]{m4:GSLW}. Low and Chuang use phase modulation for optimal Hamiltonian simulation \cite{m4:LC}. The translation to the heap identifies the operational readout with the comparison $c$ of this paper and shows covariance of the frame and word. Setting every phase to zero recovers the comparison recurrence in Theorem~\ref{thm:recur}. Theorem~\ref{m4:real} is \cite[Theorem~5, the case $Q_R=0$, with Theorem~3]{m4:GSLW} in heap language; a self-contained proof is included below.
 
 \begin{lemma}[Parity interval sum of squares]\label{m4:sos}
 Let $A$ be even and real, $\deg A\le2n$, and $A\ge0$ on $[-1,1]$. Then
@@ -7695,7 +8536,7 @@ Conjugate the second circle by a quarter spatial turn around the first. It gives
 
 \subsection{A path with a central defect}
 
-\begin{theorem}[Spectral and finite-window bounds]\label{m4:defect}
+\begin{theorem}[{Spectral and finite-window bounds; cf.\ \cite[\S III.D]{m4:Childs}}]\label{m4:defect}
 Let $J_n$ be the zero-diagonal path matrix on $2n$ vertices, $n\ge1$, with edge weight $1$ except for the middle edge of weight $\sqrt2$. All its eigenvalues are simple. The minimum gap $\delta_n$ and the end-to-end transfer obey
 \[
  \delta_n\ge \frac{2\sqrt2}{(1+\sqrt2)^2n^3},\qquad
@@ -7744,7 +8585,7 @@ Following the unique predecessor and successor terminates by finiteness and acyc
 
 For colors, each alternating path with equal endpoint colors has one more vertex of that color. The other paths have equal color counts, so equality in the total counts forces equally many red-to-red and blue-to-blue paths. Use the component labels as auxiliary arcs from head color to the opposite of tail color. Each component may only be followed by an arc whose source is its target. The equal-endpoint components give $m$ crossings in each direction. With just these, take an arbitrary bijection from the red-source arcs to the blue-source arcs and an arbitrary cyclic first return on the red-source arcs. This fixes the reverse bijection and gives $m!(m-1)!$ choices. Inserting a new loop arc at a color can be done immediately before any arc with that source color, and deleting it in an enlarged compatible cycle inverts this choice. Inserting all $p,q$ loops in a fixed order yields the stated factorial product. When there are no crossings, a nonempty compatible cycle must stay at one color, giving the other two nonempty-carrier cases. For the empty original graph, $m=n$ and $p=q=0$, giving the denominator $n!(n-1)!$. The prescribed connection $A$ to $B$ is equivalent to replacing the two auxiliary arcs by the single arc from the first source to the second target, and then expanding it as the ordered adjacent pair. This works also when one arc remains, because its closure exactly enforces the final compatibility. Thus the count of connections is $M'$.
 
-Ordinary contraction and its endpoint law appear in Tsaban \cite[Lemmas 1.1--1.5]{m4:Tsaban}. The positive-crossing inventory formula is also the two-vertex case of the BEST theorem \cite[Theorem 1]{m4:BEST}. The count here is for a static revealed edge set.
+Ordinary contraction and its endpoint law appear in Tsaban \cite[Lemmas 1.1--1.5]{m4:Tsaban}. The positive-crossing inventory formula is also the two-vertex case of the BEST theorem of van Aardenne-Ehrenfest and de Bruijn and of Smith and Tutte \cite{m4:AEdB,m4:SmithTutte}, in the form used by Creed and Cryan \cite[Theorem 1]{m4:BEST}. The count here is for a static revealed edge set.
 \end{proof}
 
 \begin{proposition}[Undirected orientation fibers]\label{m4:orientation}
@@ -10934,9 +11775,11 @@ two for midpoint tags) we confirmed numerically.
 \renewcommand{\theHsection}{arcC.\arabic{section}}
 \section{A singularity-free rational atlas}\label{sec:m4atlas}
 
-Proposition~\ref{prop:cayley} gives a rational chart on $M\setminus\{-1\}$, and Theorem~\ref{thm:rational} shows that the arc calculus
-is rational in it; but the chart is unbounded near $-1$ and loses the sign of the spin lift.  Two signed charts with two denominators
-give a bounded rational product on all of $M$ that retains the sheet and has uniform error bounds in chordal distance
+Proposition~\ref{prop:cayley}(i) gives a rational chart on $M\setminus\{-1\}$, and Theorem~\ref{thm:rational} shows that the arc
+calculus is rational in it; Proposition~\ref{prop:cayley}(iv) already gives the two charts $\pm\Cay$ on the closed unit ball, which
+together cover $M$.  Composition of these modified Rodrigues parameters with shadow switching is classical \cite{SJ}.  What is added
+here is the branch-selected product formula with the sheet bit and its error bound: two signed charts with two denominators give a
+bounded rational product on all of $M$ that retains the sheet and has uniform error bounds in chordal distance
 (Theorem~\ref{m4:atlas}, Proposition~\ref{m4:conditioning}).  For computation this supersedes the single chart of
 Proposition~\ref{prop:cayley}(i); the statements of Section~\ref{sec:rational} remain true as stated.  The atlas also delimits what
 rational arithmetic can do: minimal midpoints and near-antipodal endpoints are genuine obstructions (Example~\ref{m4:obstructions}).
@@ -11401,7 +12244,7 @@ With both lifts present, distance to a word in \(G\) equals distance
 to its closer lift in \(M\).
 \end{proof}
 
-\begin{conjecture}[Uniform even-word exponent]\label{m6:cover-conjecture}
+\begin{conjecture}[Uniform even-word exponent; Sarnak]\label{m6:cover-conjecture}
 For the even length budget and both lifts in
 Theorem~\ref{m6:cover}, a uniform bound of order
 \(N_n^{-1/4+\eta}\) for every \(\eta>0\) would match the arithmetic
@@ -11411,6 +12254,15 @@ restricted denominator shells. Strong-approximation methods for
 quadratic forms address this type of exceptional-cap problem
 \cite{m6:Sardari,m6:PS}.
 \end{conjecture}
+
+Conjecture~\ref{m6:cover-conjecture} is Sarnak's optimal covering-exponent
+conjecture for these gates, covering exponent \(4/3\) in the normalization
+\(N\asymp r^{-3K}\) \cite{m6:PS}; Browning, Kumaraswamy and Steiner
+derive it from a twisted form of Linnik's conjecture on sums of
+Kloosterman sums \cite{m6:BKS}. The exponents \(2\) of the uniform bound
+and \(1\) of the measure bound in Theorem~\ref{m6:cover} are those of
+Lubotzky, Phillips and Sarnak and of Parzanchevski and Sarnak
+\cite{m6:LPS,m6:PS}.
 
 \begin{proposition}[From nets to arcs]\label{m6:arcs}
 Let \(x,y\in M\) with \(d(x,y)\le\pi-\delta\), where \(0<\delta<\pi\).
@@ -11611,8 +12463,9 @@ coordinates and centred increments see \cite{m6:Liao}.
 In Theorem~\ref{thm:sagitta} and Proposition~\ref{prop:clt} the steps are the increments of one path along refining partitions, the
 product of the steps telescopes to the endpoint, and the sagitta sum converges to half the quadratic variation ($\tfrac32T$ for
 Brownian motion on $S^3$, and the same value on $\mathcal P$ by Proposition~\ref{m3:brownian}).  Here the factors are independent and
-are multiplied without telescoping; a finite sagitta sum is then exactly the dispersion condition of Theorem~\ref{m6:three}, and the
-deterministic criterion is the angular sum of Theorem~\ref{m6:det-product}.  The claim that the sagitta sum alone decides convergence
+are multiplied without telescoping; the dispersion condition of Theorem~\ref{m6:three} is $\sum_k(s_k-r_kv(b_k))<\infty$, which for centred laws is a finite
+expected sagitta sum (Corollary~\ref{m6:centered}), and convergence for every choice of axes is equivalent to a finite angular sum
+(Theorem~\ref{m6:det-product}).  The claim that the sagitta sum alone decides convergence
 is refuted in both directions by Theorem~\ref{m6:det-product}: fixed-axis angles $1/k$ have summable sagittas and diverge, and
 consecutive inverse pairs of angle $k^{-1/2}$ converge with divergent sagitta sum.
 \end{remark}
@@ -12073,20 +12926,26 @@ A loop version labels each instruction by a choice of two
 based loops and multiplies their holonomies. Use a fixed
 base frame and the product convention above. A change of
 frame conjugates all rotations and the specified acceptance
-element or set. Circuit depth refers to the Boolean circuit
-model, with unbounded fan-in AND, OR and fixed-modulus gates
-for \(\mathrm{ACC}^0\), and bounded fan-in for \(\mathrm{NC}^1\).
+element or set. Circuit classes refer to the Boolean circuit model:
+\(\mathrm{ACC}^0\) consists of the languages decided by circuit families
+of polynomial size and constant depth with unbounded fan-in AND, OR
+and fixed-modulus gates, and \(\mathrm{NC}^1\) of those decided by
+circuit families of polynomial size and depth \(O(\log n)\) with
+bounded fan-in AND, OR and NOT gates. Nonuniform means that one
+circuit, or one program, is allowed for each input length.
 Programs of polynomial length are nonuniform.
 \end{definition}
 
 \begin{theorem}[Icosahedral holonomy]\label{m6:barrington}
-Every language in nonuniform \(\mathrm{NC}^1\) has a two-output
-program of polynomial length over \(2I\subset M\), and hence over \(M^K\)
-for any fixed \(K\ge1\). The state can be represented by \(120\)
+A language is in nonuniform \(\mathrm{NC}^1\) if and only if it is
+recognised by two-output programs of polynomial length over
+\(2I\subset M\). The programs over \(2I\) also give programs over
+\(M^K\) for any fixed \(K\ge1\). The state can be represented by \(120\)
 group states, or by \(60\) projective states. The latter program
 can be implemented as products of based spherical holonomy loops.
 The finite-group construction is Barrington's theorem
-\cite{m6:Barrington} in the icosahedral realization.
+\cite{m6:Barrington} in the icosahedral realization, and the
+converse is the upper bound of the same paper.
 \end{theorem}
 \begin{proof}
 Barrington's width-five construction uses permutations in
@@ -12124,9 +12983,14 @@ boundary order. The identity uses a constant loop and angle
 \(\pi\) uses two loops of angle \(\pi/2\).
 Thus each projective instruction can be realized by a based loop.
 The spin coordinate and adjoint coordinate here are those in
-Theorem~\ref{thm:rational}. The group programs also have a
-Boolean \(\mathrm{NC}^1\) upper bound, by balancing the product
-tree of constant-size multiplication tables.
+Theorem~\ref{thm:rational}. Conversely, a program of length
+\(\ell\) over the finite group \(2I\) is evaluated by a balanced product
+tree of depth \(\lceil\log_2\ell\rceil\): each leaf selects one of two
+constant letters by one input bit, and each internal node multiplies
+two elements of a fixed finite group, a bounded fan-in circuit of
+constant size. For polynomial \(\ell\) the depth is \(O(\log n)\), so
+the accepted language is in nonuniform \(\mathrm{NC}^1\)
+\cite{m6:Barrington}.
 \end{proof}
 
 \begin{corollary}[Rational letters and a separated readout]\label{m6:rational-word}
@@ -12180,7 +13044,13 @@ product \(u_t\) by the abelian procedure. With a fixed section
  n_t=s(u_{t-1})g_{t,x_{j_t}}s(u_t)^{-1}\in N .
 \]
 Each \(n_t\) is a fixed finite lookup on two quotient states
-and the selected letter. The product equals
+and the selected letter. Through \(u_{t-1}\) and \(u_t\) it depends on the
+whole prefix of the input, so the induction is run in the stronger
+form: a product over \(G_0\) of polynomially many letters, each computed
+from the input by an \(\mathrm{ACC}^0\) circuit, is computed by an
+\(\mathrm{ACC}^0\) circuit. For an abelian group this holds because each
+coordinate is a modular sum of such letters; the prefix products \(u_t\)
+are of this kind, and so are the lookups \(n_t\). The product equals
 \((\prod_t n_t)s(u_\ell)\), by cancellation of adjacent
 sections. The induction computes products from finite-alphabet
 input letters of \(N\); substituting these lookups adds constant
@@ -12253,7 +13123,7 @@ at \(r=1\), and the radial map on \(0\le r\le1\) covers
 evaluating the denominator at zero.
 \end{proof}
 
-\begin{hypothesis}[A rotor layer]\label{m6:architecture}
+\begin{definition}[A rotor layer; model definition]\label{m6:architecture}
 The structural model takes token states \(X_t\in\SO(3)^K\),
 a fixed grouping into heads of equal size, prescribed
 input-conditioned step rotations \(\gamma_t\), and a strictly
@@ -12292,7 +13162,7 @@ and give smooth maps on matrices representing the rotations.
 They preserve rational chart data with rational parameters.
 Optionally the iteration can terminate when a prescribed
 displacement threshold is met.
-\end{hypothesis}
+\end{definition}
 
 \begin{example}[Order of positional increments]\label{m6:position}
 Take the two quarter-turn lifts \(A=(1+i)/\sqrt2\) and
@@ -12304,7 +13174,7 @@ projective rotations; the chart coordinate of \(A\) is \((\sqrt2-1)i\), so this 
 equal outputs on these two orders. The relative rotation in
 this example records the order of the two prescribed increments,
 a property independent of score computation and training.
-For a one-slot attention example in Hypothesis~\ref{m6:architecture},
+For a one-slot attention example in Definition~\ref{m6:architecture},
 take state, query and key at the identity, value with coordinate
 \(i/2\), \(\epsilon_0=1/20\) and \(\beta=1\).
 The weight is \(20/21\), the transported value is unchanged,
@@ -14285,6 +15155,821 @@ are physical identities and are stated in the companion paper's section of
 physical examples \cite{Companion}, in line with Remark~\ref{m4:physical}.
 \end{remark}
 
+\section{Golden model sets, Diophantine bounds and ergodic readouts}\label{sec:m13}
+
+A golden integer has an expanding real embedding and a contracting
+conjugate. What does a restriction on its conjugate determine in physical
+space? For the unit window the restriction gives a two-sided Delone set of
+density $1/\sqrt5$ with a single exceptional gap at the closed endpoints.
+The one-sided Zeckendorf expansion is its nonnegative part and has an exact
+disjoint inflation rule. The same quadratic norm controls rational
+approximation, while the window readout is governed by circle rotation.
+The two embeddings of the pure imaginary icosians give a three-dimensional
+version of the cut in a six-dimensional lattice.
+
+\emph{Placement.} This section continues Section~\ref{sec:m9}: the gap
+lengths refine Theorem~\ref{m9:three-gaps}, the one-sided set is the
+Zeckendorf numeration of Theorem~\ref{m9:digits}, and the icosahedral cut
+uses the icosian order of Remark~\ref{m6:icosians}. Weyl equidistribution,
+Birkhoff's ergodic theorem and Hurwitz's approximation theorem are classical
+and cited. Remark~\ref{m13:refuted} records the refuted readings with their
+counterexamples. Observer readings are model inputs of the companion paper
+(Remark~\ref{m13:observer}); Remark~\ref{m13:programme} is a programme.
+
+\subsection{The golden strip and its digits}
+
+\begin{definition}\label{m13:strip}
+Use $\varphi=(1+\sqrt5)/2$, $\varphi'=1-\varphi$,
+$\rho=\varphi^{-1}=-\varphi'$ and $O=\mathbb Z[\varphi]$, as in
+Remark~\ref{m6:icosians} and Proposition~\ref{m6:norm-forms}.
+For $x=a+b\varphi$ let $x'=a+b\varphi'$ and let
+$L=\{(x,x'):x\in O\}$. For a window $W\subset\mathbb R$ let
+$\Lambda(W)=\{x\in O:x'\in W\}$. Write
+$l=\varphi-2=-\rho^2$, $u=\varphi-1=\rho$, and set
+$W_0=[l,u]$. For $v\ge0$ integral, let $e_j(v)\in\{0,1\}$ be the
+finite legal digits of $v=\sum_{j\ge0}e_j(v)F_{j+2}$ from
+Theorem~\ref{m9:digits}, with $F_0=0,F_1=1$. Set
+$\beta(v)=\sum_{j\ge0}e_j(v)\varphi^{j+2}$ and
+$B=\{\beta(v):v\ge0\}$. Packing and covering radii mean half the
+separation and the supremum of distance to the set, respectively.
+\end{definition}
+
+\begin{theorem}\label{m13:golden}
+The projections of $L$ are injective on lattice points and the internal
+projection is dense. The covolume of $L$ is $\sqrt5$ and $|W_0|=1$.
+For each $b\in\mathbb Z$ put
+\begin{equation}\label{m13:route}
+ \begin{aligned}
+ a_b&=\lfloor(b+1)\varphi\rfloor-b-1,& s_b&=a_b+b,\\
+ t_b&=a_b+b\varphi'=u-\{(b+1)\varphi\},&
+ x_b&=a_b+b\varphi=\sqrt5\,b+t_b .
+ \end{aligned}
+\end{equation}
+Here $\{s\}=s-\lfloor s\rfloor$. Then
+\[
+ \begin{gathered}
+ \Lambda((l,u])=\{x_b:b\in\mathbb Z\},\qquad
+ \Lambda(W_0)=\Lambda((l,u])\sqcup\{-\varphi^2\},\\
+ B=\Lambda(W_0)\cap[0,\infty),\qquad \beta(v)=x_v .
+ \end{gathered}
+\]
+The successive gaps of the closed-window set are $\varphi$ and
+$\varphi^2$ except for the gap $[-\varphi^2,-\varphi]$ of length $1$.
+Its optimal packing and covering radii are $1/2$ and $\varphi^2/2$.
+In particular $1/2$ and $3$ are admissible Delone radii. With
+$B_n=\{\beta(v):0\le v<n\}$,
+\[
+ B_n=B\cap[0,\beta(n)),\qquad |B_n|=n,\qquad
+ \lim_{n\to\infty}\frac{n}{\beta(n)}=\frac1{\sqrt5},\qquad
+ B=\varphi B\ \sqcup\ (\varphi^2+\varphi^2 B).
+\]
+\end{theorem}
+
+\begin{proof}
+The columns $(1,1)$ and $(\varphi,\varphi')$ form a basis of $L$ with
+determinant $-\sqrt5$. Irrationality gives injectivity of each
+projection. Pigeonholing the fractional parts of multiples of
+$\varphi'$ produces nonzero elements of $\mathbb Z+\mathbb Z\varphi'$
+arbitrarily close to zero. The integer multiples of such elements
+approximate any real number to arbitrary precision. Also
+$u-l=\rho+\rho^2=1$.
+
+For each $b$, the condition $l<a+b\varphi'\le u$ is a half-open
+unit interval for $a$. The integer in it is
+$\lfloor u-b\varphi'\rfloor=a_b$, which gives~\eqref{m13:route}.
+The unique point at the upper endpoint is $x_{-1}=-\varphi$. The unique
+point at the lower endpoint has $(a,b)=(-1,-1)$ and equals $-\varphi^2$.
+The sequence $s_b=\lfloor(b+1)\varphi\rfloor-1$ has successive
+differences $1$ or $2$ since $1<\varphi<2$. From $x_b=s_b-b\varphi'$
+the gaps are $1-\varphi'=\varphi$ or $2-\varphi'=\varphi^2$.
+The exceptional point lies between $x_{-2}=-1-2\varphi$ and
+$x_{-1}=-\varphi$, as follows by substituting $b=-2,-1$ in
+\eqref{m13:route}. Their original gap has length $\varphi^2$,
+so $[-\varphi^2,-\varphi]$ divides the original $\varphi^2$ gap
+into lengths $\varphi$ and $1$. The gap from $x_0=0$ to
+$x_1=\varphi^2$ realizes the maximum. The sequence is unbounded in
+both directions by~\eqref{m13:route}, so successive midpoints realize
+half the respective gap lengths as covering distances. Distinct golden
+integers also obey the general norm estimate
+\begin{equation}\label{m13:norm-separation}
+ |x-y|\,K\ge1\quad\text{if }x\ne y\text{ and }|x'-y'|\le K ,
+\end{equation}
+because $(x-y)(x'-y')$ is a nonzero integer by
+Proposition~\ref{m6:norm-forms}.
+
+The recurrence for $F_n$ gives
+$\varphi^{j+2}=F_{j+1}+F_{j+2}\varphi$, so $\beta(v)$ has second
+coefficient $v$. Its conjugate is strictly between
+$-\rho^3/(1-\rho^2)=-\rho^2$ and $\rho^2/(1-\rho^2)=\rho$.
+Indeed, bound the finite sum of its odd powers below by the sum of
+all negative powers of that parity and bound the even powers above
+by the full positive series. Hence $\beta(v)=x_v$. Monotonicity
+and $x_0=0$ identify the nonnegative strip and all its prefixes.
+Equation~\eqref{m13:route} gives $|\beta(v)-\sqrt5\,v|<1$,
+which yields the prefix limit. If the least digit is zero, removing
+it divides the value by $\varphi$. If it is one, legality forces
+the next digit to be zero, so removing both digits sends the value
+to $(\beta(v)-\varphi^2)/\varphi^2$. Inserting these digits gives
+the inverse operations. A value in $B$ determines $v$ by its
+second coefficient, so the two branches are disjoint.
+\end{proof}
+
+\begin{corollary}\label{m13:closed-inflation}
+Put $\Lambda=\Lambda(W_0)$. Then
+\[
+ \Lambda=\varphi\Lambda\ \cup\ (\varphi^2+\varphi^2\Lambda),
+ \qquad
+ \varphi\Lambda\cap(\varphi^2+\varphi^2\Lambda)=\{-\varphi^3\}.
+\]
+The exceptional gap of length one is a patch which occurs only once.
+\end{corollary}
+\begin{proof}
+The unit $\varphi$ and the affine map $x\mapsto\varphi^2+\varphi^2 x$
+are bijections of $O$. They transport the internal window to
+$-\rho W_0=[-\rho^2,\rho^3]$ and
+$\rho^2+\rho^2 W_0=[\rho^3,\rho]$, respectively, using
+$\rho+\rho^2=1$. The internal overlap is the singleton $\rho^3$,
+which is the conjugate of $-\varphi^3$. The gap assertion follows
+from Theorem~\ref{m13:golden}.
+\end{proof}
+
+\begin{corollary}\label{m13:readout-fibers}
+For $v>0$ the sign of $N(\beta(v))=\beta(v)\beta(v)'$ is
+$(-1)^j$ where $j$ is its least occupied digit. The smaller step
+$\beta(v+1)-\beta(v)=\varphi$ occurs exactly when $s_{v+1}-s_v=1$,
+and $\beta(2)-\beta(1)=\varphi$.
+Define $A(v)=2s_v-3v$ and $D(v)=2v-s_v$ for $v\ge0$.
+For integer $a\ge1$ the fiber of $A$ over $a$ has size $4$ or $5$.
+For integer $b\ge0$ the fiber of $D$ over $b$ has size $2$ or $3$.
+\end{corollary}
+\begin{proof}
+The least occupied digit contributes $(-\rho)^{j+2}$ to the
+conjugate. The opposing terms can start at exponent $j+5$ since
+the next digit is zero, and their finite sum in modulus is less than
+$\rho^{j+5}/(1-\rho^2)=\rho^{j+4}<\rho^{j+2}$.
+The physical coordinate is positive. The two step assertions follow
+from~\eqref{m13:route} and $s_1=2$, $s_2=3$.
+Writing $n=v+1$ and using irrationality of $n\varphi$ gives
+$D(v)=\lfloor n(2-\varphi)\rfloor=\lfloor n/\varphi^2\rfloor$
+and $A(v)=v-2D(v)$. A $D$-fiber counts positive integers in
+$[b\varphi^2,(b+1)\varphi^2)$, an interval of length in $(2,3)$.
+For $b=0$ it contains the positive integers $1,2$. In an $A$-fiber
+write $b=D(v)$ and $v=a+2b$. Substituting this into the floor
+inequality yields
+\[
+ (a-1)\varphi-1<b\le(a+1)\varphi .
+\]
+The interval has length $2\varphi+1\in(4,5)$ and its lower end
+is at least $-1$. Each integer in it is nonnegative and yields
+exactly one $v\ge0$, proving the count.
+\end{proof}
+
+\subsection{Rotation, density and ergodic readouts}
+
+\begin{proposition}[Rotation and window density]\label{m13:density}
+For the rotation $t\mapsto t+\varphi$ on $\mathbb R/\mathbb Z$,
+empirical measures converge to normalized length uniformly over the
+initial phase when tested against continuous functions, or indicators
+of sets with boundary of length zero. If $W\subset\mathbb R$ is
+bounded with boundary of Lebesgue measure zero, then
+\begin{equation}\label{m13:window-density}
+ \lim_{T\to\infty}\frac{\#(\Lambda(W)\cap[s,s+T))}{T}
+     =\frac{|W|}{\sqrt5}\quad\text{uniformly in }s\in\mathbb R.
+\end{equation}
+In particular, $\Lambda(W_0)$ has density $1/\sqrt5$ in its
+physical coordinate. With $x$ rescaled to $x/\sqrt5$ the density
+equals window length.
+\end{proposition}
+
+\begin{proof}
+For a nonzero integer frequency $k$, the geometric sum for the
+character $e^{2\pi i kt}$, divided by $N$, has modulus at most
+$2/(N|1-e^{2\pi i k\varphi}|)$, independently of the starting
+phase. The constant character has average one. Uniform approximation
+by trigonometric polynomials gives the continuous statement. A set
+with null boundary admits continuous lower and upper bounds for its
+indicator with integral difference arbitrarily small. For instance,
+use distance cutoffs outside its interior and around its closure,
+and shrink the transition region to its boundary. This gives the
+indicator statement, including either endpoint convention for intervals.
+This is the character argument of Weyl~\cite{m13:Weyl}.
+
+For fixed $b$ the internal coordinates are $a+b\varphi'$ with
+$a\in\mathbb Z$, and the physical coordinates are
+$\sqrt5\,b+(a+b\varphi')$. Let
+$H(t)=\sum_{a\in\mathbb Z}\mathbf 1_W(a+t)$ on the circle.
+It is bounded and has discontinuities only in the projection of the
+null boundary of $W$. On $[0,1)$ the sum uses finitely many terms.
+Its integral is $|W|$ by translating the integrals into consecutive
+unit intervals. If $W\subset[-C,C]$, replacing the physical
+condition by $\sqrt5\,b\in[s,s+T)$ changes only the contributions
+of indices with $\sqrt5\,b$ within $C$ of an endpoint. Their total
+is bounded independently of $s,T$. Since $\varphi'=1-\varphi$,
+the character argument also applies to $H(b\varphi')$. The number
+of these consecutive indices is $T/\sqrt5+O(1)$, giving the limit
+and uniformity.
+\end{proof}
+
+\begin{corollary}\label{m13:return}
+Let $g\in\mathbb T^d$ and let $G=\overline{\mathbb Z g}$.
+For continuous functions on $G$, the averages along $y+ng$ converge
+uniformly in $y\in G$ to the normalized Haar integral. If
+$h:G\to\mathbb R$ is continuous and $e_n-h(ng)\to0$, the support
+of the pushforward of Haar under $h$ is $h(G)$. For every open
+interval $J$ meeting $h(G)$ there are $n_0,M$ such that
+each block $[n,n+M]$, $n\ge n_0$, contains an index with $e_m\in J$.
+The lower asymptotic visit frequency is at least $1/(M+1)$.
+\end{corollary}
+\begin{proof}
+A restricted torus character which is nontrivial on $G$ takes a
+value other than $1$ on $g$, by density of $\mathbb Zg$. Its
+integral vanishes by translation invariance and its averages obey
+the geometric sum bound. The restricted characters separate points
+of $G$ and are closed under conjugation, so Stone--Weierstrass
+gives the uniform conclusion. Haar assigns positive measure to each
+nonempty relatively open set, since its translates cover $G$ and
+a finite subcover suffices. The compactness of $h(G)$ and continuity
+give the support assertion. Choose a smaller open interval $J_0$
+meeting $h(G)$ with closure inside $J$. Take a nonnegative
+continuous function supported in $h^{-1}(J_0)$ with positive
+integral, for example a cutoff of a small metric ball there.
+For a sufficiently large fixed $M+1$ its average over any block of
+that length is positive. Eventually the perturbation is smaller
+than the distance from $\overline{J_0}$ to the complement of $J$.
+Disjoint blocks give the frequency bound.
+\end{proof}
+
+\begin{example}\label{m13:return-example}
+For $h(t)=\cos(2\pi t)$, $g=\varphi\bmod1$ and $J=(1/5,4/5)$,
+the visit frequency is
+$\bigl(\arccos(1/5)-\arccos(4/5)\bigr)/\pi$.
+Indeed the inverse image consists of two arcs with these angular
+lengths and has finite boundary. Corollary~\ref{m13:return} also
+gives bounded gaps for asymptotically vanishing readout errors.
+For $0\le n<89$ there are $21$ visits and the largest gap between
+consecutive visits in this sample is $7$.
+\end{example}
+
+\begin{theorem}[Birkhoff pointwise ergodic theorem]\label{m13:birkhoff}
+For a measure-preserving ergodic map $T$ on a probability space
+$(X,\mu)$ and $f\in L^1(\mu)$,
+\[
+ \frac1N\sum_{n=0}^{N-1} f(T^n x)\longrightarrow
+       \int_X f\,d\mu\quad\text{for }\mu\text{-almost every }x .
+\]
+Here ergodicity means every invariant measurable set modulo null
+sets has measure zero or one.
+\end{theorem}
+\noindent
+This is the ergodic case of Birkhoff's theorem
+\cite{m13:Birkhoff,m13:Durrett}. For the irrational rotation in
+Proposition~\ref{m13:density}, invariance of the indicator of an
+invariant measurable set forces each nonzero Fourier coefficient
+to vanish, since $e^{2\pi i k\varphi}\ne1$. Completeness of the
+characters in $L^2$ implies the indicator is constant almost
+everywhere. Thus Birkhoff also applies to all integrable observables
+of that rotation.
+
+\begin{proposition}[Circle and interval readouts]\label{m13:factor}
+Let $I=[0,1)$, let $\pi:I\to\mathbb R/\mathbb Z$ be the quotient
+restricted to $I$, and let $r$ be its inverse. If
+$d(y)=2y$ on the circle and $U(x)=\{2x\}$ on $I$, then
+$r\circ d^n=U^n\circ r$ for $n\ge0$. This is a measurable
+conjugacy for normalized circle length and Lebesgue probability
+on $I$. On the full real line $\widetilde U(x)=\{2x\}$ is a
+factor of circle doubling via the representative map into
+$\mathbb R$, with the pushed-forward measure concentrated on $I$. The doubling system is ergodic.
+\end{proposition}
+
+\begin{proof}
+Theorem~\ref{m9:doubling} gives the oriented doubling and its binary
+product law. Here the representative identifies the measured
+systems on the circle and the half-open interval. Since $d\pi(x)=\pi(2x)$, choosing the representative gives
+$r(d\pi(x))=\{2x\}$. Iteration includes $n=0$ and the cut
+point, with $U(1/2)=U(0)=0$. The inverse maps are Borel and
+transport the length of arcs to interval length, hence transport
+the associated probability measures. The inclusion $I\to\mathbb R$
+intertwines $U$ with $\widetilde U$. Doubling preserves length
+because its two inverse branches each scale length by $1/2$.
+For an invariant $L^2$ function $f$, $f=f\circ d$ implies the
+Fourier coefficient at an odd integer is zero, while at $2k$
+it equals the coefficient at $k$. These equations follow by
+splitting the integral into the two half intervals. Every nonzero
+integer reduces to an odd index, so invariant indicators are
+constant almost everywhere.
+\end{proof}
+
+\begin{example}\label{m13:doubling-example}
+For Lebesgue-almost every $x\in I$, the visits of $U^n(x)$ to
+$[0,1/2)$ and $[0,1/4)$ have simultaneous frequencies $1/2$
+and $1/4$. Apply Theorem~\ref{m13:birkhoff} to the two indicators
+and intersect the two full-measure sets. A binary expansion with
+the terminating convention at dyadic points loses its leading bit
+under $U$. The visits count leading zeros and leading pairs of
+zeros. For $x=0,1/7,1/3,2/5$ the respective pairs of frequencies
+are $(1,1),(2/3,1/3),(1/2,0),(1/2,1/4)$, as seen from the
+periodic blocks $0,001,01,0110$. A reduced dyadic initial point
+$m/2^e$ with odd $m$ and $e\ge1$ first reaches zero at step $e$
+and then stays there. Thus the exact real orbits from binary64
+inputs in $I$ have eventual frequencies $(1,1)$.
+\end{example}
+
+\subsection{The golden norm and Diophantine extremes}
+
+\begin{theorem}\label{m13:hurwitz}
+For $n\ge0$,
+\[
+ F_n F_{n+2}-F_{n+1}^2=(-1)^{n+1}.
+\]
+If $p/q$ is reduced with $q\ge1$ and $\epsilon=|\varphi-p/q|$, then
+\begin{equation}\label{m13:hurwitz-bound}
+ \epsilon\ge\frac{2}{q^2(\sqrt{5+4/q^2}+\sqrt5)}
+          >\frac1{\sqrt5\,q^2+q}.
+\end{equation}
+Equality in the first inequality holds exactly when
+$p/q>\varphi$ and $|p^2-pq-q^2|=1$. Moreover
+\begin{equation}\label{m13:liminf}
+ \liminf_{q\to\infty} q\min_{p\in\mathbb Z}|q\varphi-p|=1/\sqrt5 .
+\end{equation}
+The Fibonacci ratios $F_{k+1}/F_k$, $k\ge1$, have signed error
+$(\varphi')^k/F_k$ and absolute error asymptotic to
+$\sqrt5\,\varphi^{-2k}$. Infinitely many have error strictly below
+$1/(\sqrt5 F_k^2)$.
+\end{theorem}
+\begin{proof}
+By the power identity in the proof of Theorem~\ref{m13:golden},
+$N(\varphi^{n+1})=N(F_n+F_{n+1}\varphi)$ also when $n=0$.
+Expanding the norm by Proposition~\ref{m6:norm-forms} and using
+$F_{n+2}=F_n+F_{n+1}$ gives the Cassini identity. For any integers
+$p,q$ with $q\ge1$, the nonzero integer $p^2-pq-q^2$ gives
+\[
+ 1\le |p^2-pq-q^2|
+   =q^2\epsilon|p/q-\varphi'|
+   \le q^2\epsilon(\sqrt5+\epsilon).
+\]
+Solving the quadratic inequality and rationalizing gives the first
+bound. Equality requires integral norm of modulus one and equality in
+the triangle inequality, equivalent here to $p/q>\varphi$. At
+$\epsilon=1/(\sqrt5\,q^2+q)$ the last expression is less than one,
+since $q^2/(\sqrt5\,q^2+q)<q$. The expression is increasing in
+$\epsilon\ge0$, giving the strict bound. The entire proof works
+for unreduced fractions as well.
+
+The sequence $F_{k+1}-\varphi F_k$ starts at $1$ at $k=0$.
+The recurrence multiplies it by $\varphi'$ at each step.
+The formula $F_k=(\varphi^k-(\varphi')^k)/\sqrt5$ from
+Proposition~\ref{m6:norm-forms} now gives
+\[
+ \sqrt5\,F_k^2\left|\varphi-\frac{F_{k+1}}{F_k}\right|
+    =1-(-1)^k\rho^{2k}.
+\]
+The ratios are reduced because the consecutive-pair greatest common
+divisor is preserved by the Fibonacci recurrence and starts at one.
+The even subsequence lies above $\varphi$ and attains equality in
+the first bound by the norm identity. On this subsequence the last
+display is strictly less than one. The first bound in
+\eqref{m13:hurwitz-bound} gives the lower limit in
+\eqref{m13:liminf}, and the Fibonacci subsequence gives the upper
+limit and the stated asymptotic.
+\end{proof}
+
+\begin{remark}[Hurwitz's theorem]\label{m13:universal}
+Hurwitz proved that every irrational $\alpha$ has infinitely many
+reduced rational approximants $p/q$ with
+$|\alpha-p/q|<1/(\sqrt5\,q^2)$ \cite[pp.~279--284]{m13:Hurwitz}.
+Equation~\eqref{m13:liminf} gives the obstruction to replacing
+$\sqrt5$ by a larger universal constant. The golden finite-denominator
+lower bound has a different quantifier. For instance the fraction
+$2/1$ has error $2-\varphi<1/\sqrt5$.
+\end{remark}
+
+\begin{corollary}\label{m13:shortest-gap}
+For $N\ge1$ let $d_N$ be the shortest circular gap among
+$\{j(2-\varphi)\}$, $0\le j<N$, taking $d_1=1$.
+Then $Nd_N>1/\sqrt5$ and $\inf_{N\ge1}Nd_N=1/\sqrt5$.
+\end{corollary}
+\begin{proof}
+For $N\ge2$ every circular gap is at least the nearest-integer
+distance for a difference $1\le m<N$. Apply
+\eqref{m13:hurwitz-bound} with denominator $m$ to
+$(2m-k)/m$ for any $k\in\mathbb Z$. Multiplying by $m$ gives
+a strict lower bound $1/(\sqrt5\,m+1)>1/(\sqrt5\,N)$.
+For $N=F_k+1$, the two points separated by $F_k$ steps are within
+circular distance $\rho^k$ by Theorem~\ref{m13:hurwitz}. The
+shorter arc between those points contains at least one gap, so
+$N d_N\le(F_k+1)\rho^k\to1/\sqrt5$. For the complete gap
+description, see Theorem~\ref{m9:three-gaps}. The continued
+fraction of $2-\varphi$ is $[0;2,1,1,\ldots]$ since
+$(2-\varphi)^{-1}=\varphi+1$ and $1/(\varphi-1)=\varphi$.
+\end{proof}
+
+\begin{remark}[Ratios of circular gaps]\label{m13:gap-ratio}
+For any irrational step $\alpha$, a uniform bound on the ratio of
+largest to smallest gaps is equivalent to
+$c=\inf_{q\ge1}q\|q\alpha\|>0$, where the double bars denote
+distance to the nearest integer. If the ratio is at most $K$,
+the shortest gap at $N=q+1$ is at least $1/(K(q+1))$ and is at
+most $\|q\alpha\|$. Conversely, when $c>0$, any gap with $N\ge2$
+has length at least $c/(N-1)$. By the pigeonhole argument in
+Theorem~\ref{m13:golden}, choose a reduced $p/q$, $q\le N$,
+with $|q\alpha-p|\le 1/N$. Then $q\ge cN$. The first $q$ orbit
+points each lie within $1/N$ of the corresponding point of the
+equally spaced $p/q$ orbit. Thus the covering radius is at most
+$1/(2q)+1/N$ and the largest gap at most $(1/c+2)/N$.
+The usual continued-fraction characterization of badly
+approximable numbers identifies $c>0$ with bounded partial
+quotients \cite[Ch.~II]{m13:Khinchin}. For the golden step the
+more precise three-gap result of Theorem~\ref{m9:three-gaps}
+gives a uniform ratio bound $\varphi^2$, since $2-\varphi=1-\rho$.
+The golden step is also the angular increment in Vogel's
+phyllotaxis model \cite{m13:Vogel}.
+\end{remark}
+
+\begin{example}\label{m13:gap-example}
+For $\pi-3$ at $N=114$ the points with indices $0$ and $113$
+bound the shortest gap of approximately $3.0\times10^{-5}$. In this finite
+example the minimum and maximum can be computed by sorting the
+$114$ residues and adjoining the wraparound arc. The ratio of
+largest to smallest is approximately $294$. Over $1\le N\le2000$
+the minimum of the golden values $Nd_N$ occurs at $N=1598$ and is
+approximately $0.44749$.
+\end{example}
+
+\subsection{The survival readout under refinement}
+
+\begin{proposition}[Gap-state coding]\label{m13:survivor}
+At level $Q\ge1$ let
+$G_Q=\{\sum_{j=1}^Q e_j\rho^j:e_j\in\{0,1\},\ e_j e_{j+1}=0
+\text{ for }j<Q\}$. Set
+$S_Q(x)=\varphi^Q\operatorname{dist}(x,G_Q)$. For $x$ in the
+closed hull of $G_Q$, initialize a state $(\mathrm L,t)$ or
+$(\mathrm S,t)$ from a containing closed gap, where $t\in[0,1]$
+is the relative position from its left endpoint. The gap types have
+lengths $\rho^Q$ and $\rho^{Q+1}$, respectively. Define
+\[
+ \begin{aligned}
+ T(\mathrm L,t)&=
+ \begin{cases}
+  (\mathrm L,\varphi t),&t\le\rho,\\
+  (\mathrm S,\varphi^2t-\varphi),&t>\rho,
+ \end{cases}
+ &T(\mathrm S,t)&=(\mathrm L,t),\\
+ H(\mathrm L,t)&=\min(t,1-t),
+ &H(\mathrm S,t)&=\rho\min(t,1-t).
+ \end{aligned}
+\]
+For every $n\ge0$ one has $S_{Q+n}(x)=H(T^n(\mathrm{kind},t))$,
+so the lower limit of the survival readout equals the lower limit of
+this orbit observable.
+\end{proposition}
+\begin{proof}
+The level-one grid is $\{0,\rho\}$. In general the values are
+strictly ordered lexicographically by their word from $e_1$ to
+$e_Q$. At a differing digit $j$, the total contribution of a finite
+legal tail on the side with a zero is less than
+$\rho^{j+1}/(1-\rho^2)=\rho^j$, by grouping successive tail
+positions into pairs and taking the larger weight in each pair.
+This also identifies the maximal word as the alternating word
+starting at one.
+
+Inductively a left endpoint's last digit is zero for a long
+gap and one for a short gap, as holds at level one. Every
+new grid point at level $Q+1$ comes from a word of $G_Q$
+ending in zero, with $\rho^{Q+1}$ added. Thus each long gap
+is split after $\rho^{Q+1}$, leaving length
+$\rho^Q-\rho^{Q+1}=\rho^{Q+2}$. Each short gap persists.
+The new subgaps have last digits zero and one respectively
+at the left endpoints. A persisting gap has last digit zero
+at its left endpoint after appending zero. If the old maximum
+has last digit zero it contributes an additional long gap
+beyond the old hull, whose left endpoint has last digit zero
+at the new level. If the old maximum has last digit one there
+is no addition above it. These exhaust the new points and
+complete the induction.
+
+The rescalings of relative position in a split long gap and an
+unchanged short gap give the displayed map. At the split
+point the left child is selected and its endpoint readout is
+zero. At any shared endpoint either containing gap gives
+zero at all later levels since old endpoints persist. Within a
+closed gap a closest grid point is one of its two endpoints.
+Multiplying the distance by $\varphi^{Q+n}$ gives $H$ at
+the current state. Taking the lower limit and dropping the
+first $Q$ levels proves the assertion.
+\end{proof}
+
+\begin{remark}[Formal survival results]\label{m13:survivor-lean}
+The library declaration \texttt{golden\_ergodic\_bridge}
+\cite{Tru} gives the lower-limit identity for $Q\ge2$.
+The grid here is the golden-name grid in that declaration.
+Reversing the legal digits and shifting their exponents
+identifies $G_Q$ with $\varphi^{-(Q+2)}B_{F_{Q+2}}$ using
+Theorem~\ref{m9:digits}. The same library establishes that no
+state satisfies $H(T^n s)>\rho^2/2$ for all $n\ge0$ and
+that its specified closed preperiodic carrier satisfies
+$H(T^n s)\ge\rho^2/2$ for all $n\ge0$
+\cite{Tru}. For example, the state
+$(\mathrm L,\rho^2/2)$ enters the period-three cycle
+$(\mathrm L,1/2),(\mathrm L,\varphi/2),(\mathrm S,1/2)$
+under $T$, with one intermediate state $(\mathrm L,\rho/2)$.
+The successive readouts along the cycle are $1/2,\rho^2/2,\rho/2$. The bridge concerns
+a lower limit of grid distances. The time averages in
+Theorem~\ref{m13:birkhoff} concern integrable observables of
+a specified invariant probability measure.
+\end{remark}
+
+\subsection{The six-dimensional icosahedral cut}
+
+\begin{theorem}\label{m13:icosian}
+Let $M=\mathcal I\cap\operatorname{Im}\mathbb H$ be the pure
+imaginary submodule of the icosian order of Remark~\ref{m6:icosians}.
+View $M$ in $\mathbb Q(\sqrt5)^3$ and define
+$L_M=\{(z,z'):z\in M\}\subset E_\parallel\oplus E_\perp$
+with $E_\parallel=E_\perp=\mathbb R^3$ and coefficientwise
+conjugation. This is a full lattice with injective physical projection
+and dense internal projection. It is invariant under simultaneous
+icosahedral rotations, given by the real and conjugate adjoint
+actions of the binary icosahedral group $2I$.
+
+Let $v_1,\ldots,v_6$ be
+$(0,1,\pm\varphi),(1,\pm\varphi,0),(\pm\varphi,0,1)$, with
+independent sign choice within each pair. The lattice $L_C$
+generated over $\mathbb Z$ by $(v_i,v_i')$ is a sublattice of
+$L_M$. In coordinates obtained by rescaling each three-space
+separately it has an orthonormal basis. The projection onto the
+internal space of the centered unit cube in those lattice
+coordinates is, up to scale, the window
+\begin{equation}\label{m13:zono}
+ W_C=\sum_{i=1}^6[-v_i'/2,v_i'/2].
+\end{equation}
+It is a rhombic triacontahedron with $30$ golden-rhombus faces,
+$60$ edges, and $32$ vertices. Twelve vertices have degree five
+on six axes and twenty have degree three on ten axes.
+\end{theorem}
+\begin{proof}
+The rank-six assertion for the pure imaginary lattice is from
+Remark~\ref{m6:icosians}. In the present unscaled coordinates,
+$O^3\subset M\subset \tfrac12 O^3$ by the unit coordinates in
+that remark and their integral span. The two real embeddings
+of $O^3$ give three copies of $L$ from Theorem~\ref{m13:golden}.
+The inclusions give discreteness and full rank, and $O^3$ gives
+density of the internal projection. Physical injectivity follows
+from the injectivity of the real embedding of the field.
+Quaternionic conjugation by a unit of $2I$ preserves the order
+and the pure imaginary condition, and acts orthogonally under
+each embedding. The central elements act trivially, giving the
+icosahedral group. Coefficientwise conjugation preserves the
+group multiplication and the rotation orders.
+
+Let $A$ and $A'$ have columns $v_i$ and $v_i'$, respectively.
+Each pair of columns cancels its off-diagonal contributions.
+Using $\varphi\varphi'=-1$ in the diagonal entries gives
+\[
+ AA^{\mathsf T}=2(1+\varphi^2)I_3,\qquad
+ A'(A')^{\mathsf T}=2(1+(\varphi')^2)I_3,\qquad
+ A(A')^{\mathsf T}=0 .
+\]
+Dividing each block by the square root of its diagonal factor
+makes the six stacked rows orthonormal. The six columns are then
+orthonormal as well, and projecting the cube gives
+\eqref{m13:zono}, with the inverse internal scaling understood.
+In the unscaled coordinates the covolume of $L_C$ is
+$[4(1+\varphi^2)(1+(\varphi')^2)]^{3/2}=40\sqrt5$.
+As that of the two embeddings of $O^3$ is $5\sqrt5$,
+$L_C$ has index eight in that intermediate lattice. The cubic
+unit-window construction of Kramer and Neri and of Duneau and
+Katz uses this cubic scheme, and the pure imaginary icosian
+scheme uses the larger lattice $L_M$ with a specified window
+\cite{m13:KramerNeri,m13:DuneauKatz,m6:MoodyPatera}.
+
+The six internal generators have equal length. Distinct ones have
+normalized inner products of modulus $1/\sqrt5$, from
+$|\varphi'|/(1+(\varphi')^2)=1/\sqrt5$. A triple of normalized
+generators has Gram determinant $1-3/5\pm 2/(5\sqrt5)>0$.
+A linear functional exposes a face of the zonotope by choosing the
+endpoints of segments on which it is nonzero and retaining the
+whole segments on which it vanishes. A facet therefore retains
+exactly two segments. Every pair gives two opposite facets, for
+$2\binom62=30$ faces. Their diagonal ratio is
+$\sqrt{(1+1/\sqrt5)/(1-1/\sqrt5)}=\varphi$. Counting sides gives
+$60$ edges, and Euler's formula gives $32$ vertices.
+
+The six generator lines are the conjugates of the fivefold axes.
+Indeed the unit-coordinate list of Remark~\ref{m6:icosians}
+with scalar part $\varphi/2$ has imaginary parts proportional to
+the signed vectors $v_i$. Their conjugates give order-five
+rotations about the lines $\mathbb Rv_i'$, which the group
+permutes, and hence the group preserves $W_C$. Each signed axial
+direction exposes a unique vertex, since its inner product with
+every generator is nonzero. Its stabilizer fixes the exposed
+vertex, which lies on the same positive ray. This gives twelve
+vertices. The direction $(1,1,1)$ is fixed by the order-three
+cyclic permutation of coordinates, the adjoint of $(1+i+j+k)/2$
+(up to choice of cycle direction). This rotation also preserves the
+generator list. The direction $(1,1,1)$ has nonzero inner product with each
+generator and exposes a vertex on its own ray. The stabilizer of
+that ray is a finite cyclic group of rotations. The allowed
+nonidentity orders in $A_5$ are $2,3,5$, so this stabilizer has
+order three. The orbit therefore gives twenty distinct vertices
+on threefold axes, disjoint from the fivefold orbit. At a
+fivefold vertex at most one incident edge lies on its axis.
+A polyhedral vertex has at least three edges, so some incident
+edge has orbit of size five. All other vertices have degree at
+least three. These lower bounds already sum to $12\cdot5+
+20\cdot3=120=2\cdot60$, proving the degree counts.
+\end{proof}
+
+\begin{proposition}[Window margins, patches and forced points]\label{m13:phase}
+For the lattice $L_M$ let $W\subset E_\perp$ be compact with
+nonempty interior, and define
+$\Lambda_w=\{z\in M:z'\in W+w\}$ for $w\in E_\perp$.
+For $z'\in\operatorname{int}(W+w)$ put
+$d(z)=\operatorname{dist}(z',\partial(W+w))$. Then $z$ remains
+accepted under any phase shift $h$ with $\|h\|<d(z)$.
+If $W$ is convex and centrally symmetric about the origin,
+$d(z)\le d_0=\operatorname{dist}(0,\partial W)$, and
+$d(z)\ge d_0-\|z'-w\|$. Arbitrarily small perturbations
+can change membership of points arbitrarily near the boundary.
+For every phase for which the boundary contains no internal
+lattice point, the model set is repetitive. This means each
+bounded-radius patch around a point occurs, up to translation,
+in a relatively dense set of locations.
+
+For a finite set $F\subset M$ specified as present, assume there
+is a compatible phase. The compatible phase set and the internal
+region of forced points are
+\[
+ P_F=\bigcap_{z\in F}(z'-W),\qquad
+ W_{\rm forced}(F)=\bigcap_{w\in P_F}(W+w).
+\]
+For a patch prescribing both presence and absence, intersect
+$P_F$ further with the complements of $z'-W$ for each
+prescribed absence. The same forced-region formula then applies
+with this restricted phase set.
+\end{proposition}
+\begin{proof}
+Membership after shifting by $h$ is tested at $z'-h$ in the old
+window, so the open ball of radius $d(z)$ gives the stability.
+For a centrally symmetric convex window, the inradius at zero
+is maximal. If $B(y,r)$ lies inside the window, symmetry gives
+$B(-y,r)$ and convexity gives $B(0,r)$ by taking midpoints.
+The lower estimate follows because distance to a closed boundary
+is $1$-Lipschitz. At a boundary point there are exterior points
+arbitrarily close, and density in internal space supplies accepted
+points arbitrarily near an interior-facing boundary point.
+For existence of such a boundary point, take a segment from
+an interior point toward infinity and take the first exit from
+the interior. Moving from such an accepted point to a nearby
+exterior point gives a small phase shift changing membership.
+
+For any nonempty open set $U\subset E_\perp$, the physical
+projections of lattice points with internal coordinate in $U$
+are relatively dense. To see this, write $(y,0)=\ell+k$ with
+$\ell\in L_M$ and $k$ in a fixed compact fundamental
+parallelepiped. The possible $\ell_\perp=-k_\perp$ lie in a compact
+set. Density gives, at each point of that set, an internal
+lattice translation into $U$. By openness and compactness
+finitely many such translations suffice, with bounded physical
+components. Adding the appropriate lattice vector to $\ell$
+gives an accepted internal coordinate and a uniformly bounded
+physical distance to $y$.
+
+For a patch about an accepted point $z$, potential offsets $d$
+of physical norm at most the patch radius have $d'\in W-W$.
+This gives a finite list by lattice discreteness. At a phase
+with no lattice point on the boundary, the inclusion tests for
+these offsets and the anchor are constant as its internal
+coordinate varies in a sufficiently small open neighborhood
+of $z'$. Applying relative denseness to that neighborhood yields
+relatively dense occurrences of the patch. The same compact
+lattice-box argument shows that finite observations in a fixed
+bounded physical region are locally constant in any nonsingular
+phase, since only finitely many lattice points can enter its
+window over a bounded neighborhood of phases. Finally a
+prescribed present point lies in the translated cut exactly
+when $w\in z'-W$. Intersecting these tests, and the corresponding
+complement tests for absences, gives the two formulas.
+\end{proof}
+
+\begin{remark}\label{m13:placement}
+The lattice setting is the model-set construction of Meyer
+and Schlottmann \cite{m13:Meyer,m13:Schlottmann}. The patch
+argument applies to the cubic scheme as well, since its
+internal projection is dense. Indeed $A'$ contains two
+generators in each coordinate plane. Their sums and
+differences give the three coordinate directions multiplied
+by $2$ and by $2\varphi'$, which separately generate dense
+coordinate subgroups. The phase intersection describes forced
+points in the family of translates of a specified window.
+The related tiling notion of an empire uses all tilings
+compatible with a given patch \cite{m13:GrunbaumShephard}.
+In both schemes $P_\parallel(x,y)=(x,0)$ has
+$P_\parallel^2=P_\parallel$ and $\ker P_\parallel=E_\perp$,
+so knowledge of the full linear kernel determines
+$E_\parallel=(\ker P_\parallel)^\perp$ for the chosen inner product.
+\end{remark}
+
+\subsection{Observer models and the required dynamics}
+
+\begin{remark}[Observer readings; model inputs]\label{m13:observer}
+Readings of the internal phase $w$ and the golden splitting as an
+observer's retained parameter, of finite Zeckendorf threads or rational
+scans as records, of window margins as persistence of a location and of
+near-parallel readout directions as recognition across resets, and the
+localization readings of the translated window, are model inputs of the
+companion paper \cite{Companion}; this section makes no such
+identification. Two mathematical facts used there are proved here: the
+phase and forced-region formulas of Proposition~\ref{m13:phase}, and the
+pairing of physical fivefold axes with internal fivefold vertices in
+Theorem~\ref{m13:icosian}. The regular icosahedron has angle deficit
+$2\pi-5\pi/3=\pi/3$ at each vertex.
+\end{remark}
+
+\begin{remark}[Dynamical realization, programme]\label{m13:programme}
+This remark is a programme. To realize the readings of
+Remark~\ref{m13:observer} in a comparison dynamics, specify the
+state and record spaces and a map from actual observables to window
+coordinates. Establish the retained phase under the proposed reset.
+For a slope perturbation, bound its induced internal displacement
+on the finite physical patch before applying the window margin.
+To turn spatial repetition into a temporal visit law, specify an
+orbit and prove a factor relation to a measure-preserving system
+or a uniform recurrence estimate. To model attraction, supply a
+flow or update rule, an invariant state or set, and a basin with
+a convergence law. To test a localization inference from finite
+measurements, give an identifiability criterion or bounds on the
+compatible parameters. Proposition~\ref{m13:phase} shows that
+finite membership data at a nonsingular phase leave an open
+neighborhood of phases compatible.
+\end{remark}
+
+\begin{remark}[A dynamical comparison]\label{m13:lorenz}
+For the Lorenz vector field
+$(\sigma(y-x),x(r-z)-y,xy-\beta z)$ with
+$(\sigma,r,\beta)=(10,28,8/3)$, the divergence is $-41/3$.
+The flow Jacobian determinant satisfies the scalar equation
+$J'(t)=-(41/3)J(t)$ by differentiating the determinant of the
+variational equation. This gives contraction by $e^{-41t/3}$.
+Tucker establishes the classical Lorenz attractor, and Luzzatto,
+Melbourne and Paccaut establish mixing for its physical invariant
+probability \cite[Theorem~1 and its application to the classical parameters]{m13:LMP}, \cite{m13:Lorenz,m13:Tucker}. For bounded
+continuous $f$ on the attractor, apply
+Theorem~\ref{m13:birkhoff} to the time-one map and the observable
+$\int_0^1 f(\Phi_s x)\,ds$. Mixing gives ergodicity, invariance
+and Fubini give mean $\int f\,d\mu$, and the final fractional
+unit of a continuous-time average contributes $O(1/t)$.
+Any positive-measure neighborhood is visited with positive
+frequency along almost every discrete sampled trajectory by
+applying the theorem to its indicator. The basin statement
+with Lebesgue initial data uses the physical-measure property.
+Uniqueness for the autonomous flow gives disjoint distinct
+geometric orbits and implies that a re-encounter of an exact point
+at different times on a single orbit would make it periodic.
+For the illustrative Lyapunov estimates $0.9056,0,-14.5723$,
+the Kaplan--Yorke formula yields
+$2+0.9056/14.5723\simeq 2.06$ \cite{m13:KY}.
+\end{remark}
+
+\begin{remark}[Relation to the comparison calculus]\label{m13:context}
+Remark~\ref{m6:golden} gives scalar golden feedback and angle
+averages. The strip and gap-state calculations here use the
+same constant in two different iterations, rotation of the phase
+and refinement of the grid. The language and real thread are
+Theorem~\ref{m9:digits} and Corollary~\ref{m9:thread}. A
+finite-contraction argument of the kind used for comparison
+budgets in Section~\ref{sec:d4} gives an anchor when the record
+update on a finite carrier satisfies $U(A)\subseteq A$:
+each strict step removes an element, and the first equality in
+the iterates of the fixed rule $U$ gives a fixed point.
+The strict-step count and the first stabilization index are both
+at most the initial size. This condition is an available
+structural input for the reset model of
+Remark~\ref{m13:observer}. The lattice proofs add a window
+and its membership laws to the order and norm geometry in
+Remark~\ref{m6:icosians} and Proposition~\ref{m6:norm-forms}.
+\end{remark}
+
+\begin{remark}[Refuted readings]\label{m13:refuted}
+(i) \emph{The density of the golden model set equals its window length.}
+For the unit window $W_0$ the density in the physical coordinate is
+$1/\sqrt5$, by \eqref{m13:window-density} with $|W_0|=1$; equality with
+$|W|$ holds after rescaling the physical coordinate to $x/\sqrt5$, the
+covolume of $L$ (Proposition~\ref{m13:density}).
+(ii) \emph{Every reduced $p/q$ satisfies $|\varphi-p/q|\ge1/(\sqrt5\,q^2)$.}
+This fails at $2/1$, whose error $2-\varphi\simeq0.382$ is below
+$1/\sqrt5\simeq0.447$, and at the Fibonacci ratios $F_{k+1}/F_k$ with $k$
+even, infinitely many (Theorem~\ref{m13:hurwitz}). The bounds that hold for
+every denominator are \eqref{m13:hurwitz-bound}, with the strict form
+$1/(\sqrt5\,q^2+q)$; the constant $\sqrt5$ in Hurwitz's infinitely-many
+statement is sharp by \eqref{m13:liminf} (Remark~\ref{m13:universal}).
+(iii) \emph{The golden cut has two gap lengths for every window convention.}
+The half-open window $(l,u]$ gives only the gaps $\varphi$ and $\varphi^2$;
+the closed window $W_0$ adds the endpoint point $-\varphi^2$, whose
+internal coordinate is $l$, and creates the single gap
+$[-\varphi^2,-\varphi]$ of length $1$ (Theorem~\ref{m13:golden},
+Corollary~\ref{m13:closed-inflation}).
+\end{remark}
+
 \setcounter{section}{10}
 \renewcommand{\thesection}{\arabic{section}}
 \renewcommand{\theHsection}{\arabic{section}}
@@ -14313,10 +15998,23 @@ Prop.~\ref{m10:spin-geometry}, Thm.~\ref{m10:orientation} & Spin factors \cite{m
 Thm.~\ref{m10:curl}, Rem.~\ref{m10:folklore} & Hodge duality classical; vector cross products \cite{m10:Eckmann,m10:BrownGray}\\
 Thm.~\ref{m11:reflections}, Cor.~\ref{m11:graph-walk} & Two subspaces \cite{m11:Halmos}; quantized walks \cite{m11:Szegedy}; the comparison reading elementary\\
 Thms.~\ref{m11:bridge-bound}--\ref{m11:scalar-gram} & Bridge max-flow \cite{m11:GLS,m11:Cui}; ordered-cone case a library theorem\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{center}
+\small
+\begin{tabular}{@{}p{0.47\textwidth}p{0.47\textwidth}@{}}
+\toprule
+Statement & Status\\
+\midrule
 Thm.~\ref{m11:compile}, Thm.~\ref{m11:hessian}, Thm.~\ref{m11:shift} & \cite{d4-dawson,m11:Selinger,m6:RS}; \cite{m11:BC,m11:Stokes}; \cite{m11:Schuld}\\
 Thms.~\ref{m9:three-gaps}, \ref{m9:beta}, \ref{m9:rauzy} & Three gaps \cite{m9:Sos,m9:Swierczkowski,m9:Slater}; Parry \cite{m9:ParryBeta,m9:ParryMarkov}; Rauzy \cite{m9:Rauzy}\\
 Prop.~\ref{m9:absolute}, Thm.~\ref{m9:ostrowski-digits} & Ostrowski \cite{m9:Ostrowski}; Zeckendorf \cite{m9:Zeckendorf}; proofs here elementary\\
-Thm.~\ref{m6:cover} & Spectral gap \cite{m6:LPS,m6:PS}; strong approximation \cite{m6:Sardari}; synthesis \cite{m6:RS}; the covering consequences elementary given these\\
+Thm.~\ref{m12:completion} & Cycle conditions \cite{m12:BJT}; their sufficiency on graphs without $K_4$ minor \cite{m12:BJL,m12:Laurent}; rank bound via \cite{m12:LV,m12:VA}; new: rank at most three\\
+Thms.~\ref{m12:face-odd}, \ref{m12:pfaffian}, \ref{m12:ghrv} & Kasteleyn \cite{m12:Kasteleyn,m12:KasteleynGraph}, Temperley--Fisher \cite{m12:TF}, Cimasoni--Reshetikhin \cite{m12:CR}; Gallai--Hasse--Roy--Vitaver \cite{m12:Roy}\\
+Thms.~\ref{m13:golden}, \ref{m13:hurwitz}, \ref{m13:icosian} & Model sets \cite{m13:Meyer,m13:Schlottmann}; Weyl \cite{m13:Weyl}; Hurwitz \cite{m13:Hurwitz}; cubic cut \cite{m13:KramerNeri,m13:DuneauKatz}\\
+Thm.~\ref{m6:cover}, Conj.~\ref{m6:cover-conjecture} & Freeness, spectral gap and the covering exponents $2$ and $1$: Lubotzky--Phillips--Sarnak and Parzanchevski--Sarnak \cite{m6:LPS,m6:PS}; the conjecture (exponent $4/3$) is Sarnak's, proved conditionally on twisted Linnik \cite{m6:BKS}; strong approximation \cite{m6:Sardari}; synthesis \cite{m6:RS}\\
 \bottomrule
 \end{tabular}
 \end{center}
@@ -14332,7 +16030,9 @@ Thms.~\ref{m6:barrington}, \ref{m6:abelian} & Barrington \cite{m6:Barrington}; B
 Thm.~\ref{m4:real}, Prop.~\ref{m4:pair}, Thm.~\ref{m4:lift} & Quantum signal processing: existence of phases \cite{m4:LC,m4:GSLW,m4:Haah}; new: the heap formulation and the frame covariance\\
 Thm.~\ref{m4:atlas}, Prop.~\ref{m4:conditioning} & Stereographic and shadow-switching charts classical \cite{SJ}; the signed two-denominator product with error bound not found in the searched scope\\
 Thm.~\ref{d4:rank}, Prop.~\ref{d4:spectral} & Diagonal arguments \cite{d4-lawvere,d4-yanofsky}; low-rank approximation \cite{d4-ey}; no-cloning and programming \cite{d4-wootters,d4-dieks,d4-program}; the span-rank criterion for comparison maps not found in the searched scope\\
-Thm.~\ref{m5:tropical}, Cor.~\ref{m5:sign} & Maslov dequantisation \cite{m5:Litvinov}; path sums \cite{m5:Giscard}; elimination and fill \cite{m5:Rose}; signed tie coefficient and rate derived here\\
+Thm.~\ref{m5:tropical}, Cor.~\ref{m5:sign} & Maslov dequantisation \cite{m5:Litvinov}; valuation equals tropical evaluation absent cancellation, standard over valued fields \cite{m5:MS,m5:AGG}; path sums \cite{m5:Giscard}; elimination and fill \cite{m5:Rose}; the Schur-complement form with signed tie coefficient and rate not found in the searched scope\\
+Thm.~\ref{m4:defect}, Thm.~\ref{d4:record} & Glued-trees column path, cf.\ \cite[\S III.D]{m4:Childs}; the lag bound of Thm.~\ref{d4:record} is the classical largest eigenvalue $\cos(\pi/(m+2))$ of the path adjacency matrix\\
+Cor.~\ref{m3:interference}, Prop.~\ref{m3:brownian}, Prop.~\ref{m6:hb} & Non-abelian d'Alembert equations \cite{m3:Davison}; heat kernel of $\mathbb H^3$ \cite{m3:GN}; Hermite's method of Hermitian forms \cite{m6:KN}\\
 Thm.~\ref{m3:classification} & Lie-theoretic ingredients classical \cite{Helgason}; the classification by Chebyshev comparisons and the counterexamples of Ex.~\ref{m3:obstructions} not found in the searched scope\\
 Thm.~\ref{m3:triangle} & Wigner angle as rapidity-space area: \cite{m3Aravind,m3RhodesSemon,m3Ungar88,m3Ungar97}; rational vertex form, no priority claimed\\
 Thm.~\ref{m2:bargmann}, Thm.~\ref{m2:two-readout} & Identity: expansion with the Bargmann invariant \cite{m2:Bargmann}, Jordan form $U_{2P-1}$ \cite{m2:FK}; the equivalence with $(\Omega2\mathrm d)$ not found in the searched scope\\
@@ -14509,7 +16209,7 @@ black box; a formal statement of Theorem~\ref{thm:main} can avoid it by assuming
 
 All identities and limits of Part~\ref{part:arc} that are not textbook facts, and the identities of Part~\ref{part:axiom} used there, were
 checked numerically on random or explicit inputs by the accompanying script \texttt{check\_arc\_calculus.py} (numpy and the
-standard library; 262 checks, eight of them for Part~\ref{part:alg}, six for Section~\ref{sec:m2}, fourteen for Section~\ref{sec:m3}, eight for Section~\ref{sec:d4}, six for Section~\ref{sec:m7}, fifteen for Section~\ref{sec:m10}, thirteen for Sections~\ref{sec:m11} and~\ref{sec:m11b}, eleven for Section~\ref{sec:m9}, seven for Section~\ref{sec:m5}, six for Section~\ref{sec:m8}, twelve for Sections~\ref{sec:m4}, \ref{sec:m4atlas} and seven for Section~\ref{sec:m6}), which also runs the module scripts registered in it from the subdirectory \texttt{checks/} (at present twenty-one: one for Part~\ref{part:alg}, five for Section~\ref{sec:m2}, of which four were written independently of the section, with a shared helper file, one each for Sections~\ref{sec:m3}, \ref{sec:d4}, \ref{sec:m7}, \ref{sec:m10}, \ref{sec:m5}, \ref{sec:m8}, \ref{sec:m6} and \ref{sec:m9}, one for Sections~\ref{sec:m11} and~\ref{sec:m11b}, and one for Sections~\ref{sec:m4}, \ref{sec:m4atlas}); everything runs
+standard library; 286 checks, eight of them for Part~\ref{part:alg}, six for Section~\ref{sec:m2}, fourteen for Section~\ref{sec:m3}, eight for Section~\ref{sec:d4}, six for Section~\ref{sec:m7}, fifteen for Section~\ref{sec:m10}, thirteen for Sections~\ref{sec:m11} and~\ref{sec:m11b}, eleven for Section~\ref{sec:m9}, eight for Section~\ref{sec:m12}, nine for Section~\ref{sec:m13}, seven for the referee's counterexamples, seven for Section~\ref{sec:m5}, six for Section~\ref{sec:m8}, twelve for Sections~\ref{sec:m4}, \ref{sec:m4atlas} and seven for Section~\ref{sec:m6}), which also runs the module scripts registered in it from the subdirectory \texttt{checks/} (at present twenty-three: one for Part~\ref{part:alg}, five for Section~\ref{sec:m2}, of which four were written independently of the section, with a shared helper file, one each for Sections~\ref{sec:m3}, \ref{sec:d4}, \ref{sec:m7}, \ref{sec:m10}, \ref{sec:m5}, \ref{sec:m8}, \ref{sec:m6}, \ref{sec:m9}, \ref{sec:m12} and \ref{sec:m13}, one for Sections~\ref{sec:m11} and~\ref{sec:m11b}, and one for Sections~\ref{sec:m4}, \ref{sec:m4atlas}); everything runs
 from the directory of this paper.  These include the recurrence and its Chebyshev form, the residual expansion of
 Theorem~\ref{thm:consist}, the inequality of Theorem~\ref{thm:action}, the split and the Brownian limits of
 Theorem~\ref{thm:sagitta} (simulated, $\tfrac32T$ to two decimals), the transport formula of
@@ -14591,47 +16291,6 @@ the third identity, and the non-di-associativity of $\hp xoy$ are finite stateme
 The Hurwitz form of Theorem~\ref{thm:rigid} (a bilinear, norm-multiplicative product on $\R^4$ with two-sided unit $1$ is
 $uv$ or $vu$) is not on this list: the Mathlib version we inspected (the one pinned by \cite{Tru}) contains neither Hurwitz's
 theorem nor composition algebras, so a formal proof would have to supply that classification.
-
-\section*{Where these quantities occur in physics}
-This section consists of pointers only; it adds no claim to the paper.  The companion paper \cite[Physical
-examples]{Companion} collects physical instances.  Items (i), (ii) and (iv) below are exact instances of statements proved here; item
-(iii) is a correspondence of algebraic form.  Items (i)--(iii) point to measurements; item (iv) is theoretical.
-\begin{enumerate}[label=(\roman*),leftmargin=2em]
-\item For a spin rotation $U$ by the angle $\alpha\ge0$ and every unit spinor $\psi$ one has $\re\ip\psi{U\psi}=\cos\frac\alpha2$, so
-$\kappa(\psi,U\psi)=\tfrac12(1+\cos\frac\alpha2)$ for all $\alpha$, with period $4\pi$; the distance is $d(\psi,U\psi)=\alpha/2$ for $0\le\alpha\le2\pi$ and
-$d=2\pi-\alpha/2$ for $2\pi\le\alpha\le4\pi$.  Read through the path$\otimes$spin
-composite, which is the subject of the companion paper, $\kappa$ is the fringe function of the 1975 neutron interferometry
-experiments on $4\pi$ periodicity \cite{Rauch75,WCOE75}, whose most precise early measured period is $716.8\pm3.8^\circ$
-\cite{Rauch78}.
-\item Theorem~\ref{thm:recur} with $c=\cos(\omega\tau/2)$ is the recurrence of the spinor $\psi_n=U^n\psi_0$,
-$U=e^{-i\omega\tau\sigma_z/2}$, under stroboscopic Larmor precession; its form (d) is the Cayley--Hamilton identity
-$U^2=(\operatorname{tr}U)\,U-1$.  This half-angle recurrence is visible only in phase-referenced data.  Conventional single-spin NMR
-and ESR record Bloch-vector components; the transverse components obey the full-angle recurrence with $\cos(\omega\tau)$, and the
-longitudinal component obeys it only if it vanishes (its defect is $(2-2\cos\omega\tau)\lvert n_z\rvert$).  The spinor sign itself was observed by
-NMR interferometry with a coupled second spin \cite{SVV77}.
-\item The triangle holonomy of Theorem~\ref{thm:triangle} is a statement about Levi-Civita transport on $S^3$; formula \eqref{eq:tri} has the
-algebraic form of the Bargmann invariant $\operatorname{Tr}(P_1P_2P_3)$ of three spin-$\tfrac12$ states, evaluated on $x,y,z$ regarded as unit vectors of
-the three-dimensional space $\operatorname{span}(x,y,z)$, with $i$ replaced by $\nu\bar x$ \cite{SB88,MS93}; it is not the Bargmann invariant of the
-Hopf images of $x,y,z$, and the measured geometric phase \cite{BS88} belongs to the Hopf connection treated in the companion paper.  (Our
-Hopf map $x\mapsto xi\bar x$ differs from the Bloch map of the companion paper by an orientation reversal of the $2$-sphere; signed solid
-angles here refer to the companion's Bloch orientation.)  For
-$x,y,z$ in one great $2$-sphere $\Sigma=S^3\cap\nu^\perp$ the identification is the same for all triangles, with $\Sigma$ in the role of the Bloch
-sphere, and Corollary~\ref{cor:excess}(ii) and Theorem~\ref{thm:disk} give $\cos\frac A2+\sin\frac A2\,\nu\bar x_0$ for a region of area $A$ in $\Sigma$,
-the form of the half-solid-angle law.  With the conventions stated after
-Theorem~\ref{thm:triangle}, $\arg\operatorname{Tr}(P_1P_2P_3)=+\Omega/2$, while the geometric phase acquired by a spin-$\tfrac12$ state taken around
-the cycle $n_1\to n_2\to n_3\to n_1$ along geodesic arcs,
-\[
-\arg\langle\psi(0)|\psi(T)\rangle-\operatorname{Im}\int_0^T\langle\psi|\dot\psi\rangle\,dt=-\Omega/2=-\arg\operatorname{Tr}(P_1P_2P_3)
-\]
-(Hermitian product, antilinear in the first slot).  The polarised-neutron measurement of Bitter and Dubbers \cite{BD87} concerns the adiabatic
-Berry phase in a helical field, a continuous loop; it has the form of Theorem~\ref{thm:disk} (the half-solid-angle law) when the Bloch
-sphere is identified with a great $2$-sphere, and it is not a three-point invariant.
-\item (Theoretical.)  Under isotropic rotational diffusion with rotation vector of covariance $\langle\theta_i\theta_j\rangle=2Dt\,\delta_{ij}$, the spinor
-performs Brownian motion on $S^3$ in the sense of Theorem~\ref{thm:sagitta} at paper time $Dt/2$: a rotation by $\theta$ is a
-step of length $\lvert\theta\rvert/2$, and Brownian motion with generator $\tfrac12\Delta$ has tangential covariance $t\,\delta_{ij}$.  Hence
-$\mathbb E\,c(\psi_0,\psi_t)=e^{-3Dt/4}$ by Proposition~\ref{prop:clt}, the standard decay of the $j=\tfrac12$ Casimir mode under
-isotropic rotational diffusion, and sagitta sums over $[0,t]$ tend to $\tfrac34Dt$.  We cite no measurement of this decay.
-\end{enumerate}
 
 \subsection{Library declarations related to Parts~\ref{part:alg} and \ref{part:beyond}}\label{sec:leanlib}
 The following declarations of the library \cite{Tru} were located by name and their statements read (local clone at commit
@@ -14740,7 +16399,7 @@ No declaration was found for Theorem~\ref{d4:rank}, Proposition~\ref{d4:spectral
 Theorem~\ref{m5:ladder} or Theorem~\ref{m5:tropical}.
 
 For Sections~\ref{sec:m4} and \ref{sec:m4atlas} the following declarations were located (no \texttt{sorry} in their files); they
-formalise the phase-synthesis core.
+overlap with the phase-synthesis core (located by text search; no build was run).
 {\small\raggedright
 \begin{itemize}[leftmargin=1.5em]
 \item Theorem~\ref{m4:real} and Proposition~\ref{m4:pair}: \texttt{D5/S3/ContinuousObservables/PhaseSynthesis.lean},
@@ -14768,7 +16427,7 @@ Corollary~\ref{m4:arithmetic} or the window average in Theorem~\ref{m4:defect}.
 For Section~\ref{sec:m6} the following declarations were located (no \texttt{sorry} in their files).
 {\small\raggedright
 \begin{itemize}[leftmargin=1.5em]
-\item Theorem~\ref{m6:prime-products}, Mertens' product: \texttt{D5/S3/Weil/Mertens/Third.lean}, \texttt{E\textsubscript{3}.bound''}.
+\item Theorem~\ref{m6:prime-products}, Mertens input only: \texttt{D5/S3/Weil/Mertens/Third.lean}, \texttt{E\textsubscript{3}.bound''}.
 \item Proposition~\ref{m6:inverse}: \texttt{D5/S3/Analytic/PowerSeries/DottieInverseSeries.lean}, \texttt{rational\_inverse\_endpoint}.
 \item Proposition~\ref{m6:unread}: \texttt{D5/S3/Observer/Conditioning.lean}, \texttt{unreadState\_fixed\_iff}, \texttt{conditionalState\_isState}.
 \item Remark~\ref{m6:arithmetic-anchors}: \texttt{D5/S3/PrimeForms/SumTwoSquares.lean}, \texttt{prime\_eq\_sq\_add\_sq\_of\_mod\_four\_eq\_one};
@@ -14781,7 +16440,7 @@ For Section~\ref{sec:m6} the following declarations were located (no \texttt{sor
 \item Remark~\ref{m6:algorithms}: \texttt{CoherentUniformAmplification.lean}, \texttt{uniform\_operator\_rotation};
 \texttt{D5/S3/Quantum/Algebra/WeylDisplacementConjugation.lean}, \texttt{displacement\_conjugation}.
 \end{itemize}}
-No declaration was found for Theorem~\ref{m6:cover}, Theorems~\ref{m6:det-product}, \ref{m6:three}, \ref{m6:prime-products},
+No declaration was found for Theorem~\ref{m6:cover}, Theorems~\ref{m6:det-product}, \ref{m6:three}, the statement of Theorem~\ref{m6:prime-products},
 Proposition~\ref{m6:hb}, Theorem~\ref{m6:barrington} or Theorem~\ref{m6:abelian}.
 
 For Section~\ref{sec:m7} the following declarations were located (no \texttt{sorry} in their files).
@@ -14903,6 +16562,84 @@ Theorem~\ref{m9:pell}: \texttt{CrossingNormForm.lean}, \texttt{Qform\_eq\_eisNor
 \item Proposition~\ref{m9:readouts}: \texttt{EscapePairs.lean}, \texttt{escapePairs\_without\_eq\_union}; \texttt{CompoundMatrices.lean}, \texttt{cauchyBinet}.
 \end{itemize}}
 
+For Section~\ref{sec:m12} the following declarations were located (no \texttt{sorry} in their files).
+{\small\raggedright
+\begin{itemize}[leftmargin=1.5em]
+\item Theorem~\ref{m12:completion}: \texttt{D5/S3/QuadraticForms/CycleRankThreePsdCompletion.lean}, \texttt{cycle\_rank\_three\_iff};
+\texttt{PartialTwoTreePsdCompletion.lean}, \texttt{partial\_two\_tree\_rank\_three\_iff}; Lemma~\ref{m12:joint}: \texttt{exists\_joint\_angle\_table};
+chordal inputs \texttt{ChordalPsdCompletion.lean}, \texttt{exists\_posSemidef\_completion}; \texttt{RankBoundedChordalPsdCompletion.lean},
+\texttt{exists\_posSemidef\_completion\_rank\_le}.
+\item Theorems~\ref{m12:face-exact}, \ref{m12:sides}, \ref{m12:face-odd}: \texttt{D5/S3/Combinatorics/Graph/PlanarMatching/RotationBoundary.lean},
+\texttt{face\_cycle\_exact}, \texttt{exists\_face\_odd}; \texttt{RotationFaces.lean}, \texttt{cycle\_face\_sides}, \texttt{face\_odd\_nice\_cycle\_orientation}
+(with the spherical Euler equality as hypothesis).
+\item Lemma~\ref{m12:interlace}, Theorem~\ref{m12:pfaffian}: \texttt{D5/S3/Combinatorics/PerfectMatchings/InvolutionEvenCycles.lean},
+\texttt{rooted\_interlacing}; \texttt{AlternatingCyclePfaffian.lean}, \texttt{alternating\_cycle\_flip}, \texttt{weighted\_pfaffian\_identity};
+\texttt{D5/S0/Certificates/Combinatorics/NormalizedPfaffian.lean}, \texttt{pfaffian\_eq\_crossing\_sum}.
+\item Theorem~\ref{m12:ghrv}: \texttt{D5/S3/Combinatorics/Graph/Walks/GallaiRoy.lean}, \texttt{colorable\_iff\_exists\_orientation}.
+\end{itemize}}
+
+For Section~\ref{sec:m13} the following declarations were located (no \texttt{sorry} in their files; the three-gap file
+\texttt{D5/S1/Phase/ThreeGap/Main.lean} contains a \texttt{sorry} and is not used).
+{\small\raggedright
+\begin{itemize}[leftmargin=1.5em]
+\item Theorem~\ref{m13:golden}: \texttt{D5/S1/Scale/MinkowskiModelSet.lean}, \texttt{minkowski\_model\_set\_spec}; \texttt{GoldenCutAndProject.lean},
+\texttt{golden\_model\_set\_subset\_cut\_and\_project}; \texttt{D5/S3/Fourier/GoldenModelSetDelone.lean}, \texttt{exists\_golden\_modelSet\_delone},
+\texttt{norm\_separation}; \texttt{GoldenModelSetDensity.lean}, \texttt{golden\_model\_set\_density}; \texttt{GoldenModelSetSelfSimilar.lean},
+\texttt{golden\_window\_volume}, \texttt{golden\_model\_set\_self\_similar}.
+\item Corollary~\ref{m13:readout-fibers}: \texttt{GoldenObserverRoute.lean}, \texttt{golden\_observer\_route\_w\_c1}; \texttt{FiberCapacityPair.lean},
+\texttt{golden\_fiber\_capacity\_pair}, \texttt{golden\_dual\_fiber\_capacity\_pair}; \texttt{ZeckendorfNormSign.lean},
+\texttt{betaGolden\_norm\_sign\_of\_least\_zeckendorf\_index}.
+\item Proposition~\ref{m13:density}, Corollary~\ref{m13:return}: \texttt{TorusOrbitEquidistribution.lean}, \texttt{TorusOrbitEquidistribution.result};
+\texttt{TorusObservationWindowReturns.lean}, \texttt{TorusObservationWindowReturns.result}. Theorem~\ref{m13:birkhoff}:
+\texttt{D5/S3/Analytic/Probability/BirkhoffPointwise.lean}, \texttt{birkhoff\_pointwise\_ergodic}.
+\item Theorem~\ref{m13:hurwitz}: \texttt{D5/S1/Scale/Fibonacci.lean}, \texttt{fib\_cassini\_from\_golden\_norm}; \texttt{D5/S1/Depth/GoldenHurwitzBound.lean},
+\texttt{golden\_hurwitz\_bound} (the strict bound with $+q$).
+\item Remark~\ref{m13:survivor-lean}: \texttt{D5/S0/Tower/ErgodicBridge/Golden.lean}, \texttt{golden\_ergodic\_bridge}, \texttt{golden\_survivor\_eq\_orbit\_arm};
+\texttt{GoldenPermanentSurvivors.lean}, \texttt{golden\_strict\_permanent\_set\_eq\_empty}, \texttt{golden\_known\_closed\_preperiodic\_carrier\_subset}.
+\end{itemize}}
+No declaration was found for Theorem~\ref{m13:icosian} or Proposition~\ref{m13:phase}.
+
+\section*{Where these quantities occur in physics}
+This section consists of pointers only; it adds no claim to the paper.  The companion paper \cite[Physical
+examples]{Companion} collects physical instances.  Items (i), (ii) and (iv) below are exact instances of statements proved here; item
+(iii) is a correspondence of algebraic form.  Items (i)--(iii) point to measurements; item (iv) is theoretical.
+\begin{enumerate}[label=(\roman*),leftmargin=2em]
+\item For a spin rotation $U$ by the angle $\alpha\ge0$ and every unit spinor $\psi$ one has $\re\ip\psi{U\psi}=\cos\frac\alpha2$, so
+$\kappa(\psi,U\psi)=\tfrac12(1+\cos\frac\alpha2)$ for all $\alpha$, with period $4\pi$; the distance is $d(\psi,U\psi)=\alpha/2$ for $0\le\alpha\le2\pi$ and
+$d=2\pi-\alpha/2$ for $2\pi\le\alpha\le4\pi$.  Read through the path$\otimes$spin
+composite, which is the subject of the companion paper, $\kappa$ is the fringe function of the 1975 neutron interferometry
+experiments on $4\pi$ periodicity \cite{Rauch75,WCOE75}, whose most precise early measured period is $716.8\pm3.8^\circ$
+\cite{Rauch78}.
+\item Theorem~\ref{thm:recur} with $c=\cos(\omega\tau/2)$ is the recurrence of the spinor $\psi_n=U^n\psi_0$,
+$U=e^{-i\omega\tau\sigma_z/2}$, under stroboscopic Larmor precession; its form (d) is the Cayley--Hamilton identity
+$U^2=(\operatorname{tr}U)\,U-1$.  This half-angle recurrence is visible only in phase-referenced data.  Conventional single-spin NMR
+and ESR record Bloch-vector components; the transverse components obey the full-angle recurrence with $\cos(\omega\tau)$, and the
+longitudinal component obeys it only if it vanishes (its defect is $(2-2\cos\omega\tau)\lvert n_z\rvert$).  The spinor sign itself was observed by
+NMR interferometry with a coupled second spin \cite{SVV77}.
+\item The triangle holonomy of Theorem~\ref{thm:triangle} is a statement about Levi-Civita transport on $S^3$; formula \eqref{eq:tri} has the
+algebraic form of the Bargmann invariant $\operatorname{Tr}(P_1P_2P_3)$ of three spin-$\tfrac12$ states, evaluated on $x,y,z$ regarded as unit vectors of
+the three-dimensional space $\operatorname{span}(x,y,z)$, with $i$ replaced by $\nu\bar x$ \cite{SB88,MS93}; it is not the Bargmann invariant of the
+Hopf images of $x,y,z$, and the measured geometric phase \cite{BS88} belongs to the Hopf connection treated in the companion paper.  (Our
+Hopf map $x\mapsto xi\bar x$ differs from the Bloch map of the companion paper by an orientation reversal of the $2$-sphere; signed solid
+angles here refer to the companion's Bloch orientation.)  For
+$x,y,z$ in one great $2$-sphere $\Sigma=S^3\cap\nu^\perp$ the identification is the same for all triangles, with $\Sigma$ in the role of the Bloch
+sphere, and Corollary~\ref{cor:excess}(ii) and Theorem~\ref{thm:disk} give $\cos\frac A2+\sin\frac A2\,\nu\bar x_0$ for a region of area $A$ in $\Sigma$,
+the form of the half-solid-angle law.  With the conventions stated after
+Theorem~\ref{thm:triangle}, $\arg\operatorname{Tr}(P_1P_2P_3)=+\Omega/2$, while the geometric phase acquired by a spin-$\tfrac12$ state taken around
+the cycle $n_1\to n_2\to n_3\to n_1$ along geodesic arcs,
+\[
+\arg\langle\psi(0)|\psi(T)\rangle-\operatorname{Im}\int_0^T\langle\psi|\dot\psi\rangle\,dt=-\Omega/2=-\arg\operatorname{Tr}(P_1P_2P_3)
+\]
+(Hermitian product, antilinear in the first slot).  The polarised-neutron measurement of Bitter and Dubbers \cite{BD87} concerns the adiabatic
+Berry phase in a helical field, a continuous loop; it has the form of Theorem~\ref{thm:disk} (the half-solid-angle law) when the Bloch
+sphere is identified with a great $2$-sphere, and it is not a three-point invariant.
+\item (Theoretical.)  Under isotropic rotational diffusion with rotation vector of covariance $\langle\theta_i\theta_j\rangle=2Dt\,\delta_{ij}$, the spinor
+performs Brownian motion on $S^3$ in the sense of Theorem~\ref{thm:sagitta} at paper time $Dt/2$: a rotation by $\theta$ is a
+step of length $\lvert\theta\rvert/2$, and Brownian motion with generator $\tfrac12\Delta$ has tangential covariance $t\,\delta_{ij}$.  Hence
+$\mathbb E\,c(\psi_0,\psi_t)=e^{-3Dt/4}$ by Proposition~\ref{prop:clt}, the standard decay of the $j=\tfrac12$ Casimir mode under
+isotropic rotational diffusion, and sagitta sums over $[0,t]$ tend to $\tfrac34Dt$.  We cite no measurement of this decay.
+\end{enumerate}
+
 \section{What remains open}\label{sec:open}
 
 \begin{enumerate}[label=\textbf{Q\arabic*.},leftmargin=2.6em]
@@ -14957,8 +16694,8 @@ Remark~\ref{m5:programme}: size-uniform control of the logarithmic error under r
 \item \emph{Phase synthesis.}  Conjecture~\ref{m4:gap-limit}: $n^3\delta_n\to4\sqrt2\,\pi^2$ for the central-defect path (numerical evidence
 $58.11,57.06,56.47$ at $n=64,128,256$); and the applications listed in Remark~\ref{m4:programme}, which need forward estimates or
 empirical evidence.
-\item \emph{Arithmetic and holonomy.}  (a) Conjecture~\ref{m6:cover-conjecture}: the uniform covering exponent $N_n^{-1/4+\eta}$ for
-even words.  (b) Conjecture~\ref{m6:dottie-conj}: algebraic independence of $\alpha$ and $\pi$ (implied by Schanuel's conjecture).
+\item \emph{Arithmetic and holonomy.}  (a) Conjecture~\ref{m6:cover-conjecture} (Sarnak): the uniform covering exponent $N_n^{-1/4+\eta}$ for
+even words, known conditionally on twisted Linnik \cite{m6:BKS}.  (b) Conjecture~\ref{m6:dottie-conj}: algebraic independence of $\alpha$ and $\pi$ (implied by Schanuel's conjecture).
 (c) The kernel programme of Remark~\ref{m6:kernel-programme} and the architecture programme of Remark~\ref{m6:architecture-programme}.
 \item \emph{Quandles and braids.}  Comparison-valued link invariants beyond the record of the generated subquandle in
 Proposition~\ref{m7:comparison} (a nonconstant comparison weight is excluded on $S^3$ by Proposition~\ref{m7:cocycle} but not on restricted
@@ -14974,10 +16711,12 @@ adaptive query laws (Remark~\ref{m11:walk-literature}); scalar Gram attainment b
 (Remark~\ref{m11:bridge-programme}).
 \item \emph{Numeration and cuts.}  Conjecture~\ref{m9:fract-conjecture} (no scaling example is established) and the programme of
 Remark~\ref{m9:programme}; tiling and boundary statements for larger Pisot substitutions (Remark~\ref{m9:pisot-programme}).
+\item \emph{Graphs and model sets.}  The record and witness-search programmes of Remark~\ref{m12:programme} and the dynamical
+realization programme of Remark~\ref{m13:programme}.
 \end{enumerate}
 
 \section*{Use of AI tools}
-The authors used AI tools, namely Claude Fable 5.2 and Claude Opus 5.5 (via Claude Code) and Codex (gpt-6-astra and gpt-6.2-sol), for literature search, computation and double-checking, including formal verification of the results in Lean. All proofs can be checked by hand, and the computations can be reproduced from the verification package. The authors take full responsibility for their contributions.
+The authors used AI tools, namely Claude Fable 5.2 and Claude Opus 5.5 (via Claude Code) and Codex (gpt-6-astra and gpt-6.2-sol), for literature search, computation and double-checking, including Lean formalisation of the three units listed in Section~\ref{sec:lean}. All proofs can be checked by hand, and the computations can be reproduced from the verification package. The authors take full responsibility for their contributions.
 
 \begin{thebibliography}{99}\small
 \bibitem{Adams} J.~F.~Adams, On the non-existence of elements of Hopf invariant one, \emph{Ann. of Math.} \textbf{72} (1960), 20--104.
@@ -15313,6 +17052,51 @@ The authors used AI tools, namely Claude Fable 5.2 and Claude Opus 5.5 (via Clau
 \bibitem{m9:HardyRamanujan} G.~H.~Hardy and S.~Ramanujan, Asymptotic formulae in combinatory analysis, \emph{Proc. London Math. Soc. (2)} \textbf{17} (1918), 75--115.
 \bibitem{m9:MacMahon} P.~A.~MacMahon, \emph{Combinatory Analysis}, vol.~II, Cambridge University Press, 1916.
 \bibitem{m9:CWL} S.~N.~Chandler-Wilde, R.~Chonchaiya, and M.~Lindner, On spectral inclusion sets and computing the spectra and pseudospectra of bounded linear operators, \emph{J. Spectr. Theory} \textbf{14} (2024), 719--804.
+% Round 33 references (checked 2026-11-20 via Crossref and zbMATH, titles included).
+\bibitem{m6:BKS} T.~D.~Browning, V.~V.~Kumaraswamy and R.~S.~Steiner, Twisted Linnik implies optimal covering exponent for $S^3$, \emph{Int. Math. Res. Not. IMRN} \textbf{2019}, no.~1, 140--164.
+\bibitem{m4:AEdB} T.~van Aardenne-Ehrenfest and N.~G.~de Bruijn, Circuits and trees in oriented linear graphs, \emph{Simon Stevin} \textbf{28} (1951), 203--217.
+\bibitem{m4:SmithTutte} C.~A.~B.~Smith and W.~T.~Tutte, On unicursal paths in a network of degree 4, \emph{Amer. Math. Monthly} \textbf{48} (1941), 233--237.
+\bibitem{m3:Davison} T.~M.~K.~Davison, D'Alembert's functional equation on topological groups, \emph{Aequationes Math.} \textbf{76} (2008), 33--53.
+\bibitem{m3:GN} A.~Grigor'yan and M.~Noguchi, The heat kernel on hyperbolic space, \emph{Bull. London Math. Soc.} \textbf{30} (1998), 643--650.
+\bibitem{m3:MR} A.~Medina and P.~Revoy, Alg\`ebres de Lie et produit scalaire invariant, \emph{Ann. Sci. \'Ecole Norm. Sup. (4)} \textbf{18} (1985), 553--561.
+\bibitem{m5:MS} D.~Maclagan and B.~Sturmfels, \emph{Introduction to Tropical Geometry}, Grad. Stud. Math. \textbf{161}, Amer. Math. Soc., Providence, 2015, Chs.~2--3.
+\bibitem{m5:AGG} M.~Akian, S.~Gaubert and A.~Guterman, Linear independence over tropical semirings and beyond, in \emph{Tropical and Idempotent Mathematics}, Contemp. Math. \textbf{495}, Amer. Math. Soc., 2009, 1--38.
+\bibitem{m6:KN} M.~G.~Krein and M.~A.~Naimark, The method of symmetric and Hermitian forms in the theory of the separation of the roots of algebraic equations, \emph{Linear Multilinear Algebra} \textbf{10} (1981), 265--308.
+% Sections 0A and 10E references (checked 2026-11-20 via Crossref and zbMATH, titles included; the module's Kramer--Neri title
+% was wrong and is corrected; Barrett--Johnson--Tarazaga and Barrett--Johnson--Loewy added for the cycle conditions).
+\bibitem{m12:BJT} W.~W.~Barrett, C.~R.~Johnson and P.~Tarazaga, The real positive definite completion problem for a simple cycle, \emph{Linear Algebra Appl.} \textbf{192} (1993), 3--31.
+\bibitem{m12:BJL} W.~W.~Barrett, C.~R.~Johnson and R.~Loewy, The real positive definite completion problem: cycle completability, \emph{Mem. Amer. Math. Soc.} \textbf{122} (1996), no.~584.
+\bibitem{m12:Laurent} M.~Laurent, The real positive semidefinite completion problem for series-parallel graphs, \emph{Linear Algebra Appl.} \textbf{252} (1997), 347--366.
+\bibitem{m12:ENV} M.~E.-Nagy, M.~Laurent and A.~Varvitsiotis, Complexity of the positive semidefinite matrix completion problem with a rank constraint, in \emph{Discrete Geometry and Optimization}, Fields Inst. Commun. \textbf{69}, Springer, 2013, 105--120.
+\bibitem{m12:LV} M.~Laurent and A.~Varvitsiotis, A new graph parameter related to bounded rank positive semidefinite matrix completions, \emph{Math. Program.} \textbf{145} (2014), 291--325.
+\bibitem{m12:VA} L.~Vandenberghe and M.~S.~Andersen, Chordal graphs and semidefinite optimization, \emph{Found. Trends Optim.} \textbf{1} (2015), 241--433.
+\bibitem{m12:Thomassen} C.~Thomassen, The Jordan--Sch\"onflies theorem and the classification of surfaces, \emph{Amer. Math. Monthly} \textbf{99} (1992), 116--131.
+\bibitem{m12:Kasteleyn} P.~W.~Kasteleyn, The statistics of dimers on a lattice. I, \emph{Physica} \textbf{27} (1961), 1209--1225.
+\bibitem{m12:TF} H.~N.~V.~Temperley and M.~E.~Fisher, Dimer problem in statistical mechanics---an exact result, \emph{Philos. Mag.} \textbf{6} (1961), 1061--1063.
+\bibitem{m12:CR} D.~Cimasoni and N.~Reshetikhin, Dimers on surface graphs and spin structures. I, \emph{Comm. Math. Phys.} \textbf{275} (2007), 187--208.
+\bibitem{m12:Egecioglu} \"O.~E\u{g}ecio\u{g}lu, Skew-symmetric matrices and the Pfaffian, \emph{Ars Combin.} \textbf{29} (1990), 107--116.
+\bibitem{m12:Valiant} L.~G.~Valiant, The complexity of computing the permanent, \emph{Theoret. Comput. Sci.} \textbf{8} (1979), 189--201.
+\bibitem{m12:Roy} B.~Roy, Nombre chromatique et plus longs chemins d'un graphe, \emph{Rev. Fran\c{c}aise Informat. Recherche Op\'erationnelle} \textbf{1} (1967), no.~5, 129--132.
+\bibitem{m12:Redei} L.~R\'edei, Ein kombinatorischer Satz, \emph{Acta Litt. Sci. Szeged} \textbf{7} (1934), 39--43.
+\bibitem{m12:Karp} R.~M.~Karp, Reducibility among combinatorial problems, in \emph{Complexity of Computer Computations}, Plenum Press, 1972, 85--103.
+\bibitem{m12:GJS} M.~R.~Garey, D.~S.~Johnson and L.~Stockmeyer, Some simplified NP-complete graph problems, \emph{Theoret. Comput. Sci.} \textbf{1} (1976), 237--267.
+\bibitem{m12:KasteleynGraph} P.~W.~Kasteleyn, Graph theory and crystal physics, in F.~Harary (ed.), \emph{Graph Theory and Theoretical Physics}, Academic Press, 1967, 43--110.
+\bibitem{m12:BM} J.~M.~Boyer and W.~J.~Myrvold, On the cutting edge: simplified $O(n)$ planarity by edge addition, \emph{J. Graph Algorithms Appl.} \textbf{8} (2004), 241--273.
+\bibitem{m13:Weyl} H.~Weyl, \"Uber die Gleichverteilung von Zahlen mod.\ Eins, \emph{Math. Ann.} \textbf{77} (1916), 313--352.
+\bibitem{m13:Birkhoff} G.~D.~Birkhoff, Proof of the ergodic theorem, \emph{Proc. Natl. Acad. Sci. USA} \textbf{17} (1931), 656--660.
+\bibitem{m13:Durrett} R.~Durrett, \emph{Probability: Theory and Examples}, 5th ed., Cambridge University Press, 2019, \S6.2.
+\bibitem{m13:Hurwitz} A.~Hurwitz, Ueber die angen\"aherte Darstellung der Irrationalzahlen durch rationale Br\"uche, \emph{Math. Ann.} \textbf{39} (1891), 279--284.
+\bibitem{m13:KramerNeri} P.~Kramer and R.~Neri, On periodic and non-periodic space fillings of $E^m$ obtained by projection, \emph{Acta Crystallogr. Sect. A} \textbf{40} (1984), 580--587.
+\bibitem{m13:DuneauKatz} M.~Duneau and A.~Katz, Quasiperiodic patterns, \emph{Phys. Rev. Lett.} \textbf{54} (1985), 2688--2691.
+\bibitem{m13:Meyer} Y.~Meyer, \emph{Algebraic Numbers and Harmonic Analysis}, North-Holland, 1972.
+\bibitem{m13:Schlottmann} M.~Schlottmann, Generalized model sets and dynamical systems, in \emph{Directions in Mathematical Quasicrystals}, CRM Monogr. Ser. \textbf{13}, Amer. Math. Soc., 2000, 143--159.
+\bibitem{m13:GrunbaumShephard} B.~Gr\"unbaum and G.~C.~Shephard, \emph{Tilings and Patterns}, W.~H.~Freeman, 1987, Ch.~10.
+\bibitem{m13:Lorenz} E.~N.~Lorenz, Deterministic nonperiodic flow, \emph{J. Atmos. Sci.} \textbf{20} (1963), 130--141.
+\bibitem{m13:Tucker} W.~Tucker, The Lorenz attractor exists, \emph{C. R. Acad. Sci. Paris S\'er. I Math.} \textbf{328} (1999), 1197--1202.
+\bibitem{m13:LMP} S.~Luzzatto, I.~Melbourne and F.~Paccaut, The Lorenz attractor is mixing, \emph{Comm. Math. Phys.} \textbf{260} (2005), 393--401.
+\bibitem{m13:Khinchin} A.~Ya.~Khinchin, \emph{Continued Fractions}, Dover, 1997, Ch.~II.
+\bibitem{m13:Vogel} H.~Vogel, A better way to construct the sunflower head, \emph{Math. Biosci.} \textbf{44} (1979), 179--189.
+\bibitem{m13:KY} J.~L.~Kaplan and J.~A.~Yorke, Chaotic behavior of multidimensional difference equations, in \emph{Functional Differential Equations and Approximation of Fixed Points}, Lecture Notes in Math. \textbf{730}, Springer, 1979, 204--227.
 \end{thebibliography}
 
 \end{document}
