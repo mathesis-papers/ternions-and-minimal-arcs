@@ -83,8 +83,8 @@ with the permitted degree and parity (the quantum-signal-processing theorem in h
 comparisons, sagittas and adjoint transports bounded and exactly rational on $S^3$.  For products of rotations, convergence for every
 choice of axes is equivalent to a finite angular sum, and a finite sagitta sum is neither necessary nor sufficient; at polynomial
 length, holonomy words in the binary icosahedral group recognise exactly the languages in nonuniform $\mathrm{NC}^1$.  Further sections
-treat sparse Gram completions, quandles and braids, rigidity counts, the Cayley--Dickson ladder, walks and compilation, numeration
-and golden model sets.
+treat sparse Gram completions, $\mathbb Z/2$ lattice gauge and commutator norms, quandles and braids, rigidity counts, the Cayley--Dickson ladder, walks and compilation, numeration
+golden model sets and arithmetic readouts.
 \end{abstract}
 
 \maketitle
@@ -105,7 +105,9 @@ has the chord--sagitta identity and an elliptic/parabolic/hyperbolic trichotomy 
 comparisons are reconstructed from a potential on chordal graphs, with explicit error constants, while on other graphs the
 obstruction is a lattice gauge connection (cycle holonomies modulo simultaneous conjugacy); Section~\ref{sec:m12} decides rank-three
 realizability of scalar comparisons on graphs without a $K_4$ minor by odd-subset angle inequalities, and on planar rotation systems
-obtains face-odd orientations and Pfaffian matching counts.  Part~\ref{part:axiom}
+obtains face-odd orientations and Pfaffian matching counts; Section~\ref{sec:m15} classifies flat $\mathbb Z/2$ labels on a periodic
+grid by plaquettes and two seam periods, writes the Wilson average as a two-term sum over fillings, and proves a sharp right-weighted
+B\"ottcher--Wenzel inequality.  Part~\ref{part:axiom}
 (Sections~\ref{sec:def}--\ref{sec:geom}) states the axiom and classifies its models: it
 characterises the heap $S^3$ together with its comparison $\kappa(x,y)=\lVert (x+y)/2\rVert^2=\cos^2(d/2)$ by axioms that do not mention a
 unit, describes the geometry of the heap, develops the theory without associativity (Mal'cev identities, Hurwitz's theorem, the
@@ -144,7 +146,9 @@ trip is a factor of angle doubling, a fixed step gives three gaps, words avoidin
 law, and absolutely convergent Euler products become a positive scale times oriented arcs.  Section~\ref{sec:m11b} bounds compilation
 errors in round angle and in the square root of the sagitta, identifies the comparison Hessian with the Fubini--Study metric, and
 reads the parameter-shift rule as the two-readout law.  Section~\ref{sec:m13} treats the golden model set (window, Delone radii,
-density $|W|/\sqrt5$, inflation), the Hurwitz bound with its quantifiers, ergodic readouts and the icosian cut.  Part~\ref{part:final}
+density $|W|/\sqrt5$, inflation), the Hurwitz bound with its quantifiers, ergodic readouts and the icosian cut.  Section~\ref{sec:m14} treats the completed zeta
+function, Robin's inequality in two ranges, Zeckendorf carries and modular recovery; the Riemann hypothesis appears there only as a
+named conjecture with cited equivalences, and nothing is claimed about it.  Part~\ref{part:final}
 (Sections~\ref{sec:known}--\ref{sec:open}) places the results in the literature, records what is formalised, and lists the open problems.
 In the arc calculus the guiding observation is that linear calculus discards two second-order quantities
 that are exact and computable in the heap: the radial sagitta of each step, and the failure of the
@@ -2040,6 +2044,1389 @@ minors $1,0,0,0,0$ and eigenvalue $-1/2$; all principal minors are needed.
 (v) \emph{A gradient flow reaches a global minimum from every start.} For
 $V(x)=(x^2-1)^2$ the trajectory from $0$ is stationary at value $1$
 (Remark~\ref{m12:programme}).
+\end{remark}
+
+\section{$\mathbb Z/2$ lattice gauge on periodic grids and commutator norms}\label{sec:m15}
+
+When do vanishing plaquette holonomies determine a pure gauge on a periodic
+grid, and how does the global obstruction enter the Wilson average?
+For \(\mathbb F_2\) labels the plaquettes and two periods classify gauge
+orbits. The plaquettes satisfy a single relation, and each loop that
+bounds a filling of area \(a\) on an \(mn\)-plaquette torus has exactly
+two fillings. This gives a two-term Wilson average, with the planar area
+law as its fixed-loop limit. For unitary links the local trace deficit
+admits a different estimate. A group commutator has trace deficit at
+most four times the product of the two link deficits, and a sharp
+weighted matrix inequality controls right-weighted commutator norms.
+The torus calculation specifies the loop data in
+Theorem~\ref{m1:gauge} and Corollary~\ref{m1:anchored} for a square
+cellulation. The unitary estimates apply to the trace deficit in the
+companion paper's proposition ``What a plaquette trace determines''
+\cite{Companion}, and to the local holonomy in
+Proposition~\ref{m3:physicalGauge}.
+
+\emph{Placement.} This section continues the graph holonomy of
+Section~\ref{sec:m1} (the holonomy classes of Theorem~\ref{m1:gauge}) on a
+periodic square grid; the rectangular path substitution is that of
+Remark~\ref{m5:holonomy} in Section~\ref{sec:m5}. The unweighted
+commutator inequality was conjectured by B\"ottcher and Wenzel and proved
+in \cite{m15:bw}, with further proofs by Vong and Jin \cite{m15:vj} and by
+Audenaert \cite{m15:aud}; the right-weighted form with its sharp constant is
+proved here. The duality, transfer and strong-coupling material is
+classical in substance and cited where used. Remark~\ref{m15:refuted}
+records the refuted readings with their counterexamples.
+Hypothesis~\ref{m15:input} is an input, Conjecture~\ref{m15:confinement} a
+conjecture with its evidence, and Remark~\ref{m15:programme} a programme;
+the finite results of this section imply neither. Physical readings of
+plaquette couplings are those of the companion paper's section on coupling
+ratios from the total space \cite{Companion}.
+
+\subsection{Flat fields and the finite Wilson average}
+
+\begin{definition}[Periodic edge labels]\label{m15:grid}
+Let \(m,n\geq 1\) and put \(q=mn\).
+Use \(i\) modulo \(m\) for rows and \(j\) modulo \(n\) for columns.
+The labelled horizontal edge \(h_{ij}\) goes from \((i,j)\) to
+\((i,j+1)\) and the labelled vertical edge \(v_{ij}\) to \((i+1,j)\).
+Edges with coincident endpoints or with the same pair of endpoints
+keep their labels. All cochains and chains in this subsection have
+coefficients in \(\mathbb F_2\). For an edge cochain \(y\), write its
+components as \(h_{ij}(y),v_{ij}(y)\). Define
+\begin{align*}
+ (Dy)_{ij}&=h_{ij}(y)+v_{i,j+1}(y)+h_{i+1,j}(y)+v_{ij}(y),\\
+ H_i(y)&=\sum_j h_{ij}(y), & V_j(y)&=\sum_i v_{ij}(y).
+\end{align*}
+For a vertex cochain \(x\) its gradient \(dx\) assigns
+\(x(i,j)+x(i,j+1)\) and \(x(i,j)+x(i+1,j)\) to the respective edges.
+A gauge adds \(dx\). A field is flat if \(Dy=0\) and exact if it is a
+gradient. Let \(s(a,b)\) take value \(a\) on horizontal edges at \(j=n-1\),
+value \(b\) on vertical edges at \(i=m-1\), and zero elsewhere.
+Write \(\partial=D^{\mathsf T}\) for the face-to-edge boundary, and
+\(\partial_1=d^{\mathsf T}\) for the edge-to-vertex boundary.
+\end{definition}
+
+\begin{theorem}[The two torus periods]\label{m15:classification}
+On flat fields the \(H_i\) are constant in \(i\) and the \(V_j\)
+are constant in \(j\). Every flat field is
+\[
+ y=dx+s(H_0(y),V_0(y)),
+\]
+with a unique \(x\) satisfying \(x(0,0)=0\).
+In particular a flat field is exact if and only if both periods
+vanish. The seam \(s(1,0)\) is flat and has period pair \((1,0)\),
+so flatness alone does not imply exactness, even for \(m,n\geq3\).
+\end{theorem}
+\begin{proof}
+Summing \(Dy\) along a row gives \(H_i+H_{i+1}\), and summing along
+a column gives \(V_j+V_{j+1}\). Gradients have zero plaquettes and
+zero periods by cancellation. The two copies of each seam contribution
+in a plaquette cancel, and each coordinate circuit meets its own seam
+once. Subtract the seam to get a flat field \(z\) with zero periods.
+In the following formula choose representatives \(0\leq i<m\) and
+\(0\leq j<n\):
+\[
+ x(i,j)=\sum_{r<i}v_{r,0}(z)+\sum_{u<j}h_{i,u}(z).
+\]
+Successive column values differ by \(h_{ij}(z)\), including
+the wrap by \(H_i(z)=0\). For \(i<m-1\), the successive row
+difference is \(v_{i,0}(z)+\sum_{u<j}(h_{iu}(z)+h_{i+1,u}(z))\).
+Flatness makes this \(v_{ij}(z)\) by telescoping in \(u\).
+The wrap in the row direction follows from \(V_j(z)=0\). An empty
+sum gives the same reasoning for a side of length one. The periodic
+graph is connected, so a cochain with zero gradient is constant.
+\end{proof}
+
+\begin{theorem}[The plaquette relation and flat counts]\label{m15:rank}
+The only relation among the rows of \(D\) is their sum. More precisely
+\(\ker D^{\mathsf T}\) consists of the constant face chains, and
+\[
+ \operatorname{im} D=\{f:\textstyle\sum_{ij} f_{ij}=0\},
+ \qquad \operatorname{rank}D=q-1,\qquad \dim\ker D=q+1.
+\]
+There are \(2^{2q}\) edge labels, \(2^{q+1}\) flat labels and
+\(2^{q-1}\) exact labels. Consequently the ratios exact to flat,
+flat to all, and exact to all are \(1/4,2^{-(q-1)},2^{-(q+1)}\).
+Two fields are gauge equivalent if and only if their images under
+\(D\), \(H_0\) and \(V_0\) agree. Every even plaquette assignment and
+every pair of periods occurs, with \(2^{q-1}\) labels for each such triple.
+\end{theorem}
+\begin{proof}
+In a relation with coefficient array \(f\), the coefficient on
+\(h_{ij}\) is \(f_{ij}+f_{i-1,j}\) and that on \(v_{ij}\) is
+\(f_{ij}+f_{i,j-1}\). This includes repeated incidences. Thus
+a relation is constant by periodic adjacency, and every constant
+does give a relation. The sum map on the nonempty face set has rank
+one. Rank--nullity gives the displayed formulas, and connectedness
+gives \(\dim\operatorname{im}d=q-1\). The three ratios follow from
+the counts. On subtracting two fields with identical plaquettes,
+Theorem~\ref{m15:classification} identifies the kernel of the period pair
+with \(\operatorname{im}d\). Adding seams to any preimage of an even
+face assignment realizes arbitrary periods.
+\end{proof}
+
+\begin{proposition}[Parity expansion]\label{m15:parity}
+Let \(E,P\) be finite sets, \(D\) any \(P\)-by-\(E\) matrix over
+\(\mathbb F_2\), \(R\) a commutative ring with identity, and \(t_p\in R\).
+Write \(\epsilon(0)=1,\epsilon(1)=-1\) in \(R\), and identify a subset
+of \(P\) with its indicator. For \(c\in\mathbb F_2^E\),
+\begin{equation}\label{m15:parity-eq}
+ \sum_y\epsilon(c\cdot y)\prod_{p\in P}
+           (1+t_p\epsilon((Dy)_p))
+  =2^{|E|}\sum_{S:\,D^{\mathsf T}S=c}\prod_{p\in S}t_p.
+\end{equation}
+\end{proposition}
+\begin{proof}
+Distributing the product gives one term per \(S\subseteq P\).
+Multiplicativity of \(\epsilon\) on sums in \(\mathbb F_2\) makes
+its sign \(\epsilon((c+D^{\mathsf T}S)\cdot y)\).
+For \(u\in\mathbb F_2^E\), the sum of \(\epsilon(u\cdot y)\)
+over \(y\) factors as \(\prod_e(1+\epsilon(u_e))\), which is \(2^{|E|}\)
+at \(u=0\) and vanishes otherwise. This computation works in
+characteristic two and for empty index sets with the usual empty product.
+\end{proof}
+
+\begin{definition}[Wilson measure]\label{m15:measure}
+On a finite cellulation use counting measure on the edge labels and
+Boltzmann weight \(\prod_p e^{\beta_p\epsilon((Dy)_p)}\), with finite
+real couplings \(\beta_p\). Write \(Z\) for the sum of weights and
+\(\langle\cdot\rangle\) for the resulting expectation. This is the
+Wilson plaquette weight up to the factor \(\prod_p e^{-\beta_p}\)
+in the action convention \(1-\epsilon((Dy)_p)\).
+For a closed walk \(C\) let \(c\) record the parity of its edge
+traversals. The Wilson observable is \(W_c(y)=\epsilon(c\cdot y)\).
+The same formula defines \(W_c\) for any edge chain \(c\).
+\end{definition}
+
+\begin{corollary}[Wilson sums and the two fillings]\label{m15:wilson}
+Put \(t_p=\tanh\beta_p\). For every \(c\),
+\begin{align}
+ Z&=2^{|E|}\prod_p\cosh\beta_p
+                   \sum_{\partial S=0}\prod_{p\in S}t_p,\label{m15:partition}\\
+ \langle W_c\rangle
+   &=\frac{\sum_{\partial S=c}\prod_{p\in S}t_p}
+           {\sum_{\partial S=0}\prod_{p\in S}t_p}.\label{m15:loop}
+\end{align}
+For the torus, if \(c=\partial S_0\) then
+\begin{equation}\label{m15:torus}
+ \langle W_c\rangle
+ =\frac{\prod_{p\in S_0}t_p+\prod_{p\notin S_0}t_p}
+        {1+\prod_{p\in P}t_p}.
+\end{equation}
+For a cycle \(c\) the condition \(c\in\operatorname{im}\partial\)
+is equivalent to \(c\cdot s(1,0)=c\cdot s(0,1)=0\).
+A single coordinate winding therefore has zero expectation.
+\end{corollary}
+\begin{proof}
+For \(\sigma=\pm1\) one has \(e^{\beta\sigma}=\cosh\beta(1+\sigma\tanh\beta)\).
+Apply Proposition~\ref{m15:parity} to the partition sum and to its
+Wilson insertion. The denominator is positive because the partition
+sum is positive. Theorem~\ref{m15:rank} gives precisely the two
+solutions \(S_0\) and \(P\setminus S_0\) and the two closed face chains
+\(\varnothing,P\). Finally \(\operatorname{im}D^{\mathsf T}=(\ker D)^\perp\)
+by inclusion and dimension. A cycle annihilates all gradients because
+\(\partial_1c=0\), and Theorem~\ref{m15:classification} supplies exactly
+the two remaining tests. Each coordinate winding pairs to \(1\)
+with its own seam.
+\end{proof}
+
+\begin{corollary}[The planar limit and finite-volume error]\label{m15:area}
+In a finite free-boundary square region of the plane, a loop bounding
+a set of included faces \(S_0\) has
+\(\langle W_c\rangle=\prod_{p\in S_0}t_p\). A simple loop whose interior
+contains a missing face has expectation zero.
+For the uniform torus weight, write \(t=\tanh\beta\), \(0<\beta<\infty\),
+and \(a=\min(|S_0|,q-|S_0|)\). Then
+\begin{align*}
+ \langle W_c\rangle &=\frac{t^a+t^{q-a}}{1+t^q},&
+ \langle W_c\rangle-t^a&=\frac{t^{q-a}(1-t^{2a})}{1+t^q},\\
+ t^a&\leq\langle W_c\rangle\leq 2t^a,&
+ \sigma(\beta)&=-\log\tanh\beta>0 .
+\end{align*}
+Thus for a fixed planar loop of area \(a\), its periodic approximants
+tend to \(e^{-\sigma(\beta)a}\) as both side lengths grow.
+For \(0<a\leq q/2\) the planar value is strictly smaller at finite \(q\).
+At \(\beta=0\), every nonzero edge chain has zero expectation.
+As \(\beta\to\infty\) at fixed torus size the measure tends to the
+uniform measure on flat labels. The Wilson expectation then tends to
+\(1\) on boundaries and remains zero on nonboundary chains.
+\end{corollary}
+\begin{proof}
+A nonempty finite set of faces in the full plane has nonzero boundary,
+as seen on an exposed edge of a face in its highest row.
+Thus a finite filling is unique even in the full plane, where the
+unit squares in the interior of a simple lattice loop form a filling.
+The planar assertions follow from \eqref{m15:loop}, including the
+closed-chain denominator \(1\). Subtracting \(t^a\) in
+\eqref{m15:torus} gives the stated error. The upper bound uses
+\(q-a\ge a\) and \(0<t<1\), and the error tends to zero at fixed \(a\).
+At zero coupling the edge measure is uniform. At positive coupling
+a field with \(k\) negative plaquettes has weight \(e^{\beta q}e^{-2\beta k}\).
+The flat fields are precisely the \(k=0\) fields, so the limiting measure
+follows from finiteness. The formula and the vanishing for nonboundaries
+give its Wilson averages.
+\end{proof}
+
+\begin{example}[A four-plaquette loop]\label{m15:area-example}
+On a \(3\)-by-\(3\) torus at \(\beta=1.3\), a \(2\)-by-\(2\)
+rectangle has expectation \(0.813439\) to six decimal places.
+The corresponding free-boundary value is \(0.551405\).
+These are \((t^4+t^5)/(1+t^9)\) and \(t^4\), respectively.
+\end{example}
+
+\begin{remark}[Gauge averaging and loop coordinates]\label{m15:averaging}
+The Wilson characters span the gauge-invariant functions on the finite
+edge space. Indeed the full parity characters are an orthogonal basis
+over \(\mathbb R\) by the calculation in Proposition~\ref{m15:parity}.
+Averaging each over \(x\mapsto dx\) leaves it unchanged when
+\(\partial_1 c=0\) and kills it otherwise. A cycle over \(\mathbb F_2\)
+has even incidence at each vertex and can be split into closed walks:
+following unused edges cannot end at a vertex different from the starting
+vertex, and deleting the resulting walk preserves even incidence.
+Gauge invariance of the Wilson measure makes its expectation of any
+function equal to its expectation after gauge averaging.
+A path with distinct endpoints has zero expectation. In addition, even
+a gauge-invariant character has zero average if its cycle pairs nontrivially
+with a seam, by Corollary~\ref{m15:wilson}. For two disjoint parallel coordinate windings
+their product is the character of the boundary of the intervening band,
+and \eqref{m15:torus} applies. These are finite versions of local gauge
+averaging and selection of winding sectors. Elitzur studies spontaneous
+breaking of local gauge symmetry in infinite volume \cite{m15:elitzur}.
+\end{remark}
+
+\begin{proposition}[Local gauge averaging with a source]\label{m15:local}
+Let a finite oriented graph have compact-group links with product Haar
+reference measure, reweighted by a positive integrable gauge-invariant
+density. Let \(P_x\) average a vertex gauge at \(x\).
+Then \(\langle F\rangle=\langle P_xF\rangle\) for any bounded observable.
+In a nontrivial irreducible unitary representation, every matrix entry
+of an open path with distinct endpoints has zero mean.
+If the density is multiplied by
+\(e^{J\sum_e\psi(U_e)}\), where \(\psi\) is real and \(|\psi|\le K\),
+then for \(P_x F=0\),
+\[
+ |\langle F\rangle_J|
+ \leq (e^{2|J|K\deg x}-1)\|F\|_\infty ,
+\]
+where \(\deg x\) counts the links incident to \(x\) once each.
+\end{proposition}
+\begin{proof}
+Product Haar measure is invariant under left and right vertex
+multiplications, and the original density is gauge invariant.
+The claimed averaging therefore preserves the expectation.
+For a path with distinct endpoints, varying one endpoint multiplies
+its holonomy on one side, so averaging a nontrivial representation
+projects onto its invariant vectors, which are zero.
+With the source, changing a single vertex gauge alters the source
+exponent by at most \(2|J|K\deg x\). A change of variables in the
+normalized expectation writes the shift as integration against
+the same density times a multiplier in
+\([e^{-2|J|K\deg x},e^{2|J|K\deg x}]\).
+The denominator is the original perturbed partition sum under
+the same change of variables. Bound the multiplier minus one
+in absolute value and average the inequality over vertex gauges.
+This gives the bound because \(P_xF=0\).
+\end{proof}
+
+\subsection{A sharp inequality for weighted commutators}
+
+Use \(X^*\) for the conjugate transpose, \([A,B]=AB-BA\), and
+\(\|X\|_F^2=\operatorname{tr}(X^*X)\). The matrix operator norm is
+\(\|\cdot\|_{\mathrm{op}}\). On the Frobenius space use
+\(\langle Y,Z\rangle_F=\operatorname{tr}(Y^*Z)\).
+The unweighted constant is the B\"ottcher--Wenzel constant
+\cite{m15:bw,m15:vj,m15:aud}. The proof below controls the projected columns using
+the gap in the unweighted bound. It gives the sharp constant for each
+positive definite right weight.
+
+\begin{theorem}[Right-weighted B\"ottcher--Wenzel inequality]\label{m15:weighted}
+Let \(N\geq1\), \(A,B\in M_N(\mathbb C)\), and let \(W\) be Hermitian
+positive definite with least and greatest eigenvalues \(\ell,h\).
+Set \(\|X\|_W^2=\operatorname{Re}\operatorname{tr}(X^*XW)\).
+Then
+\begin{equation}\label{m15:bound}
+ \|[A,B]\|_W^2\leq (1+h/\ell)\|A\|_W^2\|B\|_F^2,\qquad
+ \|A\|_I^2=\|A\|_F^2 .
+\end{equation}
+For every fixed \(W\) and \(N\geq2\) the constant is optimal and is
+attained. For \(N=1\) the best constant is zero.
+\end{theorem}
+
+\begin{lemma}[A scalar-translation bound]\label{m15:translation}
+Let \(L_A(X)=[A,X]\) on Frobenius space, and write
+\(a=\|A\|_F^2\), \(d_A=2a-\|L_A\|_{F\to F}^2\).
+Then \(d_A\geq0\), and for every \(c\in\mathbb C\)
+\begin{equation}\label{m15:shift}
+ \|A-cI\|_{\mathrm{op}}^2\leq a+2|c|^2+2|c|\sqrt{d_A}.
+\end{equation}
+\end{lemma}
+\begin{proof}
+Put \(K=(A^*A+AA^*)/2\).
+On the compact set of positive semidefinite trace-one matrices
+consider \(\mathcal V(\rho)=\operatorname{tr}(K\rho)-
+|\operatorname{tr}(A\rho)|^2\). A maximizer can be chosen with rank
+one. To see this, choose a maximizer of minimal rank \(r\). If \(r\geq2\),
+the real vector space of Hermitian matrices on its support has
+dimension \(r^2>3\). Choose a nonzero \(D_0\) there with
+\(\operatorname{tr}D_0=\operatorname{tr}(AD_0)=0\).
+Both signs of a small perturbation preserve positivity and the two
+traces, so maximality forces \(\operatorname{tr}(KD_0)=0\).
+The traceless \(D_0\) has a negative eigenvalue. Moving along
+\(\rho+sD_0\) with \(s\geq0\) reaches a first singular positive
+semidefinite matrix on the support at a finite positive \(s\).
+It has the same objective and smaller rank, a contradiction.
+
+For \(B\ne0\) write \(u=\|B\|_F^2\), \(Q=B^*A+AB^*\) and
+\(\rho_B=(B^*B+BB^*)/(2u)\).
+Expanding the two squares and using trace cyclicity gives
+\[
+ \|[A,B]\|_F^2+\|Q\|_F^2=4u\operatorname{tr}(K\rho_B),\qquad
+ \operatorname{tr}(QB)=2u\operatorname{tr}(A\rho_B).
+\]
+For the first equality the cross terms in the two norms cancel by
+cyclicity, and the four squared terms pair \(B^*B,BB^*\)
+with \(A^*A,AA^*\). Cauchy--Schwarz gives
+\(|\operatorname{tr}(QB)|^2\leq u\|Q\|_F^2\), so
+\(\|[A,B]\|_F^2\leq 4u\mathcal V(\rho_B)\).
+Let \(vv^*\) be a rank-one maximizer with \(\|v\|=1\).
+In an orthonormal basis starting with \(v\), write
+\[
+ A=\begin{pmatrix}\alpha&R\\ C&D_1\end{pmatrix}.
+\]
+Then \(\mathcal V(vv^*)=(\|R\|_F^2+\|C\|_F^2)/2\). Taking the
+supremum in the commutator estimate gives
+\(d_A\geq 2(|\alpha|^2+\|D_1\|_F^2)\geq0\).
+For a vector split as \((x,y)\), the lengths of the two output blocks
+of \(A-cI\) are bounded componentwise by
+\[
+ \begin{pmatrix}|\alpha|+|c|&\|R\|_F\\
+                 \|C\|_F&\|D_1\|_F+|c|\end{pmatrix}
+ \binom{|x|}{\|y\|}.
+\]
+The squared Frobenius norm of this comparison matrix bounds its
+squared operator norm and equals
+\(a+2|c|^2+2|c|(|\alpha|+\|D_1\|_F)\).
+Use \(|\alpha|+\|D_1\|_F\leq\sqrt{d_A}\). The block argument
+includes empty lower blocks when \(N=1\).
+\end{proof}
+
+\begin{lemma}[Projected columns]\label{m15:projection}
+For every orthogonal projection \(P\), put \(b=\|AP\|_F^2\). Then
+\begin{equation}\label{m15:projected}
+ \|[A,B]P\|_F^2\leq(a+2b+2\sqrt{bd_A})\|B\|_F^2
+\end{equation}
+with \(a,d_A\) as in Lemma~\ref{m15:translation}.
+\end{lemma}
+\begin{proof}
+First consider \(T_H(Z)=AA^*Z-AZH^*-A^*ZH\) for
+\(\|H\|_{\mathrm{op}}\leq r\). If \(H=rU\) with \(U\) unitary,
+diagonalize \(U\) and use the resulting orthonormal column basis
+on the right of \(Z\). Each column is acted on by
+\(AA^*-\bar c A-cA^*=(A-cI)(A-cI)^*-|c|^2I\), with \(|c|=r\).
+Equation~\eqref{m15:shift} bounds its quadratic form by
+\(a+r^2+2r\sqrt{d_A}\) times the squared column norm.
+For \(r>0\), the singular value decomposition of \(H/r\) writes it
+as an average of two unitaries. For a singular value \(s\in[0,1]\)
+use the average of \(s+i\sqrt{1-s^2}\) and its conjugate,
+then multiply each diagonal unitary by the two SVD factors.
+The quadratic form is affine over the reals in \(H\).
+For \(r=0\) the same column estimate uses \(c=0\). Thus
+\[
+ \langle Z,T_H(Z)\rangle_F\leq (a+r^2+2r\sqrt{d_A})\|Z\|_F^2 .
+\]
+Now suppose \(Z=ZP\). The adjoint \(L_A^*\) is \(L_{A^*}\) by
+cyclicity. Expanding the double commutator gives
+\[
+ L_A L_{A^*}(Z)P=T_{PAP}(Z)+Z(PA^*AP).
+\]
+In \(\langle Z,L_A L_{A^*}(Z)\rangle_F\) the final \(P\) can be
+inserted because \(Z=ZP\). Take \(r=\sqrt b\), since
+\(\|PAP\|_{\mathrm{op}}\leq\|AP\|_F\).
+The last quadratic term is
+\(\|APZ^*\|_F^2\leq b\|Z\|_F^2\).
+It follows that
+\(\|L_{A^*}Z\|_F^2\leq (a+2b+2\sqrt{bd_A})\|Z\|_F^2\).
+For such \(Z\), \(\langle Z,[A,B]P\rangle_F
+=\langle L_{A^*}Z,B\rangle_F\). Taking the supremum over unit
+\(Z=ZP\) proves \eqref{m15:projected}. If \(P=0\) its left side is zero.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{m15:weighted}]
+For \(W=I+sP\), \(s\geq0\), write
+\(u=\|B\|_F^2,\ C_0=\|[A,B]\|_F^2,\ C_1=\|[A,B]P\|_F^2\).
+The two sides of the proposed inequality with coefficient \(2+s\)
+have difference
+\[
+ (2+s)(a+sb)u-(C_0+sC_1)
+ \ \geq\ (d_A-2s\sqrt{bd_A}+s^2b)u
+ =(\sqrt{d_A}-s\sqrt b)^2u.
+\]
+Here \(2au-C_0\ge d_Au\) by the definition of \(d_A\), and the
+linear term uses \eqref{m15:projected}. The weight formula
+\(\|X\|_{I+sP}^2=\|X\|_F^2+s\|XP\|_F^2\) follows by cyclicity.
+For \(h>\ell\), let \(\ell=\lambda_0<\cdots<\lambda_k=h\)
+be the distinct eigenvalues and \(P_j\) the projection onto eigenvectors
+with eigenvalue at least \(\lambda_j\).
+Then \(W=\ell I+\sum_{j=1}^k(\lambda_j-\lambda_{j-1})P_j\).
+With \(s=h/\ell-1\), this is \(\ell\) times a convex combination
+of \(I+sP_j\) with coefficients \((\lambda_j-\lambda_{j-1})/(h-\ell)\).
+Both sides are linear in the weight, so the two-level bound proves
+\eqref{m15:bound}. If \(h=\ell\), use \(W=\ell I\) and \(s=0\).
+The identity for \(W=I\) follows from the definition.
+
+For sharpness choose orthonormal eigenvectors \(e_i,e_j\) for
+\(\ell,h\), distinct even if \(h=\ell\).
+Take \(B=e_ie_j^*\) and \(A=\ell^{-1}e_ie_i^*-h^{-1}e_je_j^*\).
+Then \(\|B\|_F^2=1\), \(\|A\|_W^2=\ell^{-1}+h^{-1}\), and
+\([A,B]=(\ell^{-1}+h^{-1})B\). The quotient is
+\(h(\ell^{-1}+h^{-1})=1+h/\ell\). In dimension one every
+commutator vanishes.
+\end{proof}
+
+\begin{corollary}[Trace deficit of a unitary commutator]\label{m15:sagitta}
+For \(U\in\mathrm U(N)\) let
+\(v(U)=N-\operatorname{Re}\operatorname{tr}U=\|U-I\|_F^2/2\).
+If \(H=UVU^{-1}V^{-1}\) then
+\[
+ v(H)=\tfrac12\|[U-I,V-I]\|_F^2\leq4v(U)v(V).
+\]
+The constant \(4\) is sharp for \(N\geq2\), and the normalized trace
+deficit \(v/N\) has sharp constant \(4N\). The squared distance between
+\(UV\) and \(VU\) is \(2v(H)\), and
+\(\sqrt{v(UV)}\leq\sqrt{v(U)}+\sqrt{v(V)}\).
+The same commutator argument in operator norm yields
+\(\|H-I\|_{\mathrm{op}}\leq 2\|U-I\|_{\mathrm{op}}\|V-I\|_{\mathrm{op}}\).
+If \(H_k=UH_{k-1}U^{-1}H_{k-1}^{-1}\), then
+\(v(H_k)\leq(4v(U))^kv(H_0)\), with convergence to \(I\) when
+\(v(U)<1/4\).
+For opposite link pairs \(U,U'\) and \(V,V'\) one also has
+\[
+ \|UV(U')^{-1}(V')^{-1}-I\|_F\leq
+ \sqrt 2\,\|U-I\|_F\|V-I\|_F+\|U'-U\|_F+\|V'-V\|_F .
+\]
+\end{corollary}
+\begin{proof}
+Expand \((U-I)^*(U-I)=2I-U-U^*\).
+Since \(H-I=[U-I,V-I](VU)^{-1}\), right invariance of the Frobenius
+norm and \eqref{m15:bound} give the first assertion. The operator
+bound uses the triangle inequality on the two products in the
+commutator. The product bound follows from
+\(UV-I=(U-I)V+(V-I)\). Iterate the first bound for \(H_k\).
+For opposite links, subtract \(H\) from the plaquette, telescope the
+difference of the two inverse factors, and use
+\(\|(U')^{-1}-U^{-1}\|_F=\|U'-U\|_F\) by unitary invariance.
+
+For sharpness use \(U_j=\cos(\theta_j/2)I-i\sin(\theta_j/2)
+\,\mathbf n_j\cdot\boldsymbol{\sigma}\) in a two-dimensional block,
+where \(\boldsymbol{\sigma}\) are the Pauli matrices and \(\mathbf n_j\)
+are real unit vectors. The Pauli product rule gives
+\[
+ v([U_1,U_2]_{\mathrm{grp}})=
+ 4v(U_1)v(U_2)\cos^2(\theta_1/4)\cos^2(\theta_2/4)
+                  |\mathbf n_1\times\mathbf n_2|^2,
+ \qquad v(U_j)=4\sin^2(\theta_j/4),
+\]
+where the subscript denotes the group commutator.
+Indeed the matrix commutator is
+\(-2i\sin(\theta_1/2)\sin(\theta_2/2)
+  (\mathbf n_1\times\mathbf n_2)\cdot\boldsymbol{\sigma}\),
+whose squared norm is \(8\sin^2(\theta_1/2)\sin^2(\theta_2/2)
+|\mathbf n_1\times\mathbf n_2|^2\).
+Orthogonal axes and nonzero angles tending to zero give the
+sharp limit. Padding with identity blocks leaves \(v\) unchanged.
+The same example with \(U'=U,V'=V\) makes \(\sqrt2\) optimal
+in the opposite-link bound. For scalar links the group commutator is
+\(I\) and the product term in that bound can be dropped.
+\end{proof}
+
+\begin{example}[Orthogonal spin axes]\label{m15:spin-example}
+For two equal \(60^\circ\) rotations about orthogonal axes the
+normalized trace deficit of the spin commutator is \(1/8\).
+Its spatial principal rotation angle is \(2\arccos(7/8)\),
+or \(57.91^\circ\) to two decimal places.
+\end{example}
+
+\subsection{Local plaquette and cube identities}
+
+\begin{proposition}[Even and odd parts of a plaquette]\label{m15:parts}
+For a unitary \(P\), put \(S_P=I-(P+P^*)/2\) and \(A_P=(P-P^*)/2\).
+Then \(S_P\geq0\), \(\operatorname{tr}S_P=v(P)\), and
+\begin{align*}
+ 2v(P)&=\|S_P\|_F^2+\|A_P\|_F^2,\\
+ (1-\tfrac12\|S_P\|_{\mathrm{op}})v(P)
+ &\leq\tfrac12\|A_P\|_F^2\leq v(P),&
+ \|S_P\|_{\mathrm{op}}&=\tfrac12\|P-I\|_{\mathrm{op}}^2.
+\end{align*}
+Equality in the lower bound holds precisely when all positive eigenvalues
+of \(S_P\) are equal, including the vacuous case \(S_P=0\).
+For \(P=\prod_{j=1}^4(I+X_j)\), in the given order, \(c_j=\|X_j\|_{\mathrm{op}}\),
+\[
+ P-I=\sum_jX_j+\sum_{j<k}X_jX_k+R,\qquad
+ \|R\|_{\mathrm{op}}\leq e_3(c)+e_4(c),
+\]
+where \(e_k(c)\) sums the products of \(k\) distinct \(c_j\).
+For a smooth connection on a square of side \(s\), the trace deficit
+is \(s^4\operatorname{tr}(F^*F)/2+O(s^6)\) with \(F\) the curvature
+component at the square centre.
+\end{proposition}
+\begin{proof}
+Since \(2S_P=(P-I)^*(P-I)\), positivity and the operator-norm identity
+follow. The Hermitian and skew-Hermitian parts of \(P-I\) are
+orthogonal for the real Frobenius inner product.
+For an eigenvalue \(\lambda\geq0\) of \(S_P\),
+\(\lambda^2\leq\|S_P\|_{\mathrm{op}}\lambda\), with strict inequality
+for \(0<\lambda<\|S_P\|_{\mathrm{op}}\).
+For the remainder, distribute the product and bound each of the
+ordered terms of degrees three and four by submultiplicativity.
+The estimate is sharp in the limit of four equal scalar \(X_j=e^{i\eta}-1\)
+as \(\eta\to0\), since \(R=4X_1^3+X_1^4\).
+The bound \(\|P-I\|_{\mathrm{op}}\leq\sum_j c_j\) for unitary factors
+follows by telescoping. In particular the relative difference between
+\(v(P)\) and \(\|A_P\|_F^2/2\), for \(v(P)>0\), is at most
+\((\sum_j c_j)^2/4\).
+
+For the last claim use Proposition~\ref{m3:physicalGauge} at the
+moving start corner and the continuity of the curvature derivative to
+write \(P-I=\pm s^2 F+O(s^3)\) with \(F\) at the fixed centre. The sign
+depends on the transport convention and drops out of \(\|P-I\|_F^2\).
+For a smooth connection the trace is a smooth function of the signed
+side parameter \(s\). Replacing \(s\) by \(-s\) starts the same
+oriented circuit at the opposite vertex, so its trace is even.
+The quartic leading term and Taylor's theorem through degree five
+give the centred error.
+\end{proof}
+
+\begin{proposition}[Cube identity and trace deficits]\label{m15:cube}
+For group-valued edges on a cube, outward face holonomies can be
+transported to a common vertex and ordered so that their product
+is \(I\). In a unitary group, for any face \(f\) this gives
+\[
+ \|P_f-I\|_F\leq\sum_{g\ne f}\|P_g-I\|_F,\qquad
+ v(P_f)\leq\Big(\sum_{g\ne f}\sqrt{v(P_g)}\Big)^2
+          \leq 5\sum_{g\ne f}v(P_g).
+\]
+The constants are sharp. For scalar links, let \(\theta_f\in(-\pi,\pi]\)
+be the principal outward flux. The integer \(k=\sum_f\theta_f/(2\pi)\)
+satisfies
+\[
+ k\ne0\ \Longrightarrow\
+ \max_f(1-\cos\theta_f)\geq\tfrac12,\qquad
+ \sum_f(1-\cos\theta_f)\geq\tfrac43 .
+\]
+The first threshold is attained.
+\end{proposition}
+\begin{proof}
+Use \(X_{yz},Y_{xz},Z_{xy}\) for positively directed edges parallel
+to the three axes of the cube \(\{0,1\}^3\). A choice of based face words,
+in order, is
+\begin{align*}
+ &Z_{00}Y_{01}Z_{01}^{-1}Y_{00}^{-1},\\
+ &Y_{00}Z_{01}X_{11}Z_{11}^{-1}X_{10}^{-1}Y_{00}^{-1},\\
+ &Y_{00}X_{10}Y_{10}^{-1}X_{00}^{-1},\\
+ &X_{00}Y_{10}Z_{11}Y_{11}^{-1}Z_{10}^{-1}X_{00}^{-1},\\
+ &X_{00}Z_{10}X_{01}^{-1}Z_{00}^{-1},\\
+ &Z_{00}X_{01}Y_{11}X_{11}^{-1}Y_{01}^{-1}Z_{00}^{-1}.
+\end{align*}
+The first five multiply to
+\(Z_{00}Y_{01}X_{11}Y_{11}^{-1}X_{01}^{-1}Z_{00}^{-1}\),
+the inverse of the last word. Cyclically move a chosen face
+to the front. Its distance to the identity is the distance of the
+product of the other faces to the identity. Conjugation by the
+transport links preserves this distance, and repeated telescoping as
+in Corollary~\ref{m15:sagitta} gives the bound. Cauchy--Schwarz gives \(5\).
+
+For scalar links the outward flux sum is zero modulo \(2\pi\).
+Every set of face phases with product one is realized. Choose a spanning
+tree of the dual graph on the six faces and set all other cube link phases
+to zero. Removing dual leaves in turn, choose the associated link phase
+to give the required face value, leaving the last value fixed by the product.
+One flux \(\eta\) and five fluxes \(-\eta/5\) give the sharp limits as
+\(\eta\to0\). If \(k\ne0\), the absolute flux sum is at least \(2\pi\),
+and its largest term is at least \(\pi/3\). Taking all fluxes \(\pi/3\)
+attains that threshold. Finally \(1-\cos\theta\geq2\theta^2/\pi^2\)
+on the principal interval by concavity of \(\sin\) on \([0,\pi/2]\).
+Cauchy--Schwarz bounds the sum of the squares below by \((2\pi)^2/6\).
+The integer is the cube magnetic charge in the principal-branch
+convention \cite{m15:degrand}.
+\end{proof}
+
+\begin{proposition}[Variation of a Wilson action]\label{m15:staples}
+On a periodic hypercubic grid of dimension \(d\) with at least two
+sites per side, fix a link \(U\) and write \(\Sigma\) for the sum of
+the three-link return paths in its \(2(d-1)\) incident plaquettes,
+directed so each loop starts with \(U\).
+For the action \(\beta\sum_p v(P_p)/N\), the change under \(U\mapsto VU\)
+is \(-(\beta/N)\operatorname{Re}\operatorname{tr}((V-I)U\Sigma)\).
+With \(V=e^{sX}\) and \(X^*=-X\), its derivative at zero is
+\(-(\beta/N)\operatorname{tr}(X A_{U\Sigma})\), where
+\(A_M=(M-M^*)/2\). For \(G=\mathrm U(N)\) and \(\beta\ne0\)
+stationarity is \(A_{U\Sigma}=0\) at every link.
+For \(G=\mathrm{SU}(N)\) use the traceless part of \(A_{U\Sigma}\).
+At every vertex the outgoing sum of \(A_{U\Sigma}\) equals the
+incoming sum of \(A_{\Sigma U}\), whether or not the field is stationary.
+\end{proposition}
+\begin{proof}
+Cyclicity and reversal invariance of the real trace put each affected
+plaquette in the form \(\operatorname{Re}\operatorname{tr}(U\cdot
+\text{ return path})\). With all transverse periods at least two, no
+return path uses the varying labelled link. Linearity in \(U\)
+gives the finite change. Differentiating and using
+\(\overline{\operatorname{tr}(XM)}=-\operatorname{tr}(XM^*)\)
+gives the derivative. The inner product \(-\operatorname{tr}(XY)\)
+is positive definite on the skew-Hermitian space, and its projection
+onto the traceless subspace removes the scalar part. For the vertex
+identity apply a local \(\mathrm U(N)\) gauge \(e^{sX}\) at the vertex
+to the action with unit coefficient. The outgoing links vary by left
+multiplication and the incoming links by right multiplication by the
+inverse. Conjugation preserves each plaquette trace, so the derivative
+vanishes for every \(X\); nondegeneracy gives the identity.
+In the scalar case \(A_{U\Sigma}=i\sum_{p\ni U}\varepsilon_{Up}\sin\theta_p\)
+with incidence signs \(\varepsilon_{Up}\). Thus the equation is the
+signed sine sum, and the vertex sum vanishes by boundary cancellation.
+The staple convention also appears in \cite{m15:gattringer}.
+\end{proof}
+
+\begin{proposition}[Ordered rectangular boundary]\label{m15:rectangular}
+Consider a rectangle with \(R\) columns and \(T\) rows of group-valued
+plaquettes \(P_{ij}\), based at their lower left corners and oriented
+counterclockwise. Use path multiplication in traversal order.
+Transport each \(P_{ij}\) to the lower left corner of the rectangle
+along the bottom row to column \(i\), then vertically to row \(j\).
+Multiply the transported plaquettes from right to left by columns
+and from bottom to top within each column. The product is the
+counterclockwise boundary holonomy \(W_C\). For unitary links,
+\[
+ \sqrt{v(W_C)}\leq\sum_{i,j}\sqrt{v(P_{ij})},
+ \qquad
+ v(W_C)\leq RT\sum_{i,j}v(P_{ij}).
+\]
+The factor \(RT\) in the second inequality is optimal.
+\end{proposition}
+\begin{proof}
+This is the rectangular path substitution of Remark~\ref{m5:holonomy}.
+Write \(h_{ij}\) for the rightward link, \(b_i\) for the bottom
+path to column \(i\), and \(V_{i,j}\) for its vertical path to height \(j\).
+The product of the first \(J\) transported faces of column \(i\)
+reduces to
+\(b_i h_{i0} V_{i+1,J}h_{iJ}^{-1}V_{i,J}^{-1} b_i^{-1}\).
+Induct on \(J\) using the shared horizontal link at height \(J\)
+and its inverse and the shared vertical access paths. For \(J=T\),
+multiplying successive columns in the stated order cancels the
+interior vertical paths because \(b_i h_{i0}=b_{i+1}\).
+The product is the rectangle boundary word. Unitary conjugation
+preserves the deficit, and the product estimate in
+Corollary~\ref{m15:sagitta} followed by Cauchy--Schwarz gives the bounds.
+In the scalar group choose vertical links \(1\) and horizontal links
+\(\exp(-\sqrt{-1}\,j\eta)\) at height \(j\). Thus every face has holonomy
+\(e^{i\eta}\) and \(v(W_C)/\sum_p v(P_p)\to RT\) as \(\eta\to0\).
+\end{proof}
+
+\subsection{Two-dimensional gauge integrals and transfer}
+
+\begin{proposition}[Planar face integrals]\label{m15:planar-group}
+Let \(G\) be a compact group with normalized Haar measure and let
+\(\phi>0\) be a continuous central weight with \(\phi(g^{-1})=\phi(g)\).
+Use this weight on the included unit faces of a finite connected
+planar square region with free boundary and product Haar measure on links.
+Set \(z=\int\phi\) and \(w_F=\int\phi\chi_F/(d_F z)\) for a
+nontrivial irreducible unitary representation \(F\) of degree \(d_F\)
+and character \(\chi_F\). The partition function is \(z^{|P|}\).
+For a simple lattice loop enclosing \(a\) included faces and no
+missing ones, the normalized character average is \(w_F^a\).
+A loop enclosing a missing face has zero normalized character average.
+\end{proposition}
+\begin{proof}
+Use a spanning tree \(T\) of the link graph, containing the loop
+with one edge \(e\) removed. Integration on the tree and the gauge
+change in Theorem~\ref{m1:gauge} preserve the product Haar law on
+the chords. The chord duals form a tree rooted at the exterior face.
+Indeed they number the bounded faces by Euler's formula. If the
+chord duals were disconnected, the boundary of a nonempty
+proper union of complementary face components would be a nonzero
+even subgraph of \(T\), which is impossible in a tree.
+For each bounded face, its boundary in tree gauge contains the
+chord toward its parent exactly once and otherwise only child
+chords. Bridges belong to \(T\). Starting with the leaves, transform
+the chord variables to based face words. At each face the change
+from its parent chord \(h\) is \(a_0 h^{\pm1}b_0\), with \(a_0,b_0\)
+fixed by already processed faces. This triangular change preserves
+product Haar measure. In the Wilson weight each included face now
+has law \(\phi(g)\,dg/z\), and each hole has Haar law.
+The planar calculation is related to the lasso methods of
+\cite{m15:migdal,m15:driver}. The chord \(e\) is the only dual-tree
+crossing of the loop.
+Eliminating the parent chord in each interior face word, starting
+from the face next to \(e\), expresses the loop as a product in
+which every interior face variable occurs once, with either orientation.
+For a central random group element \(X\), the matrix
+\(\mathbb E[F(X)]\) commutes with \(F(G)\) and is the scalar
+\(\mathbb E[\chi_F(X)]/d_F\) times the identity by Schur's lemma.
+Each inverse has the same law. Independence multiplies these
+scalars, and the scalar for Haar measure in a nontrivial
+representation is zero by averaging over \(G\).
+\end{proof}
+
+\begin{corollary}[Planar string tension]\label{m15:tension}
+For the Wilson weight \(\phi(g)=e^{\beta\operatorname{Re}\chi_F(g)/d_F}\)
+with \(F\) nontrivial and \(0<\beta<\infty\), one has \(0<w_F<1\).
+The string tension \(-\log w_F\) is positive, strictly decreasing,
+and real analytic. The free-energy density \(-\log z\) is also real analytic.
+For the fundamental representations of \(\mathbb Z/2\),
+\(\mathrm U(1)\), and \(\mathrm{SU}(2)\) the values are
+\[
+ w_F=\tanh\beta,\qquad I_1(\beta)/I_0(\beta),\qquad
+ I_2(\beta)/I_1(\beta),
+ \qquad
+ I_j(\beta)=\frac1\pi\int_0^\pi e^{\beta\cos\theta}\cos(j\theta)\,d\theta .
+\]
+\end{corollary}
+\begin{proof}
+The real function \(a(g)=\operatorname{Re}\chi_F(g)/d_F\) satisfies
+\(a\leq1\), has Haar mean zero, and is nonconstant since \(a(I)=1\).
+Normalized Haar measure has full support. Evenness under inversion
+gives \(w_F=(\log z)'\), and \(w_F'=\operatorname{Var}_{\phi/z}(a)>0\).
+The bound \(w_F<1\) follows by positive probability of \(a<1\).
+Real analyticity follows by integrating the locally uniformly
+convergent exponential series, then taking the logarithm of \(z>0\).
+The two-point sum gives the first formula and circle Haar measure
+gives the second. For \(\mathbb Z/3\) with its defining character,
+the three-point sum gives
+\[
+ w_F=\frac{e^\beta-e^{-\beta/2}}{e^\beta+2e^{-\beta/2}} .
+\] For \(\mathrm{SU}(2)\) the unit-quaternion
+sphere gives the radial density \(2\sin^2\theta/\pi\), by the
+spherical-coordinate Jacobian. Thus \(z=I_0-I_2=2I_1/\beta\);
+the last identity follows by integrating the derivative of
+\(e^{\beta\cos\theta}\sin\theta\). Differentiating under the integral
+gives \(I_1'=(I_0+I_2)/2\), hence \((\log z)'=I_2/I_1\).
+\end{proof}
+
+\begin{proposition}[Character formula on a torus]\label{m15:group-torus}
+In the setting of Proposition~\ref{m15:planar-group}, suppose \(G\)
+has a faithful finite-dimensional unitary representation.
+Put \(f_r=d_r^{-1}\int\phi\,\overline{\chi_r}\) for its irreducible
+characters and assume \(\sum_r d_r^2|f_r|<\infty\).
+This assumption holds for the Wilson weight and for every weight on a
+finite group. On a torus with \(q\) faces and a rectangular disk
+containing \(0<a<q\) faces, the partition function and normalized
+Wilson average in representation \(F\) are
+\[
+ Z=\sum_r f_r^q,\qquad
+ \frac{\langle\chi_F(W_C)\rangle}{d_F}
+ =\frac{\displaystyle\sum_{r,s}
+       N_{rF}^{s}\,\frac{d_r}{d_Fd_s}\,f_r^a f_s^{q-a}}
+       {\displaystyle\sum_r f_r^q}.
+\]
+Here \(N_{rF}^{s}\) is the multiplicity of \(s\) in \(r\otimes F\).
+In particular the \(s=0\) summand divided by \(f_0^q\) is \(w_F^a\).
+For abelian \(G\) this reduces to
+\(\sum_r f_r^a f_{rF}^{q-a}/\sum_r f_r^q\).
+For \(G=\mathrm U(1)\) with its defining character, the Wilson weight
+has \(f_r=I_{|r|}(\beta)\) for \(r\in\mathbb Z\).
+For fixed \(a\) and \(q\to\infty\) the normalized loop average tends
+to \(w_F^a\).
+\end{proposition}
+\begin{proof}
+Integrating a shared link of two distinct faces replaces their central
+weights by convolution. In fact the face words may be cycled and
+written \(Ax\) and \(x^{-1}B\). With \(y=Ax\), the integral is
+\(\int\phi_1(y)\phi_2(y^{-1}AB)\,dy\). Convolution multiplies the
+coefficients \(f_r\), since \(\int\phi(g)r(g)^*\,dg=f_r I\).
+Schur orthogonality and the Peter--Weyl theorem
+\cite[Chapter 5]{m15:folland} expand the
+\(k\)-fold convolution as \(\sum_r d_r f_r^k\chi_r\).
+The series converge absolutely and uniformly for \(k\geq1\) since
+\(|\chi_r|\leq d_r\), \(|f_r|\leq f_0\), and the coefficient sum
+is finite. For a Wilson weight, expand
+\(e^{(\beta/(2d_F))(\chi_F+\chi_{\bar F})}\) in powers of
+\(\chi_F+\chi_{\bar F}\). Each power is a character, whose
+irreducible dimensions sum with multiplicity to the value at \(I\).
+Summing the majorant with \(|\beta|\) gives
+\(\sum_r d_r^2|f_r|\leq e^{|\beta|}\).
+
+Insert a row and column in strips outside the rectangular disk if
+needed so that two coordinate cuts can be chosen disjoint from its
+boundary. Subdivision of an edge replaces its Haar link by the
+product of two Haar links. Subdivision of a face assigns its old
+weight to one part and a central approximate identity to
+the other. For a faithful unitary representation \(J\) take
+the weights proportional to \(e^{k\operatorname{Re}\chi_J/d_J}\).
+The normalized weights concentrate at \(I\), since the exponent
+has its unique maximum there, and for any neighborhood of \(I\)
+a smaller neighborhood of positive Haar measure has exponent
+strictly above the maximum off the first one. Uniform continuity
+on the compact group gives uniform convergence
+\(g*\phi\to\phi\) for these approximate identities \(g\).
+Integrating the new links therefore tends to the original integral.
+Cut along the two coordinate circuits, and in the resulting square
+polygon join the rectangle boundary to a corner by a grid path
+in its exterior. Cutting along this path makes the exterior a disk.
+Merge within each disk along a spanning tree of internal dual
+adjacencies, preserving the boundary and cuts. The adjacencies are
+connected because paths between interior points can avoid grid vertices
+and cross edges transversely. Any internal edges left after merging
+form trees attached to the prescribed boundary. A cycle or a path
+joining two boundary points would disconnect the single merged
+face, by the Jordan curve theorem. Remove the tree excursions from
+the boundary word by cancellation. The two words are now \(u\) and
+\(u^{-1}xyx^{-1}y^{-1}\) after absorbing the access-path conjugation
+into the loop variable \(u\). The products \(x,y,u\) use disjoint
+sets of links and have independent Haar laws, also after conjugating
+\(u\) by the access path. The effective weights in the limit are the convolution powers
+\(a\) and \(q-a\), by the same uniform approximation applied to the
+two disk weights.
+Averaging first over \(x\) and then \(y\), Schur orthogonality gives
+\[
+ \int_{G^2}\chi_s(u^{-1}xyx^{-1}y^{-1})\,dx\,dy
+   =\chi_s(u^{-1})/d_s^2.
+\]
+For example, the average of \(s(x)s(y)s(x)^*\) is
+\(\chi_s(y)I/d_s\), and \(\int\chi_s(y)s(y)^*\,dy=I/d_s\).
+Insert the two convolution expansions and integrate
+\(\chi_r(u)\chi_F(u)\overline{\chi_s(u)}\).
+It equals \(N_{rF}^s\), and setting \(F\) to the trivial representation
+gives \(Z\). Inversion symmetry gives \(f_{\bar r}=f_r\), with
+\(w_F=f_F/f_0\). A trivial summand in \(r\otimes F\) occurs precisely
+for \(r=\bar F\) with multiplicity one.
+For the limit, strict positivity of \(\phi\) and continuity of
+\(\chi_s\) give \(|f_s|<f_0\) for nontrivial \(s\).
+Equality in the integral triangle inequality would require
+\(\chi_s/d_s\) to be a constant of modulus one, hence \(1\) by its
+value at \(I\), which would make the representation trivial.
+The series \(\sum_s |f_s|/f_0\) is finite. After dividing by
+\(f_0^{q-a}\) the punctured-torus density converges uniformly to
+\(1\), because its terms have absolute value at most
+\(|f_s/f_0|^{q-a}\). Likewise \(Z/f_0^q\to1\). The disk integral
+divided by \(f_0^a\) gives \(w_F^a\). For the circle, Fourier
+integration is the defining integral for \(I_j\) in
+Corollary~\ref{m15:tension}. For context on these surface integrals
+see \cite{m15:rusakov}.
+\end{proof}
+
+\begin{proposition}[Transfer on a finite lattice]\label{m15:transfer}
+Let a spatial slice be a finite graph with oriented link set \(E_s\).
+Use the group, central weight and summability assumption in
+Proposition~\ref{m15:group-torus}. Let \(P_g\) be orthogonal projection
+onto slice gauge invariants, obtained by averaging the vertex gauges,
+and let \(M\) multiply by the product of the spatial plaquette weights.
+With normalized Haar measure on slice links define the kernel
+\[
+ K(X,Y)=\prod_{e\in E_s}\phi(Y_eX_e^{-1}),\qquad
+ T=M^{1/2}KP_gM^{1/2}.
+\]
+For \(L_0\geq 2\) periodic time steps, the partition function is
+\(\operatorname{tr}(T^{L_0})\).
+If each \(f_r\geq0\) then \(T\) is positive semidefinite. For the Wilson
+weight with a faithful \(F\) and \(\beta>0\), it is positive with
+zero kernel on the gauge-invariant subspace. On that subspace
+\(-\log(T/\|T\|_{\mathrm{op}})\) is then a nonnegative operator.
+
+On a spatial circle of \(L\) links with no spatial plaquettes, the
+gauge-invariant eigenvectors are the characters \(\chi_r(h)\) of
+the spatial holonomy \(h\), with eigenvalues \(f_r^L\).
+For faithful \(F\) and \(\beta>0\), the vacuum is unique and the
+energy of this eigenvector above the vacuum is
+\(L\sigma_r\), where \(\sigma_r=-\log(f_r/f_0)\).
+For \(0\leq k\leq L_0\) the winding correlation is
+\[
+ \left\langle\chi_F(h_0)\overline{\chi_F(h_k)}\right\rangle
+ =\frac{\sum_{r,s}(N_{rF}^s)^2 f_s^{Lk}f_r^{L(L_0-k)}}
+        {\sum_r f_r^{LL_0}}.
+\]
+At fixed \(L,k\) and positive faithful Wilson weight it tends to
+\(w_F^{Lk}\) as \(L_0\to\infty\).
+\end{proposition}
+\begin{proof}
+Integrating time links \(g_x\) produces
+\(\int K(X,Y^g)\,dg\) with \((Y^g)_{xy}=g_xY_{xy}g_y^{-1}\).
+This kernel is \(KP_g\). Simultaneous gauge action on \(X,Y\)
+conjugates the argument of each \(\phi\) and leaves \(K\) invariant,
+so \(K\) and \(P_g\) commute. Inversion symmetry gives self-adjointness.
+Multiplying the kernel around the time circle with one spatial
+weight on each slice yields \(\operatorname{tr}(T^{L_0})\), and
+inserting multiplication operators at two slices yields the
+corresponding trace with operators at those two time separations.
+
+On a link the matrix elements of \(r\) are eigenfunctions of the
+convolution with eigenvalue \(f_r\) by Schur orthogonality.
+They form a basis by Peter--Weyl, and the product kernel has
+the products of the individual eigenvalues. Its trace norm is at
+most \((\sum_r d_r^2 |f_r|)^{|E_s|}\). The kernel expansions
+converge uniformly and bounded multiplications preserve trace class,
+so the integrated kernel product gives the same trace in the
+compact case. For the Wilson weight,
+\[
+ \phi=\sum_{j\geq0}\frac{(\beta/(2d_F))^j}{j!}
+                   (\chi_F+\chi_{\bar F})^j .
+\]
+The character coefficients are nonnegative. Faithfulness makes
+the algebra generated by the matrix entries of \(F,\bar F\) separate
+points of \(G\). It is closed under conjugation and contains the constants. By
+Stone--Weierstrass its closure is \(C(G)\). The algebra consists of
+linear combinations of matrix coefficients of tensor powers of
+\(F\oplus\bar F\). If an irreducible were missing, its character
+would be orthogonal to this dense subspace. Therefore all \(f_r>0\). The positive
+operator \(M\) commutes with \(P_g\) and is invertible, which
+gives the assertions about \(T\).
+
+On the circle, tree gauge leaves just the conjugacy class of \(h\)
+and the product Haar law makes \(h\) Haar. The characters give an
+orthonormal basis. Each link integration multiplies the character
+of \(h\) by \(f_r\), giving eigenvalue \(f_r^L\). Off the invariant
+subspace \(T=0\). For \(r\ne0\), \(f_r<f_0\), since
+\(\operatorname{Re}\chi_r\leq d_r\) with strict inequality at some
+element, and the weight has full support.
+In the trace for the two insertions, multiplication by \(\chi_F\)
+has matrix entries \(N_{rF}^{s}\) and multiplication by
+\(\overline{\chi_F}\) is its adjoint. One may use either orientation
+of the two insertions in the trace, since conjugating representation
+indices preserves \(f_r\). This gives the stated formula. Divide
+numerator and denominator by \(f_0^{LL_0}\) and let \(L_0\) grow.
+Only \(r=0\) contributes in the limit and \(N_{0F}^s=\mathbf1_{s=F}\).
+For an infinite index set, the sum of squared multiplication
+matrix entries in each fixed \(r\) row is at most \(d_F^2\).
+Since \(|f_s/f_0|\leq1\), the terms after summing \(s\) are
+dominated for \(L_0>k\) by \(d_F^2 |f_r/f_0|^L\), a
+summable bound.
+At either time endpoint the trace can be taken directly on the
+invariant subspace, with zeroth powers interpreted as \(1\).
+\end{proof}
+
+\begin{example}[Two flux sectors of \(S_3\)]\label{m15:s3-tension}
+For the Wilson weight in the two-dimensional representation of
+\(S_3\) at \(\beta=0.8\), the corresponding \(\sigma_F\) is \(1.4403\)
+to four decimal places and the sign-sector tension is \(2.4508\).
+The conjugacy-class sizes are \(1,3,2\) and the characters of
+the two-dimensional and sign representations are \((2,0,-1)\)
+and \((1,-1,1)\). Substitution into \(f_r=d_r^{-1}\int
+\phi\,\overline{\chi_r}\) gives the values.
+\end{example}
+
+\begin{remark}[Reflection and the sign of the coupling]\label{m15:reflection}
+On an even time circle the reflection through slices gives a positive
+reflection form for functions on one closed half, for any real
+Wilson coupling. Fix the two shared slices. The weights and Haar
+integrals on the two halves are reflections of each other, and the
+integral of a function times its reflected complex conjugate is
+an integral of a modulus squared against positive weights on the
+shared slices. A reflection through time links instead joins two
+disjoint half-configurations with the two kernels \(KP_g\). If that
+kernel is positive semidefinite, its tensor product with itself is
+positive semidefinite, so the reflection form is nonnegative. This
+follows by integrating the interiors of each half into a single
+function of its two endpoint slices. The circle spectrum shows why
+a positive Boltzmann weight alone is insufficient for the latter
+assertion. For \(G=\mathbb Z/2\) the link convolution eigenvalues
+are \(\cosh\beta,\sinh\beta\); with unnormalized counting measure
+they are \(2\cosh\beta,2\sinh\beta\).
+At negative \(\beta\) and odd \(L\), a character on one boundary
+slice and the constant on the other detect a negative reflection
+form. Indeed, take \(L_0=2\), so the form is the quadratic form
+of the tensor product of the two crossing kernels, up to a
+positive scalar. At even \(L\) the invariant circle eigenvalues
+are nonnegative for any real inverse-symmetric weight. The local factorization is the transfer and reflection argument in \cite{m15:luscher,m15:os}.
+\end{remark}
+
+\begin{proposition}[Finite-group time limit]\label{m15:kinetic}
+For a faithful \(F\) of a nontrivial finite group, write
+\(v_F(g)=1-\operatorname{Re}\chi_F(g)/d_F\).
+Let \(v_{\min}\) be its least positive value, let \(C\) be the set
+attaining that value, and put \(\lambda=e^{-\beta_t v_{\min}}\).
+Use a temporal coupling \(\beta_t\) and write \(K_t\) for the temporal
+kernel in Proposition~\ref{m15:transfer}.
+If \(a_0\downarrow0\), \(\beta_t\to\infty\), and
+\(\lambda/a_0\to\kappa<\infty\), then in operator norm
+\[
+ \frac{I-K_t/f_0(\beta_t)^{|E_s|}}{a_0}
+   \longrightarrow \kappa\sum_{e\in E_s}\Delta_e,\qquad
+ \Delta=|C|I-\sum_{g\in C}L_g ,
+\]
+where \(L_g f(x)=f(g^{-1}x)\) acts on one link. For the
+Hamiltonian formulation of lattice gauge theory see \cite{m15:ks}.
+If the spatial multiplication is \(M=e^{-a_0 V}\) for a fixed real
+gauge-invariant function \(V\), the generator of
+\(T/f_0(\beta_t)^{|E_s|}\) on gauge-invariant functions tends to
+\(V+\kappa\sum_e\Delta_e\). Here the generator is minus the logarithm
+divided by \(a_0\).
+\end{proposition}
+\begin{proof}
+Faithfulness gives \(v_F(g)=0\) only at the identity. Normalize the
+single-link kernel by its constant eigenvalue. After cancelling
+\(e^{\beta_t}\), the normalized operator is
+\[
+ \frac{\sum_g e^{-\beta_t v_F(g)}L_g}{\sum_g e^{-\beta_t v_F(g)}}.
+\]
+Inversion symmetry gives the same operator for either convention of
+left convolution. It equals \(I-\lambda\Delta+
+O(\lambda^2+e^{-\beta_t v_2})\), where \(v_2>v_{\min}\) is the next
+value, if it exists, and the exponential error is absent otherwise.
+This follows by separating the identity and the first positive
+level in the finite sums. Both error terms are \(o(a_0)\);
+expanding the finite tensor product proves the first limit.
+On the invariant subspace \(P_g=I\). Multiplication on each side
+by \(M^{1/2}=I-a_0 V/2+O(a_0^2)\) gives the same first-order
+coefficient plus \(V\); the convergent logarithm expansion near
+\(I\) gives the generator. The one-link operator is positive
+semidefinite because the inverse-closed set \(C\) gives
+\(\langle f,\Delta f\rangle=\frac12\sum_{g\in C}\|f-L_g f\|^2\).
+\end{proof}
+
+\begin{example}[Finite-group kinetic spectra]\label{m15:kinetic-example}
+For the sign representation of \(\mathbb Z/2\), the operator is
+\(I-X\) for the nontrivial shift \(X\). For the defining character
+of \(\mathbb Z/N\), \(N\geq3\), it is \(2I-X-X^{-1}\)
+with Fourier eigenvalues \(2-2\cos(2\pi j/N)\).
+For the two-dimensional representation of \(S_3\), the three
+transpositions give \(v_{\min}=1\), and the three-cycles have
+\(v_F=3/2\). The eigenvalues of \(\Delta\) on the trivial,
+two-dimensional and sign blocks are \(0,3,6\).
+Indeed the two-dimensional character is the number of fixed
+points minus one, and a central class sum acts by its
+normalized character average.
+\end{example}
+
+\begin{proposition}[Circle and spin kinetic coefficients]\label{m15:compact-kinetic}
+For \(\mathrm U(1)\) with \(F\) its defining character and for
+\(\mathrm{SU}(2)\) with \(F\) its defining representation, respectively,
+the normalized single-link transfer eigenvalues are
+\[
+ \frac{f_r}{f_0}=\frac{I_{|r|}(\beta_t)}{I_0(\beta_t)},\qquad
+ \frac{f_j}{f_0}=\frac{I_{2j+1}(\beta_t)}{I_1(\beta_t)} .
+\]
+Here \(r\in\mathbb Z\) and \(j\in\frac12\mathbb Z_{\geq0}\)
+is the spin. With the representation held fixed, as \(\beta_t\to\infty\)
+the corresponding values of \(-\log(f/f_0)\) are
+\[
+ \frac{r^2}{2\beta_t}+O(\beta_t^{-2}),\qquad
+ \frac{2j(j+1)}{\beta_t}+O(\beta_t^{-2}).
+\]
+On a spatial circle with \(L\) links of length \(a\) and time step \(a_0\),
+the physical energy above the vacuum is
+\(-L\log(f/f_0)/a_0\). At fixed \(a,L,g>0\), for
+\(\beta_t=1/(g^2aa_0)\) in the circle group and
+\(\beta_t=4/(g^2aa_0)\) in the spin group this tends to
+\(\frac12g^2 La\,r^2\) and \(\frac12g^2 La\,j(j+1)\), respectively.
+\end{proposition}
+\begin{proof}
+The circle formula is ordinary Fourier integration.
+For \(\mathrm{SU}(2)\), the spin-\(j\) character on the radial
+angle \(\theta\) is \(\sin(d\theta)/\sin\theta\) with \(d=2j+1\),
+by summing the geometric series of weights on the symmetric
+power of the defining representation \cite[Lecture 11]{m15:fh}. With the Haar density
+in Corollary~\ref{m15:tension}, integration gives
+\(d f_j=I_{d-1}-I_{d+1}=2d I_d/\beta_t\).
+The last equality follows by integrating the derivative of
+\(e^{\beta_t\cos\theta}\sin(d\theta)\) on \([0,\pi]\).
+For the asymptotics, the common formula for the normalized
+eigenvalue is the average of \(\cos(r\theta)\) or
+\(\sin(d\theta)/(d\sin\theta)\) under the probability density
+proportional to \(e^{\beta_t\cos\theta}\sin^k\theta\),
+where \(k=0\) or \(2\).
+For fixed \(k\) and \(\ell=0,2,4\) the moment integrals satisfy
+\[
+ \int_0^\pi \theta^\ell e^{\beta_t(\cos\theta-1)}
+                    \sin^k\theta\,d\theta
+ =\beta_t^{-(\ell+k+1)/2}
+  \left(\int_0^\infty u^{\ell+k}e^{-u^2/2}\,du+O(\beta_t^{-1})\right).
+\]
+Indeed outside a fixed small interval around zero the contribution
+is exponentially small. Inside it, put \(u=\sqrt{\beta_t}\theta\).
+The sine ratio has error \(O(u^2/\beta_t)\), and the difference
+between the two exponential factors is bounded by
+\(C u^4 e^{-c u^2}/\beta_t\) for some \(c>0\), by Taylor's theorem
+and the mean-value estimate for the exponential. These bounds are
+integrable against the fixed powers of \(u\).
+Gaussian integration by parts gives the second moment
+\((k+1)/\beta_t+O(\beta_t^{-2})\), and the fourth moment
+is \(O(\beta_t^{-2})\). The two characters have expansions
+\(1-r^2\theta^2/2+O(\theta^4)\) and
+\(1-(d^2-1)\theta^2/6+O(\theta^4)\).
+Taking the negative logarithm gives the stated coefficients.
+The energy limit follows by substituting the respective couplings
+into the circle spectrum of Proposition~\ref{m15:transfer}.
+\end{proof}
+
+\subsection{Three-dimensional surfaces and duality}
+
+\begin{lemma}[Cubical cycles]\label{m15:cubical}
+Over \(\mathbb F_2\), a closed two-chain in a free rectangular
+three-dimensional box is the boundary of a unique cube chain.
+On a three-dimensional periodic box with \(q\) sites, the closed
+two-chains are the eight cosets of the cube boundaries represented
+by sums of the three coordinate two-tori. The three-torus cube
+boundary map has kernel spanned by the sum of all \(q\) cubes.
+\end{lemma}
+\begin{proof}
+For a subdivided interval or circle with initial vertex \(v_0\),
+send vertex \(v_i\) to the edge chain from \(v_0\) to \(v_i\)
+before the wrap in the circle case. Call this degree-raising
+operator \(J\), and set \(J=0\) on edges. On vertices,
+\(\partial J+J\partial\) is \(v_i\mapsto v_i+v_0\).
+On an ordinary edge it is the identity, and on the wrap edge
+it is that edge plus the whole circle. Thus
+\(\partial J+J\partial=I-P_0\), where \(P_0\) sends each vertex
+to \(v_0\), each ordinary edge to zero and the wrap edge, when
+present, to the whole circle. This is a chain projection with
+zero differential on its image. The cubical box chain complex is
+the tensor product of the three one-dimensional chain complexes.
+Apply the displayed identity to one factor at a time. The terms
+from the differentials in the other factors cancel in pairs over
+\(\mathbb F_2\). Hence the product projection is chain homotopic to the
+identity. Its image has one basis element for each choice of
+circle factors replaced by their full edge cycle. In degree two
+and degree three this gives exactly the claimed generators and
+relations. There are no degree-four cells, so the degree-three
+homology is the kernel of the cube boundary map.
+\end{proof}
+
+\begin{proposition}[First strong-coupling correction in a box]\label{m15:strong}
+Let \(S_0\) be a nonempty set of \(a\) faces all in one coordinate
+plane of a finite free three-dimensional box, and \(c=\partial S_0\).
+At fixed box and \(S_0\), as \(t=\tanh\beta\to0\),
+\[
+ \langle W_c\rangle=t^a(1+b_1 t^4+O(t^6)),
+\]
+where \(b_1=2a\) for an interior plane and \(b_1=a\) for a boundary
+plane. The filling \(S_0\) is the unique minimum-area filling.
+For a single face on a one-cube box, the exact value is
+\((t+t^5)/(1+t^6)\).
+\end{proposition}
+\begin{proof}
+By Lemma~\ref{m15:cubical}, the fillings are
+\(S_0+\partial Q\), one for each cube chain \(Q\).
+Their excess area above \(a\) is
+\(|\partial Q|-2|\partial Q\cap S_0|\).
+In each column normal to \(S_0\) there are equally many
+beginnings and ends of occupied runs of cubes. Thus the number
+of exposed faces normal to the column is even and at most one
+of them belongs to \(S_0\). The normal faces make a nonnegative
+contribution to the excess. The other faces contribute the sum of
+perimeters of the occupied horizontal layers.
+A nonempty layer has perimeter at least four, and equality
+requires a single square. Indeed each occupied row contributes
+at least two end edges and each occupied column contributes at
+least two. Consequently the least positive excess is four, and
+it occurs precisely for one cube incident to \(S_0\).
+All excesses are even, since \(|\partial Q|\) is \(6|Q|\) minus
+twice the number of shared faces. For \(S_0=\varnothing\) a
+nonempty \(Q\) has at least four side faces and two end faces,
+so the denominator of \eqref{m15:loop} is \(1+O(t^6)\).
+Each included face has one incident cube per available side.
+For the one-cube example the only closed chains are empty
+and the cube boundary, giving the stated rational function.
+\end{proof}
+
+\begin{proposition}[Finite Wegner duality]\label{m15:duality}
+For a three-dimensional periodic box with side lengths at least two,
+let \(q\) be its number of cubes. There are \(3q\) links and \(3q\)
+plaquettes. Place dual Ising spins on the cubes and a bond across
+each plaquette. For each \(\eta\in\mathbb F_2^3\), let \(Z_I^\eta(K)\)
+be the Ising partition function with coupling \(K\) and negative
+bonds across the coordinate seams specified by \(\eta\).
+For \(\beta>0\) take \(K=-\frac12\log\tanh\beta\). Then
+\[
+ Z=2^{3q-1}(\cosh\beta)^{3q}e^{-3qK}\sum_\eta Z_I^\eta(K).
+\]
+If \(c=\partial S_0\), then
+\(\langle W_c\rangle=\sum_\eta Z_I^\eta(K;S_0)/\sum_\eta Z_I^\eta(K)\),
+where the second argument reverses the signs of the bonds dual
+to \(S_0\). On a free box with \(E_0\) edges and \(P_0\) faces,
+replace the right side in the partition identity by
+\(2^{E_0}(\cosh\beta)^{P_0} e^{-KP_0} Z_I^+(K)\),
+using one fixed exterior \(+\) spin. The Wilson average uses
+\(Z_I^+(K;S_0)/Z_I^+(K)\).
+\end{proposition}
+\begin{proof}
+A spin configuration is a cube indicator. Its unsatisfied bonds
+are dual to the cube boundary shifted by the selected seam tori,
+and their weight is \(e^{K\,3q}(e^{-2K})^{|S|}\).
+Lemma~\ref{m15:cubical} shows that each closed face chain appears
+twice in exactly one twist sector. With the exterior spin fixed,
+a closed face chain occurs once, and there are \(P_0\) bonds.
+Use \eqref{m15:partition} and \(e^{-2K}=\tanh\beta\).
+Reversing \(S_0\) translates each face chain by \(S_0\).
+This produces exactly all fillings of \(c\) with the same
+multiplicities. In particular the answer is independent of
+the choice of \(S_0\). A nonboundary insertion has zero expectation
+by \eqref{m15:loop}. Multiplying each side by the constant
+appropriate to replacing each spin product \(s\) by the deficit
+\(1-s\) gives the same identity with deficit weights.
+This is the finite-volume form of the gauge--Ising duality
+of Wegner \cite{m15:wegner}.
+\end{proof}
+
+\begin{example}[Twists on a \(2^3\) torus]\label{m15:twist-example}
+At \(\beta=0.761\), replacing the sum over twist sectors by twice
+the periodic partition function in Proposition~\ref{m15:duality}
+gives \(0.493\) times the correct value to three decimal places.
+This is the ratio \(2Z_I^0(K)/\sum_\eta Z_I^\eta(K)\), evaluated
+by summing over the \(2^8\) dual spin assignments in each sector.
+\end{example}
+
+\begin{corollary}[Free-energy relation and a fixed-volume perimeter term]
+\label{m15:phases}
+For cubic tori, write \(f_I(K)=\lim q^{-1}\log Z_I^0(K)\).
+Then
+\[
+ \lim q^{-1}\log Z=3\log(2\cosh\beta)-3K+f_I(K).
+\]
+The two free energies have the same real-analyticity locus in
+the variables related by \(K=-\frac12\log\tanh\beta\).
+For a fixed three-dimensional periodic grid with all side lengths
+at least three, let \(c\) be a boundary represented by a simple
+loop \(C\). At \(x=e^{-2\beta}\downarrow0\),
+\[
+ \langle W_c\rangle=1-2|C|x^4+O(x^6),\qquad
+ -\log\langle W_c\rangle=2|C|x^4+O(x^6).
+\]
+The coefficient in this expansion can change at a period of two.
+\end{corollary}
+\begin{proof}
+Expanding each dual bond as
+\(\cosh K(1+\tanh K J_b s s')\), the spin sum keeps only even
+bond subgraphs. In each twist their terms have magnitude equal to
+those of the periodic sector. Hence
+\(Z_I^0\leq\sum_\eta Z_I^\eta\leq8Z_I^0\). The limit \(f_I\)
+exists by the following tiling argument. Omitting \(k\) bonds changes
+\(\log Z\) by at most \(k|K|\). In a large cubic box, tile with
+fixed smaller \(b\)-by-\(b\)-by-\(b\) cubes and leave the remaining
+vertices as singletons. The bonds at the block interfaces make a
+fraction \(O(1/b)\) of the volume and the fraction of remaining
+vertices tends to zero at fixed \(b\); the latter vertices each
+contribute \(\log 2\) to \(\log Z\). The large-volume limsup and
+liminf are therefore within \(O(|K|/b)\) of the same \(b\)-cube
+density. Let \(b\to\infty\). Wrapping the boundary adds only
+a surface number of bonds. The partition identity now gives the
+limit. The map relating the couplings has analytic inverse,
+since \(\tanh K=e^{-2\beta}\).
+
+For the second assertion, the frustration cochain \(\omega=Dy\)
+ranges over \(\operatorname{im}D\) with constant fibre size. Its
+relative weight is \(x^{|\omega|}\) and its sign in the numerator
+is \((-1)^{\omega\cdot S_0}\).
+In the dual grid it is an even bond subgraph because it annihilates
+cube boundaries. It also has zero winding because it annihilates
+the three coordinate two-tori. Its edge count is even since each
+column of \(D\) has four ones. A nonempty even subgraph with at
+most four edges in this dual simple graph is a triangle or a
+four-cycle. A triangle wraps, and a four-cycle of zero winding lifts
+to a closed four-step path in the cubic lattice and is a unit square.
+To see the last assertion, a nonzero net coordinate displacement
+would be a single period in a direction of length three or four
+and would give odd winding. With zero net displacement and no
+backtracking, four steps traverse a square. Every dual unit square
+is the image of the cochain supported on its primal link.
+Exactly \(|C|\) of these images pair oddly with \(S_0\), since
+\((Dy)\cdot S_0=y\cdot c\). The numerator and denominator
+have the same constant term and differ in degree four by \(-2|C|\),
+with no intervening odd degrees. The logarithm follows by expansion.
+At period two parallel dual bonds allow additional four-edge
+configurations, as in Example~\ref{m15:small-period}.
+\end{proof}
+
+\begin{example}[The effect of a period of two]\label{m15:small-period}
+On a \(2\)-by-\(2\)-by-\(2\) torus a single plaquette insertion has
+\(\langle W_c\rangle=1-14x^4+O(x^6)\).
+To count the four-edge dual graphs pairing oddly with the plaquette,
+use its dual bond \(b\). Such graphs contain \(b\). An even subgraph
+of size four is either a simple square or the disjoint union in
+edges of two length-two periodic circuits. For each of the two transverse coordinate axes, the projection to
+the ordinary cube graph fixes the unique geometric square that
+uses that axis and the axis of \(b\) through the given edge.
+Each of the other three geometric sides has two lifts as a
+labelled bond. Zero winding in the direction of \(b\) fixes the
+opposite parallel bond, and zero transverse winding requires the
+two remaining choices to agree in seam parity. This gives two
+squares for each transverse axis, or four in all.
+The two length-two circuits must have the same winding direction.
+There are three other such circuits parallel to the one containing \(b\).
+Consequently seven graphs give the negative sign, and each contributes
+\(-2\) to the coefficient. There are no two-edge zero-winding graphs.
+\end{example}
+
+\subsection{Four-dimensional questions}
+
+\begin{hypothesis}[Euclidean Wilson lattice input]\label{m15:input}
+Fix \(N\geq2\). On each finite box of the four-dimensional hypercubic lattice take
+independent Haar reference links in \(\mathrm{SU}(N)\) and weight
+each configuration by
+\(\exp((\beta/N)\sum_p\operatorname{Re}\operatorname{tr}P_p)\).
+The continuum question additionally requires a choice of scale
+\(a\) and bare coupling \(\beta(a)\).
+\end{hypothesis}
+
+\begin{conjecture}[Four-dimensional area law]\label{m15:confinement}
+For each \(\beta>0\) there are \(C_\beta<\infty\) and
+\(\sigma_\beta>0\) such that every infinite-volume limit of the
+free or periodic Wilson measures in Hypothesis~\ref{m15:input} satisfies
+\[
+ \left|\tfrac1N\langle\operatorname{tr}W_{R,T}\rangle\right|
+       \leq C_\beta e^{-\sigma_\beta RT}
+\]
+for all coordinate rectangles with positive integral sides \(R,T\).
+For evidence in a restricted coupling regime, see the strong-coupling
+analysis of Osterwalder and Seiler \cite{m15:os}.
+\end{conjecture}
+
+The evidence for Conjecture~\ref{m15:confinement} is the two-dimensional
+area law of Corollaries~\ref{m15:area} and~\ref{m15:tension}, the fixed-box
+strong-coupling term of Proposition~\ref{m15:strong}, and the cited
+strong-coupling literature. None of these is a four-dimensional statement
+uniform in the coupling, and the finite results of this section do not
+imply the conjecture.
+
+\begin{remark}[Continuum mass gap; programme]\label{m15:programme}
+This remark is a programme; the finite results of this section imply
+neither Conjecture~\ref{m15:confinement} nor the existence of a continuum
+theory with a mass gap. Construct a nontrivial four-dimensional continuum quantum Yang--Mills
+theory and show that its Hamiltonian has positive spectrum bounded
+away from zero above the vacuum. This is the existence and mass-gap
+problem formulated by Jaffe and Witten for compact simple gauge
+groups \cite{m15:jaffe}. A lattice approach requires control of
+local observables as the volume grows and the cutoff is removed,
+a continuum reconstruction, and a decay or spectral bound in physical
+units. For example, to retain a transfer gap \(\Delta_a\) per time step
+in a limit with time spacing \(a_0\), a bound of the form
+\(\Delta_a/a_0\geq m_*>0\) uniform in volume would be needed in
+a spectral approach.
+
+The finite leading-area and leading-perimeter expansions concern
+fixed lattices, with remainder constants that can depend on the
+volume and the loop. The positive transfer construction concerns a fixed time step.
+The spatial-circle excitation has energy proportional to its winding
+length and describes a flux sector. To infer a four-dimensional
+local spectral gap requires uniform information on a different
+family of observables and operators. The finite trace identities
+supply estimates within an assigned geometry and gauge group.
+A derivation of the Wilson measure from comparison data would
+have to specify the gauge group, the Euclidean weights, their
+coupling and scaling, and convergence of the resulting observables
+in a topology strong enough for reconstruction. This specializes
+Remark~\ref{m1:continuum-programme}.
+The comparison with the small plaquette of Proposition~\ref{m3:physicalGauge}
+fixes a local normalization.
+\end{remark}
+
+\begin{remark}[Refuted readings]\label{m15:refuted}
+(i) \emph{Flat implies exact on a torus.} The seam $s(1,0)$ is flat and
+pairs to one with a row circuit; exactness needs both periods to vanish
+(Theorem~\ref{m15:classification}).
+(ii) \emph{The planar value $t^a$ is exact on the torus.} For $0<t<1$ and
+$0<a\le q/2$ the difference in Corollary~\ref{m15:area} is strictly
+positive; at $q=9$, $a=4$, $\beta=1.3$ the two values are $0.813439$ and
+$0.551405$ (Example~\ref{m15:area-example}).
+(iii) \emph{Stationarity is equivalent to a vanishing staple odd part at
+every coupling.} At $\beta=0$ the action is constant, while a scalar link
+$i$ with all other links $1$ has a nonzero signed sine sum; the equivalence
+of Proposition~\ref{m15:staples} needs $\beta\ne0$, and the vertex identity
+holds at every coupling.
+(iv) \emph{Pointwise positive Boltzmann weights give a positive
+link-reflection form.} For $\mathbb Z/2$ at $\beta<0$ the sign eigenvalue
+$\sinh\beta$ is negative, and a spatial circle of odd length with time
+period two detects a negative form (Remark~\ref{m15:reflection}).
+(v) \emph{The fixed-volume perimeter coefficient is $2|C|$ at every
+period.} On the $2^3$ torus the single-plaquette coefficient is $14$, while
+at periods at least three it is $2|C|=8$ (Corollary~\ref{m15:phases},
+Example~\ref{m15:small-period}).
 \end{remark}
 
 \setcounter{section}{1}
@@ -15970,6 +17357,811 @@ $[-\varphi^2,-\varphi]$ of length $1$ (Theorem~\ref{m13:golden},
 Corollary~\ref{m13:closed-inflation}).
 \end{remark}
 
+\section{Completed zeta, divisor bounds, and arithmetic readouts}\label{sec:m14}
+
+The prime products and digit systems of Sections~\ref{sec:m8} and
+\ref{sec:m9} give arithmetic information through analytic functions and
+finite words. We extend the prime-product reading to the entire completed
+function $\xi$ and give the quantitative implication from a hypothetical
+off-line zero to an explicit least-common-multiple violation of Robin's
+inequality. The discrete results identify three other mechanisms of
+recovery. A Fibonacci carry cannot descend below a fixed support boundary,
+a forbidden block reduces the weighted number of continuations, and an
+assembled residue determines an integer power trace inside a known interval.
+For inverse systems under powering, taking the real logarithm of the
+modulus instead yields a conserved scalar.
+
+\emph{Placement and scope.} This is the one section of the paper that
+treats the Riemann zeta function directly, and the rule is strict: only
+proved statements and exactly cited ones. The properties of the completed
+function in Proposition~\ref{m14:xi} are classical, and the library has
+them as \texttt{CompletedZeta} declarations (Section~\ref{sec:leanlib}).
+The Riemann hypothesis appears only as the named
+Conjecture~\ref{m14:rh}, with cited conditional equivalences
+(Proposition~\ref{m14:rh-forms}): Robin's criterion \cite{m14:robin}, the
+growth of the Mertens function \cite[\S14.25]{m14:titchmarsh}, and the
+finite-height verification of Platt and Trudgian
+\cite{m14:platt-trudgian}. \emph{This paper claims nothing about the
+Riemann hypothesis}: neither its truth, nor its falsity, nor any partial
+result beyond the cited ones. Robin's inequality is proved here in two
+ranges with exact hypotheses (Theorem~\ref{m14:robin-eight}). The
+countermodel to localization from symmetry alone is that of
+Example~\ref{m8:toy} and Example~\ref{m6:quartet} and is not repeated.
+Remark~\ref{m14:refuted} records the refuted readings, including two proof
+sentences of the source. Hypothesis~\ref{m14:local-model} is a model input;
+Remarks~\ref{m14:sampling} and~\ref{m14:carry-model} are programmes.
+
+\subsection{Completion, alternating sums, and the critical strip}
+
+Write $\zeta$ for the meromorphic continuation of the function in
+Theorem~\ref{m9:euler}. Put
+$\Gamma_{\mathbb R}(s)=\pi^{-s/2}\Gamma(s/2)$ and
+$\Lambda(s)=\Gamma_{\mathbb R}(s)\zeta(s)$ as meromorphic functions.
+The poles of $\Gamma(s/2)$ are simple at $0,-2,-4,\ldots$, and
+$\Gamma$ has no zeros \cite[\S5.2(i)]{m8:dlmf}.
+
+\begin{proposition}[The entire completion]\label{m14:xi}
+The pole-subtracted function
+$\Lambda_0(s)=\Lambda(s)+1/s-1/(s-1)$ extends to an entire function.
+Define the $\xi$-reading by
+\[
+ \xi(s)=\tfrac12\bigl(1+s(s-1)\Lambda_0(s)\bigr).
+\]
+Then $\xi$ is entire, $\xi(0)=\xi(1)=1/2$, and away from $0,1$ it is
+$\tfrac12s(s-1)\Lambda(s)$, with the product understood by continuation.
+Moreover,
+\[
+ \xi(1-s)=\xi(s),\qquad
+ \xi(\bar s)=\overline{\xi(s)},\qquad
+ \xi(1-\bar s)=\overline{\xi(s)}.
+\]
+Its zeros are precisely the zeros of $\zeta$ in
+$0<\operatorname{Re}s<1$, with the same multiplicities.
+Outside that strip the only zeros of $\zeta$ are the simple zeros
+at the strictly negative even integers. In particular, $\zeta(0)=-1/2$.
+\end{proposition}
+
+\begin{proof}
+Write $f(t)=\sum_{n\ge1}e^{-\pi n^2t}$ for $t>0$. The Jacobi
+transformation gives
+$1+2f(t)=t^{-1/2}(1+2f(1/t))$ \cite[\S20.7(viii)]{m8:dlmf}.
+For $\sigma=\operatorname{Re}s>1$, absolute summability of the
+integrals follows from
+$\sum_{n\ge1}\int_0^\infty e^{-\pi n^2t}t^{\sigma/2-1}\,dt
+=\pi^{-\sigma/2}\Gamma(\sigma/2)\sum_{n\ge1}n^{-\sigma}<\infty$.
+The gamma integral thus identifies
+$\Lambda(s)=\int_0^\infty f(t)t^{s/2}\,dt/t$.
+Split at $1$, use the transformation on $(0,1)$ and substitute
+$t\mapsto1/t$ in the term containing $f(1/t)$. Integration
+of the two elementary powers gives
+\[
+ \Lambda(s)=\frac1{s-1}-\frac1s+
+  \int_1^\infty f(t)\bigl(t^{s/2}+t^{(1-s)/2}\bigr)\,\frac{dt}{t}.
+\]
+For $t\ge1$ one has $f(t)\le e^{-\pi t}/(1-e^{-\pi t})$ by
+$n^2\ge n$. On each compact set of $s$ the integrand and its
+derivatives are therefore bounded by integrable functions of $t$,
+since differentiation introduces powers of $\log t$. The integral
+is entire and gives $\Lambda_0$ by analytic continuation. It is
+invariant under $s\mapsto1-s$ and commutes with conjugation.
+The polynomial $s(s-1)$ has the same symmetries and cancels the
+polar terms to $1$. This gives the formulas for $\xi$ and its endpoints.
+Conjugation also commutes with $\zeta$, by its real Dirichlet
+coefficients and meromorphic continuation.
+
+For $\operatorname{Re}s>0$ and $s\ne1$, the gamma factor is
+holomorphic and nonzero, so $\Lambda$ and $\zeta$ have the same
+zeros there. The Euler product is nonzero for $\operatorname{Re}s>1$.
+On the boundary we use the Hadamard--de la Vall\'ee Poussin
+argument \cite[\S25.10(i)]{m8:dlmf}. For real $u$, the expansion
+of the real logarithm of the modulus of the Euler product and
+$3+4\cos v+\cos2v=2(1+\cos v)^2\ge0$ give
+\[
+ |\zeta(\sigma)|^3|\zeta(\sigma+iu)|^4|\zeta(\sigma+2iu)|\ge1
+ \qquad (\sigma>1).
+\]
+Indeed, the logarithm of the left side is the sum over primes
+and exponents $k\ge1$ of the trigonometric polynomial at
+$v=ku\log p$, weighted by $p^{-k\sigma}/k$. The sum converges
+absolutely. If $u\ne0$ and $\zeta(1+iu)=0$, the left side
+is $O(\sigma-1)$ as $\sigma\downarrow1$. The first factor
+has a pole of order $3$, the middle has a zero of order at
+least $4$, and the last stays bounded. The pole and analyticity
+assertions follow from the displayed formula for $\Lambda$
+and nonvanishing of the gamma factor in that half-plane.
+This contradiction excludes boundary zeros of $\zeta$ off the
+pole. The resulting half-plane and the endpoint value at $1$
+exclude zeros of $\xi$ on $\operatorname{Re}s\ge1$. Reflection
+excludes them on $\operatorname{Re}s\le0$. In the strip all factors
+multiplying $\zeta$ are holomorphic and nonzero, which gives the
+multiplicity statement. Finally $\Lambda(s)=\Lambda(1-s)$
+is finite and nonzero for $\operatorname{Re}s\le0$, $s\ne0$.
+Multiplication by $\pi^{s/2}/\Gamma(s/2)$ gives exactly the
+simple zeros stated there. At $0$ use
+$\Lambda(s)\sim-1/s$ and $\Gamma(s/2)\sim2/s$, the latter by
+the gamma recurrence and $\Gamma(1)=1$. At $1$ the residue
+of $\Lambda$ is $1$ and $\Gamma_{\mathbb R}(1)=1$, so the
+residue of $\zeta$ is $1$.
+\end{proof}
+
+\begin{proposition}[Alternating continuation and real sign]\label{m14:eta}
+Let $\operatorname{Re}s>0$ and
+$S_N(s)=\sum_{n=1}^N(-1)^{n-1}n^{-s}$. The limit
+$\eta(s)=\lim_N S_N(s)$ satisfies
+\[
+ \eta(s)=(1-2^{1-s})\zeta(s)\quad(s\ne1),\qquad \eta(1)=\log2.
+\]
+At $s=1$ the meromorphic product has removable value $\log2$.
+Using a finite assigned value for $\zeta(1)$ before multiplying
+would give $0$ instead. For $0<x<1$ one has $\zeta(x)<0$, and
+for $x>1$ one has $\zeta(x)>0$. The real zeros are consequently
+exactly those in Proposition~\ref{m14:xi}.
+\end{proposition}
+
+\begin{proof}
+Proposition~\ref{m9:eta} gives local uniform convergence, the
+identity on $\operatorname{Re}s>1$, and the value at $1$.
+The holomorphic identity theorem on the punctured half-plane
+extends the identity to $\operatorname{Re}s>0$, $s\ne1$.
+The derivative of $1-2^{1-s}$ at $1$ is $\log 2$. The residue
+of $\zeta$ then yields the removable value. For real $x>0$,
+the even partial sums consist of positive pairs
+$(2k-1)^{-x}-(2k)^{-x}$, so $\eta(x)\ge1-2^{-x}>0$.
+The factor $1-2^{1-x}$ is negative for $0<x<1$ and positive
+for $x>1$. This also supplies the real-axis exclusion needed
+when reducing an off-line zero to positive ordinate.
+\end{proof}
+
+\begin{example}[Completion and alternating brackets]\label{m14:xi-example}
+The mirror pairs $(2,-1)$, $(4,-3)$ and $(6,-5)$ have common
+completed values $\pi/6$, $\pi^2/15$ and $2\pi^3/63$, respectively. Substitute
+the classical even values of $\zeta$ \cite[\S25.6(i)]{m8:dlmf}
+and the gamma recurrence on the positive side of each pair,
+then apply Proposition~\ref{m14:xi}. At $x=1/2$ the first four
+alternating sums are approximately $1$, $0.292893$, $0.870243$ and $0.370243$.
+The even sums increase and the odd sums decrease, since the
+sign of each next pair is fixed. They bound
+$\eta(1/2)\approx0.604899$, with $\zeta(1/2)\approx-1.460355$.
+\end{example}
+
+\subsection{Prime powers and an effective conditional divisor bound}
+
+Let $\Lambda_{\rm vM}(n)$ be $\log p$ on positive powers of a prime
+$p$ and $0$ otherwise, and set
+$\psi(x)=\sum_{n\le x}\Lambda_{\rm vM}(n)$ for $x\ge1$.
+Proposition~\ref{m9:partitions} identifies the Dirichlet series
+of $-\zeta'/\zeta$. The prime valuations in
+$L(x)=\operatorname{lcm}(1,\ldots,\lfloor x\rfloor)$ give
+$\log L(x)=\psi(x)$ as in Example~\ref{m8:staircase}.
+
+\begin{theorem}[Prime number theorem with an error term]\label{m14:pnt}
+For some $c>0$,
+\[
+ \psi(x)=x+O\!\left(x\exp\bigl[-c(\log x)^{1/10}\bigr]\right)
+ \qquad (x\to\infty).
+\]
+This is the Chebyshev-function statement of the library declaration
+\texttt{MediumPNT} \cite{Tru}, adapted from the PrimeNumberTheoremAnd
+project. The classical de la Vall\'ee Poussin bound
+has exponent $1/2$ in place of $1/10$ \cite{m14:poussin}.
+\end{theorem}
+
+\begin{corollary}\label{m14:pnt-consequences}
+One has $\psi(x)/x\to1$ and $\pi(x)\sim x/\log x$, where
+$\pi(x)$ counts primes up to $x$. For instance
+$\psi(10)=\log2520$ and $\pi(10)=4$, whereas
+$\psi(10^6)/10^6\approx0.999587$ and $\pi(10^6)=78498$.
+\end{corollary}
+
+\begin{proof}
+The relative error in Theorem~\ref{m14:pnt} tends to zero.
+For $\vartheta(x)=\sum_{p\le x}\log p$, the difference
+$\psi(x)-\vartheta(x)$ is at most $\sqrt{x}\log x$. Indeed,
+only primes $p\le\sqrt{x}$ contribute, and the total from
+any one prime is at most $\log x$. Thus $\vartheta(x)\sim x$.
+Partial summation gives
+$\pi(x)=\vartheta(x)/\log x+\int_2^x\vartheta(u)/(u(\log u)^2)\,du$.
+Using $\vartheta(u)=O(u)$, split the integral at $\sqrt{x}$ to
+bound it by $O(\sqrt{x}+x/(\log x)^2)$. The first finite example
+follows from the prime powers at most $10$. The second evaluates
+the defining sums by a sieve.
+\end{proof}
+
+\begin{remark}[Pointwise explicit formula]\label{m14:explicit}
+Write $\psi_0(x)=(\psi(x^-)+\psi(x^+))/2$. For $x>1$ the
+von Mangoldt explicit formula is
+\[
+ \psi_0(x)=x-\lim_{T\to\infty}
+ \sum_{\substack{\zeta(\rho)=0,\ 0<\operatorname{Re}\rho<1\\
+                 |\operatorname{Im}\rho|\le T}}
+       \frac{x^\rho}{\rho}
+       -\log(2\pi)-\frac12\log(1-x^{-2}).
+\]
+The sum counts multiplicities and uses symmetric height truncation
+\cite[Ch.~17]{m14:davenport}. The half jump at a prime power
+is part of the pointwise formula. The computations at $8$ and
+$9.5$ in Proposition~\ref{m9:partitions} illustrate the
+midpoint and interior conventions, respectively.
+\end{remark}
+
+\begin{remark}[Finite zero samples]\label{m14:sampling}
+A certified reconstruction of individual jumps from a specified finite
+zero sample would require a proved enclosure for all omitted zeros
+in the retained height window, a bound for the higher zero tail and,
+if a smoothing window is used, a bound for the resulting error relative
+to the midpoint convention. These errors must be controlled on the
+chosen $x$ interval at the resolution of the jumps being read.
+The finite products and the symmetric countermodel of
+Proposition~\ref{m8:finite} and Example~\ref{m8:toy} furnish
+controls for such a reconstruction.
+\end{remark}
+
+Write $\sigma(n)=\sum_{d\mid n}d$, $Z(n)=\sigma(n)/n$ for
+$n\ge1$, and $\omega(n)=\#\{p\text{ prime}:p\mid n\}$.
+Let $\gamma$ be Euler's constant and put $R(n)=e^\gamma\log\log n$
+for $n>1$.
+
+\begin{theorem}[Robin's inequality with at most eight distinct primes]\label{m14:robin-eight}
+If $n>5040$ and $\omega(n)\le8$, then $Z(n)<R(n)$.
+Consequently the inequality holds for every
+$5040<n<223092870$, where $223092870$ is the product of the
+first nine primes (library declarations
+\texttt{robin\_of\_card\_primeFactors\_le\_eight} and
+\texttt{robin\_lt\_223092870} \cite{Tru}).
+\end{theorem}
+
+\begin{proof}
+Both assertions are library declarations \cite{Tru}.
+Here is an independent reduction to small exact computations.
+If $p<q$ and $a\ge b\ge1$, putting exponent $a$ at $p$
+and $b$ at $q$ decreases the integer and increases its divisor
+ratio. In fact, for $S_p(e)=\sum_{j=0}^e p^{-j}$,
+\[
+ \frac{S_p(a)}{S_p(b)}
+ =1+\frac{\sum_{j=1}^{a-b}(1/p)^j}
+           {\sum_{j=0}^b(1/p)^{-j}}
+\]
+is nondecreasing in $1/p$. After sorting exponents, replacing the
+$k$ prime factors by the first $k$ primes again decreases the
+integer and increases its divisor ratio. This gives an integer
+$m\le n$ whose exponents on the first $k$ primes are nonincreasing
+and for which $Z(n)\le Z(m)$.
+
+Use $C=89/50<e^\gamma$ from the enclosure in
+Example~\ref{m14:robin-endpoints}. For $n\ge10^{12}$ the
+geometric series bound gives
+$Z(n)\le\prod_{p\le19}p/(p-1)< C\log\log(10^{12})$.
+For the remaining cases, the following rational comparisons
+use the recurrence and logarithm enclosure described below.
+\[
+\begin{array}{ll}
+ Z(n)< C\log\log n & (5041\le n<6000),\\
+ \max_{1\le m\le5040} Z(m)=403/105<C\log\log6000,&\\
+ Z(m)< C\log\log m & (5040<m<10^{12},\ m\text{ sorted}).
+\end{array}
+\]
+For the first two comparisons compute each divisor sum by adding
+$d$ to every positive multiple of $d$ below $6000$, starting with
+zero sums. For the last comparison start from $(m,Z)=(1,1)$.
+At the next prime $p$, after an exponent $b$ at the preceding
+prime, append each positive exponent $a\le b$ satisfying
+$mp^a<10^{12}$, and replace $(m,Z)$ by $(mp^a,ZS_p(a))$.
+At the initial prime impose just the product bound.
+Stop after at most eight primes and test every intermediate
+product exceeding $5040$. This generates exactly $4204$
+products in the comparison by unique factorization.
+
+To reproduce the comparisons with lower bounds, scale each
+logarithm argument $y\ge1$ by a power of $2$ into $[1,2]$ and
+use the first twelve terms of the series in
+Example~\ref{m14:robin-endpoints}, also for $\log2$.
+The tail on $[1,2]$ is bounded above by
+$2u^{25}/(25(1-u^2))$. Round lower and upper bounds outward
+to multiples of $10^{-12}$ if using fixed denominators.
+For $\log\log n$, evaluate the lower bound at the lower
+bound for $\log n$. Each displayed comparison verifies
+against the resulting lower bound.
+When $6000\le n<10^{12}$, use the second comparison if
+$m\le5040$, and otherwise the third with the monotonicity
+of $\log\log$. This proves the eight-prime assertion.
+
+The first nine primes are $2,3,5,7,11,13,17,19,23$.
+If $\omega(n)\ge9$, any nine distinct prime divisors have a product
+that divides $n$ and is at least $223092870$. This contradicts
+the strict upper endpoint of the claimed interval.
+\end{proof}
+
+\begin{example}[The two endpoints]\label{m14:robin-endpoints}
+At $5040=2^4 3^2 5\cdot7$ the divisor ratio is $403/105$,
+which is greater than $e^\gamma\log\log 5040$.
+Thus the lower endpoint is strict even for four distinct primes.
+At the upper endpoint $223092870$ there are nine distinct primes.
+There the same inequality $Z(n)<R(n)$ holds by direct substitution
+of the nine factors $1+1/p$. These comparisons can be made
+with $1.78<e^\gamma<1.79$, $\log\log5040<2.144$, and
+$\log\log223092870>2.9$. For the exponential enclosure,
+$H_k-\log k-1/k<\gamma<H_k-\log k$ at $k=1024$
+suffices. This harmonic enclosure follows by summing
+$0<\log(1+1/j)-1/(j+1)<1/j-1/(j+1)$ for $j\ge k$.
+The rational evaluation uses
+$\log y=2\sum_{l\ge0}u^{2l+1}/(2l+1)$ for
+$u=(y-1)/(y+1)$, after scaling by powers of $2$.
+\end{example}
+
+\begin{remark}[The extremal constant]\label{m14:gronwall}
+Gronwall's theorem \cite{m14:gronwall} gives
+\[
+ \limsup_{n\to\infty}\frac{Z(n)}{\log\log n}=e^\gamma.
+\]
+Equivalently, the normalized ratio
+$Z(n)/R(n)$ is eventually at most $1+\varepsilon$ and is
+at least $1-\varepsilon$ for arbitrarily large $n$, for
+every $\varepsilon>0$. Thus a larger constant than $e^\gamma$
+works eventually and a smaller positive constant has arbitrarily
+large violations. The prime Euler factors governing the scale satisfy
+$\prod_{p\le x}(1-1/p)\sim e^{-\gamma}/\log x$ by Mertens'
+third theorem \cite{m14:mertens}.
+\end{remark}
+
+\begin{proposition}[An integrated prime-power error]\label{m14:integrated-error}
+For $x\ge1$, set
+\[
+ U(x)=x\sum_{1\le n\le x}\frac{\Lambda_{\rm vM}(n)}{n}
+       -\psi(x)-x\log x+(1+\gamma)x.
+\]
+Then $U(x)=-x\int_x^\infty(\psi(u)-u)\,du/u^2$.
+\end{proposition}
+
+\begin{proof}
+For real $s>1$, partial summation of the series in
+Proposition~\ref{m9:partitions} gives
+\[
+ s\int_1^\infty(\psi(u)-u)u^{-s-1}\,du
+   =-\frac{\zeta'(s)}{\zeta(s)}-\frac{s}{s-1}.
+\]
+The constant term in the Laurent expansion of $\zeta$ at $1$ is
+$\gamma$. Indeed, for $1<s\le2$, subtract
+$\int_1^\infty u^{-s}\,du$ from the Dirichlet series and split
+the integral into unit intervals. The $n$th difference is
+nonnegative and bounded by $2n^{-2}$ by the derivative of $u^{-s}$.
+At $s=1$ the first $N$ differences sum to $H_N-\log(N+1)$.
+Dominated convergence gives the constant term $\gamma$.
+Thus the right side of the displayed identity tends to
+$-1-\gamma$. The integrand on the left is dominated near
+infinity by a constant times
+$u^{-1}\exp[-c(\log u)^{1/10}]$ by Theorem~\ref{m14:pnt},
+which is integrable by $v=\log u$. Passing to the limit gives
+$\int_1^\infty(\psi(u)-u)\,du/u^2=-1-\gamma$.
+Finite partial summation gives
+$\sum_{n\le x}\Lambda_{\rm vM}(n)/n
+=\psi(x)/x+\int_1^x\psi(u)\,du/u^2$.
+Substitution in $U$ and use of the full integral yield the tail
+identity, including $x$ at a jump of $\psi$.
+\end{proof}
+
+\begin{proposition}[A finite Mertens error test]\label{m14:response}
+For real $t\ge10000$ write
+\[
+ E_3(t)=\sum_{p\le t}\log(1-1/p)+\log\log t+\gamma.
+\]
+If
+\[
+ E_3(t)<-\frac4{\sqrt t}-\frac{\psi(t)-t}{t\log t},
+\]
+then $N=L(t)$ satisfies $N>5040$ and $Z(N)>R(N)$.
+\end{proposition}
+
+\begin{proof}
+Since $8,9,5,7,11$ are pairwise coprime and at most $t$,
+$N\ge 8\cdot9\cdot5\cdot7\cdot11=27720>5040$.
+Let $a_p$ be the greatest integer with $p^{a_p}\le t$.
+The geometric sum for the local divisor ratio gives
+\[
+ \log Z(N)=\sum_{p\le t}\log(1-p^{-a_p-1})-
+            \sum_{p\le t}\log(1-1/p).
+\]
+For $p\le\sqrt t$, one has $p^{-a_p-1}<1/t$ and there
+are at most $\sqrt t$ such primes. For $\sqrt t<p\le t$
+one has $a_p=1$, and
+$\sum_{n>\sqrt t}n^{-2}\le1/\lfloor\sqrt t\rfloor\le2/\sqrt t$.
+All the arguments $v=p^{-a_p-1}$ satisfy $v<1/t$,
+so $-\log(1-v)\le v/(1-v)\le4v/3$. The total
+loss from the first sum is at most $4/\sqrt t$.
+Finally, $y\mapsto\log\log y$ is concave for $y>1$,
+and $\psi(t)=\log N>1$. Its tangent at $y=t$ gives
+\[
+ \log\log\psi(t)\le\log\log t+\frac{\psi(t)-t}{t\log t}.
+\]
+Using the strict error test now gives
+$\log Z(N)>\gamma+\log\log\psi(t)=\log R(N)$.
+\end{proof}
+
+\begin{theorem}[An off-line zero gives a bounded lcm violation; library theorem]\label{m14:robin-lcm}
+Suppose $\zeta(\rho)=0$, $1/2<\operatorname{Re}\rho<1$ and
+$\operatorname{Im}\rho>0$. Define
+\[
+\begin{aligned}
+ \delta&=\operatorname{Re}\rho-\tfrac12,& D&=\operatorname{Im}\rho+10,\\
+ m_0&=100D^2/\delta^2,& m_1&=500D^4/\delta^2,&
+ B_0&=\exp\bigl(4(28m_1+20)^2\bigr)
+\end{aligned}
+\]
+and let $U$ be as in Proposition~\ref{m14:integrated-error}.
+There exists $A\in[e^{4m_0},e^{28m_1}]$ satisfying the peak bound
+\[
+ U(A)>\sqrt A(4\log A+9).
+\]
+For this $A$ there exists
+$t\in[A,\exp(4(\log A+20)^2)]$ for which $N=L(t)$ satisfies
+\[
+ 5040<N,\qquad Z(N)>R(N),\qquad N\le\exp(B_0\log B_0).
+\]
+\end{theorem}
+
+\begin{proof}
+The exact input is the library declaration
+\texttt{original\_zero\_robin5040\_localA} \cite{Tru}, located and read in
+the source; no build or transitive axiom audit was run, so the theorem has
+the status of a library result. Its nontrivial-zero predicate is
+$\zeta(\rho)=0$ and $0<\operatorname{Re}\rho<1$. The given right
+half-strip and positive-ordinate assumptions supply its remaining
+arguments. Its $U$ uses the ordinary sum through the natural floor,
+the value of $\psi$ from Theorem~\ref{m14:pnt}, and Euler's
+constant in the normalization above. Its output
+\texttt{Nat.lcmUpto} at the natural floor is $L(t)$, since
+the bound $t\ge A\ge e^{4m_0}$ gives $t>1$. This identifies
+the full witness and both windows.
+
+The formal proof selects a Gaussian response whose frequency is
+$\operatorname{Im}\rho$. In the exponent the selected zero gives
+$(\operatorname{Re}\rho)^2+16\operatorname{Re}\rho
+=33/4+17\delta+\delta^2$, while the uniform bound corresponding
+to the absence of a peak has exponent $33/4$.
+The peak is then used in a finite signed Mertens endpoint estimate.
+Proposition~\ref{m14:response} gives the arithmetic transfer used
+at the resulting endpoint. In the last comparison $t\le B_0$ by
+the upper bound on $A$. The estimate $\psi(t)\le t\log t$ follows
+by bounding each summand by $\log t$ and counting at most $t$
+terms. Since $u\log u$ increases for $u\ge1$, this gives the
+displayed global bound.
+\end{proof}
+
+\begin{example}[Size of the conditional window]\label{m14:window-size}
+As a test of the parameters, insert $\delta=1/10$ and
+$D=24$, corresponding to the coordinates $3/5+14i$.
+This gives $m_0=5760000$, $m_1=16588800000$, and
+$\log B_0\approx8.62990\cdot10^{23}$. The lower end for
+$\log A$ is $23040000$. The parameters in this calculation are
+arbitrary test coordinates.
+\end{example}
+
+\subsection{Equivalent formulations of the Riemann hypothesis}
+
+\begin{conjecture}[Riemann hypothesis]\label{m14:rh}
+Every zero $\rho$ of $\zeta$ in $0<\operatorname{Re}\rho<1$
+has $\operatorname{Re}\rho=1/2$.
+\end{conjecture}
+
+Conjecture~\ref{m14:rh} is stated so that its cited equivalent forms can be
+written down. Nothing in this paper bears on its truth; the finite-height
+verification of Platt and Trudgian \cite[Theorem~1]{m14:platt-trudgian}
+is cited, not reproduced.
+
+\begin{proposition}[Equivalent conditions]\label{m14:rh-forms}
+Conjecture~\ref{m14:rh} is equivalent to each of the following.
+\begin{enumerate}
+\item Every zero of $\xi$ has real part $1/2$. Equivalently,
+every zero of $\zeta$ other than the negative even integers,
+with the pole excluded, has real part $1/2$.
+\item There is no zero of $\zeta$ with $1/2<\operatorname{Re}\rho<1$
+and $\operatorname{Im}\rho>0$.
+\item At every zero $\rho$ of $\xi$ the Cayley coordinate
+$c(\rho)=(\rho-1)/\rho$ has $|c(\rho)|=1$, or equivalently
+$\log|c(\rho)|=0$. In orbit language each zero belongs to a
+two-element orbit under reflection and conjugation.
+\item $Z(n)<R(n)$ for every integer $n>5040$ (Robin's criterion
+\cite{m14:robin}, both directions).
+\item For every $\varepsilon>0$,
+$M(x)=O_\varepsilon(x^{1/2+\varepsilon})$ as $x\to\infty$,
+where $M(x)=\sum_{n\le x}\mu(n)$ and $\mu$ is the M\"obius
+function \cite[\S14.25]{m14:titchmarsh}.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+Proposition~\ref{m14:xi} gives the first equivalence and invariance
+of the zero set under $\rho\mapsto1-\rho$ and
+$\rho\mapsto\bar\rho$. Proposition~\ref{m14:eta} excludes real
+zeros in the strip. Each zero away from the critical line
+therefore has an orbit member in the open upper right half-strip,
+which proves the second equivalence. The orbit has two elements
+on the line and four off it: the members have real parts $\beta$
+and $1-\beta$ and imaginary parts $\pm|\operatorname{Im}\rho|$.
+The Cayley coordinate is the reciprocal of the one in
+Proposition~\ref{m8:finite}. Both are defined and nonzero
+at these zeros. Their unit-modulus conditions are equivalent.
+In particular $|\rho-1|^2-|\rho|^2=1-2\operatorname{Re}\rho$,
+so the unit-modulus condition is precisely the critical line
+criterion. The real logarithm of the positive modulus vanishes
+precisely at modulus $1$.
+
+For Robin's criterion both implications are Robin's theorem
+\cite{m14:robin}. The reverse also follows from the library
+Theorem~\ref{m14:robin-lcm}, applied to the orbit member from the second
+condition whenever an off-line zero exists. For the Mertens
+condition, the forward implication is the classical M\"obius-sum
+estimate under the hypothesis \cite[\S14.25]{m14:titchmarsh}.
+For the reverse, on $\operatorname{Re}s>1$ the reciprocal
+Dirichlet series is $\sum_{n\ge1}\mu(n)n^{-s}$
+\cite[Eq.~27.4.5]{m8:dlmf}. By partial summation, this equals
+$s\int_1^\infty M(x)x^{-s-1}\,dx$. Under the stated family of
+bounds, choose $\varepsilon$ smaller than
+$\inf(\operatorname{Re}s-1/2)$ on each compact subset of
+$\operatorname{Re}s>1/2$. The integral and its derivatives
+then converge locally uniformly there. Multiplying by $\zeta$
+and using meromorphic continuation gives $1$ identically.
+In particular $\zeta$ has no zero in that open half-plane,
+and reflection proves the reverse implication.
+\end{proof}
+
+\begin{remark}[Scope of the symmetry condition]\label{m14:symmetry}
+The quartet polynomial of Example~\ref{m8:toy} (equivalently
+Example~\ref{m6:quartet}), centered at
+$s=1/2$, is an entire function with both symmetries and four
+off-line roots for any $0<\delta<1/2$ and real $\gamma\ne0$.
+Thus the two symmetries alone allow off-line roots even inside
+the critical strip. This is a counterexample to localization
+from symmetry alone. Finite numerical verification of the
+conjecture has a height cutoff \cite[Theorem~1]{m14:platt-trudgian}.
+\end{remark}
+
+\subsection{Fibonacci carries and a forbidden-block count}
+
+Use the Fibonacci sequence $F_0=0,F_1=1$ and the canonical
+Zeckendorf support $\operatorname{wdigits}(N)$ of
+Theorem~\ref{m9:digits}, in indices at least $2$ with gaps
+at least $2$. Thus the bit at index $a$ in the terminology
+of that theorem has weight $F_{a+2}$. Write
+$\varphi=(1+\sqrt5)/2$ and $r=\varphi^{-1}$, so $1-r^2=r$.
+The argument uses the same conjugate root $-r$ as the golden
+model-set embedding of Theorem~\ref{m13:golden}.
+
+\begin{theorem}[Lower support barrier]\label{m14:carry}
+Let $m\ge4$ and $j\ge m-1$ be integers. Let $P$ be a finite
+Zeckendorf support, possibly empty, with every index at least
+$m$. Then
+\[
+ k\in\operatorname{wdigits}\left(\sum_{a\in P}F_a+F_j\right)
+ \quad\Longrightarrow\quad k\ge m-2.
+\]
+\end{theorem}
+
+\begin{proof}
+For a finite list of indices let $E(S)=\sum_{k\in S}(-r)^k$,
+with repeats counted. A parity sublist with indices at least
+$a$ has total unsigned weight strictly below
+$r^a/(1-r^2)=r^{a-1}$ by comparison with the corresponding
+infinite geometric sum. The even and odd parts of any
+canonical support start at indices at least $2$ and $3$,
+respectively. In particular,
+\[
+ -r^2<E(S)<r\qquad(S\text{ canonical}).
+\]
+For $j\ge m$ one has
+$|E(P)+(-r)^j|<r^{m-1}+r^m=r^{m-2}$.
+For $j=m-1$, the parity part opposite to $j$ has weight
+less than $r^{m-1}=r^j$, while the part of the same parity
+starts at $m+1$ and has weight less than $r^m$.
+Thus cancellation cannot reverse the sign of $(-r)^j$,
+and the absolute value again is less than $r^{m-2}$.
+
+Let $S$ be the canonical support of the sum. The identity
+$F_k r=F_{k-1}-(-r)^k$ for $k\ge1$ follows by checking
+$k=1,2$ and using the Fibonacci recurrence on both sides.
+Applied to the raw and canonical lists, it shows that
+$E(S)-(E(P)+(-r)^j)$ is an integer. Both errors belong to
+$(-r^2,r)$, because $r^{m-2}\le r^2$, and this interval has
+length $r+r^2=1$. The integer is therefore zero. Since $F_j>0$,
+$S$ is nonempty. If $\ell=\min S$, the opposite-parity
+indices in $S$ start at $\ell+3$ and have total unsigned
+weight less than $r^{\ell+2}$. Hence
+\[
+ |E(S)|>r^\ell-r^{\ell+2}=r^{\ell+1}.
+\]
+Combining this with $|E(S)|<r^{m-2}$ gives $\ell+1>m-2$,
+so $\ell\ge m-2$.
+\end{proof}
+
+\begin{example}[Sharp descent and unbounded ascent]\label{m14:carry-sharp}
+For any $m\ge4$ and integer $q\ge0$,
+\[
+ F_m+\sum_{k=0}^{q}F_{m+2k}=F_{m+2q+1}+F_{m-2}.
+\]
+Indeed $2F_m=F_{m+1}+F_{m-2}$ by the recurrence.
+Each next summand merges with the current highest term to give
+the next Fibonacci number. The final support is canonical
+because its gap is $2q+3$. At $m=8,q=4$ this gives
+$1584+21=1605=F_{17}+F_6$. The same family gives exact
+descent to $m-2$ and arbitrarily remote higher output.
+\end{example}
+
+\begin{hypothesis}[Local synchronous normalization]\label{m14:local-model}
+Suppose the encodings of the two operands are placed in cells
+indexed by the Fibonacci index, the output digit is read in
+its own cell, and each synchronous update uses old values from
+cells within a fixed positive integer radius $R$.
+\end{hypothesis}
+
+\begin{corollary}\label{m14:local-bound}
+Under Hypothesis~\ref{m14:local-model}, a correct
+normalizer on the pair of inputs in Example~\ref{m14:carry-sharp},
+with and without the extra $F_m$, uses at least
+$\lceil(2q+1)/R\rceil$ rounds in the worst case on that pair.
+\end{corollary}
+
+\begin{proof}
+After $d$ rounds, a cell's value depends only on input cells
+at distance at most $dR$, by induction on $d$. The two inputs
+differ only at $m$, but the required output bits at
+$m+2q+1$ differ. Thus $dR\ge2q+1$. Finite-state normalization
+in Fibonacci numeration is a distinct model
+\cite{m14:frougny}.
+\end{proof}
+
+\begin{remark}[Dynamical use of the carry]\label{m14:carry-model}
+A dynamical realization would need to specify how physical
+degrees of freedom encode the cells and to establish the
+update and readout assumptions of Hypothesis~\ref{m14:local-model}.
+The resulting lower bound would apply to the number of local
+updates in that realization.
+\end{remark}
+
+\begin{theorem}[Uniform avoidance of a fourteen-bit block]\label{m14:avoid}
+Let $A_H$ count the length-$H$ binary words with no adjacent
+$1$'s and with no contiguous occurrence of
+$B=00010101001000$. For every integer $H\ge0$,
+\[
+ A_H\le\varphi^{H+1}
+       (1-\varphi^{-14})^{\lfloor H/14\rfloor}.
+\]
+In particular,
+$\limsup_{H\to\infty}H^{-1}\log_2 A_H
+ \le\log_2\varphi+\tfrac1{14}\log_2(1-\varphi^{-14})
+ <\log_2\varphi$.
+\end{theorem}
+
+\begin{proof}
+Retain the entering bit $b$. Assign endpoint weights
+$w(0)=\varphi$, $w(1)=1$. For $h$ free steps from $b$ the
+sum of endpoint weights is $\varphi^h w(b)$, because the
+possible one-step extensions have total weight
+$\varphi+1=\varphi^2$ from $0$ and $\varphi$ from $1$.
+The statement at $h=0$ uses the entering bit as the endpoint.
+The weighting is the Perron eigenvector underlying the Parry
+law of Theorem~\ref{m9:parry}. The block $B$ begins and ends
+with $0$, is legal after either bit, and removes exactly
+$w(0)=\varphi$ from the free fourteen-step sum. For either
+state the remaining weight is bounded by
+$\varphi^{14}w(b)(1-\varphi^{-14})$, since $w(b)\le\varphi$.
+
+Partition the word into $\lfloor H/14\rfloor$ aligned full
+blocks and a suffix of length $H\bmod14$. Words avoiding $B$
+everywhere also avoid it on the aligned blocks. Iterating
+the conditional estimate on each entering bit and then
+taking the free suffix gives the displayed upper bound for
+the aligned endpoint mass, with initial weight $w(0)=\varphi$.
+Every endpoint weight is at least one, yielding the bound
+on the unweighted count. The all-zero word survives for
+every $H$. Taking logarithms and using
+$\lfloor H/14\rfloor/H\to1/14$ gives the entropy bound.
+For instance $A_0=1$, $A_{13}=610$, and $A_{14}=986$ because
+the unrestricted counts are $F_{H+2}$ and precisely one
+length-$14$ word is deleted at $H=14$.
+\end{proof}
+
+\subsection{Modular power traces and logarithmic charge}
+
+\begin{theorem}[Bounded power traces]\label{m14:crt}
+Let $A,C$ be square integer matrices on the same finite index
+set and let $j\ge0$ be an integer. Put $x=\operatorname{tr}(A^j)$
+and $y=\operatorname{tr}(C^j)$. For integer $B,M$ with
+$2B<M$, if $|x|,|y|<B$ and $x\equiv y\pmod M$, then $x=y$.
+If the congruence is specified by residues at pairwise coprime
+positive moduli, take $M$ to be their product. For integer
+$B\ge1$ and positive $M$, the sharp interval-wide condition
+for this uniqueness is $M\ge2B-1$.
+\end{theorem}
+
+\begin{proof}
+With both traces in the stated interval, $|x-y|\le 2B-2$.
+A nonzero multiple of $M$ has absolute value at least $M$.
+The product condition follows by coprimality, since each
+modulus divides the difference. When $1\le M\le2B-2$,
+the two integers $-(B-1)$ and $-(B-1)+M$ in the interval
+are distinct and congruent, and they are traces of
+one-by-one matrices at $j=1$. This proves sharpness for
+the interval. At $j=0$ both traces equal the common
+dimension, including dimension zero.
+\end{proof}
+
+\begin{example}[Existence and the object recovered]\label{m14:crt-example}
+For $A=\operatorname{diag}(1,2)$ and $j=1$, the residue
+$3\bmod11$ with $B=5$ recovers the trace $3$.
+At $B=5$ and $M=11$, the residue $5$ has no representative
+in $(-5,5)$. The zero $2$-by-$2$ matrix and the matrix with
+sole nonzero entry $7$ at $(1,2)$ have identical power traces
+at every $j\ge0$. The latter squares to zero and both traces
+at $j=0$ equal $2$. Thus an actual trace supplies existence,
+while even all power traces can identify distinct matrices.
+This applies to the bounded integral trace readouts in the
+setting of Section~\ref{sec:m9} and is independent of the
+analytic moment positivity test of Proposition~\ref{m8:toeplitz}.
+\end{example}
+
+\begin{definition}[Power-compatible thread]\label{m14:thread}
+A complex power-compatible thread is a family
+$z=(z_m)_{m\ge1}$ with $z_m\in\mathbb C^\times$ and
+$(z_{mn})^n=z_m$ for every pair of positive integers $m,n$.
+Define the logarithmic charge $q(z)=\log|z_1|$.
+\end{definition}
+
+\begin{theorem}[Conservation of logarithmic charge]\label{m14:charge}
+For every power-compatible thread and every $m\ge1$,
+\[
+ m\log|z_m|=q(z),\qquad z_m=e^{q(z)/m}u_m,\qquad
+ u_m=z_m/|z_m|.
+\]
+The phases $(u_m)$ form a power-compatible unit-circle
+thread. Conversely, any real $q$ and any such unit-circle
+thread give a unique complex thread by this formula.
+In particular $q(z)=0$ if and only if every coordinate has
+modulus $1$, equivalently if any one coordinate has modulus $1$.
+\end{theorem}
+
+\begin{proof}
+Power compatibility at base index $1$ gives $z_m^m=z_1$.
+Taking absolute values and the real logarithm is allowed
+because each modulus is positive. This gives the conserved
+scalar and recovers each radial factor. Dividing the powering
+law by its modulus yields $u_{mn}^{\,n}=u_m$.
+Conversely $(e^{q/(mn)}u_{mn})^n=e^{q/m}u_m$ gives a
+thread of charge $q$, and its radii and phases determine it.
+For any $m\ge1$, the equality $m\log|z_m|=q(z)$ gives both
+directions of the zero criterion.
+\end{proof}
+
+\begin{example}[Radial and phase data]\label{m14:charge-example}
+The positive thread $z_m=e^{2/m}$ has charge $2$,
+while $z_m=e^{i\pi/m}$ has charge zero and $z_1=-1$.
+Both satisfy the powering law by multiplication of the
+exponent by the integer power. If one extends the real
+logarithm by assigning $\log 0=0$ and permits zero coordinates,
+the identically zero thread satisfies the powering law and
+has assigned charge zero, but has modulus zero at every
+index. The positive modulus in Definition~\ref{m14:thread}
+is essential for the zero criterion.
+\end{example}
+
+\begin{remark}[Refuted readings]\label{m14:refuted}
+(i) \emph{The two symmetries of $\xi$ localize its zeros on the critical
+line.} The centred quartic with $\delta=1/4$, $\gamma=14$ has both
+symmetries and the zeros $1/4\pm14i$, $3/4\pm14i$
+(Remark~\ref{m14:symmetry}, Examples~\ref{m8:toy} and~\ref{m6:quartet}).
+(ii) \emph{A source proof sentence: $|E(S)|<r^2$ for every canonical
+support $S$.} It fails for $S=\{2,4\}$, whose error is $r^2+r^4>r^2$. The
+corrected interval $(-r^2,r)$ in the proof of Theorem~\ref{m14:carry} has
+length one and suffices.
+(iii) \emph{A source proof sentence: the block $B$ of
+Theorem~\ref{m14:avoid} is legal only after a zero.} The word $1B$ has no
+adjacent ones; the proof removes the endpoint weight $\varphi$ from both
+entering states.
+(iv) \emph{The charge criterion with a totalized logarithm.} If
+$\log0=0$ is assigned and zero coordinates are allowed, the zero thread has
+charge zero and modulus zero everywhere (Example~\ref{m14:charge-example});
+the criterion holds for the nonzero-coordinate threads of
+Definition~\ref{m14:thread}.
+\end{remark}
+
 \setcounter{section}{10}
 \renewcommand{\thesection}{\arabic{section}}
 \renewcommand{\theHsection}{\arabic{section}}
@@ -16014,6 +18206,8 @@ Prop.~\ref{m9:absolute}, Thm.~\ref{m9:ostrowski-digits} & Ostrowski \cite{m9:Ost
 Thm.~\ref{m12:completion} & Cycle conditions \cite{m12:BJT}; their sufficiency on graphs without $K_4$ minor \cite{m12:BJL,m12:Laurent}; rank bound via \cite{m12:LV,m12:VA}; new: rank at most three\\
 Thms.~\ref{m12:face-odd}, \ref{m12:pfaffian}, \ref{m12:ghrv} & Kasteleyn \cite{m12:Kasteleyn,m12:KasteleynGraph}, Temperley--Fisher \cite{m12:TF}, Cimasoni--Reshetikhin \cite{m12:CR}; Gallai--Hasse--Roy--Vitaver \cite{m12:Roy}\\
 Thms.~\ref{m13:golden}, \ref{m13:hurwitz}, \ref{m13:icosian} & Model sets \cite{m13:Meyer,m13:Schlottmann}; Weyl \cite{m13:Weyl}; Hurwitz \cite{m13:Hurwitz}; cubic cut \cite{m13:KramerNeri,m13:DuneauKatz}\\
+Thms.~\ref{m15:classification}, \ref{m15:weighted}, Prop.~\ref{m15:duality} & Unweighted commutator bound \cite{m15:bw,m15:vj,m15:aud}; duality \cite{m15:wegner}; transfer \cite{m15:luscher,m15:os}; the weighted sharp constant derived here\\
+Prop.~\ref{m14:xi}, Thms.~\ref{m14:robin-eight}, \ref{m14:robin-lcm} & Completion classical \cite{m8:dlmf}; Robin's criterion \cite{m14:robin}; Gronwall \cite{m14:gronwall}; the two ranges and the lcm bound are library results with written reductions\\
 Thm.~\ref{m6:cover}, Conj.~\ref{m6:cover-conjecture} & Freeness, spectral gap and the covering exponents $2$ and $1$: Lubotzky--Phillips--Sarnak and Parzanchevski--Sarnak \cite{m6:LPS,m6:PS}; the conjecture (exponent $4/3$) is Sarnak's, proved conditionally on twisted Linnik \cite{m6:BKS}; strong approximation \cite{m6:Sardari}; synthesis \cite{m6:RS}\\
 \bottomrule
 \end{tabular}
@@ -16209,7 +18403,7 @@ black box; a formal statement of Theorem~\ref{thm:main} can avoid it by assuming
 
 All identities and limits of Part~\ref{part:arc} that are not textbook facts, and the identities of Part~\ref{part:axiom} used there, were
 checked numerically on random or explicit inputs by the accompanying script \texttt{check\_arc\_calculus.py} (numpy and the
-standard library; 286 checks, eight of them for Part~\ref{part:alg}, six for Section~\ref{sec:m2}, fourteen for Section~\ref{sec:m3}, eight for Section~\ref{sec:d4}, six for Section~\ref{sec:m7}, fifteen for Section~\ref{sec:m10}, thirteen for Sections~\ref{sec:m11} and~\ref{sec:m11b}, eleven for Section~\ref{sec:m9}, eight for Section~\ref{sec:m12}, nine for Section~\ref{sec:m13}, seven for the referee's counterexamples, seven for Section~\ref{sec:m5}, six for Section~\ref{sec:m8}, twelve for Sections~\ref{sec:m4}, \ref{sec:m4atlas} and seven for Section~\ref{sec:m6}), which also runs the module scripts registered in it from the subdirectory \texttt{checks/} (at present twenty-three: one for Part~\ref{part:alg}, five for Section~\ref{sec:m2}, of which four were written independently of the section, with a shared helper file, one each for Sections~\ref{sec:m3}, \ref{sec:d4}, \ref{sec:m7}, \ref{sec:m10}, \ref{sec:m5}, \ref{sec:m8}, \ref{sec:m6}, \ref{sec:m9}, \ref{sec:m12} and \ref{sec:m13}, one for Sections~\ref{sec:m11} and~\ref{sec:m11b}, and one for Sections~\ref{sec:m4}, \ref{sec:m4atlas}); everything runs
+standard library; 303 checks, eight of them for Part~\ref{part:alg}, six for Section~\ref{sec:m2}, fourteen for Section~\ref{sec:m3}, eight for Section~\ref{sec:d4}, six for Section~\ref{sec:m7}, fifteen for Section~\ref{sec:m10}, thirteen for Sections~\ref{sec:m11} and~\ref{sec:m11b}, eleven for Section~\ref{sec:m9}, eight for Section~\ref{sec:m12}, nine for Section~\ref{sec:m13}, nine for Section~\ref{sec:m15}, eight for Section~\ref{sec:m14}, seven for the referee's counterexamples, seven for Section~\ref{sec:m5}, six for Section~\ref{sec:m8}, twelve for Sections~\ref{sec:m4}, \ref{sec:m4atlas} and seven for Section~\ref{sec:m6}), which also runs the module scripts registered in it from the subdirectory \texttt{checks/} (at present twenty-five: one for Part~\ref{part:alg}, five for Section~\ref{sec:m2}, of which four were written independently of the section, with a shared helper file, one each for Sections~\ref{sec:m3}, \ref{sec:d4}, \ref{sec:m7}, \ref{sec:m10}, \ref{sec:m5}, \ref{sec:m8}, \ref{sec:m6}, \ref{sec:m9}, \ref{sec:m12}, \ref{sec:m13}, \ref{sec:m14} and \ref{sec:m15}, one for Sections~\ref{sec:m11} and~\ref{sec:m11b}, and one for Sections~\ref{sec:m4}, \ref{sec:m4atlas}); everything runs
 from the directory of this paper.  These include the recurrence and its Chebyshev form, the residual expansion of
 Theorem~\ref{thm:consist}, the inequality of Theorem~\ref{thm:action}, the split and the Brownian limits of
 Theorem~\ref{thm:sagitta} (simulated, $\tfrac32T$ to two decimals), the transport formula of
@@ -16599,6 +18793,37 @@ For Section~\ref{sec:m13} the following declarations were located (no \texttt{so
 \end{itemize}}
 No declaration was found for Theorem~\ref{m13:icosian} or Proposition~\ref{m13:phase}.
 
+For Section~\ref{sec:m15} the following declarations were located (no \texttt{sorry} in their files).
+{\small\raggedright
+\begin{itemize}[leftmargin=1.5em]
+\item Theorems~\ref{m15:classification}, \ref{m15:rank}: \texttt{D5/S3/Fourier/CharacterSelection/PeriodicGridHolonomy.lean}, \texttt{flat\_exact\_iff},
+\texttt{horizontal\_seam\_counterexample} (periods at least three), \texttt{plaquette\_relation\_rank\_one}, \texttt{periodic\_grid\_linear\_statistics}.
+\item Proposition~\ref{m15:parity}: \texttt{D5/S3/StatisticalMechanics/ZTwoHighTemperatureExpansion.lean}, \texttt{sum\_sgn\_mul\_prod\_one\_add\_eq}.
+\item Theorem~\ref{m15:weighted}: \texttt{D5/S3/Quantum/Matrix/WeightedBotcherWenzel.lean}, \texttt{result}, \texttt{weighted\_one}.
+\end{itemize}}
+
+For Section~\ref{sec:m14} the following declarations were located (no \texttt{sorry} in their files; no build or axiom audit was run).
+{\small\raggedright
+\begin{itemize}[leftmargin=1.5em]
+\item Proposition~\ref{m14:xi}: \texttt{D5/S3/Zeros/CompletedZeta.lean}, \texttt{xi\_reading\_differentiable}, \texttt{xi\_reading\_reflection};
+\texttt{XiEndpointValues.lean}, \texttt{xi\_reading\_endpoint\_values}; \texttt{ZetaConjugationCovariance.lean}, \texttt{xi\_reading\_conj};
+\texttt{ShiftedPoissonSemigroup.lean}, \texttt{xiReading\_eq\_zero\_iff\_nontrivial}.
+\item Proposition~\ref{m14:eta}: \texttt{AlternatingZetaContinuation.lean}, \texttt{riemannZeta\_ne\_zero\_of\_real\_mem\_Ioo};
+\texttt{RiemannZetaPositiveRealSign.lean}, \texttt{riemannZeta\_ofReal\_sign}.
+\item Theorem~\ref{m14:pnt}: \texttt{D5/S3/Weil/PrimeNumberTheorem/MediumPNT.lean}, \texttt{MediumPNT}.
+\item Theorem~\ref{m14:robin-eight}: \texttt{D5/S3/Arith/Robin/FewDistinctPrimes.lean}, \texttt{robin\_of\_card\_primeFactors\_le\_eight},
+\texttt{robin\_lt\_223092870}. Proposition~\ref{m14:response}: \texttt{LcmRobinResponse.lean}, \texttt{common\_robin\_response}.
+Theorem~\ref{m14:robin-lcm}: \texttt{OffLinePeak/OriginalLocalA.lean}, \texttt{original\_zero\_robin5040\_localA}. Remark~\ref{m14:gronwall}:
+\texttt{GronwallLowerEnvelope.lean}, \texttt{gronwall\_envelopes}.
+\item Proposition~\ref{m14:rh-forms}: \texttt{D5/S3/Zeros/ActualZeroGeometry.lean}, \texttt{rh\_iff\_nontrivial\_zeros\_on\_line};
+\texttt{CayleyCriticalLineZetaCriterion.lean}, \texttt{cayley\_critical\_line\_zeta\_criterion}. Remark~\ref{m14:symmetry}:
+\texttt{FullSymmetryNonlocalization.lean}, \texttt{full\_symmetry\_not\_fixed\_line\_localization}.
+\item Theorems~\ref{m14:carry}, \ref{m14:avoid}, \ref{m14:crt}, \ref{m14:charge}: \texttt{D5/S1/Digit/ZeckendorfCarryBarrier.lean},
+\texttt{lower\_support\_carry\_barrier}; \texttt{ZeckendorfAvoidanceCount.lean}, \texttt{uniform\_avoidance\_count};
+\texttt{D5/S0/Observation/BoundedPowerTraceCRTRecovery.lean}, \texttt{power\_trace\_unique\_of\_crt\_image} (with $M>2B$);
+\texttt{D5/S1/Solenoid/ComplexPowerSolenoidDecomposition.lean}, \texttt{logarithmic\_charge\_conservation}, \texttt{logarithmicCharge\_eq\_zero\_iff}.
+\end{itemize}}
+
 \section*{Where these quantities occur in physics}
 This section consists of pointers only; it adds no claim to the paper.  The companion paper \cite[Physical
 examples]{Companion} collects physical instances.  Items (i), (ii) and (iv) below are exact instances of statements proved here; item
@@ -16713,6 +18938,9 @@ adaptive query laws (Remark~\ref{m11:walk-literature}); scalar Gram attainment b
 Remark~\ref{m9:programme}; tiling and boundary statements for larger Pisot substitutions (Remark~\ref{m9:pisot-programme}).
 \item \emph{Graphs and model sets.}  The record and witness-search programmes of Remark~\ref{m12:programme} and the dynamical
 realization programme of Remark~\ref{m13:programme}.
+\item \emph{Lattice gauge.}  Conjecture~\ref{m15:confinement} (four-dimensional area law at every coupling) and the continuum programme
+of Remark~\ref{m15:programme}; the finite results of Section~\ref{sec:m15} imply neither.  The programmes of Remarks~\ref{m14:sampling}
+and~\ref{m14:carry-model}.
 \end{enumerate}
 
 \section*{Use of AI tools}
@@ -17097,6 +19325,32 @@ The authors used AI tools, namely Claude Fable 5.2 and Claude Opus 5.5 (via Clau
 \bibitem{m13:Khinchin} A.~Ya.~Khinchin, \emph{Continued Fractions}, Dover, 1997, Ch.~II.
 \bibitem{m13:Vogel} H.~Vogel, A better way to construct the sunflower head, \emph{Math. Biosci.} \textbf{44} (1979), 179--189.
 \bibitem{m13:KY} J.~L.~Kaplan and J.~A.~Yorke, Chaotic behavior of multidimensional difference equations, in \emph{Functional Differential Equations and Approximation of Fixed Points}, Lecture Notes in Math. \textbf{730}, Springer, 1979, 204--227.
+% Sections 0B and 10F references (checked 2026-11-20 via Crossref and zbMATH, titles included; the module's Robin entry gave the
+% wrong journal and is corrected to J. Math. Pures Appl.; Vong--Jin and Audenaert added as proofs of the unweighted inequality).
+\bibitem{m14:davenport} H.~Davenport, \emph{Multiplicative Number Theory}, 3rd ed., revised by H.~L.~Montgomery, Grad. Texts in Math. \textbf{74}, Springer, 2000, Ch.~17.
+\bibitem{m14:titchmarsh} E.~C.~Titchmarsh, \emph{The Theory of the Riemann Zeta-Function}, 2nd ed., revised by D.~R.~Heath-Brown, Clarendon Press, Oxford, 1986, \S14.25.
+\bibitem{m14:poussin} C.-J.~de la Vall\'ee Poussin, Sur la fonction $\zeta(s)$ de Riemann et le nombre des nombres premiers inf\'erieurs \`a une limite donn\'ee, \emph{M\'em. Couronn\'es et Autres M\'em. Publ. Acad. Roy. Sci. Lett. Beaux-Arts Belg.} \textbf{59} (1899), 1--74.
+\bibitem{m14:robin} G.~Robin, Grandes valeurs de la fonction somme des diviseurs et hypoth\`ese de Riemann, \emph{J. Math. Pures Appl. (9)} \textbf{63} (1984), 187--213.
+\bibitem{m14:gronwall} T.~H.~Gronwall, Some asymptotic expressions in the theory of numbers, \emph{Trans. Amer. Math. Soc.} \textbf{14} (1913), 113--122.
+\bibitem{m14:mertens} F.~Mertens, Ein Beitrag zur analytischen Zahlentheorie, \emph{J. Reine Angew. Math.} \textbf{78} (1874), 46--62.
+\bibitem{m14:platt-trudgian} D.~J.~Platt and T.~S.~Trudgian, The Riemann hypothesis is true up to $3\cdot10^{12}$, \emph{Bull. Lond. Math. Soc.} \textbf{53} (2021), 792--797.
+\bibitem{m14:frougny} C.~Frougny, Representations of numbers and finite automata, \emph{Math. Systems Theory} \textbf{25} (1992), 37--60.
+\bibitem{m15:bw} A.~B\"ottcher and D.~Wenzel, The Frobenius norm and the commutator, \emph{Linear Algebra Appl.} \textbf{429} (2008), 1864--1885.
+\bibitem{m15:vj} S.-W.~Vong and X.-Q.~Jin, Proof of B\"ottcher and Wenzel's conjecture, \emph{Oper. Matrices} \textbf{2} (2008), 435--442.
+\bibitem{m15:aud} K.~M.~R.~Audenaert, Variance bounds, with an application to norm bounds for commutators, \emph{Linear Algebra Appl.} \textbf{432} (2010), 1126--1143.
+\bibitem{m15:elitzur} S.~Elitzur, Impossibility of spontaneously breaking local symmetries, \emph{Phys. Rev. D} \textbf{12} (1975), 3978--3982.
+\bibitem{m15:degrand} T.~A.~DeGrand and D.~Toussaint, Topological excitations and Monte Carlo simulation of Abelian gauge theory, \emph{Phys. Rev. D} \textbf{22} (1980), 2478--2489.
+\bibitem{m15:gattringer} C.~Gattringer and C.~B.~Lang, \emph{Quantum Chromodynamics on the Lattice: An Introductory Presentation}, Lecture Notes in Phys. \textbf{788}, Springer, 2010.
+\bibitem{m15:migdal} A.~A.~Migdal, Recursion equations in gauge field theories, \emph{Sov. Phys. JETP} \textbf{42} (1976), 413--418.
+\bibitem{m15:driver} B.~K.~Driver, $\mathrm{YM}_2$: continuum expectations, lattice convergence, and lassos, \emph{Comm. Math. Phys.} \textbf{123} (1989), 575--616.
+\bibitem{m15:rusakov} B.~E.~Rusakov, Loop averages and partition functions in $U(N)$ gauge theory on two-dimensional manifolds, \emph{Modern Phys. Lett. A} \textbf{5} (1990), 693--703.
+\bibitem{m15:luscher} M.~L\"uscher, Construction of a selfadjoint, strictly positive transfer matrix for Euclidean lattice gauge theories, \emph{Comm. Math. Phys.} \textbf{54} (1977), 283--292.
+\bibitem{m15:os} K.~Osterwalder and E.~Seiler, Gauge field theories on a lattice, \emph{Ann. Physics} \textbf{110} (1978), 440--471.
+\bibitem{m15:ks} J.~Kogut and L.~Susskind, Hamiltonian formulation of Wilson's lattice gauge theories, \emph{Phys. Rev. D} \textbf{11} (1975), 395--408.
+\bibitem{m15:wegner} F.~J.~Wegner, Duality in generalized Ising models and phase transitions without local order parameters, \emph{J. Math. Phys.} \textbf{12} (1971), 2259--2272.
+\bibitem{m15:jaffe} A.~Jaffe and E.~Witten, Quantum Yang--Mills theory, in J.~Carlson, A.~Jaffe and A.~Wiles (eds.), \emph{The Millennium Prize Problems}, Clay Math. Inst. and Amer. Math. Soc., 2006, 129--152.
+\bibitem{m15:fh} W.~Fulton and J.~Harris, \emph{Representation Theory: A First Course}, Grad. Texts in Math. \textbf{129}, Springer, 1991, Lecture~11.
+\bibitem{m15:folland} G.~B.~Folland, \emph{A Course in Abstract Harmonic Analysis}, 2nd ed., CRC Press, 2016, Ch.~5.
 \end{thebibliography}
 
 \end{document}

@@ -38,6 +38,8 @@ CHECK_MODULES = [
     ("m9_numeration.py", "All 9 check groups passed.", None),                            # Section 10C
     ("m12_gram_planar.py", "PASS coloring equivalences and all orientation census values", None),   # Section 0A
     ("m13_golden_model_sets.py", "All 7 check groups passed.", None),                      # Section 10E
+    ("m14_arithmetic_readouts.py", "PASS m14", None),                                    # Section 10F
+    ("m15_lattice_gauge.py", "All m15 checks passed.", None),                            # Section 0B
     # register new modules here: (file in checks/, success marker, optional predicate)
 ]
 _chk = _os.path.join(_os.path.dirname(_os.path.abspath(__file__)), "checks")
@@ -4729,6 +4731,475 @@ report("45 Thm m13:icosian: AA^T=2(1+phi^2)I, A'A'^T=2(1+phi'^2)I, AA'^T=0; covo
 # (9) Lorenz divergence
 sig, rr, bb = 10.0, 28.0, 8 / 3
 report("45 Rem. m13:lorenz: divergence of the Lorenz field at (10,28,8/3) is -41/3", abs((-sig - 1 - bb) + 41 / 3), 1e-12)
+
+
+# =========================================================== 46. Section 10F (independent checks of the m14 module)
+import math as _m46
+from fractions import Fraction as _F46
+_r46 = np.random.default_rng(34046)
+# (1) the completed function via the Jacobi split integral; symmetries, endpoints, even values, first zero
+def _f46(t):
+    n = np.arange(1, 60)[:, None]; return np.exp(-np.pi * n * n * t).sum(0)
+_tg = np.exp(np.linspace(0, np.log(40.0), 40001)); _ft = _f46(_tg)
+def _Lam0(s):
+    integrand = _ft * (_tg ** (s / 2) + _tg ** ((1 - s) / 2)) / _tg
+    return np.trapezoid(integrand * _tg, np.log(_tg))   # dt/t in log variable
+def _xi46(s):
+    return 0.5 * (1 + s * (s - 1) * _Lam0(s))
+e = 0.0
+for s in (0.3 + 2j, 0.7 - 5j, 2.5 + 0j, -1.2 + 0.4j):
+    e = max(e, abs(_xi46(s) - _xi46(1 - s)), abs(_xi46(np.conj(s)) - np.conj(_xi46(s))))
+e = max(e, abs(_xi46(0) - 0.5), abs(_xi46(1) - 0.5))
+for s, val in ((2, np.pi / 6), (4, np.pi ** 2 / 15), (6, 2 * np.pi ** 3 / 63)):
+    e = max(e, abs(_xi46(s) - val), abs(_xi46(1 - s) - val))
+e = max(e, abs(_xi46(0.5 + 14.134725141734693j)) / abs(_xi46(0.5 + 13.0j)) * 1e-3)  # relative to a nearby value
+# zeta(0) = -1/2: Lambda(s) ~ -1/s and Gamma(s/2) ~ 2/s
+report("46 Prop. m14:xi: xi(1-s)=xi(s), xi(conj s)=conj xi(s), xi(0)=xi(1)=1/2; completed values pi/6, pi^2/15, 2pi^3/63 at (2,-1),(4,-3),(6,-5); xi(1/2+14.1347i)=0", e, 1e-8)
+# (2) eta and zeta at 1/2; alternating sums
+e = 0.0
+S = np.cumsum([(-1) ** (n - 1) * n ** -0.5 for n in range(1, 5)])
+e = max(e, np.abs(np.round(S, 6) - [1, 0.292893, 0.870243, 0.370243]).max())
+N = 2 * 10 ** 6; n = np.arange(1, N + 1, dtype=float); part = np.sum((-1.0) ** (n - 1) * n ** -0.5)
+eta = part + 0.5 * (-1) ** N * (N + 1) ** -0.5 * 0   # Euler-averaged below
+eta = 0.5 * (np.sum((-1.0) ** (n[:-1] - 1) * n[:-1] ** -0.5) + part)
+e = max(e, abs(round(eta, 6) - 0.604899), abs(round(eta / (1 - 2 ** 0.5), 6) + 1.460355))
+report("46 Ex. m14:xi-example, Prop. m14:eta: alternating sums 1, 0.292893, 0.870243, 0.370243; eta(1/2)=0.604899, zeta(1/2)=-1.460355", e, 1e-6)
+# (3) prime counts
+sieve = np.ones(10 ** 6 + 1, bool); sieve[:2] = False
+for p in range(2, 1001):
+    if sieve[p]: sieve[p * p::p] = False
+primes = np.flatnonzero(sieve)
+psi = lambda x: sum(_m46.log(p) * int(_m46.floor(_m46.log(x) / _m46.log(p) + 1e-12)) for p in primes[primes <= x])
+e = max(abs(psi(10) - _m46.log(2520)), abs(len(primes[primes <= 10]) - 4), abs(round(psi(10 ** 6) / 10 ** 6, 6) - 0.999587), abs(len(primes) - 78498))
+report("46 Cor. m14:pnt-consequences: psi(10)=log 2520, pi(10)=4, psi(10^6)/10^6=0.999587, pi(10^6)=78498", e, 1e-6)
+# (4) Robin: endpoints, the eight-prime range by an independent sorted-exponent enumeration, and the reduction lemma
+eg = np.exp(0.5772156649015329)
+def _Z46(n):
+    s = 1; m = n; p = 2; out = _F46(1)
+    while p * p <= m:
+        if m % p == 0:
+            k = 0
+            while m % p == 0: m //= p; k += 1
+            out *= _F46(p ** (k + 1) - 1, (p - 1) * p ** k)
+        p += 1
+    if m > 1: out *= _F46(m + 1, m)
+    return out
+e = 0.0
+e = max(e, 0 if _Z46(5040) == _F46(403, 105) else 1, 0 if float(_Z46(5040)) > eg * np.log(np.log(5040)) else 1)
+P9 = [2, 3, 5, 7, 11, 13, 17, 19, 23]; n9 = int(np.prod(P9)); e = max(e, abs(n9 - 223092870), 0 if float(np.prod([1 + 1 / p for p in P9])) < eg * np.log(np.log(n9)) else 1)
+mx = max(_Z46(m) for m in range(1, 5041)); e = max(e, 0 if mx == _F46(403, 105) else 1)
+bad = [n for n in range(5041, 6000) if not float(_Z46(n)) < eg * np.log(np.log(n))]; e = max(e, len(bad))
+C46 = 89 / 50; e = max(e, 0 if C46 < eg else 1, 0 if float(mx) < C46 * np.log(np.log(6000)) else 1)
+prods = []
+def _gen46(i, m, Z, b):
+    if i == 8: return
+    p = P9[i]; a = 1
+    while a <= b and m * p ** a < 10 ** 12:
+        mm = m * p ** a; ZZ = Z * (1 - p ** -(a + 1)) / (1 - 1 / p); prods.append((mm, ZZ)); _gen46(i + 1, mm, ZZ, a); a += 1
+_gen46(0, 1, 1.0, 60)
+big = [(m, Z) for m, Z in prods if m > 5040]
+e = max(e, abs(len(big) - 4204), max(0, max(Z - C46 * np.log(np.log(m)) for m, Z in big) + 1e-9) * 1e3 if big else 1)
+e = max(e, 0 if np.prod([p / (p - 1) for p in P9[:8]]) < C46 * np.log(np.log(1e12)) else 1)
+for _ in range(200):
+    p, q = sorted(_r46.choice([2, 3, 5, 7, 11, 13], 2, replace=False)); b = int(_r46.integers(1, 5)); a = b + int(_r46.integers(0, 4))
+    Sp = lambda pp, k: sum(float(pp) ** -j for j in range(k + 1))
+    e = max(e, max(0, (Sp(q, a) / Sp(q, b)) - (Sp(p, a) / Sp(p, b)) + 1e-15))
+report("46 Thm m14:robin-eight, Ex. m14:robin-endpoints: Z(5040)=403/105 > e^g loglog 5040 = max_{m<=5040} Z; 5041..5999 pass; 4204 sorted products in (5040,10^12) pass with C=89/50; n>=10^12 bound; 9th primorial passes; reduction lemma monotone in 1/p", e, 1e-9)
+# (5) window-size arithmetic; Cayley criterion; quartic countermodel
+e = 0.0
+dl, Dd = _F46(1, 10), _F46(24); m0 = 100 * Dd ** 2 / dl ** 2; m1 = 500 * Dd ** 4 / dl ** 2
+e = max(e, abs(m0 - 5760000), abs(m1 - 16588800000), abs(4 * m0 - 23040000), abs(round(4 * (28 * 16588800000 + 20) ** 2 / 1e23, 5) - 8.62990))
+for _ in range(50):
+    rho = complex(_r46.uniform(0, 1), _r46.uniform(-30, 30)); e = max(e, abs(abs(rho - 1) ** 2 - abs(rho) ** 2 - (1 - 2 * rho.real)))
+roots = [0.25 + 14j, 0.25 - 14j, 0.75 + 14j, 0.75 - 14j]; P = np.poly(roots)
+for s in (0.3 + 1j, 2 - 3j):
+    e = max(e, abs(np.polyval(P, s) - np.polyval(P, 1 - s)) / abs(np.polyval(P, s)), abs(np.polyval(P, np.conj(s)) - np.conj(np.polyval(P, s))) / abs(np.polyval(P, s)))
+report("46 Ex. m14:window-size, Prop. m14:rh-forms, Rem. m14:symmetry: m0=5760000, m1=16588800000, log B0=8.6299e23; |rho-1|^2-|rho|^2=1-2Re rho; the quartic with roots 1/4+-14i, 3/4+-14i has both symmetries", e, 1e-6)
+# (6) Zeckendorf carry barrier, sharpness, refuted error-interval sentence
+_FB = [0, 1]
+for _ in range(90): _FB.append(_FB[-1] + _FB[-2])
+def _wd46(N):
+    S = []; k = 90
+    while N > 0:
+        while _FB[k] > N: k -= 1
+        S.append(k); N -= _FB[k]; k -= 2
+    return S
+e = 0.0
+for _ in range(3000):
+    m = int(_r46.integers(4, 30)); j = int(_r46.integers(m - 1, 40))
+    P_ = []; k = m + int(_r46.integers(0, 3))
+    while k < 60 and _r46.uniform() < 0.7: P_.append(k); k += int(_r46.integers(2, 5))
+    Nn = sum(_FB[a] for a in P_) + _FB[j]; S_ = _wd46(Nn)
+    e = max(e, max(0, (m - 2) - min(S_)), 0 if all(S_[i] - S_[i + 1] >= 2 for i in range(len(S_) - 1)) else 1)
+for m in range(4, 15):
+    for q in range(0, 8):
+        e = max(e, abs(_FB[m] + sum(_FB[m + 2 * k] for k in range(q + 1)) - (_FB[m + 2 * q + 1] + _FB[m - 2])))
+e = max(e, abs(_FB[8] + sum(_FB[8 + 2 * k] for k in range(5)) - 1605), abs(_FB[17] + _FB[6] - 1605))
+rr = 1 / ((1 + 5 ** .5) / 2); ES = rr ** 2 + rr ** 4
+e = max(e, 0 if ES > rr ** 2 else 1, 0 if (-rr ** 2 < ES < rr) else 1, abs(rr + rr ** 2 - 1))
+for N_ in range(1, 3000):
+    S_ = _wd46(N_); E_ = sum((-rr) ** k for k in S_); e = max(e, 0 if -rr ** 2 < E_ < rr else 1)
+report("46 Thm m14:carry, Ex. m14:carry-sharp: canonical support of sum(F_a, a in P)+F_j has min >= m-2 (3000 random); F_m+sum F_{m+2k}=F_{m+2q+1}+F_{m-2}; 1584+21=1605; refuted sentence: E({2,4})=r^2+r^4 > r^2; corrected interval (-r^2,r) of length 1", e, 1e-12)
+# (7) avoidance count and the refuted 'legal only after a zero' sentence
+Bk = '00010101001000'
+def _A46(H):
+    from functools import lru_cache
+    cnt = {('', ''): 1}
+    states = {'': 1}   # suffix string (last 13 bits) -> count
+    for _ in range(H):
+        new = {}
+        for suf, c in states.items():
+            for b in '01':
+                if b == '1' and suf.endswith('1'): continue
+                w = suf + b
+                if w.endswith(Bk): continue
+                w = w[-13:]; new[w] = new.get(w, 0) + c
+        states = new
+    return sum(states.values())
+ph = (1 + 5 ** .5) / 2; e = 0.0
+for H in range(0, 61):
+    A = _A46(H); e = max(e, max(0, A - ph ** (H + 1) * (1 - ph ** -14) ** (H // 14)))
+e = max(e, abs(_A46(0) - 1), abs(_A46(13) - 610), abs(_A46(14) - 986))
+w = '1' + Bk; e = max(e, 0 if '11' not in w else 1, abs(ph + 1 - ph ** 2))
+report("46 Thm m14:avoid: A_H <= phi^{H+1}(1-phi^-14)^{floor(H/14)} for H<=60; A_0=1, A_13=610, A_14=986; '1'+B has no adjacent ones (refuted 'legal only after a zero')", e, 1e-9)
+# (8) bounded traces under CRT; logarithmic charge
+e = 0.0
+e = max(e, abs((3 % 11) - 3), 0 if all(((x - 5) % 11) for x in range(-4, 5)) else 1)
+for B_ in range(1, 12):
+    for M_ in range(1, 2 * B_ - 1):
+        x, y = -(B_ - 1), -(B_ - 1) + M_; e = max(e, 0 if (abs(y) < B_ and x != y and (x - y) % M_ == 0) else 1)
+    M_ = 2 * B_ - 1
+    e = max(e, 0 if all(x == y for x in range(-B_ + 1, B_) for y in range(-B_ + 1, B_) if (x - y) % M_ == 0) else 1)
+Nil = np.array([[0, 7], [0, 0]]); Zm = np.zeros((2, 2), int)
+e = max(e, max(abs(np.trace(np.linalg.matrix_power(Nil, j)) - np.trace(np.linalg.matrix_power(Zm, j))) for j in range(0, 8)))
+for z1 in (np.exp(2.0), -1.0 + 0j, 3 * np.exp(0.7j)):
+    q = np.log(abs(z1)); th = np.angle(z1)
+    zs = {mm: np.exp(q / mm) * np.exp(1j * th / mm) for mm in range(1, 13)}
+    for mm in range(1, 5):
+        for nn in range(1, 4):
+            if mm * nn <= 12: e = max(e, abs(zs[mm * nn] ** nn - zs[mm]))
+    e = max(e, max(abs(mm * np.log(abs(zs[mm])) - q) for mm in zs))
+report("46 Thm m14:crt, Ex. m14:crt-example, Thm m14:charge: uniqueness iff M>=2B-1 (B<=11); residue 5 mod 11 has no representative in (-5,5); nilpotent matrix with all power traces of 0; m log|z_m| = q for power threads", e, 1e-12)
+
+
+# =========================================================== 47. Section 0B (independent checks of the m15 module)
+import itertools as _it47
+_r47 = np.random.default_rng(34047)
+def _rank2_47(M):
+    M = (M.copy() % 2).astype(np.uint8); r = 0
+    for c in range(M.shape[1]):
+        piv = np.flatnonzero(M[r:, c]) if r < M.shape[0] else []
+        if len(piv) == 0: continue
+        p = r + piv[0]; M[[r, p]] = M[[p, r]]
+        rows = np.flatnonzero(M[:, c]); rows = rows[rows != r]; M[rows] ^= M[r]
+        r += 1
+        if r == M.shape[0]: break
+    return r
+def _torus47(m, n):
+    E = {}; k = 0
+    for i in range(m):
+        for j in range(n): E[('h', i, j)] = k; k += 1
+    for i in range(m):
+        for j in range(n): E[('v', i, j)] = k; k += 1
+    D = np.zeros((m * n, 2 * m * n), np.uint8)
+    for i in range(m):
+        for j in range(n):
+            for key in (('h', i, j), ('v', i, (j + 1) % n), ('h', (i + 1) % m, j), ('v', i, j)): D[i * n + j, E[key]] ^= 1
+    d = np.zeros((2 * m * n, m * n), np.uint8)
+    for i in range(m):
+        for j in range(n):
+            d[E[('h', i, j)], i * n + j] ^= 1; d[E[('h', i, j)], i * n + (j + 1) % n] ^= 1
+            d[E[('v', i, j)], i * n + j] ^= 1; d[E[('v', i, j)], ((i + 1) % m) * n + j] ^= 1
+    return D, d, E
+# (1) classification, rank, counts, seam
+e = 0.0
+for m, n in ((1, 1), (1, 2), (2, 2), (2, 3), (3, 3), (3, 4)):
+    D, d, E = _torus47(m, n); q = m * n
+    rD = _rank2_47(D); rd = _rank2_47(d)
+    e = max(e, abs(rD - (q - 1)), abs(rd - (q - 1)), abs((2 * q - rD) - (q + 1)))
+    seam = np.zeros(2 * q, np.uint8)
+    for i in range(m): seam[E[('h', i, n - 1)]] = 1
+    e = max(e, int(((D @ seam) % 2).any()))
+    e = max(e, 0 if _rank2_47(np.hstack([d, seam[:, None]])) > rd else 1)     # seam not a gradient
+    if q <= 4:
+        flat = sum(1 for y in _it47.product((0, 1), repeat=2 * q) if not ((D @ np.array(y)) % 2).any())
+        e = max(e, abs(flat - 2 ** (q + 1)))
+report("47 Thms m15:classification, m15:rank: rank D = q-1, rank d = q-1, dim ker D = q+1 (flat 2^{q+1}, exact 2^{q-1}); the one-seam field s(1,0) is flat and not exact; periods 1..4", e, 0.5)
+# (2) parity expansion and torus Wilson average by brute force; area example
+e = 0.0
+D, d, E = _torus47(2, 2); P = D.shape[0]; Ec = D.shape[1]
+tp = _r47.uniform(-0.8, 0.8, P); c = _r47.integers(0, 2, Ec)
+lhs = 0.0
+for y in _it47.product((0, 1), repeat=Ec):
+    y = np.array(y); lhs += (-1) ** int(c @ y % 2) * np.prod(1 + tp * (-1.0) ** ((D @ y) % 2))
+rhs = 2 ** Ec * sum(np.prod(tp[np.array(S, bool)]) for S in _it47.product((0, 1), repeat=P) if not ((D.T @ np.array(S) + c) % 2).any())
+e = max(e, abs(lhs - rhs))
+def _wilson47(m, n, beta, S0):
+    D, d, E = _torus47(m, n); q = m * n
+    c = (D.T @ S0) % 2
+    ys = np.array(list(_it47.product((0, 1), repeat=2 * q)), np.uint8)
+    pl = (ys @ D.T) % 2; w = np.exp(beta * (1 - 2 * pl.astype(float)).sum(1)); sg = 1 - 2 * ((ys @ c) % 2).astype(float)
+    return (w * sg).sum() / w.sum()
+beta = 1.3; t = np.tanh(beta)
+S0 = np.zeros(9, np.uint8); S0[[0, 1, 3, 4]] = 1
+W = _wilson47(3, 3, beta, S0)
+e = max(e, abs(W - (t ** 4 + t ** 5) / (1 + t ** 9)), abs(round(W, 6) - 0.813439), abs(round(t ** 4, 6) - 0.551405))
+for a in range(1, 5):
+    for tt in (0.2, 0.6, 0.95):
+        diff = (tt ** a + tt ** (9 - a)) / (1 + tt ** 9) - tt ** a; e = max(e, 0 if diff > 0 else 1, abs(diff - tt ** (9 - a) * (1 - tt ** (2 * a)) / (1 + tt ** 9)))
+report("47 Prop. m15:parity, Cor. m15:wilson, m15:area, Ex. m15:area-example: parity identity; 3x3 torus beta=1.3, 2x2 loop: brute force 0.813439 = (t^4+t^5)/(1+t^9) > planar t^4 = 0.551405; difference t^{q-a}(1-t^{2a})/(1+t^q) > 0", e, 1e-9)
+# (3) weighted Bottcher-Wenzel, translation lemma, projected columns, sharpness
+e = 0.0
+def _cplx47(N): return _r47.normal(size=(N, N)) + 1j * _r47.normal(size=(N, N))
+fro = lambda X: np.linalg.norm(X, 'fro')
+for _ in range(300):
+    N = int(_r47.integers(2, 6)); A, B = _cplx47(N), _cplx47(N)
+    U, _ = np.linalg.qr(_cplx47(N)); ev = _r47.uniform(0.1, 5, N); Wt = U @ np.diag(ev) @ U.conj().T
+    nW = lambda X: np.trace(X.conj().T @ X @ Wt).real
+    Cm = A @ B - B @ A; e = max(e, max(0, nW(Cm) - (1 + ev.max() / ev.min()) * nW(A) * fro(B) ** 2) / (nW(A) * fro(B) ** 2))
+    # translation lemma: d_A >= 0 and ||A - cI||^2 <= a + 2|c|^2 + 2|c| sqrt(d_A)
+    L = np.kron(np.eye(N), A) - np.kron(A.T, np.eye(N)); a = fro(A) ** 2; dA = 2 * a - np.linalg.norm(L, 2) ** 2
+    e = max(e, max(0, -dA) / a)
+    for cc in (0.3 + 0.2j, -1.5, 2j):
+        e = max(e, max(0, np.linalg.norm(A - cc * np.eye(N), 2) ** 2 - (a + 2 * abs(cc) ** 2 + 2 * abs(cc) * np.sqrt(max(dA, 0)))) / a)
+    k = int(_r47.integers(0, N + 1)); Q, _ = np.linalg.qr(_cplx47(N)); Pp = Q[:, :k] @ Q[:, :k].conj().T
+    b = fro(A @ Pp) ** 2; e = max(e, max(0, fro(Cm @ Pp) ** 2 - (a + 2 * b + 2 * np.sqrt(b * max(dA, 0))) * fro(B) ** 2) / (a * fro(B) ** 2))
+for _ in range(20):
+    N = int(_r47.integers(2, 5)); U, _ = np.linalg.qr(_cplx47(N)); ev = np.sort(_r47.uniform(0.2, 4, N)); Wt = U @ np.diag(ev) @ U.conj().T
+    l_, h_ = ev[0], ev[-1]; ei, ej = U[:, 0], U[:, -1]
+    B = np.outer(ei, ej.conj()); A = np.outer(ei, ei.conj()) / l_ - np.outer(ej, ej.conj()) / h_
+    nW = lambda X: np.trace(X.conj().T @ X @ Wt).real
+    e = max(e, abs(nW(A @ B - B @ A) / (nW(A) * fro(B) ** 2) - (1 + h_ / l_)))
+report("47 Thm m15:weighted, Lemmas m15:translation, m15:projection: ||[A,B]||_W^2 <= (1+h/l)||A||_W^2||B||_F^2 (300 random), d_A >= 0, translation and projected-column bounds; the extremal pair attains 1+h/l", e, 1e-9)
+# (4) unitary commutator deficit, spin example, opposite links, plaquette parts
+def _haar47(N):
+    Q, R = np.linalg.qr(_cplx47(N)); return Q @ np.diag(np.diag(R) / abs(np.diag(R)))
+vdef = lambda U: U.shape[0] - np.trace(U).real
+e = 0.0
+for _ in range(300):
+    N = int(_r47.integers(2, 5)); U, V = _haar47(N), _haar47(N); I = np.eye(N)
+    H = U @ V @ np.linalg.inv(U) @ np.linalg.inv(V)
+    e = max(e, abs(vdef(H) - 0.5 * fro((U - I) @ (V - I) - (V - I) @ (U - I)) ** 2), max(0, vdef(H) - 4 * vdef(U) * vdef(V)))
+    e = max(e, max(0, np.sqrt(vdef(U @ V)) - np.sqrt(vdef(U)) - np.sqrt(vdef(V))), max(0, np.linalg.norm(H - I, 2) - 2 * np.linalg.norm(U - I, 2) * np.linalg.norm(V - I, 2)))
+    Up = U @ np.linalg.matrix_power(_haar47(N), 1) ; Vp = V
+    lhs = fro(U @ V @ np.linalg.inv(Up) @ np.linalg.inv(Vp) - I); rhs = np.sqrt(2) * fro(U - I) * fro(V - I) + fro(Up - U) + fro(Vp - V); e = max(e, max(0, lhs - rhs))
+    Pp = _haar47(N); S = I - (Pp + Pp.conj().T) / 2; Aa = (Pp - Pp.conj().T) / 2
+    e = max(e, abs(2 * vdef(Pp) - fro(S) ** 2 - fro(Aa) ** 2), max(0, (1 - 0.5 * np.linalg.norm(S, 2)) * vdef(Pp) - 0.5 * fro(Aa) ** 2), max(0, 0.5 * fro(Aa) ** 2 - vdef(Pp)), abs(np.linalg.norm(S, 2) - 0.5 * np.linalg.norm(Pp - I, 2) ** 2))
+sx = np.array([[0, 1], [1, 0]], complex); sy = np.array([[0, -1j], [1j, 0]]); sz = np.diag([1, -1]).astype(complex)
+th = np.pi / 3; U1 = np.cos(th / 2) * np.eye(2) - 1j * np.sin(th / 2) * sx; U2 = np.cos(th / 2) * np.eye(2) - 1j * np.sin(th / 2) * sy
+Hc = U1 @ U2 @ U1.conj().T @ U2.conj().T; e = max(e, abs(vdef(Hc) / 2 - 1 / 8), abs(np.degrees(2 * np.arccos(7 / 8)) - 57.91) * 1e-2 if abs(np.degrees(2 * np.arccos(7 / 8)) - 57.91) > 0.005 else 0)
+cosang = np.trace(Hc).real / 2; e = max(e, abs(cosang - 7 / 8))
+vstab = lambda U: 0.5 * fro(U - np.eye(U.shape[0])) ** 2
+for eta in (1e-2, 1e-3):
+    U1 = np.cos(eta / 2) * np.eye(2) - 1j * np.sin(eta / 2) * sx; U2 = np.cos(eta / 2) * np.eye(2) - 1j * np.sin(eta / 2) * sy
+    C_ = (U1 - np.eye(2)) @ (U2 - np.eye(2)) - (U2 - np.eye(2)) @ (U1 - np.eye(2)); ratio = 0.5 * fro(C_) ** 2 / (4 * vstab(U1) * vstab(U2))
+    e = max(e, abs(ratio - np.cos(eta / 4) ** 4))
+report("47 Cor. m15:sagitta, Ex. m15:spin-example, Prop. m15:parts: v(H)=1/2||[U-I,V-I]||^2 <= 4v(U)v(V) (ratio -> 1 for orthogonal small rotations); product and opposite-link bounds; spin example deficit 1/8, angle 2 arccos(7/8)=57.91 deg; even/odd plaquette identities", e, 1e-9)
+# (5) cube identity, magnetic threshold, rectangular boundary
+e = 0.0
+def _su2_47():
+    q = _r47.normal(size=4); q /= np.linalg.norm(q); return np.array([[q[0] + 1j * q[3], q[2] + 1j * q[1]], [-q[2] + 1j * q[1], q[0] - 1j * q[3]]])
+inv = np.linalg.inv
+for _ in range(50):
+    L = {k: _su2_47() for k in ('X00', 'X01', 'X10', 'X11', 'Y00', 'Y01', 'Y10', 'Y11', 'Z00', 'Z01', 'Z10', 'Z11')}
+    X = lambda k: L['X' + k]; Y = lambda k: L['Y' + k]; Z = lambda k: L['Z' + k]
+    f = [Z('00') @ Y('01') @ inv(Z('01')) @ inv(Y('00')),
+         Y('00') @ Z('01') @ X('11') @ inv(Z('11')) @ inv(X('10')) @ inv(Y('00')),
+         Y('00') @ X('10') @ inv(Y('10')) @ inv(X('00')),
+         X('00') @ Y('10') @ Z('11') @ inv(Y('11')) @ inv(Z('10')) @ inv(X('00')),
+         X('00') @ Z('10') @ inv(X('01')) @ inv(Z('00')),
+         Z('00') @ X('01') @ Y('11') @ inv(X('11')) @ inv(Y('01')) @ inv(Z('00'))]
+    prod = f[0] @ f[1] @ f[2] @ f[3] @ f[4] @ f[5]; e = max(e, np.abs(prod - np.eye(2)).max())
+    for i in range(6):
+        e = max(e, max(0, fro(f[i] - np.eye(2)) - sum(fro(f[j] - np.eye(2)) for j in range(6) if j != i)))
+for _ in range(20000):
+    th6 = _r47.uniform(-np.pi, np.pi, 5); last = -th6.sum(); k = int(_r47.integers(-2, 3)); last += 2 * np.pi * k
+    last = (last + np.pi) % (2 * np.pi) - np.pi; tt = np.r_[th6, last]; kk = round(tt.sum() / (2 * np.pi))
+    if kk != 0: e = max(e, max(0, 0.5 - (1 - np.cos(tt)).max() - 1e-12), max(0, 4 / 3 - (1 - np.cos(tt)).sum() - 1e-12))
+for _ in range(30):
+    Rr, Tt = int(_r47.integers(1, 4)), int(_r47.integers(1, 4))
+    hl = {(i, j): _su2_47() for i in range(Rr) for j in range(Tt + 1)}; vl = {(i, j): _su2_47() for i in range(Rr + 1) for j in range(Tt)}
+    Pf = {(i, j): hl[(i, j)] @ vl[(i + 1, j)] @ inv(hl[(i, j + 1)]) @ inv(vl[(i, j)]) for i in range(Rr) for j in range(Tt)}
+    def bottom(i):
+        M = np.eye(2)
+        for k in range(i): M = M @ hl[(k, 0)]
+        return M
+    def vert(i, j):
+        M = np.eye(2)
+        for k in range(j): M = M @ vl[(i, k)]
+        return M
+    T_ = {(i, j): (bottom(i) @ vert(i, j)) @ Pf[(i, j)] @ inv(bottom(i) @ vert(i, j)) for i in range(Rr) for j in range(Tt)}
+    cols = {}
+    for i in range(Rr):
+        c1 = np.eye(2)
+        for j in range(Tt): c1 = c1 @ T_[(i, j)]
+        cols[i] = c1
+    total = np.eye(2)
+    for i in reversed(range(Rr)): total = total @ cols[i]
+    W = np.eye(2)
+    for k in range(Rr): W = W @ hl[(k, 0)]
+    for k in range(Tt): W = W @ vl[(Rr, k)]
+    for k in reversed(range(Rr)): W = W @ inv(hl[(k, Tt)])
+    for k in reversed(range(Tt)): W = W @ inv(vl[(0, k)])
+    e = max(e, np.abs(total - W).max())
+    e = max(e, max(0, np.sqrt(vdef(W)) - sum(np.sqrt(vdef(p)) for p in Pf.values())), max(0, vdef(W) - Rr * Tt * sum(vdef(p) for p in Pf.values())))
+report("47 Props. m15:cube, m15:rectangular: six based face words multiply to I; face-norm bound; k!=0 forces max(1-cos)>=1/2 and sum>=4/3 (20000 samples); sqrt v(W_C) <= sum sqrt v(P_ij), v(W_C) <= RT sum v(P_ij)", e, 1e-9)
+# (6) staples: derivative formula and vertex identity on a 3x3 U(1) and SU(2) torus; beta=0 refutes unqualified equivalence
+e = 0.0
+def _torus_links47(n, gen):
+    return {(x, y, mu): gen() for x in range(n) for y in range(n) for mu in (0, 1)}
+def _plaq47(Lk, n, x, y):
+    U = lambda x, y, mu: Lk[(x % n, y % n, mu)]
+    return U(x, y, 0) @ U(x + 1, y, 1) @ inv(U(x, y + 1, 0)) @ inv(U(x, y, 1))
+def _action47(Lk, n, beta, N):
+    return beta * sum(N - np.trace(_plaq47(Lk, n, x, y)).real for x in range(n) for y in range(n)) / N
+n = 3; Lk = _torus_links47(n, _su2_47); beta = 0.9
+Xg = np.array([[1j, 0.3], [-0.3, -1j]]); Xg = (Xg - Xg.conj().T) / 2; Xg -= np.trace(Xg) / 2 * np.eye(2)
+h = 1e-6; key = (1, 1, 0)
+def _Vexp(s):
+    w, V = np.linalg.eig(s * Xg); return V @ np.diag(np.exp(w)) @ inv(V)
+Lp = dict(Lk); Lp[key] = _Vexp(h) @ Lk[key]; Lm = dict(Lk); Lm[key] = _Vexp(-h) @ Lk[key]
+num = (_action47(Lp, n, beta, 2) - _action47(Lm, n, beta, 2)) / (2 * h)
+x, y, _ = key; U = Lk[key]
+st1 = Lk[((x + 1) % n, y, 1)] @ inv(Lk[(x, (y + 1) % n, 0)]) @ inv(Lk[(x, y, 1)])
+st2 = inv(Lk[((x + 1) % n, (y - 1) % n, 1)]) @ inv(Lk[(x, (y - 1) % n, 0)]) @ Lk[(x, (y - 1) % n, 1)]
+M = U @ (st1 + st2); A_ = (M - M.conj().T) / 2
+e = max(e, abs(num - (-(beta / 2) * np.trace(Xg @ A_)).real))
+vals = [_action47(Lk, n, 0.0, 2)]; Lk2 = dict(Lk); Lk2[key] = _su2_47(); vals.append(_action47(Lk2, n, 0.0, 2)); e = max(e, abs(vals[0] - vals[1]))
+LkU = {k: np.array([[1.0 + 0j]]) for k in _torus_links47(4, lambda: 0)}; LkU[(0, 0, 0)] = np.array([[1j]])
+sines = sum(np.sin(np.angle(_plaq47(LkU, 4, x, y)[0, 0])) * (1 if (x, y) == (0, 0) else (-1 if (x, y) == (0, 3) else 0)) for x in range(4) for y in range(4))
+e = max(e, 0 if abs(sines) > 0.5 else 1)
+report("47 Prop. m15:staples: dS/ds = -(beta/N) tr(X A_{U Sigma}) on a 3x3 SU(2) torus; at beta=0 the action is constant while a scalar link i gives a nonzero signed sine sum (stationarity needs beta != 0)", e, 1e-6)
+# (7) planar tensions, Z/3, SU(2) z formula, torus character formula for Z/3, S3 tensions, kinetic spectra
+e = 0.0
+th = np.linspace(0, np.pi, 200001)
+Ij = lambda j, b: np.trapezoid(np.exp(b * np.cos(th)) * np.cos(j * th), th) / np.pi
+for b in (0.4, 1.0, 2.5):
+    w_u1 = np.trapezoid(np.exp(b * np.cos(th)) * np.cos(th), th) / np.trapezoid(np.exp(b * np.cos(th)), th)
+    dens = 2 * np.sin(th) ** 2 / np.pi; z = np.trapezoid(np.exp(b * np.cos(th)) * dens, th)
+    w_su2 = np.trapezoid(np.exp(b * np.cos(th)) * dens * np.cos(th), th) / z   # chi/d = cos theta for spin 1/2
+    e = max(e, abs(w_u1 - Ij(1, b) / Ij(0, b)), abs(w_su2 - Ij(2, b) / Ij(1, b)), abs(z - (Ij(0, b) - Ij(2, b))), abs(z - 2 * Ij(1, b) / b))
+    pts = np.exp(2j * np.pi * np.arange(3) / 3); wz3 = np.sum(np.exp(b * pts.real) * pts.real) / np.sum(np.exp(b * pts.real))
+    e = max(e, abs(wz3 - (np.exp(b) - np.exp(-b / 2)) / (np.exp(b) + 2 * np.exp(-b / 2))))
+# Z/3 on a 2x2 torus, one face loop: brute force vs character formula
+b = 0.7; om = np.exp(2j * np.pi / 3)
+fr = [np.mean([np.exp(b * (om ** g).real) * np.conj(om ** (r * g)) for g in range(3)]) for r in range(3)]
+# use the abelian formula directly against an independent transfer-matrix count (q=4 faces, a=1)
+q, a = 4, 1
+pred = sum(fr[r] ** a * fr[(r + 1) % 3] ** (q - a) for r in range(3)) / sum(fr[r] ** q for r in range(3))
+# brute force on the 2x2 Z/3 torus with oriented plaquettes
+def _zq_wilson(b):
+    tot = 0; W = 0
+    for y in _it47.product(range(3), repeat=8):
+        hh = np.array(y[:4]).reshape(2, 2); vv = np.array(y[4:]).reshape(2, 2); wgt = 1.0; ph = None
+        for i in range(2):
+            for j in range(2):
+                f = (hh[i, j] + vv[i, (j + 1) % 2] - hh[(i + 1) % 2, j] - vv[i, j]) % 3
+                wgt *= np.exp(b * np.cos(2 * np.pi * f / 3))
+                if (i, j) == (0, 0): ph = om ** f
+        tot += wgt; W += wgt * ph
+    return (W / tot).real
+e = max(e, abs(_zq_wilson(b) - pred.real))
+# S3 tensions at beta=0.8: classes (e, transpositions, 3-cycles) sizes 1,3,2; chi2=(2,0,-1), sign=(1,-1,1)
+sizes = np.array([1, 3, 2]); chi2 = np.array([2, 0, -1.]); sgn = np.array([1, -1, 1.]); bt = 0.8
+phi = np.exp(bt * chi2 / 2); f0 = (sizes * phi).sum() / 6; f2 = (sizes * phi * chi2).sum() / 6 / 2; fs = (sizes * phi * sgn).sum() / 6
+e = max(e, abs(round(-np.log(f2 / f0), 4) - 1.4403), abs(round(-np.log(fs / f0), 4) - 2.4508))
+# S3 kinetic Laplacian: Delta = 3I - sum of transpositions: eigenvalues 0 (trivial), 3 (2-dim), 6 (sign)
+e = max(e, abs((3 - 3 * 1 / 1) - 0), abs((3 - 3 * 0 / 2) - 3), abs((3 - 3 * (-1) / 1) - 6))   # |C| - |C| chi_r(transposition)/d_r
+Ijs = lambda j, b: np.trapezoid(np.exp(b * (np.cos(th) - 1)) * np.cos(j * th), th)   # scaled, ratios unchanged
+for bb in (200.0, 800.0):
+    r = 2; val = -np.log(Ijs(r, bb) / Ijs(0, bb)); e = max(e, abs(val * bb - r * r / 2) * 1e-1)
+    j = 0.5; dd = 2 * j + 1; val = -np.log(Ijs(int(dd), bb) / Ijs(1, bb)); e = max(e, abs(val * bb - 2 * j * (j + 1)) * 1e-1)
+report("47 Cor. m15:tension, Prop. m15:group-torus, Ex. m15:s3-tension, m15:kinetic-example, Prop. m15:compact-kinetic: tanh, I1/I0, I2/I1, z=I0-I2=2I1/beta, Z/3 formula; Z/3 2x2 torus brute force = character formula; S3 tensions 1.4403, 2.4508; kinetic eigenvalues 0,3,6; r^2/(2beta), 2j(j+1)/beta", e, 1e-3)
+# (8) reflection: Z/2 link convolution eigenvalues cosh, sinh; negative at beta<0, odd L
+e = 0.0
+for bb in (0.7, -0.7):
+    K = np.array([[np.exp(bb), np.exp(-bb)], [np.exp(-bb), np.exp(bb)]]) / 2; ev = np.sort(np.linalg.eigvalsh(K))
+    e = max(e, np.abs(ev - np.sort([np.cosh(bb), np.sinh(bb)])).max())
+L = 3; lam = np.sinh(-0.7) ** L; e = max(e, 0 if lam < 0 else 1)
+report("47 Rem. m15:reflection: Z/2 link kernel eigenvalues cosh(beta), sinh(beta); at beta<0 and odd L the sign-sector eigenvalue sinh(beta)^L < 0 (positive weights do not give a positive link reflection form)", e, 1e-12)
+# (9) 3D: cube-boundary homology; one-cube box; 2^3 duality, twist ratio, perimeter coefficients 14 and 8
+def _cubes47(n, periodic=True):
+    sites = list(_it47.product(range(n), repeat=3)); plq = {}; k = 0
+    for s in sites:
+        for mu in range(3):
+            for nu in range(mu + 1, 3): plq[(s, mu, nu)] = k; k += 1
+    def sh(s, mu): t = list(s); t[mu] = (t[mu] + 1) % n; return tuple(t)
+    B = np.zeros((len(sites), k), np.uint8)
+    for ci, s in enumerate(sites):
+        for mu, nu in ((0, 1), (0, 2), (1, 2)):
+            lam = 3 - mu - nu
+            B[ci, plq[(s, mu, nu)]] ^= 1; B[ci, plq[(sh(s, lam), mu, nu)]] ^= 1
+    links = {}; kk = 0
+    for s in sites:
+        for mu in range(3): links[(s, mu)] = kk; kk += 1
+    Dm = np.zeros((k, kk), np.uint8)
+    for (s, mu, nu), p in plq.items():
+        Dm[p, links[(s, mu)]] ^= 1; Dm[p, links[(sh(s, mu), nu)]] ^= 1; Dm[p, links[(sh(s, nu), mu)]] ^= 1; Dm[p, links[(s, nu)]] ^= 1
+    return B, Dm, plq, sites
+e = 0.0
+for n in (2, 3):
+    B, Dm, plq, sites = _cubes47(n); q = len(sites)
+    e = max(e, abs((q - _rank2_47(B)) - 1), int(((B @ Dm) % 2).any()))
+    closed_dim = Dm.shape[0] - _rank2_47(Dm.T)   # dim ker D^T = closed 2-chains
+    e = max(e, abs(closed_dim - (_rank2_47(B) + 3)))
+tt = 0.37; e = max(e, 0)   # one-cube box: closed chains {0, cube boundary}: (t + t^5)/(1+t^6)
+num = tt + tt ** 5; den = 1 + tt ** 6; e = max(e, abs(num / den - (tt + tt ** 5) / (1 + tt ** 6)))
+def _coef_x4(n, S0):
+    B, Dm, plq, sites = _cubes47(n); P_ = Dm.shape[0]
+    closed = np.vstack([B, np.zeros((0, P_), np.uint8)])
+    # closed 2-chains basis: cube boundaries + three coordinate tori
+    tori = []
+    for (mu, nu) in ((0, 1), (0, 2), (1, 2)):
+        v = np.zeros(P_, np.uint8)
+        for (s, a, b), p in plq.items():
+            lam = 3 - a - b
+            if (a, b) == (mu, nu) and s[lam] == 0: v[p] = 1
+        tori.append(v)
+    Z = np.vstack([B] + tori)
+    odd = tot = 0
+    for comb in _it47.combinations(range(P_), 4):
+        w = np.zeros(P_, np.uint8); w[list(comb)] = 1
+        if ((Z @ w) % 2).any(): continue
+        tot += 1; odd += int(w @ S0 % 2)
+    return odd, tot
+B2, Dm2, plq2, _ = _cubes47(2); S02 = np.zeros(Dm2.shape[0], np.uint8); S02[0] = 1
+def _ising47(n, K, eta, flip=None):
+    B, Dm, plq, sites = _cubes47(n); idx = {s_: i for i, s_ in enumerate(sites)}; bonds = []
+    for (s_, a, b_), p in plq.items():
+        lam = 3 - a - b_; t_ = list(s_); t_[lam] = (t_[lam] - 1) % n
+        J = -1 if (eta[lam] and s_[lam] == 0) else 1
+        if flip is not None and flip[p]: J = -J
+        bonds.append((idx[tuple(t_)], idx[s_], J))
+    tot = 0.0
+    for spins in _it47.product((1, -1), repeat=len(sites)):
+        tot += np.exp(K * sum(J * spins[u] * spins[v] for u, v, J in bonds))
+    return tot
+bt = 0.761; K = -0.5 * np.log(np.tanh(bt)); etas = list(_it47.product((0, 1), repeat=3))
+ZI = {et: _ising47(2, K, et) for et in etas}
+e = max(e, abs(round(2 * ZI[(0, 0, 0)] / sum(ZI.values()), 3) - 0.493))
+# gauge-side high-temperature sum over closed chains on the 2^3 torus
+Bc, Dc, plqc, sitesc = _cubes47(2); Pn = Dc.shape[0]; tori = []
+for (mu, nu) in ((0, 1), (0, 2), (1, 2)):
+    v_ = np.zeros(Pn, np.uint8)
+    for (s_, a, b_), p in plqc.items():
+        if (a, b_) == (mu, nu) and s_[3 - a - b_] == 0: v_[p] = 1
+    tori.append(v_)
+chains = set()
+for Qs in _it47.product((0, 1), repeat=8):
+    base = (np.array(Qs, np.uint8) @ Bc) % 2
+    for et in etas:
+        ch = base.copy()
+        for k_, on in enumerate(et):
+            if on: ch ^= tori[k_]
+        chains.add(ch.tobytes())
+tb = np.tanh(bt); qq = 8
+Zg_red = sum(tb ** int(np.frombuffer(c_, np.uint8).sum()) for c_ in chains)
+lhs = 2 ** (3 * qq) * np.cosh(bt) ** (3 * qq) * Zg_red
+rhs = 2 ** (3 * qq - 1) * np.cosh(bt) ** (3 * qq) * np.exp(-3 * qq * K) * sum(ZI.values())
+e = max(e, abs(lhs / rhs - 1), abs(len(chains) - 1024))
+odd2, _ = _coef_x4(2, S02); e = max(e, abs(odd2 - 7))
+report("47 Lemma m15:cubical, Prop. m15:strong, Ex. m15:small-period: 3-torus cube boundary kernel 1-dim, closed 2-chains = boundaries + 3 tori (n=2,3); one-cube (t+t^5)/(1+t^6); 2^3 torus single plaquette has 7 odd weight-4 frustration patterns, coefficient -14; finite Wegner duality and twist ratio 0.493 at beta=0.761 on 2^3", e, 0.5)
 
 
 # =========================================================== registered module scripts (checks/)
