@@ -75,14 +75,15 @@ translations, the round-trip law at the unit and at most one zero partner there 
 rank-one symmetric spaces.  For a nondegenerate indefinite germ, a noncommutative three-dimensional heap is a central quotient of
 $\widetilde{\mathrm{SL}}(2,\R)$, and a globally analytic comparison is exactly a Chebyshev comparison $T_m(\tfrac12\operatorname{tr})$.
 
-On this basis we develop a calculus of minimal arcs in which differences are replaced by transports.  The recurrence
+We then develop a calculus of minimal arcs, with transports in place of differences.  The recurrence
 $x_{n+1}=\hp{x_n}{x_{n-1}}{x_n}$ generates sampled geodesics in Chebyshev form; sagitta sums converge to half the quadratic variation on paths with quadratic variation (F\"ollmer);
 transport along a minimal arc is conjugation by the square root of the displacement, with triangle holonomy of real part $\cos(E/2)$.
 With a clock phase at each step the attainable comparisons are the quantum-signal-processing polynomials of $2\kappa-1$.  A two-chart
-rational atlas makes products, comparisons, sagittas and adjoint transports bounded and exactly rational.  For products of rotations,
-convergence for every choice of axes is equivalent to a finite angular sum, and icosahedral holonomy words of polynomial length recognise
-exactly nonuniform $\mathrm{NC}^1$.  Further results concern sparse Gram completions, lattice gauge on periodic grids, quandles, rigidity
-counts, the Cayley--Dickson ladder, walks and compilation, numeration, model sets and arithmetic readouts.
+rational atlas makes all these operations bounded and exactly rational.  Products of rotations
+converge for all choices of axes exactly when an angular sum is finite, and icosahedral holonomy words of polynomial length recognise
+exactly nonuniform $\mathrm{NC}^1$.  We give written proofs of two published conjectures (bridge-graph tensor ranks; a weighted B\"ottcher--Wenzel inequality),
+first settled formally in a public Lean library.  Further topics: Gram completions, lattice
+gauge, quandles, rigidity counts, the Cayley--Dickson ladder, numeration, model sets and arithmetic readouts.
 \end{abstract}
 
 \maketitle
@@ -171,8 +172,10 @@ $k$-colourable exactly when some orientation has no directed path on more than $
 \textbf{Gauge on grids} (Theorems~\ref{m15:classification}, \ref{m15:rank}, \ref{m15:weighted}).  On an $m\times n$ periodic grid with
 $\mathbb F_2$ labels, a flat field is exact exactly when both seam periods vanish; the plaquettes satisfy one relation; for the Wilson
 weight the loop average is a two-term sum over the two fillings.  For $A,B\in M_N(\C)$ and a positive definite weight $W$ with extreme
-eigenvalues $\ell\le h$, $\|[A,B]\|_W^2\le(1+h/\ell)\|A\|_W^2\|B\|_F^2$, with an attained constant.  This is inequality (15) of
-Conjecture~1 of Mayumi, Kimura, Ohno and Chru\'sci\'nski \cite{MKOC24}, proved there for $N=2$ and special cases; the proof here covers every $N$.
+eigenvalues $\ell\le h$, $\|[A,B]\|_W^2\le(1+h/\ell)\|A\|_W^2\|B\|_F^2$.  For every positive definite $W$ the coefficient is sharp
+and attained by nonzero matrices when $N\ge2$. When $N=1$ the best coefficient is zero. This proves case (ii), equation (15) of
+Conjecture~1 of Mayumi, Kimura, Ohno and Chru\'sci\'nski \cite{MKOC24} in every dimension; the conjecture was first settled by a
+machine-checked proof in the library \cite{Tru}, and Section~\ref{sec:m15} gives, to our knowledge, the first written proof.
 
 \subsection{Results of Part~\ref{part:axiom}}
 \noindent\textbf{Theorem A} (Theorem~\ref{thm:noreg}; Theorem~\ref{thm:main}).  Let $M$ be a connected manifold with a
@@ -283,7 +286,8 @@ quantum-signal-processing theorem in heap language.
 \textbf{Walks and bridges} (Theorems~\ref{m11:reflections}, \ref{m11:defect}, \ref{m11:cone-rank}).  A product of two reflections rotates
 by $2\arccos s$ on one plane per singular value $s\in(0,1)$ of the cross Gram matrix; the central-defect path has the secular equation
 $U_n(t/2)=\pm bU_{n-1}(t/2)$; for $0<a\le b$, $0<c\le d$, $a^2+b^2\le3ab$ and $c^2+d^2\le3cd$ the bridge Gram rank of three
-slices attains $\min(ad,bc)$, which proves Conjecture~3.15 of Gesmundo, Lysikov and Steffan \cite{m11:GLS}.
+slices attains $\min(ad,bc)$, which proves Conjecture~3.15 of Gesmundo, Lysikov and Steffan \cite{m11:GLS}; this conjecture was
+first settled by a machine-checked proof in the library \cite{Tru}, and the proof here is, to our knowledge, the first written one.
 \textbf{Arc bodies and the tropical limit} (Theorem~\ref{m5:tropical}).  With finite off-diagonal costs bounded below by $\delta>0$, the
 logarithm of an exponentially scaled Schur complement tends to the shortest-path value whenever the signed coefficient of the shortest
 paths does not vanish.
@@ -339,8 +343,11 @@ calculus; the span-rank criterion; the minimal-arc calculus itself, with its exa
 signed tie coefficient of the tropical limit; a spherical proof, with explicit recovery, of the counts $3N-6$ and $3N-5$, which also follow from coning and Hendrickson's conditions
 \cite{Whiteley83,m8:coning,m8:hendrickson}; the signed two-denominator atlas with its error
 bound; the quaternion-martingale form of the three-series criterion; a self-contained proof of the rank-three completion on
-$K_4$-minor-free graphs (cf.\ \cite{m12:LV,m12:ENV}); a proof of the ordered-cone bridge conjecture of Gesmundo, Lysikov and Steffan \cite[Conjecture~3.15]{m11:GLS}; a proof in every dimension of the right-weighted
-commutator inequality conjectured by Mayumi, Kimura, Ohno and Chru\'sci\'nski \cite{MKOC24}; and the comparison readings collected in each section.  Statements whose novelty we could not settle are marked
+$K_4$-minor-free graphs (cf.\ \cite{m12:LV,m12:ENV}); and the comparison readings collected in each section.  The paper also contains written proofs of two published conjectures that were
+first settled by machine-checked proofs in the library \cite{Tru}: the ordered-cone bridge conjecture of Gesmundo, Lysikov and Steffan
+\cite[Conjecture~3.15]{m11:GLS} (Theorem~\ref{m11:cone-rank}; library, 9~October 2026) and equation (15) of Conjecture~1 of Mayumi, Kimura,
+Ohno and Chru\'sci\'nski \cite{MKOC24} (Theorem~\ref{m15:weighted}; library, 8~October 2026).  These written proofs are, to our knowledge,
+the first; the results themselves first appeared in the library.  Statements whose novelty we could not settle are marked
 in Section~\ref{sec:known} as not found in the searched scope.
 
 Section~\ref{sec:known} lists which statements are classical.  Section~\ref{sec:lean} records the
@@ -2417,10 +2424,24 @@ The unweighted constant is the B\"ottcher--Wenzel constant
 right-weighted inequality of Theorem~\ref{m15:weighted} with the constant
 \(\sqrt{(\lambda_m+\lambda_M)/\lambda_m}\) in unsquared form, that is,
 \(1+h/\ell\) after squaring, for all \(n\), all complex matrices and positive
-definite weights, and proved it for \(n=2\), for normal \(A\) commuting with the
-weight, for \(B\) commuting with the weight and for rank-one \(B=|\lambda_1\rangle\langle\lambda_n|\)
-\cite[Conjecture~1, inequality (15)]{MKOC24}. Theorem~\ref{m15:weighted} proves this
-inequality in every dimension. The proof controls the projected columns using
+definite weights \cite[Conjecture~1, inequality (15)]{MKOC24}, as stated there, and proved it for \(n=2\) and in
+special cases. Fang and Cheng treat the weighted conjectures for pairs of rank-one matrices \cite{FC25}, and Pang
+determines the sharp constant of a doubly weighted commutator inequality for rank-one matrices \cite{Pang26}, a different
+statement. In a bounded search of the literature citing \cite{MKOC24} (Semantic Scholar citation records, read on
+20~November 2026) we found no other proof of inequality (15) in general dimension.
+Theorem~\ref{m15:weighted} proves this inequality in every dimension.
+
+\noindent{\sloppy\emph{Priority and the formal proof.} Inequality (15) was first settled by a machine-checked proof in the Lean
+library \cite{Tru}: the declaration \texttt{D5.\allowbreak S3.\allowbreak Quantum.\allowbreak Matrix.\allowbreak WeightedBotcherWenzel.\allowbreak result}
+in the file \texttt{D5/\allowbreak S3/\allowbreak Quantum/\allowbreak Matrix/\allowbreak WeightedBotcherWenzel.lean} states the squared
+inequality of Theorem~\ref{m15:weighted} for all \(N\ge1\), all complex matrices and all positive definite weights, with
+\(\ell,h\) given as the least and greatest eigenvalues; the sharpness clause is not part of it. It entered the library's branch \texttt{dev} on 8~October 2026
+(UTC) through pull request 14172, with the problem record
+\texttt{Problems/\allowbreak mayumi-\allowbreak kimura-\allowbreak ohno-\allowbreak chruscinski-\allowbreak 2024-\allowbreak weighted-\allowbreak bottcher-\allowbreak wenzel-\allowbreak ii.md}
+and the preregistration issue 13715 (Section~\ref{sec:lean} explains the status). The proof below is, to our knowledge, the
+first written proof; it follows the route of the formal proof (translation lemma, projection lemma, two-level weights and
+convex decomposition).\par}
+ The proof controls the projected columns using
 the gap in the unweighted bound. The variance bound and the rank-one maximizer in the
 first part of Lemma~\ref{m15:translation} follow Audenaert's variance bounds \cite{m15:aud}.
 
@@ -2555,8 +2576,9 @@ with eigenvalue at least \(\lambda_j\).
 Then \(W=\ell I+\sum_{j=1}^k(\lambda_j-\lambda_{j-1})P_j\).
 With \(s=h/\ell-1\), this is \(\ell\) times a convex combination
 of \(I+sP_j\) with coefficients \((\lambda_j-\lambda_{j-1})/(h-\ell)\).
-Both sides are linear in the weight, so the two-level bound proves
-\eqref{m15:bound}. If \(h=\ell\), use \(W=\ell I\) and \(s=0\).
+With $A,B$ and $2+s=1+h/\ell$ fixed, the defect $(2+s)\|A\|_W^2\|B\|_F^2-\|[A,B]\|_W^2$ is linear in $W$.
+The two-level estimate therefore gives a nonnegative defect for the convex combination of the weights $I+sP_j$ and for
+its positive multiple $W$, which proves \eqref{m15:bound}. If \(h=\ell\), use \(W=\ell I\) and \(s=0\).
 The identity for \(W=I\) follows from the definition.
 
 For sharpness choose orthonormal eigenvectors \(e_i,e_j\) for
@@ -10084,12 +10106,11 @@ $F=\sum_{r=0}^2 M_r\otimes N_r$ with $M_r\in\mathbb C^{a\times b}$
 and $N_r\in\mathbb C^{d\times c}$. Its column comparisons form
 $G=F^*F$ on $\mathbb C^b\otimes\mathbb C^c$. Write
 $Q_{\max}$ for the maximum rank over the factors and
-$Q_{\min}=\min(3ac,ad,bc)$ for the three-cut capacity, the convention
-of \cite{m11:GLS} and of the library.
-The full graph min-cut is $\min(3ac,ad,bc,3bd)$.
+$Q_{\min}=\min(3ac,ad,bc)$ for the three-cut capacity.
+The full graph min-cut is $\min(3ac,ad,bc,3bd)$. For $a\le b$ and $c\le d$, the fourth term is redundant and
+$Q_{\min}$ is the graph min-cut of Gesmundo, Lysikov and Steffan \cite[Proposition~2.4]{m11:GLS}.
 Placing both internal vertices on one side gives an outer cut,
 and the two placements on opposite sides give $3ac$ and $3bd$.
-On $a\le b,c\le d$ the term $3bd$ is redundant.
 \end{definition}
 
 \begin{theorem}[Rank bound and capacity facets]\label{m11:bridge-bound}
@@ -10118,8 +10139,8 @@ from $0$ to $\min(ad,bc)$, so the maximum is attained. The cone conditions
 force $b,d>0$, $b<3a$ and $d<3c$ by division by $b,d$, respectively.
 Thus both outer cuts are strictly below $3ac$. Taking logarithms
 of positive products proves the piecewise affine expression.
-This applies the rank viewpoint of Theorem~\ref{d4:rank} to
-unnormalized Gram entries with arbitrary column norms.
+(The rank viewpoint of Theorem~\ref{d4:rank} is related; its hypotheses are not needed here, since the norm
+identity proves the Gram-rank equality directly.)
 \end{proof}
 
 \paragraph{Conventions for the attainment proof.}
@@ -10243,8 +10264,9 @@ $\operatorname{rank}F'=ad-\max(0,ad-bc)=\min(ad,bc)$.
 \paragraph{Kronecker blocks.}
 For integers $x,y\ge0$ let $W_{x,y}:\mathbb C^{x+1}\otimes\mathbb C^{y}\to\mathbb C^{x}\otimes\mathbb C^{y+1}$,
 \[
- (W_{x,y}u)(s,t)=u(s,t)\,[t\le y-1]+u(s+1,t-1)\,[t\ge1]\qquad(s\in[x],\ t\in[y+1]).
+ (W_{x,y}u)(s,t)=u(s,t)\,[t\le y-1]+u(s+1,t-1)\,[t\ge1]\qquad(s\in[x],\ t\in[y+1]),
 \]
+where a summand with a false indicator is omitted, so no out-of-range coordinate is evaluated.
 This is the flow $L^0_x\otimes(K^0_y)^{\mathsf T}+L^1_x\otimes(K^1_y)^{\mathsf T}$ of the two
 Kronecker pencil blocks $L^0_x=(I_x\,|\,0)$, $L^1_x=(0\,|\,I_x)\in\mathbb C^{x\times(x+1)}$ and
 $K^0_y,K^1_y\in\mathbb C^{y\times(y+1)}$ defined in the same way.
@@ -10274,8 +10296,8 @@ $\varepsilon_y^{\mathsf T}W$ is $(-1)^{s'}+(-1)^{s'-1}=0$ there.
 \end{proof}
 
 \paragraph{Beatty sets.}
-For $0\le e\le A$ let $\Sigma(A,e)=\{\lfloor kA/e\rfloor:k\in[e]\}\subseteq\mathbb Z/A$ (empty if
-$e=0$); it has $e$ elements. For $\rho=e/A$ let $J_\rho(n)=\lceil(n+1)\rho\rceil-\lceil n\rho\rceil$.
+For integers $A\ge1$ and $0\le e\le A$, put $\Sigma(A,0)=\varnothing$ and, for $e>0$,
+$\Sigma(A,e)=\{\lfloor kA/e\rfloor:0\le k<e\}\subseteq\mathbb Z/A$; it has $e$ elements. For $\rho=e/A$ let $J_\rho(n)=\lceil(n+1)\rho\rceil-\lceil n\rho\rceil$.
 
 \begin{lemma}[Beatty facts]\label{m11:beatty}
 (i) $J_\rho(n)\in\{0,1\}$, $J_\rho(n+A)=J_\rho(n)$, and $J_\rho(n)=1$ iff $n\bmod A\in\Sigma(A,e)$.
@@ -10332,7 +10354,7 @@ $O=\Sigma(A,e)\times\mathbb Z/G$, with $Af\le eG$; or
 $O=\mathbb Z/A\times\Sigma(G,f)$, with $eG\le Af$.
 \end{itemize}
 Then $R=1-T$ is invertible on $\mathbb C^\Omega$, and
-$u\mapsto\bigl((\kappa+R^{-1})\,\mathrm{ext}_Iu\bigr)|_O$ is injective on $\mathbb C^I$, where
+$u\mapsto\bigl((\kappa\,\mathrm{Id}+R^{-1})\,\mathrm{ext}_Iu\bigr)|_O$ is injective on $\mathbb C^I$, where
 $\mathrm{ext}_I$ extends by zero.
 \end{lemma}
 \begin{proof}
@@ -10458,7 +10480,7 @@ $\bigl((X\otimes Y)z\bigr)(k,h)=-\omega(h+1)z(k-1,h+1)$, so $\mathcal R=1-T$ as 
 Lemma~\ref{m11:cyclic}(L) with $(A,G,e,f)=(\beta,\delta,\alpha,\gamma)$; $U\otimes I$ is the
 extension by zero from $I=\Sigma(\beta,\alpha)\times\mathbb Z/\delta$ and $I\otimes V$ the
 restriction to $O=\mathbb Z/\beta\times\Sigma(\delta,\gamma)$. Thus
-$\mathcal S=\bigl((p+\mathcal R^{-1})\mathrm{ext}_I\,\cdot\,\bigr)|_O$, and
+$\mathcal S=\bigl((p\,\mathrm{Id}+\mathcal R^{-1})\mathrm{ext}_I\,\cdot\,\bigr)|_O$, and
 $\alpha\delta\le\beta\gamma$ is the condition of case (L). Lemma~\ref{m11:cyclic} gives both
 requirements.
 
@@ -10470,7 +10492,7 @@ $U\in\mathbb C^{\beta\times\alpha}$, $V\in\mathbb C^{\gamma\times\delta}$, and
  &(N_2)_{(j,0),(j',0)}=Y_{jj'}, && (N_2)_{(j,t),(h,p-t)}=V_{jh}.
 \end{aligned}
 \]
-Now $C$ reads only $u_{SS}$ and $u_{SL}$. Put $\xi_{ij}=u(i,0;j,0)$. On short--short rows,
+Here $s,t\in[p+1]$, as in case (B). Now $C$ reads only $u_{SS}$ and $u_{SL}$. Put $\xi_{ij}=u(i,0;j,0)$. On short--short rows,
 $M_2$ is nonzero only in row $s=0$ and
 $(Cu)(i,0;j,t)=[t=0]\bigl((X\otimes Y)\xi\bigr)_{ij}+\sum_{i',h}X_{ii'}V_{jh}u(i',0;h,p-t)$, whose
 last coordinate is $\eta_{i'h}[t=0]$. Since $p\ge1$, $(Wu)(i,0;j,0)=\xi_{ij}$, and
@@ -10496,7 +10518,7 @@ $\mathbb Z/\alpha\times\Sigma(\gamma,\delta)$ and $U\otimes I$ the restriction t
 $\Sigma(\alpha,\beta)\times\mathbb Z/\gamma$; this is Lemma~\ref{m11:cyclic}(S) with
 $(A,G,e,f)=(\alpha,\gamma,\beta,\delta)$, whose condition $\alpha\delta\le\beta\gamma$ holds.
 
-In every case $F$ is injective, so $\operatorname{rank}F=bc=\min(ad,bc)$. All entries are rational.
+In cases (A)--(C), the constructed flow is injective and therefore has rank $bc=\min(ad,bc)$. Step~1 gives the required rank in the other cases. All the witnesses have rational entries.
 \end{proof}
 
 \begin{theorem}[Ordered-cone attainment]\label{m11:cone-rank}
@@ -10520,15 +10542,27 @@ $0<c_0\le c$, and
 and likewise $c_0^2+c^2\le3c_0c$. Thus $(a_0,a,c_0,c)$ lies in the ordered cone with
 $a+c<b+d$, the induction hypothesis gives $\mathcal P(a_0,a,c_0,c)$, and
 Corollary~\ref{m11:descent} gives $\mathcal P(a,b,c,d)$.
-In the notation of Gesmundo, Lysikov and Steffan, with bond dimensions $(a,b,a',b')=(a,b,c,d)$ and $w=3$,
-their region $U_3\cup V_3\cup W_3$ is $a\le b\le\lambda_3a$ with $\lambda_3=(3+\sqrt5)/2$, that is $a\le b$ and
-$a^2+b^2\le3ab$, and their flow map is $F$. Hence this theorem, with the min-cut value of
-Theorem~\ref{m11:bridge-bound}, proves \cite[Conjecture~3.15]{m11:GLS}, and by the equivalence proved in
-\cite[\S3.4]{m11:GLS} also their Conjecture~3.14. The same argument (descent by castling, width-two witnesses, and the Kronecker-block witnesses
-with the cyclic resolvent in the base region) is formalised in the library \cite{Tru} as
-\texttt{QuantumMaxFlowMinCut}\allowbreak\texttt{.result}. Theorem~\ref{m11:bridge-bound}
+For the bridge graph of Gesmundo, Lysikov and Steffan, take $(a,b,a',b')=(a,b,c,d)$ and $w=3$.
+Their flattening $(A\otimes B')^*\to B\otimes A'$ is represented, in the corresponding bases, by $F^{\mathsf T}$ and
+has rank $\operatorname{rank}F$. Each of their positive dimension pairs in $U_3\cup V_3\cup W_3$ is ordered and has
+larger-to-smaller ratio at most $(3+\sqrt5)/2$, which is equivalent to the corresponding quadratic cone inequality.
+Theorem~\ref{m11:bridge-bound} identifies the graph min-cut with $\min(ad,bc)$ on this domain. This theorem thus
+proves \cite[Conjecture~3.15]{m11:GLS}, as stated there. Proposition~3.18 of \cite[\S3.4]{m11:GLS} gives their
+Conjecture~3.14, which specializes back to Conjecture~3.15 at width three. Theorem~\ref{m11:bridge-bound}
 identifies each attainable flow rank with its column Gram rank.
 \end{proof}
+
+\noindent{\sloppy\emph{Priority and the formal proof.} Conjecture~3.15 of \cite{m11:GLS} was first settled by a machine-checked proof in the Lean library \cite{Tru}:
+the declaration \texttt{D5.\allowbreak S3.\allowbreak Quantum.\allowbreak TensorNetworks.\allowbreak BridgeGraph.\allowbreak QuantumMaxFlowMinCut.\allowbreak result}
+in the file \texttt{D5/\allowbreak S3/\allowbreak Quantum/\allowbreak TensorNetworks/\allowbreak BridgeGraph/\allowbreak QuantumMaxFlowMinCut.lean}
+states the two equalities of Theorems~\ref{m11:bridge-bound} and~\ref{m11:cone-rank} for the flow rank under exactly the
+positivity, order and cone hypotheses above. It entered the library's branch \texttt{dev} on 9~October 2026 (UTC) through pull
+request 14787, with the problem record \texttt{Problems/\allowbreak gesmundo-\allowbreak lysikov-\allowbreak steffan-\allowbreak 2022-\allowbreak bridge-\allowbreak graph-\allowbreak max-flow.md}
+and the preregistration issue 14652 (Section~\ref{sec:lean} explains the status). It does not formalise Proposition~3.18 of
+\cite{m11:GLS}. The proof above is, to our knowledge, the first written proof; it follows the route of the formal proof
+(castling descent with explicit rational witnesses, width-two witnesses, and Kronecker-block witnesses with the cyclic
+resolvent in the base region).\par}
+
 
 \begin{theorem}[Scalar column Gram]\label{m11:scalar-gram}
 If $2b\le3a$ and $3c\le2d$, then for every $\lambda>0$ there
@@ -10552,9 +10586,8 @@ sends the input basis to distinct output coordinates. Its Gram
 is the identity and multiplying each left factor by $\sqrt\lambda$
 gives the prescribed Gram. Empty input gives the empty Gram and
 the construction includes $c=1$, for which the second branch is empty.
-Necessity for $c=2q,d=3q$ follows from
-Proposition~\ref{m11:flat-obstruction}, whose first bound gives
-$d\ge2c$ whenever $3a<2b$, and $3q<4q$.
+If $F^*F=I_{bc}$, then $F$ is injective, hence $bc\le ad$. At $c=2q$ and $d=3q$ with $q>0$ this is
+$2b\le3a$. The construction gives sufficiency.
 \end{proof}
 
 \begin{lemma}[Neutral coefficient planes]\label{m11:rect-lemma}
@@ -18100,7 +18133,7 @@ Thm.~\ref{m1:gauge}, Prop.~\ref{m1:clique} & Classical in substance (edge-path g
 Props.~\ref{m1:gram}, \ref{m1:distance}, \ref{m1:near-gram} & Classical ingredients \cite{m1:Schoenberg,m1:JordanVonNeumann,m1:Grone}; Prop.~\ref{m1:near-gram} elementary\\
 Thm.~\ref{m12:completion} & Cycle conditions \cite{m12:BJT}; their sufficiency on graphs without $K_4$ minor \cite{m12:BJL,m12:Laurent}; rank three on $K_4$-minor-free graphs \cite{m12:LV,m12:ENV}; here a self-contained proof via a joint angle table\\
 Thms.~\ref{m12:face-odd}, \ref{m12:pfaffian}, \ref{m12:ghrv} & Kasteleyn \cite{m12:Kasteleyn,m12:KasteleynGraph}, Temperley--Fisher \cite{m12:TF}, Cimasoni--Reshetikhin \cite{m12:CR}; Gallai--Hasse--Roy--Vitaver \cite{m12:Roy}\\
-Thms.~\ref{m15:classification}, \ref{m15:weighted}, Prop.~\ref{m15:duality} & Unweighted commutator bound \cite{m15:bw,m15:vj,m15:aud}; duality \cite{m15:wegner}; transfer \cite{m15:luscher,m15:os}; the weighted sharp constant is inequality (15) of Conjecture~1 of \cite{MKOC24}, proved there for $n=2$ and special cases; proved here for all $n$\\
+Thms.~\ref{m15:classification}, \ref{m15:weighted}, Prop.~\ref{m15:duality} & Unweighted commutator bound \cite{m15:bw,m15:vj,m15:aud}; duality \cite{m15:wegner}; transfer \cite{m15:luscher,m15:os}; the weighted inequality is equation (15) of Conjecture~1 of \cite{MKOC24} (proved there for $n=2$ and special cases; rank-one pairs \cite{FC25}); first settled for all $n$ by a machine-checked proof in \cite{Tru} (8~Oct.\ 2026); first written proof here\\
 Thm.~\ref{thm:main}, classification by $(\Omega1)$--$(\Omega3)$ & New as a theorem; ingredients classical \cite{Certaine,Gleason52,MZ,Milnor,Knapp}; see Rem.~\ref{rem:dalembert}\\
 Thm.~\ref{thm:noreg}, Cor.~\ref{cor:interference} & Group-level statement not found in the searched scope; Lemmas~\ref{lem:noline}, \ref{lem:circle} not claimed new (possible precursors \cite{Kuczma64,Sharkovskii73}, texts not obtained); Lemma~\ref{lem:elliptic} standard; Cor.~\ref{cor:interference} follows from \cite{Davison08} once compactness is known\\
 Thm.~\ref{thm:parsimony} & Proof uses \cite{PW,Folland}\\
@@ -18155,7 +18188,7 @@ Thm.~\ref{m4:real}, Prop.~\ref{m4:pair}, Thm.~\ref{m4:lift} & Quantum signal pro
 Thm.~\ref{m4:defect}, Thm.~\ref{d4:record} & Glued-trees column path, cf.\ \cite[\S III.D]{m4:Childs}; the lag bound of Thm.~\ref{d4:record} is the classical largest eigenvalue $\cos(\pi/(m+2))$ of the path adjacency matrix\\
 Thm.~\ref{m11:reflections}, Cor.~\ref{m11:graph-walk} & Two subspaces \cite{m11:Halmos}; quantized walks \cite{m11:Szegedy}; the comparison reading elementary\\
 Thm.~\ref{m11:defect} & Path secular equations classical; glued trees, cf.\ \cite[\S III.D]{m4:Childs}; the endpoint weights elementary\\
-Thms.~\ref{m11:bridge-bound}--\ref{m11:scalar-gram} & Bridge max-flow \cite{m11:GLS,m11:Cui}; the ordered-cone case is \cite[Conjecture~3.15]{m11:GLS}, proved here (also formalised in the library)\\
+Thms.~\ref{m11:bridge-bound}--\ref{m11:scalar-gram} & Bridge max-flow \cite{m11:GLS,m11:Cui}; the ordered-cone case is \cite[Conjecture~3.15]{m11:GLS}; first settled by a machine-checked proof in \cite{Tru} (9~Oct.\ 2026); first written proof here\\
 \bottomrule
 \end{tabular}
 \end{center}
@@ -18310,8 +18343,8 @@ the item F7 of Section~\ref{sec:ready} (the group-theoretic core of Theorem~\ref
 That no \texttt{sorry} occurs in the three files was established by source inspection, without a kernel build for this paper.  These three units are the only Lean formalisation written for this paper.  Not formalised are: the topological
 steps of Part~\ref{part:axiom} (Lemma~\ref{lem:lie}, the Gleason--Montgomery--Zippin theorem, the regularity-free argument as a whole), the remaining results
 of Sections~\ref{sec:class}--\ref{sec:geom}, including the roundness theorem (Section~\ref{sec:round}) and the one-sided results
-(Section~\ref{sec:onesided}), all of Part~\ref{part:arc}, and Parts~\ref{part:alg} and \ref{part:beyond} as written here (for the library declarations
-that cover parts of them, see Section~\ref{sec:leanlib}).  A preregistered formalisation of the classification core (Sections~\ref{sec:def}--\ref{sec:class}) is tracked at
+(Section~\ref{sec:onesided}), all of Part~\ref{part:arc}, and Parts~\ref{part:alg} and \ref{part:beyond} as written here, except the statements listed in the next paragraph (for the
+other library declarations that cover parts of them, see Section~\ref{sec:leanlib}).  A preregistered formalisation of the classification core (Sections~\ref{sec:def}--\ref{sec:class}) is tracked at
 \begin{center}\small\url{https://github.com/the-omega-institute/trureturing/issues/31739}.\end{center}
 Earlier, the library already contained, in the file
 \begin{center}\small\texttt{D5/S3/Quantum/Algebra/RankOneInvariantMetric.lean} (line 444),\end{center}
@@ -18323,6 +18356,45 @@ line, the centraliser of a nonzero element $a$ is $\R a$ (a larger centraliser w
 declaration gives $\dim\g\in\{1,3\}$, and with the invariant inner product $\g\cong\R$ or $\su(2)$.  Name and location
 were verified at commit \texttt{153b52e} of branch \texttt{dev}.  The Gleason--Montgomery--Zippin theorem is used as a
 black box; a formal statement of Theorem~\ref{thm:main} can avoid it by assuming a Lie group from the start.
+
+\emph{Formal proofs in the library of statements of this paper.}  The following statements of this paper are stated exactly,
+or in the part indicated, by declarations of the library \cite{Tru}.  These declarations were written and frozen in the
+library before the written proofs given here, and the written proofs follow their arguments.  \emph{Status.}  Each of these
+modules entered the library's branch \texttt{dev} through a pull request whose required continuous-integration checks
+passed; those checks compile the changed Lean modules, so every proof term was checked by the Lean kernel, and the
+library then records the module as frozen (a state file giving the statement digest and the list of declarations).  We read
+the declarations and their frozen state files in the local clone at commit \texttt{9d18ab6}; we did not rebuild them for this
+paper and did not audit their transitive axiom closure (the library's problem records state it to be contained in
+\(\{\texttt{propext},\texttt{Classical.choice},\texttt{Quot.sound}\}\) for the first two items).  This status differs from that
+of Section~\ref{sec:leanlib}, whose declarations are related results, not formal proofs of statements of this paper.
+\begin{enumerate}[label=(\roman*),leftmargin=2em]\sloppy
+\item Theorem~\ref{m15:weighted}, the inequality (the sharpness clause is not included):
+\texttt{D5/\allowbreak S3/\allowbreak Quantum/\allowbreak Matrix/\allowbreak WeightedBotcherWenzel.lean}, \texttt{result}; merged on 8~October 2026
+(UTC) through pull request 14172, whose required checks \texttt{current} and \texttt{required} passed; problem record
+\texttt{Problems/\allowbreak mayumi-\allowbreak kimura-\allowbreak ohno-\allowbreak chruscinski-\allowbreak 2024-\allowbreak weighted-\allowbreak bottcher-\allowbreak wenzel-\allowbreak ii.md},
+preregistration issue 13715.  It settles equation (15) of \cite[Conjecture~1]{MKOC24}.
+\item Theorems~\ref{m11:bridge-bound} (the cone value of the cut) and \ref{m11:cone-rank}, for the flow rank:
+\texttt{D5/\allowbreak S3/\allowbreak Quantum/\allowbreak TensorNetworks/\allowbreak BridgeGraph/\allowbreak QuantumMaxFlowMinCut.lean}, \texttt{result}; merged on
+9~October 2026 (UTC; 10~October in UTC$+8$) through pull request 14787, whose required checks \texttt{current} and
+\texttt{required} passed; problem record
+\texttt{Problems/\allowbreak gesmundo-\allowbreak lysikov-\allowbreak steffan-\allowbreak 2022-\allowbreak bridge-\allowbreak graph-\allowbreak max-flow.md},
+preregistration issue 14652.  It settles \cite[Conjecture~3.15]{m11:GLS}; Proposition~3.18 of \cite{m11:GLS} is not formalised.
+\item Theorem~\ref{m10:orientation}: \texttt{D5/\allowbreak S3/\allowbreak Quantum/\allowbreak SpinFactor/\allowbreak OriginalClassification.lean},
+\texttt{complete\_\allowbreak classification} (the equivalence) and \texttt{complete\_\allowbreak consequences} (the forward implication with the
+matrix interfaces); frozen on 8~November 2026.  The uniqueness of the sign is not part of these declarations.
+\item Proposition~\ref{m11:flat-obstruction}: the first bound is
+\texttt{D5/\allowbreak S3/\allowbreak Quantum/\allowbreak TensorNetworks/\allowbreak BridgeGraph/\allowbreak NativeRectangularBound.lean}, \texttt{bound}
+(frozen 17~November 2026); the second bound is \texttt{RestrictedFlatSpectrum.\allowbreak obstruction} in the same directory (frozen
+16~November 2026); the cone point is \texttt{positive\_\allowbreak scalar\_\allowbreak obstruction} in
+\texttt{D5/\allowbreak S3/\allowbreak Quantum/\allowbreak Algebra/\allowbreak NativeWidthAtMostThreeRefutation.lean} (frozen 17~November 2026).  The
+entropy clause is not formalised.
+\item Theorem~\ref{m11:scalar-gram}: the existence clause is \texttt{native\_\allowbreak scalar\_\allowbreak gram\_\allowbreak exists} in
+\texttt{NativeScalarGram.lean} (frozen 18~November 2026), and the clause ``exactly when'' is \texttt{native\_\allowbreak saturation\_\allowbreak iff}
+in \texttt{NativeSaturation.lean} (frozen 17~November 2026), both in the directory of item (ii).
+\item Statement~\ref{m14:robin-lcm}: \texttt{D5/\allowbreak S3/\allowbreak Arith/\allowbreak Robin/\allowbreak OffLinePeak/\allowbreak OriginalLocalA.lean},
+\texttt{original\_\allowbreak zero\_\allowbreak robin5040\_\allowbreak localA} (frozen 6~November 2026) states it exactly, with the
+nontrivial-zero predicate \(\zeta(\rho)=0\), \(0<\operatorname{Re}\rho<1\); this paper gives no written proof.
+\end{enumerate}
 
 All identities and limits of Part~\ref{part:arc} that are not textbook facts, and the identities of Part~\ref{part:axiom} used there, were
 checked numerically on random or explicit inputs by the accompanying script \texttt{check\_arc\_calculus.py} (numpy and the
@@ -18413,7 +18485,7 @@ $uv$ or $vu$) is not on this list: the Mathlib version we inspected (the one pin
 theorem nor composition algebras, so a formal proof would have to supply that classification.
 
 \subsection{Library declarations related to Parts~\ref{part:alg} and \ref{part:beyond}}\label{sec:leanlib}
-\emph{Two commits.}  The library is cited in the bibliography at commit \texttt{153b52e} of branch \texttt{dev}, where the three units of Section~\ref{sec:lean} and \texttt{RankOneInvariantMetric.lean} were read; the declarations listed in this subsection were located in a local clone at commit \texttt{9d18ab6}.  \emph{Scope.}  Every entry below was found by name and its statement read; no build was run, and ``no \texttt{sorry}'' means that the word does not occur in the file. It does not cover transitively imported files, \texttt{axiom} declarations or uses of \texttt{native\_decide}, none of which was audited.  The library declarations are results of the library: they do not verify the theorems of this paper, and where a proof here cites one it is used as a cited result.
+\emph{Two commits.}  The library is cited in the bibliography at commit \texttt{153b52e} of branch \texttt{dev}, where the three units of Section~\ref{sec:lean} and \texttt{RankOneInvariantMetric.lean} were read; the declarations listed in this subsection were located in a local clone at commit \texttt{9d18ab6}.  \emph{Scope.}  Every entry below was found by name and its statement read; no build was run, and ``no \texttt{sorry}'' means that the word does not occur in the file. It does not cover transitively imported files, \texttt{axiom} declarations or uses of \texttt{native\_decide}, none of which was audited.  Apart from the formal proofs listed in Section~\ref{sec:lean}, the declarations below are results of the library: they do not verify the theorems of this paper, and where a proof here cites one it is used as a cited result.
 
 The following declarations of the library \cite{Tru} were located by name and their statements read (local clone at commit
 \texttt{9d18ab6}); no \texttt{sorry} occurs in the files of the first six.  They are results of the library, not formalisations
@@ -18602,7 +18674,7 @@ Theorem~\ref{m8:counts} or the limit in Theorem~\ref{m8:poly}.
 For Section~\ref{sec:m10} the following declarations were located (no \texttt{sorry} in their files).
 {\small\raggedright
 \begin{itemize}[leftmargin=1.5em]
-\item Theorem~\ref{m10:orientation}, forward implication: \texttt{D5/S3/Quantum/SpinFactor/OriginalClassification.lean},
+\item Theorem~\ref{m10:orientation} (formal proof; see Section~\ref{sec:lean}): \texttt{D5/S3/Quantum/SpinFactor/OriginalClassification.lean},
 \texttt{complete\_consequences} (arbitrary $D$; \texttt{P2}, \texttt{PB} in \texttt{D5/S3/Quantum/SpinFactor/OriginalDContract.lean} are those of Definition~\ref{m10:contract}).
 \item Remark~\ref{m10:exclusion}: \texttt{D5/S3/Quantum/OriginExclusionSegmentRigidity.lean}, \texttt{b\_constraint\_recenter};
 \texttt{D5/S3/Quantum/Foundation/ExclusionBallFaces.lean}, \texttt{exclusion\_ball\_faces} (abstract cone with the exclusion-ball
@@ -18630,11 +18702,11 @@ For Sections~\ref{sec:m11} and~\ref{sec:m11b} the following declarations were lo
 \item Theorem~\ref{m11:defect} at $b=\sqrt2$: \texttt{D5/S3/Quantum/Matrix/CentralSqrtTwoDefectGap.lean}, \texttt{recurrence\_endpoint\_observability},
 \texttt{central\_spectral\_gap}.
 \item Remark~\ref{m11:walk-examples}: \texttt{D5/S3/Quantum/Walks/SymmetricCoinMaximalWalkEntanglement.lean}, \texttt{result}.
-\item Theorems~\ref{m11:bridge-bound}, \ref{m11:cone-rank}: \texttt{D5/S3/Quantum/TensorNetworks/BridgeGraph/QuantumMaxFlowBound.lean},
+\item Theorems~\ref{m11:bridge-bound}, \ref{m11:cone-rank} (formal proof; see Section~\ref{sec:lean}): \texttt{D5/S3/Quantum/TensorNetworks/BridgeGraph/QuantumMaxFlowBound.lean},
 \texttt{QMaxFlow\_le\_QMinCut}, \texttt{QMaxFlow\_attained}, \texttt{cone\_QMinCut}; \texttt{D5/S3/Quantum/TensorNetworks/BridgeGraph/QuantumMaxFlowMinCut.lean}, \texttt{result}.
-\item Theorem~\ref{m11:scalar-gram}: \texttt{D5/S3/Quantum/TensorNetworks/BridgeGraph/NativeScalarGram.lean}, \texttt{native\_scalar\_gram\_exists}; \texttt{D5/S3/Quantum/TensorNetworks/BridgeGraph/NativeSaturation.lean},
+\item Theorem~\ref{m11:scalar-gram} (formal proof; see Section~\ref{sec:lean}): \texttt{D5/S3/Quantum/TensorNetworks/BridgeGraph/NativeScalarGram.lean}, \texttt{native\_scalar\_gram\_exists}; \texttt{D5/S3/Quantum/TensorNetworks/BridgeGraph/NativeSaturation.lean},
 \texttt{native\_saturation\_iff}.
-\item Proposition~\ref{m11:flat-obstruction}, Remark~\ref{m11:cut-scope}: \texttt{D5/S3/Quantum/TensorNetworks/BridgeGraph/NativeRectangularBound.lean}, \texttt{bound};
+\item Proposition~\ref{m11:flat-obstruction} (formal proof except the entropy clause; see Section~\ref{sec:lean}), Remark~\ref{m11:cut-scope}: \texttt{D5/S3/Quantum/TensorNetworks/BridgeGraph/NativeRectangularBound.lean}, \texttt{bound};
 \texttt{D5/S3/Quantum/TensorNetworks/BridgeGraph/RestrictedFlatSpectrum.lean}, \texttt{obstruction}; \texttt{D5/S3/Quantum/Algebra/NativeWidthAtMostThreeRefutation.lean},
 \texttt{positive\_scalar\_obstruction} (the point $(3,5,3,5)$).
 \item Remark~\ref{m11:bridge-programme}: \texttt{D5/S3/Quantum/TensorNetworks/BridgeGraph/RectangularBlockPartition.lean}, \texttt{unitary\_exact\_width}.
@@ -18729,7 +18801,7 @@ For Section~\ref{sec:m15} the following declarations were located (no \texttt{so
 \item Theorems~\ref{m15:classification}, \ref{m15:rank}: \texttt{D5/S3/Fourier/CharacterSelection/PeriodicGridHolonomy.lean}, \texttt{flat\_exact\_iff},
 \texttt{horizontal\_seam\_counterexample} (periods at least three), \texttt{plaquette\_relation\_rank\_one}, \texttt{periodic\_grid\_linear\_statistics}.
 \item Proposition~\ref{m15:parity}: \texttt{D5/S3/StatisticalMechanics/ZTwoHighTemperatureExpansion.lean}, \texttt{sum\_sgn\_mul\_prod\_one\_add\_eq}.
-\item Theorem~\ref{m15:weighted}: \texttt{D5/S3/Quantum/Matrix/WeightedBotcherWenzel.lean}, \texttt{result}, \texttt{weighted\_one}.
+\item Theorem~\ref{m15:weighted} (formal proof of the inequality; see Section~\ref{sec:lean}): \texttt{D5/S3/Quantum/Matrix/WeightedBotcherWenzel.lean}, \texttt{result}, \texttt{weighted\_one}.
 \end{itemize}}
 
 For Section~\ref{sec:m14} the following declarations were located (no \texttt{sorry} in their files; no build or axiom audit was run).
@@ -18743,7 +18815,7 @@ For Section~\ref{sec:m14} the following declarations were located (no \texttt{so
 \item Theorem~\ref{m14:pnt}: \texttt{D5/S3/Weil/PrimeNumberTheorem/MediumPNT.lean}, \texttt{MediumPNT}.
 \item Theorem~\ref{m14:robin-eight}: \texttt{D5/S3/Arith/Robin/FewDistinctPrimes.lean}, \texttt{robin\_of\_card\_primeFactors\_le\_eight},
 \texttt{robin\_lt\_223092870}. Proposition~\ref{m14:response}: \texttt{D5/S3/Arith/Robin/LcmRobinResponse.lean}, \texttt{common\_robin\_response}.
-Statement~\ref{m14:robin-lcm} (library result, not proved here): \texttt{D5/S3/Arith/Robin/OffLinePeak/OriginalLocalA.lean}, \texttt{original\_zero\_robin5040\_localA}. Remark~\ref{m14:gronwall}:
+Statement~\ref{m14:robin-lcm} (library result, not proved here; see Section~\ref{sec:lean}): \texttt{D5/S3/Arith/Robin/OffLinePeak/OriginalLocalA.lean}, \texttt{original\_zero\_robin5040\_localA}. Remark~\ref{m14:gronwall}:
 \texttt{D5/S3/Weil/GronwallLowerEnvelope.lean}, \texttt{gronwall\_envelopes}.
 \item Proposition~\ref{m14:rh-forms}: \texttt{D5/S3/Zeros/ActualZeroGeometry.lean}, \texttt{rh\_iff\_nontrivial\_zeros\_on\_line};
 \texttt{D5/S3/Midline/Cayley/CayleyCriticalLineZetaCriterion.lean}, \texttt{cayley\_critical\_line\_zeta\_criterion}. Remark~\ref{m14:symmetry}:
@@ -20327,6 +20399,8 @@ The authors used AI tools, namely Claude Fable 5.2 and Claude Opus 5.5 (via Clau
 \bibitem{m15:fh} W.~Fulton and J.~Harris, \emph{Representation Theory: A First Course}, Grad. Texts in Math. \textbf{129}, Springer, 1991, Lecture~11.
 \bibitem{m15:folland} G.~B.~Folland, \emph{A Course in Abstract Harmonic Analysis}, 2nd ed., CRC Press, 2016, Ch.~5.
 \bibitem{MKOC24} A.~Mayumi, G.~Kimura, H.~Ohno and D.~Chru\'sci\'nski, B\"ottcher--Wenzel inequality for weighted Frobenius norms and its application to quantum physics, \emph{Linear Algebra Appl.} \textbf{700} (2024), 35--49; arXiv:2403.04199.
+\bibitem{FC25} W.~Fang and C.-M.~Cheng, On some conjectures concerning the B\"ottcher--Wenzel inequality for weighted Frobenius norms, \emph{Linear Algebra Appl.} \textbf{718} (2025), 1--13.
+\bibitem{Pang26} Z.~Pang, A sharp weighted commutator inequality for rank-one matrices, arXiv:2610.29240, 2026.
 % Round 37 attributions (checked 2026-11-20 via Crossref, zbMATH Open and arXiv).
 \bibitem{ENLV14} M.~E.-Nagy, M.~Laurent and A.~Varvitsiotis, Forbidden minor characterizations for low-rank optimal solutions to semidefinite programs over the elliptope, \emph{J. Combin. Theory Ser. B} \textbf{108} (2014), 40--80.
 \bibitem{Whiteley83} W.~Whiteley, Cones, infinity and one-story buildings, \emph{Structural Topology} \textbf{8} (1983), 53--70.
