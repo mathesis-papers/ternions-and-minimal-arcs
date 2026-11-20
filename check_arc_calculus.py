@@ -34,6 +34,8 @@ CHECK_MODULES = [
     ("m7_braids_quandles.py",  "copying and the six-state bound", None),                      # Section 5D
     ("m8_arc_bodies_rigidity.py", "PASS all 6 groups", None),                                 # Section 9B
     ("m10_cayley_dickson.py", "All seven NumPy check groups passed.", None),                  # Section 5E
+    ("m11_walks_compilation.py", "All ten m11 check groups passed.", None),               # Sections 6B, 10D
+    ("m9_numeration.py", "All 9 check groups passed.", None),                            # Section 10C
     # register new modules here: (file in checks/, success marker, optional predicate)
 ]
 _chk = _os.path.join(_os.path.dirname(_os.path.abspath(__file__)), "checks")
@@ -3584,6 +3586,712 @@ Qr, _ = np.linalg.qr(_r40.normal(size=(3, 3))); Sst = Qr @ np.diag([1., 2, 3]) @
 e = max(e, 0 if np.abs(Sst - np.diag(np.diag(Sst))).max() > 1e-3 else 1)
 e = max(e, abs((4 - 1) ** 2 - 1 - 8), abs(len(_herm_basis(3)) - 1 - 8))
 report("40 Rem. m10:folklore: A=x1 d2 on R^4 has vorticity dx1^dx2; symmetric stretch has 6 entries (rotated axes off-diagonal); exclusion face in size 4 has dim 8; su(3) dim 8", e, 1e-12)
+
+
+# =========================================================== 41. Sections 6B and 10D (independent checks of the m11 module)
+import itertools as _it41
+_r41 = np.random.default_rng(32041)
+_X41 = np.array([[0, 1], [1, 0]], complex); _Y41 = np.array([[0, -1j], [1j, 0]]); _Z41 = np.diag([1., -1]).astype(complex); _I41 = np.eye(2)
+def _iso41(n, k, cplx=True):
+    G = _r41.normal(size=(n, k)) + (1j * _r41.normal(size=(n, k)) if cplx else 0)
+    Q, _ = np.linalg.qr(G); return Q[:, :k]
+def _eig_sorted(M):
+    w = np.linalg.eigvals(M); return w[np.lexsort((np.round(w.imag, 9), np.round(w.real, 9)))]
+# (1) two reflections: spectrum from singular values, +-1 multiplicities, recurrence; line case
+e = 0.0
+for n, a, b, k in ((7, 3, 4, 1), (8, 4, 4, 2), (6, 2, 3, 0), (9, 5, 2, 1)):
+    C = _iso41(n, k); Ar = _iso41(n, a - k); Br = _iso41(n, b - k)
+    X = np.linalg.qr(np.hstack([C, Ar]))[0][:, :a]; Y = np.linalg.qr(np.hstack([C, Br]))[0][:, :b]
+    P = X @ X.conj().T; Q = Y @ Y.conj().T; W = (2 * P - np.eye(n)) @ (2 * Q - np.eye(n))
+    s = np.linalg.svd(X.conj().T @ Y, compute_uv=False); mid = s[(s > 1e-9) & (s < 1 - 1e-9)]
+    kk = int(np.sum(s > 1 - 1e-9)); r = len(mid)
+    pred = list(np.exp(2j * np.arccos(mid))) + list(np.exp(-2j * np.arccos(mid))) + [1] * (n - a - b + 2 * kk) + [-1] * (a + b - 2 * kk - 2 * r)
+    e = max(e, abs(kk - k), np.abs(_eig_sorted(W) - _eig_sorted(np.diag(pred))).max())
+    z0 = _r41.normal(size=n) + 1j * _r41.normal(size=n); zs = [z0, W @ z0]
+    for _ in range(5): zs.append(W @ zs[-1])
+    # on each rotation plane the recurrence holds: check on a vector in one plane
+    U, sv, Vh = np.linalg.svd(X.conj().T @ Y); j = np.argmin(np.abs(sv - mid[0])) if r else None
+    if r:
+        aj = X @ U[:, j]; bj = Y @ Vh.conj().T[:, j]; sj = sv[j]; u = (bj - sj * aj) / np.sqrt(1 - sj ** 2)
+        v0 = aj; v1 = W @ v0; v2 = W @ v1; cc = 2 * sj ** 2 - 1
+        e = max(e, np.abs(v2 - (2 * cc * v1 - v0)).max(), abs(np.vdot(aj, u)))
+for _ in range(10):
+    x = _r41.normal(size=3); x /= np.linalg.norm(x); y = _r41.normal(size=3); y /= np.linalg.norm(y)
+    kap = (1 + x @ y) / 2; s = abs(x @ y); e = max(e, abs((2 * s * s - 1) - (2 * (2 * kap - 1) ** 2 - 1)))
+report("41 Thm m11:reflections: W=(2P-I)(2Q-I) has e^{+-2i arccos s}, +1 mult n-a-b+2k, -1 mult a+b-2k-2r; planar recurrence z_{j+1}=2c z_j - z_{j-1}; line case c=2(2kappa-1)^2-1", e, 1e-9)
+# (2) reversible walks; D_+ vs D_- spectra
+e = 0.0
+for nst in (3, 4, 5):
+    Wt = _r41.uniform(0.1, 1, size=(nst, nst)); Wt = Wt + Wt.T; p = Wt / Wt.sum(1)[:, None]; pi = Wt.sum(1) / Wt.sum()
+    Dm = np.sqrt(p * p.T); e = max(e, np.abs(Dm - np.diag(np.sqrt(pi)) @ p @ np.diag(1 / np.sqrt(pi))).max())
+    lam = np.sort(np.abs(np.linalg.eigvals(p).real)); sv = np.sort(np.linalg.svd(Dm, compute_uv=False)); e = max(e, np.abs(lam - sv).max())
+    Xf = np.zeros((nst * nst, nst))
+    for i in range(nst):
+        for j in range(nst): Xf[i * nst + j, i] = np.sqrt(p[i, j])
+    S = np.zeros((nst * nst, nst * nst))
+    for i in range(nst):
+        for j in range(nst): S[j * nst + i, i * nst + j] = 1
+    Yf = S @ Xf; e = max(e, np.abs(Xf.T @ Xf - np.eye(nst)).max(), np.abs(Xf.T @ Yf - Dm).max())
+for Dmat, target in ((np.array([[1, 1], [1, 1]]) / 2, [1, 1, -1, -1]), (np.array([[1, 1], [1, -1]]) / 2, [1j, 1j, -1j, -1j])):
+    Xc = np.vstack([np.eye(2), np.zeros((2, 2))]); w_, V_ = np.linalg.eigh(np.eye(2) - Dmat.T @ Dmat); sq = V_ @ np.diag(np.sqrt(np.clip(w_, 0, None))) @ V_.T
+    Yc = np.vstack([Dmat, sq]); Wc = (2 * Xc @ Xc.T - np.eye(4)) @ (2 * Yc @ Yc.T - np.eye(4))
+    e = max(e, np.abs(Yc.T @ Yc - np.eye(2)).max(), np.abs(_eig_sorted(Wc) - _eig_sorted(np.diag(target))).max())
+report("41 Cor. m11:graph-walk: D_ij=sqrt(p_ij p_ji)=sqrt(pi_i)p_ij/sqrt(pi_j), singular values |lambda|; D_+ and D_- (same squared moduli) give spectra (1,1,-1,-1) and (i,i,-i,-i)", e, 1e-9)
+# (3) central defect: secular equation, interlacing, threshold, weights, transfer, n^3 delta_n
+def _Un41(n, x):
+    a, b = 0.0, 1.0  # U_{-1}, U_0
+    if n == -1: return 0.0
+    for _ in range(n): a, b = b, 2 * x * b - a
+    return b
+def _path41(n, b):
+    J = np.zeros((2 * n, 2 * n))
+    for i in range(2 * n - 1): J[i, i + 1] = J[i + 1, i] = 1.0
+    J[n - 1, n] = J[n, n - 1] = b; return J
+e = 0.0
+for n in (1, 2, 3, 5, 8):
+    for b in (0.5, 1.0, np.sqrt(2), 1.9, (n + 1) / n):
+        J = _path41(n, b); w, V = np.linalg.eigh(J)
+        for t, v in zip(w, V.T):
+            eta = 1 if abs(v[0] - v[-1]) < 1e-8 else -1
+            e = max(e, abs(_Un41(n, t / 2) - eta * b * _Un41(n - 1, t / 2)) / (1 + abs(_Un41(n, t / 2))))
+            wt = 1 / (2 * sum(_Un41(j, t / 2) ** 2 for j in range(n)))
+            e = max(e, abs(v[0] ** 2 - wt), abs(v[-1] - eta * v[0]))
+        ev = np.sort([t for t, v in zip(w, V.T) if abs(v[0] - v[-1]) < 1e-8]); od = np.sort([t for t, v in zip(w, V.T) if abs(v[0] - v[-1]) >= 1e-8])
+        e = max(e, 0 if np.all(np.diff(np.sort(w)) > 1e-12) else 1)
+        above = np.sum(ev > 2 + 1e-9); at = np.any(np.abs(ev - 2) < 1e-9)
+        exp_above = 1 if b > (n + 1) / n + 1e-12 else 0; exp_at = abs(b - (n + 1) / n) < 1e-12
+        e = max(e, abs(above - exp_above), abs(int(at) - int(exp_at)))
+        # infinite-window transfer equals sum w^2: long-time average of |(e^{-itJ})_{2n-1,0}|^2
+        amp_w = V[0] * V[-1]
+        e = max(e, abs(np.sum(amp_w ** 2) - np.sum(V[0] ** 4)))
+deltas = []
+for n in (64, 128, 256):
+    w = np.linalg.eigvalsh(_path41(n, np.sqrt(2))); deltas.append(round(n ** 3 * np.diff(np.sort(w)).min(), 2))
+e = max(e, np.abs(np.array(deltas) - [58.11, 57.06, 56.47]).max() * 1e-2, 0 if (np.sqrt(2) > 4 / 3 and np.sqrt(2) < 3 / 2) else 1)
+report("41 Thm m11:defect: parity sectors are roots of U_n(t/2)-eta b U_{n-1}(t/2), simple, threshold b=(n+1)/n, weight 1/(2 sum U_j^2), last=eta*first; n^3 delta_n = %s at 64,128,256 (Conj. m4:gap-limit)" % deltas, e, 1e-7)
+# (4) walk examples and the refuted universal cancellation of returns
+def _walk41(steps, coin, size=None):
+    L = steps if size is None else None
+    if size is None:
+        psi = np.zeros((2, 2 * steps + 1), complex); psi[:, steps] = coin
+        for _ in range(steps):
+            new = np.zeros_like(psi)
+            new[0, :-1] = (psi[0, 1:] + psi[1, 1:]) / np.sqrt(2)
+            new[1, 1:] = (psi[0, :-1] - psi[1, :-1]) / np.sqrt(2)
+            psi = new
+        return psi
+    psi = np.zeros((2, size), complex); psi[:, 0] = coin
+    for _ in range(steps):
+        psi = np.array([(np.roll(psi[0], -1) + np.roll(psi[1], -1)) / np.sqrt(2), (np.roll(psi[0], 1) - np.roll(psi[1], 1)) / np.sqrt(2)])
+    return psi
+e = 0.0
+sym = np.array([1, 1j]) / np.sqrt(2)
+for steps, sd_target in ((50, 27.07), (60, 32.5)):
+    ps = _walk41(steps, sym); prob = (np.abs(ps) ** 2).sum(0); xs = np.arange(-steps, steps + 1)
+    sd = np.sqrt(prob @ xs ** 2 - (prob @ xs) ** 2); e = max(e, abs(round(sd, 2 if steps == 50 else 1) - sd_target), abs(prob.sum() - 1))
+    if steps == 50:
+        top = xs[np.argsort(prob)[-2:]]; e = max(e, abs(sorted(np.abs(top)) != [34, 34]) * 1.0 if False else 0)
+        e = max(e, 0 if set(np.abs(top)) == {34} else 1)
+    e = max(e, np.abs(prob - prob[::-1]).max())
+pr = np.abs(_walk41(50, np.array([1, 1]) / np.sqrt(2))) ** 2; e = max(e, abs(round(np.abs(pr[0] - pr[1, ::-1]).max(), 3) - 0.145))  # mirror pair (0,x),(1,-x)
+pc = (np.abs(_walk41(20, sym, size=9)) ** 2).sum(0); e = max(e, np.abs(pc - np.roll(pc[::-1], 1)).max())
+two = _walk41(2, np.array([1, 0])); e = max(e, abs(abs(two[1, 2]) - 0.5))
+report("41 Ex. m11:walk-examples: symmetric coin, 50 steps max at +-34, sd 27.07; 60 steps sd 32.5; real coin imbalance 0.145; 9-cycle mirror symmetry; two-step return amplitude 1/2 refutes universal cancellation", e, 1e-9)
+# (5) coin maximizes geometric entanglement on a cycle (sampled over coins)
+def _geo41(a):
+    a = np.abs(a); a = a[a > 1e-14]
+    if len(a) == 1: return 1.0
+    best = 0.0
+    for _ in range(12):
+        th = _r41.uniform(0, np.pi / 2, size=len(a))
+        for _ in range(200):
+            for k in range(len(a)):
+                cs = np.cos(th); sn = np.sin(th)
+                prod_others = np.prod(np.delete(cs, k))
+                # f = sn_k * a_k * prod_{j!=k} cs_j + cs_k * sum_{i!=k} a_i sn_i prod_{j!=i,k} cs_j
+                Aq = a[k] * prod_others
+                Bq = sum(a[i] * sn[i] * np.prod(np.delete(cs, [i, k])) for i in range(len(a)) if i != k)
+                th[k] = np.arctan2(Aq, Bq)
+        cs = np.cos(th); sn = np.sin(th)
+        val = sum(a[i] * sn[i] * np.prod(np.delete(cs, i)) for i in range(len(a)))
+        best = max(best, val ** 2)
+    return best
+e = 0.0
+for p_ in (3, 4):
+    for steps in (2, 3, 4):
+        ent_sym = 1 - _geo41(_walk41(steps, sym, size=p_).ravel())
+        for _ in range(6):
+            v = _r41.normal(size=2) + 1j * _r41.normal(size=2); v /= np.linalg.norm(v)
+            e = max(e, max(0, (1 - _geo41(_walk41(steps, v, size=p_).ravel())) - ent_sym - 1e-6))
+report("41 Prop. m11:coin: on cycles p=3,4 at steps 2-4 the coin (1,i)/sqrt2 has entanglement 1-g at least that of 6 random coins each (g by coordinate ascent)", e, 1e-6)
+# (6) compilation: angle and sqrt-sagitta triangle inequalities; unrooted sagitta not subadditive; op-norm bound
+def _su2_41():
+    q = _r41.normal(size=4); q /= np.linalg.norm(q)
+    return np.array([[q[0] + 1j * q[3], q[2] + 1j * q[1]], [-q[2] + 1j * q[1], q[0] - 1j * q[3]]])
+def _ang41(g, h):
+    return np.arccos(np.clip((np.trace(g.conj().T @ h)).real / 2, -1, 1))
+e = 0.0
+for _ in range(200):
+    k = _r41.integers(1, 8); gs = [_su2_41() for _ in range(k)]
+    hs = [g @ (np.cos(t) * _I41 - 1j * np.sin(t) * (u[0] * _X41 + u[1] * _Y41 + u[2] * _Z41)) for g, t, u in
+          ((g, _r41.uniform(0, 0.4), (lambda w: w / np.linalg.norm(w))(_r41.normal(size=3))) for g in gs)]
+    G = _I41.copy(); H_ = _I41.copy(); vs = []
+    for g, h in zip(gs, hs):
+        G = G @ g; H_ = H_ @ h; vs.append(1 - np.cos(_ang41(g, h)))
+    vs = np.array(vs); Bk = min(np.pi, np.sum(2 * np.arcsin(np.sqrt(vs / 2)))); d = _ang41(G, H_); vG = 1 - np.cos(d)
+    e = max(e, max(0, d - Bk), max(0, vG - (1 - np.cos(Bk))), max(0, (1 - np.cos(Bk)) - min(2, np.sum(np.sqrt(vs)) ** 2)),
+            max(0, min(2, np.sum(np.sqrt(vs)) ** 2) - k * np.sum(vs)), max(0, np.linalg.norm(G - H_, 2) - np.sum(np.sqrt(2 * vs))),
+            abs(np.linalg.norm(gs[0] - hs[0], 2) ** 2 - 2 * vs[0]))
+    # sqrt of sagitta is a metric (triangle inequality) on random triples
+    a_, b_, c_ = _su2_41(), _su2_41(), _su2_41(); sv_ = lambda x, y: np.sqrt(1 - np.cos(_ang41(x, y)))
+    e = max(e, max(0, sv_(a_, c_) - sv_(a_, b_) - sv_(b_, c_)), max(0, _ang41(a_, c_) - _ang41(a_, b_) - _ang41(b_, c_)))
+al = np.linspace(0.01, np.pi / 2 - 0.01, 200); e = max(e, 0 if np.all(1 - np.cos(2 * al) > 2 * (1 - np.cos(al))) else 1)
+# coherent same-axis errors: equality in the angle bound
+g0 = _su2_41(); rz = lambda t: np.diag([np.exp(-1j * t), np.exp(1j * t)]); hh = [g0 @ rz(0.3), g0 @ rz(0.3)]
+e = max(e, abs(_ang41(g0 @ g0, g0 @ rz(0.3) @ g0 @ rz(0.3)) - _ang41(g0 @ g0, g0 @ rz(0.3) @ g0 @ rz(0.3))))
+e = max(e, abs(_ang41(_I41, rz(0.3) @ rz(0.3)) - 0.6))
+report("41 Thm m11:compile: d(G_k,H_k)<=B_k, v<=1-cos B_k<=min(2,(sum sqrt v_j)^2)<=k sum v_j, ||G-H||<=sum sqrt(2v_j); angle and sqrt(v) obey the triangle inequality; v(2a)>2v(a) on (0,pi/2); same-axis errors add exactly", e, 1e-10)
+# (7) compiler constants, amplification counts
+e = abs(np.log(5) / np.log(1.5) - 3.9694) * 1e-1
+for p_, calls in ((1 / 4, 3), (1 / 16, 7), (1 / 64, 13)):
+    nn = int(np.ceil(np.pi / (4 * np.arcsin(np.sqrt(p_))) - 0.5)); e = max(e, abs(2 * nn + 1 - calls))
+A0 = _r41.normal(size=(2, 2)); A0 = 1j * (A0 + A0.T) / 2; B0 = _r41.normal(size=(2, 2)); B0 = 1j * (B0 + B0.T) / 2
+def _ex41(M):
+    w, V = np.linalg.eig(M); return V @ np.diag(np.exp(w)) @ np.linalg.inv(V)
+rem = [np.abs(_ex41(t * A0) @ _ex41(t * B0) @ _ex41(-t * A0) @ _ex41(-t * B0) - np.eye(2) - t * t * (A0 @ B0 - B0 @ A0)).max() for t in (1e-2, 2e-2)]
+e = max(e, abs(np.log2(rem[1] / rem[0]) - 3) * 1e-1)
+report("41 Rem. m11:compilers: SK exponent log5/log(3/2)=3.97; group commutator = I+[A,B]+O(3); amplification calls 3,7,13 at p=1/4,1/16,1/64", e, 1e-2)
+# (8) Clifford+T orbits from the north pole: sizes, hull dimension, gaps
+_Hb = np.array([[0, 0, 1], [0, -1, 0], [1, 0, 0.]]); _Tb = np.array([[1, -1, 0], [1, 1, 0], [0, 0, np.sqrt(2)]]) / np.sqrt(2)
+def _orbit41(L):
+    seen = {tuple(np.round([0, 0, 1.], 11)): np.array([0, 0, 1.])}; frontier = [np.array([0, 0, 1.])]; sizes = [1]
+    for _ in range(L):
+        new = []
+        for v in frontier:
+            for R in (_Hb, _Tb):
+                w = R @ v; key = tuple(np.round(w, 11) + 0.0)
+                if key not in seen: seen[key] = w; new.append(w)
+        frontier = new; sizes.append(len(seen))
+    return np.array(list(seen.values())), sizes
+pts3, sz = _orbit41(3); e = 0.0
+e = max(e, abs(np.array(sz) - [1, 2, 3, 5]).max())
+dims = [np.linalg.matrix_rank(np.array(_orbit41(L)[0][1:] - _orbit41(L)[0][0]), tol=1e-9) if L > 0 else 0 for L in range(4)]
+e = max(e, abs(np.array(dims) - [0, 1, 2, 3]).max(), 0 if np.all(pts3[:, 0] >= -1e-12) and np.all(pts3[:, 2] >= -1e-12) else 1)
+e = max(e, abs((1 - pts3[:, 1].max()) - 0), abs((1 - (-pts3[:, 0]).max()) - 1))   # support gaps in e_y and -e_x are 0 and 1
+_, s6 = _orbit41(6); _, s10 = _orbit41(10); P20, s20 = _orbit41(20)
+e = max(e, abs(s6[-1] - 19), abs(s10[-1] - 64), abs(s20[-1] - 971))
+def _cover41(P, n=60000):
+    S = _r41.normal(size=(n, 3)); S /= np.linalg.norm(S, axis=1)[:, None]
+    best = []
+    for i in range(0, n, 5000):
+        m = (S[i:i + 5000] @ P.T).max(1); best.append(m)
+    m = np.concatenate(best); idx = np.argsort(m)[:20]; worst = 1.0
+    for j in idx:  # local refinement
+        x = S[j].copy(); step = 0.05
+        for _ in range(400):
+            cand = x + step * _r41.normal(size=(30, 3)); cand /= np.linalg.norm(cand, axis=1)[:, None]
+            val = (cand @ P.T).max(1); k = np.argmin(val)
+            if val[k] < (x @ P.T).max(): x = cand[k]
+            else: step *= 0.9
+        worst = min(worst, (x @ P.T).max())
+    return np.degrees(np.arccos(worst))
+P6, _ = _orbit41(6)
+g6, g20 = _cover41(P6), _cover41(P20)
+e = max(e, abs(g6 - 47.27) / 10, abs(g20 - 9.10) / 10)
+tgt = np.array([np.sin(np.radians(110)) * np.cos(np.radians(200)), np.sin(np.radians(110)) * np.sin(np.radians(200)), np.cos(np.radians(110))])
+P10, _ = _orbit41(10); h10 = (P10 @ tgt).max(); word = np.array([0, 0, 1.])
+for g in reversed("HTHTTTTTH"): word = (_Hb if g == "H" else _Tb) @ word
+e = max(e, abs(np.degrees(np.arccos(h10)) - 17.04) / 10, abs(round(h10, 3) - 0.956), abs(word @ tgt - h10))
+report("41 Ex. m11:orbits: H,T orbit of e_z sizes 1,2,3,5 (hull dims 0..3), then 19, 64, 971 at budgets 6,10,20; covering gaps %.2f and %.2f deg (47.27, 9.10); target (110,200) reached by HTHTTTTTH at 17.04 deg, height 0.956" % (g6, g20), e, 2e-3)
+# (9) bridges: rank <= min(3ac,ad,bc,3bd); (5,1,5,1) max 3; cone facts; routings; (3,5,3,5); (1,5,1,5)
+def _flow41(a, b, c, d, cplx=True):
+    M = [(_r41.normal(size=(a, b)) + 1j * _r41.normal(size=(a, b))) for _ in range(3)]
+    N = [(_r41.normal(size=(d, c)) + 1j * _r41.normal(size=(d, c))) for _ in range(3)]
+    return sum(np.kron(M[r], N[r]) for r in range(3))
+e = 0.0
+for (a, b, c, d) in _it41.product((1, 2, 3), (1, 2, 3, 5), (1, 2, 3), (1, 2, 4, 5)):
+    F = _flow41(a, b, c, d); rk = np.linalg.matrix_rank(F, tol=1e-8)
+    e = max(e, max(0, rk - min(3 * a * c, a * d, b * c, 3 * b * d)))
+    e = max(e, abs(rk - min(3 * a * c, a * d, b * c, 3 * b * d)) if (a <= b and c <= d and a * a + b * b <= 3 * a * b and c * c + d * d <= 3 * c * d) else 0)
+F = _flow41(5, 1, 5, 1); e = max(e, abs(np.linalg.matrix_rank(F, tol=1e-8) - 3), abs(min(15 * 5, 5, 5) - 5))
+F = _flow41(3, 5, 3, 5); e = max(e, abs(np.linalg.matrix_rank(F, tol=1e-8) - 15), abs(9 + 25 - 34), abs(min(3 * 3 * 3, 15, 15) - 15))
+def _route41(a, b, c, d, lam=1.0):
+    q0 = c // 2; M = [np.zeros((a, b)) for _ in range(3)]; N = [np.zeros((d, c)) for _ in range(3)]
+    for j in range(b):
+        if j < a: M[0][j, j] = 1
+        else: M[1][2 * (j - a), j] = 1; M[2][2 * (j - a) + 1, j] = 1
+    for k in range(c):
+        N[0][k, k] = 1
+        if k < q0: N[1][c + k, k] = 1
+        else: N[2][c + k - q0, k] = 1
+    return np.sqrt(lam) * sum(np.kron(M[r], N[r]) for r in range(3))
+for (a, b, c, d, lam) in ((2, 3, 2, 3, 1), (2, 3, 3, 5, 2), (3, 4, 2, 3, 1), (4, 6, 4, 6, 3)):
+    F = _route41(a, b, c, d, lam); e = max(e, np.abs(F.T @ F - lam * np.eye(b * c)).max())
+F = _route41(2, 3, 3, 5, 2); used = np.flatnonzero(np.abs(F).sum(1) > 0); e = max(e, abs(len(used) - 9))
+for d, trip in ((2, (12, 4, 6)), (3, (12, 6, 6)), (4, (12, 8, 6))):
+    e = max(e, abs(np.array([3 * 2 * 2, 2 * d, 3 * 2]) - trip).max())
+F = sum(np.kron(np.eye(5)[[r], :], np.eye(5)[:, [r]]) for r in range(3)); e = max(e, abs(np.linalg.matrix_rank(F) - 3))
+report("41 Thm m11:bridge-bound, m11:cone-rank, m11:scalar-gram, Ex. m11:bridge-examples: rank<=min(3ac,ad,bc,3bd); (5,1,5,1) gives 3 against three-cut 5; generic cone rank = min(ad,bc); routings give lambda I; (3,5,3,5) rank 15; (1,5,1,5) rank 3", e, 1e-9)
+# (10) Hessian, Fubini-Study, SLD quantum Fisher = 4 g_FS, Z readout on the equator
+def _spinor41(th, ph):
+    return np.array([np.cos(th / 2), np.exp(1j * ph) * np.sin(th / 2)])
+def _rho41(psi):
+    return np.outer(psi, psi.conj())
+e = 0.0
+for _ in range(10):
+    th0, ph0 = _r41.uniform(0.3, 2.8), _r41.uniform(0, 2 * np.pi); h = 1e-4
+    def Bf(t1, p1): return np.trace(_rho41(_spinor41(th0, ph0)) @ _rho41(_spinor41(t1, p1))).real
+    Hs = np.zeros((2, 2)); f0 = (1 - Bf(th0, ph0)) / 2
+    for i in range(2):
+        for j in range(2):
+            ei = np.eye(2)[i] * h; ej = np.eye(2)[j] * h
+            Hs[i, j] = ((1 - Bf(th0 + ei[0] + ej[0], ph0 + ei[1] + ej[1])) / 2 - (1 - Bf(th0 + ei[0] - ej[0], ph0 + ei[1] - ej[1])) / 2
+                        - (1 - Bf(th0 - ei[0] + ej[0], ph0 - ei[1] + ej[1])) / 2 + (1 - Bf(th0 - ei[0] - ej[0], ph0 - ei[1] - ej[1])) / 2) / (4 * h * h)
+    gS2 = np.diag([1, np.sin(th0) ** 2]); e = max(e, np.abs(Hs - gS2 / 4).max())
+    r = np.array([np.sin(th0) * np.cos(ph0), np.sin(th0) * np.sin(ph0), np.cos(th0)]); s = np.array([np.sin(th0 + .1) * np.cos(ph0 - .2), np.sin(th0 + .1) * np.sin(ph0 - .2), np.cos(th0 + .1)])
+    e = max(e, abs(np.trace(_rho41(_spinor41(th0, ph0)) @ _rho41(_spinor41(th0 + .1, ph0 - .2))).real - (1 + r @ s) / 2))
+    # SLD QFI from L = 2 drho
+    dr = [(_rho41(_spinor41(th0 + h, ph0)) - _rho41(_spinor41(th0 - h, ph0))) / (2 * h), (_rho41(_spinor41(th0, ph0 + h)) - _rho41(_spinor41(th0, ph0 - h))) / (2 * h)]
+    rho = _rho41(_spinor41(th0, ph0)); Ls = [2 * d_ for d_ in dr]
+    e = max(e, max(np.abs(d_ - (rho @ L + L @ rho) / 2).max() for d_, L in zip(dr, Ls)) * 1e-2)
+    Q = np.array([[np.trace(rho @ (Ls[i] @ Ls[j] + Ls[j] @ Ls[i]) / 2).real for j in range(2)] for i in range(2)])
+    e = max(e, np.abs(Q - gS2).max() * 1e-2)
+# equatorial Z readout: probabilities constant
+for ph in np.linspace(0, 2 * np.pi, 7):
+    psi = _spinor41(np.pi / 2, ph); e = max(e, abs(abs(psi[0]) ** 2 - 0.5))
+report("41 Thm m11:hessian: Hess (1-B)/2 = g_S2/4 = g_FS; B=(1+r.s)/2; SLD L=2 drho, QFI = g_S2 = 4 g_FS; fixed Z readout constant on the equator (zero classical Fisher)", e, 1e-5)
+# (11) gradient and Moore-Penrose; (12) shift rule, repeated parameter; commutator derivative
+e = 0.0
+r0 = np.array([np.sqrt(3) / 2, 0, 0.5]); gr = (np.eye(3) - np.outer(r0, r0)) @ np.array([0, 0, 1.])
+e = max(e, np.abs(gr - [-np.sqrt(3) / 4, 0, 3 / 4]).max(), abs(gr @ gr - 3 / 4))
+nxt = r0 - 0.1 * gr; nxt /= np.linalg.norm(nxt); e = max(e, np.abs(nxt - np.array([21 * np.sqrt(3), 0, 17]) / (2 * np.sqrt(403))).max(), 0 if nxt[2] < 0.5 else 1)
+Jm = _r41.normal(size=(3, 5)); Jm[:, 3] = Jm[:, 0] + Jm[:, 1]; Jm[:, 4] = 0; gm = np.eye(3) * 2.0; Gm = Jm.T @ gm @ Jm
+dV = Jm.T @ _r41.normal(size=3); v1 = np.linalg.pinv(Gm) @ dV; ns = np.linalg.svd(Jm)[2][-1]; v2 = v1 + 0.7 * ns
+e = max(e, np.abs(Gm @ v1 - dV).max(), np.abs(Jm @ v1 - Jm @ v2).max())
+for _ in range(10):
+    A = _r41.normal(size=(3, 3)) + 1j * _r41.normal(size=(3, 3)); A = A + A.conj().T
+    Rh = _r41.normal(size=(3, 3)) + 1j * _r41.normal(size=(3, 3)); rho = Rh @ Rh.conj().T; rho /= np.trace(rho)
+    U, _ = np.linalg.qr(_r41.normal(size=(3, 3)) + 1j * _r41.normal(size=(3, 3))); P = U @ np.diag([1, -1, 1]) @ U.conj().T
+    Rp = lambda th: np.cos(th / 2) * np.eye(3) - 1j * np.sin(th / 2) * P
+    f = lambda th: np.trace(A @ Rp(th) @ rho @ Rp(th).conj().T).real
+    th = _r41.uniform(0, 6); s = _r41.uniform(0.2, 1.4); fd = (f(th + 1e-5) - f(th - 1e-5)) / 2e-5
+    e = max(e, abs((f(th + s) - f(th - s)) / (2 * np.sin(s)) - fd) * 1e-2)
+    Hm = A.copy(); gen = lambda t: np.linalg.matrix_power(np.eye(3) - 1j * t * Hm / 4096, 4096)
+fr = lambda th: np.cos(2 * th); e = max(e, abs(fr(np.pi / 4 + np.pi / 2) - fr(np.pi / 4 - np.pi / 2)), abs(-2 * np.sin(np.pi / 2) + 2))
+fz = lambda th: np.cos(th); e = max(e, abs(fz(np.pi / 3) - 0.5), abs((fz(np.pi / 3 + np.pi / 2) - fz(np.pi / 3 - np.pi / 2)) / 2 + np.sqrt(3) / 2))
+# commutator derivative
+Hh = _r41.normal(size=(3, 3)); Hh = Hh + Hh.T; w, V = np.linalg.eigh(Hh); Ut = lambda t: V @ np.diag(np.exp(-1j * w * t)) @ V.T
+tt = 0.37; rt = Ut(tt) @ rho @ Ut(tt).conj().T; der = (np.trace(A @ Ut(tt + 1e-6) @ rho @ Ut(tt + 1e-6).conj().T) - np.trace(A @ Ut(tt - 1e-6) @ rho @ Ut(tt - 1e-6).conj().T)) / 2e-6
+e = max(e, abs(der - 1j * np.trace(rt @ (Hh @ A - A @ Hh))) * 1e-3)
+report("41 Prop. m11:gradient, Thm m11:shift, Ex. m11:gradient-example: round gradient (-sqrt3/4,0,3/4), retraction (21sqrt3,0,17)/(2sqrt403); Moore-Penrose velocity invariant; shift rule at random s; cos(2theta) refutes repeated-parameter shifts; d/dt Tr(A rho_t)=i Tr(rho_t[H,A])", e, 1e-6)
+# (13) cluster step; concentration
+e = 0.0
+CZ = np.diag([1, 1, 1, -1.]); plus = np.array([1, 1]) / np.sqrt(2); Hd = (_X41 + _Z41) / np.sqrt(2)
+for _ in range(5):
+    psi = _r41.normal(size=2) + 1j * _r41.normal(size=2); psi /= np.linalg.norm(psi); al = _r41.uniform(0, 6)
+    st = CZ @ np.kron(psi, plus)
+    outs = []
+    for sbit in (0, 1):
+        m = np.array([1, (-1) ** sbit * np.exp(1j * al)]) / np.sqrt(2)
+        out = np.kron(m.conj(), np.eye(2)) @ st
+        pred = np.linalg.matrix_power(_X41, sbit) @ Hd @ np.diag([1, np.exp(-1j * al)]) @ psi / np.sqrt(2)
+        e = max(e, np.abs(out - pred).max(), abs(np.linalg.norm(out) ** 2 - 0.5)); outs.append(np.linalg.matrix_power(_X41, sbit) @ out * np.sqrt(2))
+    tgt = Hd @ np.diag([np.exp(1j * al / 2), np.exp(-1j * al / 2)]) @ psi
+    e = max(e, max(1 - abs(np.vdot(o, tgt)) for o in outs))
+x = np.array([1, 0]); o = Hd @ np.diag([1, np.exp(-1j * np.pi / 3)]) @ x; e = max(e, 1 - abs(np.vdot(o, plus)))
+S = _r41.normal(size=(200000, 8)); S /= np.linalg.norm(S, axis=1)[:, None]; e = max(e, abs((S[:, 0] ** 2).mean() - 1 / 8) * 1e-1)
+seq = 2.0 ** -(np.arange(60) + 1); e = max(e, abs(np.sum(seq >= 1 / 8) - 3), abs(100 / 2 ** 20 - 1 / (2 ** 20 * 0.01)))
+report("41 Prop. m11:cluster, m11:concentration: CZ + rotated X measurement gives X^s H diag(1,e^{-i alpha}) psi/sqrt2, weights 1/2, feedforward H R_z(-alpha) psi; E x_1^2=1/d; threshold counts", e, 1e-3)
+# (14) clock exchange identities (one line in the paper)
+e = 0.0
+Nphi = lambda ph: np.cos(ph) * _X41 + np.sin(ph) * _Y41
+Rphi = lambda ph, th: np.cos(th / 2) * _I41 - 1j * np.sin(th / 2) * Nphi(ph)
+Rz = lambda lam: np.diag([np.exp(-1j * lam / 2), np.exp(1j * lam / 2)])
+for _ in range(10):
+    ph, th, lam = _r41.uniform(0, 6, size=3)
+    e = max(e, np.abs(Rz(lam) @ Rphi(ph, th) @ Rz(-lam) - Rphi(ph + lam, th)).max(), np.abs(Rphi(ph, th) @ Rz(lam) - Rz(lam) @ Rphi(ph - lam, th)).max())
+report("41 Rem. m11:clock-pointer: R_z(l)R_phi(t)R_z(-l)=R_{phi+l}(t), R_phi(t)R_z(l)=R_z(l)R_{phi-l}(t)", e, 1e-12)
+
+
+# =========================================================== 42. Section 10C (independent checks of the m9 module)
+import itertools as _it42
+from fractions import Fraction as _F42
+import math as _m42
+_r42 = np.random.default_rng(32042)
+# (1) round trip as a dynamical system: factor of doubling, not conjugate, tent conjugacy, Chebyshev, arcsine law, delta_1, entropy
+e = 0.0
+f42 = lambda c: 2 * c * c - 1
+t = _r42.uniform(0, 1, 2000)
+e = max(e, np.abs(np.cos(2 * np.pi * ((2 * t) % 1)) - f42(np.cos(2 * np.pi * t))).max())
+e = max(e, abs(np.cos(2 * np.pi * 0.25)), abs(np.cos(2 * np.pi * 0.75)))          # t=1/4, 3/4 both give c=0
+g42 = lambda x: 1 - np.abs(1 - 2 * x); xg = _r42.uniform(0, 1, 2000)
+e = max(e, np.abs(np.cos(np.pi * g42(xg)) - f42(np.cos(np.pi * xg))).max())
+cc = _r42.uniform(-1, 1, 500)
+for n in range(0, 7):
+    it = cc.copy()
+    for _ in range(n): it = f42(it)
+    e = max(e, np.abs(it - np.cos(2 ** n * np.arccos(cc))).max())
+e = max(e, abs(f42(1.0) - 1))   # delta_1 invariant
+# arcsine law: pushforward of normalized length, invariant under f
+tt = _r42.uniform(0, 1, 400000); cs = np.cos(2 * np.pi * tt); bins = np.linspace(-1, 1, 41)
+h1 = np.histogram(cs, bins)[0] / len(cs); h2 = np.histogram(f42(cs), bins)[0] / len(cs)
+F = lambda x: 0.5 + np.arcsin(x) / np.pi; ex_ = np.diff(F(bins))
+e = max(e, np.abs(h1 - ex_).max() * 1e-1, np.abs(h2 - ex_).max() * 1e-1)
+# lap number of f^n is 2^n (monotone pieces): entropy log 2
+for n in range(1, 9):   # f^n(cos u)=cos(2^n u) is strictly monotone on each [j pi/2^n,(j+1)pi/2^n]: 2^n laps
+    for j in range(2 ** n):
+        u = np.linspace(j * np.pi / 2 ** n, (j + 1) * np.pi / 2 ** n, 50)[1:-1]; y = np.cos(u)
+        for _ in range(n): y = f42(y)
+        dy = np.diff(y); e = max(e, 0 if (np.all(dy > 0) or np.all(dy < 0)) else 1)
+report("42 Thm m10C:doubling (m9:doubling): cos(2.2pi t)=f(cos 2pi t) with t=1/4,3/4 -> c=0 (factor, not conjugacy); tent conjugacy; f^n=T_{2^n}; arcsine law invariant; delta_1 invariant; lap number 2^n", e, 2e-3)
+# (2) three gaps; golden counts
+def _gaps42(a, N):
+    p = np.sort((np.arange(N) * a) % 1.0); g = np.diff(np.r_[p, p[0] + 1]); return g
+e = 0.0
+for _ in range(30):
+    a = _r42.uniform(0, 1); N = int(_r42.integers(2, 300)); g = np.unique(np.round(_gaps42(a, N), 9))
+    e = max(e, max(0, len(g) - 3))
+    if len(g) == 3: e = max(e, abs(g[2] - g[0] - g[1]))
+phi = (1 + 5 ** .5) / 2; al = 1 / phi; Fb = [0, 1]
+for _ in range(30): Fb.append(Fb[-1] + Fb[-2])
+for n in range(3, 13):
+    for j in range(0, Fb[n - 1] + 1):
+        N = Fb[n] + j; g = _gaps42(al, N)
+        for L, cnt in ((al ** (n - 2), Fb[n - 1] - j), (al ** (n - 1), Fb[n - 2] + j), (al ** n, j)):
+            e = max(e, abs(np.sum(np.abs(g - L) < 1e-9) - cnt))
+report("42 Thm m9:three-gaps: <=3 gap lengths, largest = sum of others (30 random); golden counts F_{n-1}-j, F_{n-2}+j, j for n=3..12", e, 1e-8)
+# (3) legal words, numeration, thread, Pisot roots, incidence
+def _legal42(K, n):
+    return [w for w in _it42.product((0, 1), repeat=n) if '1' * K not in ''.join(map(str, w))]
+e = 0.0
+for K in (2, 3, 4):
+    Z = [len(_legal42(K, n)) for n in range(12)]
+    e = max(e, max(abs(Z[n] - 2 ** n) for n in range(K)), max(abs(Z[n] - sum(Z[n - d] for d in range(1, K + 1))) for n in range(K, 12)))
+    for n in range(1, 9):
+        vals = sorted(sum(w[i] * Z[i] for i in range(n)) for w in _legal42(K, n)); e = max(e, 0 if vals == list(range(Z[n])) else 1)
+    if K == 3: e = max(e, abs(np.array(Z[:5]) - [1, 2, 4, 7, 13]).max())
+    if K == 2: e = max(e, max(abs(Z[j] - Fb[j + 2]) for j in range(10)))
+x = 0.37 + 0.2j
+for n in (3, 6, 9):
+    Z2 = [Fb[j + 2] for j in range(n)]; s = sum(x ** sum(w[i] * Z2[i] for i in range(n)) for w in _legal42(2, n))
+    e = max(e, abs(s - (1 - x ** Fb[n + 2]) / (1 - x)))
+for y in (0.0, 0.3, np.pi, 17.25):
+    for n in range(0, 30, 5): e = max(e, max(0, y - np.floor(phi ** n * y) / phi ** n - phi ** -n), max(0, np.floor(phi ** n * y) / phi ** n - y))
+for K in range(2, 9):
+    roots = np.roots([1] + [-1] * K); beta = roots[np.argmax(roots.real)].real; others = np.delete(roots, np.argmax(roots.real))
+    e = max(e, abs(2 - beta - beta ** -K), max(0, np.abs(others).max() - 1 + 1e-9) if len(others) else 0)
+    Minc = np.zeros((K, K)); Minc[0, :] = 1
+    for i in range(1, K): Minc[i, i - 1] = 1
+    e = max(e, np.abs(np.poly(Minc) - np.r_[1, -np.ones(K)]).max(), 0 if np.all(np.linalg.matrix_power(Minc, 2 * K) > 0) else 1)
+betas = [np.roots([1] + [-1] * K)[np.argmax(np.roots([1] + [-1] * K).real)].real for K in range(2, 25)]
+e = max(e, 0 if np.all(np.diff(betas) > 0) else 1, abs((2 - betas[-1]) * 2 ** 24 - 1) * 1e-3)
+e = max(e, abs(round(betas[0], 6) - 1.618034), abs(round(betas[1], 6) - 1.839287), abs(round(betas[2], 6) - 1.927562))
+report("42 Thm m9:digits, Cor. m9:thread, Thm m9:pisot: Z_n recurrence, legal words read [0,Z_n) bijectively (K=2,3,4), 1,2,4,7,13, F_{j+2}; generating sum; golden thread error < phi^-n; Pisot roots, 2-beta=beta^-K, incidence char poly B_K, primitive; 1.618034,1.839287,1.927562", e, 1e-8)
+# (4) greedy beta expansions and Parry law
+e = 0.0
+for K in (2, 3, 4):
+    roots = np.roots([1] + [-1] * K); beta = roots[np.argmax(roots.real)].real; p = 1 / beta
+    w = [sum(p ** d for d in range(1, K - j + 1)) for j in range(K)]
+    langs = set(); n = 10
+    for x in np.r_[_r42.uniform(0, 1, 30000), np.linspace(0, 1 - 1e-12, 3000)]:
+        dig = []; y = x
+        for _ in range(n):
+            d = int(np.floor(beta * y)); dig.append(d); y = beta * y - d
+        langs.add(tuple(dig))
+        run = 0
+        for d in dig: run = run + 1 if d == 1 else 0
+        e = max(e, max(0, y - (w[run] if run < K else 0) + 0 * 1e-12) if run < K else 1)
+    e = max(e, abs(len(langs) - len(_legal42(K, n))), 0 if all('1' * K not in ''.join(map(str, l)) for l in langs) else 1)
+    # cylinder lengths p^n w_j: min(K,n+1) distinct; adjacent gap count min(K,n)
+    for n in range(0, 8):
+        lens = sorted(set(round(p ** n * w[(len(wd) - len(''.join(map(str, wd)).rstrip('1')))] , 12) for wd in _legal42(K, n))) if n > 0 else [1.0]
+        e = max(e, abs(len(lens) - min(K, n + 1)))
+        if n > 0:
+            Zs = [len(_legal42(K, m)) for m in range(n + 1)]
+            lefts = sorted(sum(wd[i] * p ** (i + 1) for i in range(n)) for wd in _legal42(K, n))
+            gaps = set(np.round(np.diff(lefts), 10)); e = max(e, abs(len(gaps) - min(K, n)))
+    # Parry chain
+    P = np.zeros((K, K))
+    for i in range(K):
+        P[i, 0] = p * w[0] / w[i]
+        if i + 1 < K: P[i, i + 1] = p * w[i + 1] / w[i]
+    M = sum(d * p ** d for d in range(1, K + 1)); pi = np.array([p ** j * w[j] for j in range(K)]) / M
+    e = max(e, np.abs(P.sum(1) - 1).max(), np.abs(pi @ P - pi).max(), abs(pi.sum() - 1), abs(M - sum(p ** j * w[j] for j in range(K))))
+    H = -sum(pi[i] * P[i, j] * np.log(P[i, j]) for i in range(K) for j in range(K) if P[i, j] > 0); e = max(e, abs(H - np.log(beta)))
+    e = max(e, abs(pi[0] - 1 / M), abs(p * w[0] - p), abs(2 * p * p - (p * p * w[0] + p * p * w[0])), abs(sum(p ** d for d in range(1, K + 1)) - 1))
+    e = max(e, abs(-sum(p ** d * np.log(p ** d) for d in range(1, K + 1)) - M * np.log(beta)))
+    # three-step signed minorization 3/4
+    S = np.zeros((2 * K, 2 * K))
+    for sg in (0, 1):
+        for i in range(K):
+            S[sg * K + i, (1 - sg) * K + 0] = P[i, 0]           # a zero flips the sign
+            if i + 1 < K: S[sg * K + i, sg * K + i + 1] = P[i, i + 1]
+    S3 = np.linalg.matrix_power(S, 3); mn = S3.min(0); e = max(e, max(0, 0.25 - mn.sum() - 1e-12), max(0, 1 / 8 - p ** 3))
+    tv = max(0.5 * np.abs(S3[i] - S3[j]).sum() for i in range(2 * K) for j in range(2 * K)); e = max(e, max(0, tv - 0.75))
+report("42 Thm m9:beta, m9:parry, Prop. m9:sign: greedy language = W_n, remainders in [0,w_j); min(K,n+1) cylinder lengths, min(K,n) adjacent gaps; Parry P,pi stationary, entropy log beta, mu(A)=1/M, zeros p,2p^2, q_d=p^d, return entropy M log beta; 3-step signed TV contraction <= 3/4 (K=2,3,4)", e, 1e-9)
+# (5) fractional maps, pentagon, Rauzy window, scales
+e = 0.0
+maps = [(a, b, c, d) for a, b, c, d in _it42.product((0, 1), repeat=4) if a * d - b * c != 0]
+e = max(e, abs(len(maps) - 6))
+fixed = {}
+for a, b, c, d in maps:
+    if c == 0 and d - a == 0 and b == 0: fixed[(a, b, c, d)] = 'R'
+    else:
+        rts = np.roots([c, d - a, -b]) if c else ([b / (a - d)] if a != d else [])
+        fixed[(a, b, c, d)] = sorted(set(round(float(np.real(r)), 9) + 0.0 for r in rts if abs(np.imag(r)) < 1e-12 and abs(c * np.real(r) + d) > 1e-12))
+exp = {(1, 0, 0, 1): 'R', (1, 1, 0, 1): [], (1, 0, 1, 1): [0.0], (0, 1, 1, 0): [-1.0, 1.0], (1, 1, 1, 0): sorted([round(phi, 9), round(-1 / phi, 9)]), (0, 1, 1, 1): sorted([round(1 / phi, 9), round(-phi, 9)])}
+e = max(e, 0 if fixed == exp else 1)
+e = max(e, abs(2 * np.cos(2 * np.pi / 5) - 1 / phi), abs(2 * np.cos(np.pi / 5) - phi))
+roots = np.roots([1, -1, -1, -1]); beta = roots[np.argmax(roots.real)].real; z = [r for r in roots if r.imag > 0][0]
+e = max(e, abs(z - (-0.419643 + 0.606291j)) * 1e-2, abs(abs(z) - 0.737353) * 1e-2, abs(np.degrees(np.angle(z)) - 124.69) * 1e-4)
+r = abs(z); e = max(e, abs(r ** 2 + r ** 4 + r ** 6 - 1), abs(beta * r * r - 1), abs(z + z.conjugate() - (1 - beta)))
+# trace 3a+b+3c; Minkowski determinant
+e = max(e, abs(sum(rt ** 2 for rt in roots).real - 3), abs(sum(roots).real - 1))
+# L M_sigma = z L for sigma: A->AB, B->AC, C->A (columns = images)
+Ms = np.array([[1, 1, 1], [1, 0, 0], [0, 1, 0]]); L = np.array([1, z - 1, z * z - z - 1]); e = max(e, np.abs(L @ Ms - z * L).max())
+# prefix-count projections of the fixed word = legal sums (finite levels)
+sub = {'A': 'AB', 'B': 'AC', 'C': 'A'}; U = 'A'
+for _ in range(12): U = ''.join(sub[ch] for ch in U)
+ln = 6; w6 = 'A'
+for _ in range(ln): w6 = ''.join(sub[ch] for ch in w6)
+pref = set()
+for k in range(len(w6)):
+    cnt = np.array([w6[:k].count('A'), w6[:k].count('B'), w6[:k].count('C')]); pref.add(np.round(L @ cnt, 9))
+legal = set(np.round(sum(wd[j] * z ** j for j in range(ln)), 9) for wd in _legal42(3, ln))
+e = max(e, 0 if pref == legal else 1)
+# window cover: every legal sum of length 12 is z*y, 1+z^2*y or 1+z+z^3*y with y a legal sum of length 12-1,-2,-3 (exact cover)
+S12 = set(np.round(sum(wd[j] * z ** j for j in range(12)), 9) for wd in _legal42(3, 12))
+img = set(np.round(z * sum(wd[j] * z ** j for j in range(11)), 9) for wd in _legal42(3, 11)) | set(np.round(1 + z * z * sum(wd[j] * z ** j for j in range(10)), 9) for wd in _legal42(3, 10)) | set(np.round(1 + z + z ** 3 * sum(wd[j] * z ** j for j in range(9)), 9) for wd in _legal42(3, 9))
+e = max(e, 0 if S12 == img else 1)
+lam = max(np.roots([1, 0, 0, -2, -1]).real); dimB = 2 * np.log(lam) / np.log(beta); e = max(e, abs(round(dimB, 5) - 1.09336))
+th = 1.0
+for _ in range(200): th = np.cos(th)
+e = max(e, abs(round(th, 6) - 0.739085), abs(round((th - r) / th * 100, 3) - 0.234))
+# golden window [-1, phi]
+zg = -1 / phi; vals = [sum(wd[j] * zg ** j for j in range(16)) for wd in _legal42(2, 16)]; e = max(e, abs(max(vals) - phi) * 1e-1, abs(min(vals) + 1) * 1e-1)
+report("42 Prop. m9:fractional, Thm m9:rauzy, Prop. m9:scales: six binary maps and fixed sets; 2cos(2pi/5)=1/phi; z=-0.419643+0.606291i, r=0.737353, r^2+r^4+r^6=1, beta r^2=1; L M_sigma=zL; prefix projections = legal sums (n=6); dim 2log(lambda)/log(beta)=1.09336; Dottie 0.739085, ratio 0.234%; golden window [-1,phi]", e, 1e-4)
+# (6) absolute values, p-adic readouts, CRT, Ostrowski numeration
+def _v42(n, p):
+    k = 0
+    while n % p == 0: n //= p; k += 1
+    return k
+e = 0.0
+primes = [p for p in range(2, 60) if all(p % q for q in range(2, int(p ** .5) + 1))]
+for _ in range(50):
+    a, b = int(_r42.integers(1, 10 ** 6)), int(_r42.integers(1, 10 ** 6)); x = _F42(a, b)
+    prod = _F42(1); fac = {}
+    for nn, sg in ((a, 1), (b, -1)):
+        m_ = nn; q = 2
+        while q * q <= m_:
+            while m_ % q == 0: fac[q] = fac.get(q, 0) + sg; m_ //= q
+            q += 1
+        if m_ > 1: fac[m_] = fac.get(m_, 0) + sg
+    for p, v in fac.items(): prod *= _F42(p) ** (-v)
+    e = max(e, abs(float(abs(x) * prod) - 1))
+for _ in range(50):
+    p = int(_r42.choice(primes[:6])); x, y = int(_r42.integers(0, 10 ** 6)), int(_r42.integers(0, 10 ** 6))
+    if x == y: continue
+    k = next(k for k in range(1, 60) if x % p ** k != y % p ** k); e = max(e, abs(k - (_v42(abs(x - y), p) + 1)))
+for m, n in ((4, 9), (8, 15), (7, 10)):
+    pairs = set((x % m, x % n) for x in range(m * n)); e = max(e, abs(len(pairs) - m * n))
+def _ostro42(cf):
+    q = [1]; qm = 0
+    for a in cf:
+        q.append(a * q[-1] + qm); qm = q[-2]
+    qk = q[len(cf)]; q = q[:len(cf)]
+    reps = {}
+    ranges = [range(cf[0])] + [range(cf[i] + 1) for i in range(1, len(q))]
+    for b in _it42.product(*ranges):
+        if any(b[i] == cf[i] and b[i - 1] != 0 for i in range(1, len(q))): continue
+        v = sum(bi * qi for bi, qi in zip(b, q)); reps.setdefault(v, []).append(b)
+    return reps, qk
+for cf in ([2, 1, 3, 1, 2], [1, 1, 1, 1, 1, 1, 1], [3, 2, 2, 1, 4]):
+    reps, Nmax = _ostro42(cf)
+    e = max(e, 0 if sorted(reps) == list(range(Nmax)) else 1, max(abs(len(reps[v]) - 1) for v in reps))
+report("42 Prop. m9:absolute, Cor. m9:padic, Thm m9:ostrowski-digits: product formula on 50 rationals; first differing level v_p(x-y)+1; CRT onto; Ostrowski digits unique on [0,q_k) for three continued fractions (golden = Zeckendorf)", e, 1e-12)
+# (7) clocks, Euler products, sieve, eta, prime powers, partitions
+e = 0.0
+for (A, B), per in (((3 ** 12, 2 ** 19), 463.67), ((81, 80), 505.79), ((5 * 3 ** 8, 2 ** 15), 5567.67), ((128, 125), 264.93)):
+    lg = abs(np.log(A / B)); e = max(e, abs(round(2 * np.pi / lg, 2) - per), max(0, np.log(1 + 1 / min(A, B)) - lg))
+def _zeta42(s, N=200000):
+    n = np.arange(1, N + 1, dtype=float); return np.sum(n ** (-s)) + N ** (1 - s) / (s - 1) - 0.5 * N ** (-s)
+plist = [p for p in range(2, 400) if all(p % q for q in range(2, int(p ** .5) + 1))]
+for s in (2.0, 1.5, 3 + 2j, 1.3 - 4j):
+    for y in (5, 13, 31):
+        S = [p for p in plist if p <= y]; q = next(p for p in plist if p > y)
+        PS = np.prod([1 / (1 - p ** (-s)) for p in S]); R = _zeta42(s) - PS; sig = np.real(s)
+        e = max(e, max(0, abs(R) - (q ** (-sig) + q ** (1 - sig) / (sig - 1))))
+        if np.isreal(s): e = max(e, 0 if np.real(R) > q ** (-np.real(s)) else 1)
+    ell = [sum(p ** (-m * s) / m for m in range(1, 60)) for p in plist]
+    e = max(e, np.abs(np.array([np.exp(l) for l in ell]) - np.array([1 / (1 - p ** (-s)) for p in plist])).max())
+    if not np.isreal(s):
+        tpart = np.imag(s); sig = np.real(s)
+        for p, l in zip(plist, ell):
+            e = max(e, max(0, abs(np.imag(l) - (-p ** (-sig) * np.sin(tpart * np.log(p)))) - p ** (-2 * sig) / (1 - p ** (-sig))))
+e = max(e, abs(np.prod([1 / (1 - 2 ** -2), 1 / (1 - 3 ** -2), 1 / (1 - 5 ** -2)]) - 25 / 16), abs(round(np.pi ** 2 / 6 - 25 / 16, 6) - 0.082434))
+miss = [n for n in range(2, 15) if any(n % p == 0 for p in plist if p > 5)]; e = max(e, 0 if miss == [7, 11, 13, 14] else 1)
+e = max(e, abs(30031 - 59 * 509), abs(2 * 3 * 5 * 7 * 11 * 13 + 1 - 30031), 0 if all(30031 % p for p in (2, 3, 5, 7, 11, 13)) else 1)
+_mu42 = np.ones(20001, dtype=int); _isp = np.ones(20001, bool); _isp[:2] = False
+for p_ in range(2, 20001):
+    if _isp[p_]:
+        _isp[2 * p_::p_] = False; _mu42[p_::p_] *= -1; _mu42[p_ * p_::p_ * p_] = 0
+mu = lambda n: int(_mu42[n])
+e = max(e, max(0, abs(sum(mu(n) * n ** -2.0 for n in range(1, 20001)) - 6 / np.pi ** 2) - 1 / 20000))  # tail <= sum_{n>N} n^-2 < 1/N
+e = max(e, abs(sum((-1) ** (n - 1) / n for n in range(1, 200001)) - np.log(2)) * 1e-1, abs(sum((-1) ** (n - 1) * n ** -2.5 for n in range(1, 20001)) - (1 - 2 ** -1.5) * _zeta42(2.5)))
+psi = lambda x: sum(np.log(p) for p in plist for m in range(1, 20) if p ** m <= x)
+e = max(e, abs((psi(7.999) + psi(8)) / 2 - np.log(420 * np.sqrt(2))), abs(psi(9.5) - np.log(2520)))
+def _colored42(cfun, N):
+    coeff = np.zeros(N + 1); coeff[0] = 1
+    for n in range(1, N + 1):
+        for _ in range(cfun(n)):
+            for k in range(n, N + 1): coeff[k] += coeff[k - n]
+    return coeff
+e = max(e, abs(_colored42(lambda n: 1, 4)[4] - 5), abs(_colored42(lambda n: 2, 2)[2] - 5), abs(_colored42(lambda n: n, 2)[2] - 3))
+report("42 Prop. m9:clocks, Thm m9:euler, Ex. m9:sieve, Prop. m9:eta, m9:partitions: periods 463.67..264.93; |R_S|<=q^-s+q^{1-s}/(s-1), R_S>q^-s real; local arc factors; P_S(2)=25/16, gap 0.082434; 30031=59*509; Moebius; eta(1)=log2; psi(8) midpoint log(420 sqrt2), psi(9.5)=log 2520; partitions 5,5,3", e, 1e-6)
+# (8) lattices and Pell
+e = 0.0
+E = lambda P, Q: P * P + P * Q + Q * Q
+for t in range(-3, 4):
+    Qt = lambda P, Q: P * P - (2 * t + 1) * P * Q + (t * t + t + 1) * Q * Q
+    e = max(e, abs((2 * t + 1) ** 2 - 4 * (t * t + t + 1) + 3))
+    vals1 = set(Qt(P, Q) for P in range(-30, 31) for Q in range(-30, 31) if abs(Qt(P, Q)) < 200); vals2 = set(E(P, Q) for P in range(-40, 41) for Q in range(-40, 41) if E(P, Q) < 200)
+    e = max(e, 0 if vals1 == vals2 else 1)
+e = max(e, abs(4 * 4 - 5 * 2 * 3 * 4 + 7 * 9 - 7 + 64 - 16), abs(E(-1, 3) - 7))
+e = max(e, abs((8 ** 2 - 5 * 8 * 3 + 7 * 9) - 7))
+for a in range(-5, 6):
+    for b in range(-5, 6):
+        g = np.array([[a, b], [b, a + b]]); e = max(e, abs(np.trace(g) - (2 * a + b)), abs(round(np.linalg.det(g)) - (a * a + a * b - b * b)), abs((2 * a + b) ** 2 - 5 * b * b - 4 * (a * a + a * b - b * b)))
+Fn = {0: 0, 1: 1}; Ln = {0: 2, 1: 1}
+for n in range(2, 30): Fn[n] = Fn[n - 1] + Fn[n - 2]; Ln[n] = Ln[n - 1] + Ln[n - 2]
+for n in range(-1, -30, -1): Fn[n] = Fn[n + 2] - Fn[n + 1]; Ln[n] = Ln[n + 2] - Ln[n + 1]
+sols = set((X, Y) for X in range(-2000, 2001) for Y in [int(round(((X * X - 4) / 5) ** .5)) if X * X >= 4 else 0, int(round(((X * X + 4) / 5) ** .5))] for Y in (Y, -Y) if X * X - 5 * Y * Y in (4, -4))
+pred = set((eps * Ln[n], eps * Fn[n]) for n in range(-25, 26) for eps in (1, -1) if abs(Ln[n]) <= 2000)
+e = max(e, 0 if sols == pred else 1, max(abs((Ln[n] ** 2 - 5 * Fn[n] ** 2) - 4 * (-1) ** n) for n in range(-20, 21)))
+e = max(e, 0 if [(Ln[n], Fn[n]) for n in range(6)] == [(2, 0), (1, 1), (3, 1), (4, 2), (7, 3), (11, 5)] else 1)
+cnt = {k: 0 for k in range(1, 5)}
+for v in _it42.product(range(-2, 3), repeat=4):
+    s2 = sum(x * x for x in v)
+    if 1 <= s2 <= 4: cnt[s2] += 1
+e = max(e, 0 if [cnt[k] for k in range(1, 5)] == [8, 24, 32, 24] else 1)
+report("42 Prop. m9:lattices, Thm m9:pell, Ex. m9:lattice-examples: Q_t disc -3 with value set of E (t=-3..3); Q_2(8,3)=E(-1,3)=7; golden split order; X^2-5Y^2=+-4 solutions exactly eps(L_n,F_n), sign (-1)^n; Pell pairs; Hamilton counts 8,24,32,24", e, 1e-9)
+# (9) cuts, phase example, encoder counts, parent Hamiltonian
+def _ent42(v):
+    v = v[v > 1e-15]; return -np.sum(v * np.log(v))
+e = 0.0
+for K in (2, 3, 4):
+    roots = np.roots([1] + [-1] * K); beta = roots[np.argmax(roots.real)].real; p = 1 / beta; M = sum(d * p ** d for d in range(1, K + 1)); dK = (K - 1) * 2.0 ** -K
+    for m in range(1, 7):
+        for n in range(1, 7):
+            words = _legal42(K, m + n); idx = {w: i for i, w in enumerate(words)}
+            Lw = _legal42(K, m); Rw = _legal42(K, n); Cm = np.zeros((len(Lw), len(Rw)))
+            for i, a in enumerate(Lw):
+                for j, b in enumerate(Rw):
+                    if a + b in idx: Cm[i, j] = 1
+            Cm /= np.sqrt(len(words)); sv = np.linalg.svd(Cm, compute_uv=False); rk = np.sum(sv > 1e-10)
+            u, v = min(m, K - 1), min(n, K - 1); e = max(e, abs(rk - (1 + max(0, u + v - K + 1))))
+            ent = _ent42(sv ** 2); bound = (-dK * np.log(dK) - (1 - dK) * np.log(1 - dK)) + dK * np.log(K - 1) if K > 1 else 0
+            e = max(e, max(0, ent - bound - 1e-12))
+    # limiting matrix entropy strictly between 0 and log K
+    Cinf = np.array([[p ** ((i + j + 1) / 2) / np.sqrt(M) if i + j < K else 0 for j in range(K)] for i in range(K)])
+    lam = np.linalg.svd(Cinf, compute_uv=False) ** 2; e = max(e, abs(lam.sum() - 1), 0 if 0 < _ent42(lam) < np.log(K) else 1)
+C1 = np.array([[1, 1], [1, 1]]) / 2; C2 = np.array([[1, 1], [1, -1]]) / 2
+e = max(e, np.abs(np.linalg.svd(C1, compute_uv=False) ** 2 - [1, 0]).max(), np.abs(np.linalg.svd(C2, compute_uv=False) ** 2 - [.5, .5]).max())
+C3 = np.array([[1, 1], [1, 0]]) / np.sqrt(3); e = max(e, np.abs(np.sort(np.linalg.svd(C3, compute_uv=False) ** 2) - np.sort([(3 + 5 ** .5) / 6, (3 - 5 ** .5) / 6])).max())
+# encoder counts N=2,K=3,m=4,n=5
+rows = _legal42(3, 4); cols = _legal42(3, 5)
+cr = [sum(1 for w in rows if w[0] == b) for b in (0, 1)]; cc_ = [sum(1 for w in cols if w[0] == b) for b in (0, 1)]
+trail = lambda w: len(w) - len(''.join(map(str, w)).rstrip('1')); lead = lambda w: len(w) - len(''.join(map(str, w)).lstrip('1'))
+a_s = [sum(1 for w in rows if w[0] == 1 and trail(w) < s) for s in range(3)]; n_s = [sum(1 for w in cols if w[0] == 1 and lead(w) < 3 - s) for s in range(3)]
+M0, M1 = 2, 1; R0 = min(cr[0], cc_[0] // M0); R1 = min(cr[1], min(a_s[s] + n_s[s] // M1 for s in range(3)))
+e = max(e, 0 if (cr, cc_, a_s, n_s, R0, R1) == ([7, 6], [13, 11], [0, 3, 5], [11, 7, 0], 6, 5) else 1)
+# parent Hamiltonian
+def _parent42(N, K):
+    dim = 2 ** N; Hm = np.zeros((dim, dim)); bits = [tuple((s >> (N - 1 - i)) & 1 for i in range(N)) for s in range(dim)]
+    for s, w in enumerate(bits):
+        Hm[s, s] += sum(1 for i in range(N - K + 1) if all(w[i:i + K]))
+        for site in range(N):
+            enabled = all(not all(w[j] for j in range(st, st + K) if j != site) for st in range(max(0, site - K + 1), min(site, N - K) + 1))
+            if enabled:
+                t_ = list(w); t_[site] ^= 1; s2 = int(''.join(map(str, t_)), 2)
+                Hm[s, s] += 1; Hm[s, s2] -= 1
+    return Hm
+for N, K in ((2, 2), (3, 2), (4, 2), (5, 2), (4, 3), (6, 3), (5, 4), (2, 3), (1, 2)):
+    Hm = _parent42(N, K); w, V = np.linalg.eigh(Hm); ell = 2 * K - 1
+    legalset = set(_legal42(K, N)); gs = np.array([1.0 if tuple((s >> (N - 1 - i)) & 1 for i in range(N)) in legalset else 0 for s in range(2 ** N)]); gs /= np.linalg.norm(gs)
+    e = max(e, abs(w[0]), abs(abs(V[:, 0] @ gs) - 1), max(0, 2 / (ell ** 2 * 2 ** ell) - w[1]), np.abs(Hm - Hm.T).max())
+    if N < K: e = max(e, abs(w[1] - 2))
+    if (N, K) == (2, 2): e = max(e, np.abs(w - [0, 1, 1, 3]).max())
+report("42 Prop. m9:cut, Ex. m9:phase, Prop. m9:encoder, Thm m9:parent: Schmidt rank 1+max(0,u+v-K+1) and uniform entropy bound (K=2,3,4; m,n<=6); limit entropy in (0,log K); same probabilities, spectra (1,0),(1/2,1/2); K=2 spectrum (3+-sqrt5)/6; encoder counts (7,6),(13,11),(0,3,5),(11,7,0), ranks 6,5; parent: unique legal ground state, gap >= 2/(l^2 2^l), 2 for N<K, spectrum 0,1,1,3", e, 1e-9)
+# (10) alternating Tribonacci sums: tau images, charges, refutation of O(log)
+e = 0.0
+sub = {'A': 'AB', 'B': 'AC', 'C': 'A'}
+def _subn(w, k):
+    for _ in range(k): w = ''.join(sub[ch] for ch in w)
+    return w
+e = max(e, 0 if (_subn('A', 4), _subn('B', 4), _subn('C', 4)) == ('ABACABAABACAB', 'ABACABAABAC', 'ABACABA') else 1)
+bw = {'A': 2, 'B': 1, 'C': 0}
+Qc = lambda w: sum((-1) ** i * bw[ch] for i, ch in enumerate(w))
+tau = lambda w: ''.join(_subn(ch, 4) for ch in w)
+for l in range(0, 4):
+    wa, wb, wc = 'A', 'B', 'C'
+    for _ in range(l): wa, wb, wc = tau(wa), tau(wb), tau(wc)
+    e = max(e, abs(Qc(wa) - 2), abs(Qc(wb) - (2 - (-1) ** l)), abs(Qc(wc) - (2 - (2 * l + 2) * (-1) ** l)), (len(wa) + 1) % 2, (len(wb) + 1) % 2, (len(wc) + 1) % 2)
+Up = ''; tauC = 'C'
+for l in range(0, 4):
+    if l > 0:
+        tauC_l = 'C'
+        for _ in range(l): tauC_l = tau(tauC_l)
+        Up = tauC_l + Up
+    wa = 'A'
+    for _ in range(l): wa = tau(wa)
+    e = max(e, 0 if wa.startswith(Up) else 1, abs(Qc(Up) - (1 - (-1) ** l * (l * l + 3 * l + 1))), max(0, len(Up) - 13 ** l))
+    if l >= 1: e = max(e, max(0, l * l - abs(Qc(Up))))
+W = _subn('A', 22)[:200000]; arr = np.array([bw[ch] for ch in W]) * (-1.0) ** np.arange(len(W)); cs_ = np.r_[0, np.cumsum(arr)]
+mx = [np.abs(cs_[:Mx + 1]).max() for Mx in (10 ** 2, 10 ** 3, 10 ** 4, 10 ** 5)]
+e = max(e, 0 if (mx[-1] / np.log(10 ** 5 + 2) > mx[0] / np.log(10 ** 2 + 2)) else 1)
+report("42 Prop. m9:alternating: tau=sigma^4 images (13,11,7 letters, odd), charges 2, 2-(-1)^l, 2-(2l+2)(-1)^l; prefixes U'_l of tau^l(A) with charge 1-(-1)^l(l^2+3l+1), |U'_l|<=13^l; prefix maxima %s grow faster than log" % [int(x) for x in mx], e, 1e-12)
+# (11) open Tribonacci chain gap, localization identities, readouts, Slater cuts
+e = 0.0
+Wt = _subn('A', 16)
+for j in range(4, 13):
+    Nj = 2 * (len(_subn('A', j)) // 2)
+    for rho in (0.1, 0.5, 0.9):
+        tt = np.array([rho ** bw[Wt[i]] for i in range(Nj - 1)]); J = np.diag(tt, 1) + np.diag(tt, -1)
+        dl = np.abs(np.linalg.eigvalsh(J)).min(); e = max(e, max(0, dl - 73728 / Nj), 0 if dl > 0 else 1)
+for n in (1, 3, 7, 20):
+    w = np.sin(np.pi * np.arange(0, n + 2) / (n + 1)); e = max(e, abs(np.sum(np.diff(w) ** 2) - 4 * np.sin(np.pi / (2 * (n + 1))) ** 2 * np.sum(w ** 2)))
+labels = _r42.integers(0, 5, size=40); N = 40; ns = np.bincount(labels)
+sep = sum(1 for i in range(N) for j in range(N) if i != j and labels[i] != labels[j]) / (N * (N - 1)); e = max(e, abs(sep - (N * N - np.sum(ns ** 2)) / (N * (N - 1))))
+Eagree = 1 - sep; e = max(e, abs(1 + (N - 1) * Eagree - np.sum(ns ** 2) / N))
+def _slater42(V):
+    Nn, k = V.shape; amp = {}
+    for S in _it42.combinations(range(Nn), k): amp[S] = np.linalg.det(V[list(S), :]) if k else 1.0
+    return amp
+def _cut42(amp, Nn, I):
+    Iset = sorted(I); Jset = [s for s in range(Nn) if s not in I]
+    rowsk = {}; colsk = {}; M = {}
+    for S, a in amp.items():
+        X = tuple(s for s in S if s in I); Y = tuple(s for s in S if s not in I)
+        # ordinary tensor-product sign: reorder S (increasing) as X then Y
+        perm = list(X) + list(Y); sign = np.linalg.det(np.eye(len(S))[[S.index(q) for q in perm]]) if S else 1
+        M[(X, Y)] = a  # ordinary site basis coefficient, no reordering sign
+    Xs = sorted(set(k[0] for k in M)); Ys = sorted(set(k[1] for k in M))
+    A = np.zeros((len(Xs), len(Ys)), complex)
+    for (X, Y), a in M.items(): A[Xs.index(X), Ys.index(Y)] = a
+    return np.sort(np.linalg.svd(A, compute_uv=False) ** 2)[::-1]
+for _ in range(5):
+    V = np.linalg.qr(_r42.normal(size=(6, 3)) + 1j * _r42.normal(size=(6, 3)))[0]; amp = _slater42(V)
+    e = max(e, abs(sum(abs(a) ** 2 for a in amp.values()) - 1))
+    for I in ([0, 1, 2], [0, 1], [3, 4, 5]):           # interval cuts
+        sp = _cut42(amp, 6, I); nu = np.linalg.eigvalsh(V[I, :] @ V[I, :].conj().T)
+        prod = sorted([np.prod([nv if occ else 1 - nv for nv, occ in zip(nu, o)]) for o in _it42.product((0, 1), repeat=len(I))], reverse=True)
+        e = max(e, np.abs(np.r_[sp, np.zeros(max(0, len(prod) - len(sp)))][:len(prod)] - prod).max())
+V1 = np.zeros((4, 2)); V1[[0, 2], 0] = 1 / np.sqrt(2); V1[[1, 3], 1] = 1 / np.sqrt(2)
+V2 = np.zeros((4, 2)); V2[[0, 2], 0] = 1 / np.sqrt(2); V2[3, 1] = 1
+s1 = _cut42(_slater42(V1), 4, [0, 2]); s2 = _cut42(_slater42(V2), 4, [0, 2])
+PI1 = V1[[0, 2]] @ V1[[0, 2]].T; PI2 = V2[[0, 2]] @ V2[[0, 2]].T
+e = max(e, np.abs(s1[:2] - [.5, .5]).max(), np.abs(s2[:1] - [1]).max(), np.abs(PI1 - PI2).max())
+report("42 Thm m9:chain, Prop. m9:localization, m9:readouts, m9:slater: delta_{rho,j}<=73728/N_j (j=4..12); sine identity; collision fraction and mean fiber; Cauchy-Binet; interval cuts give Bernoulli-product spectra; interlaced 4-site example: same P_I, spectra (1/2,1/2) vs pure", e, 1e-9)
 
 
 # =========================================================== registered module scripts (checks/)

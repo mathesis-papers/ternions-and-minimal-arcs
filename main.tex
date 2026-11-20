@@ -80,7 +80,7 @@ rotates through minus its area.  A space of finite comparison rank $r$ cannot en
 comparison-preserving maps, which needs rank $r^2$; and the logarithm of an exponentially scaled Gram elimination tends to the
 shortest-path value under a sign condition, which cannot be dropped.  Inserting a clock phase at each step of the geodesic recurrence
 realises exactly the polynomials of the comparison bounded by one on $[-1,1]$ with the permitted degree and parity, and a two-chart
-rational atlas makes the whole arc calculus bounded and exactly rational on $S^3$.  For ordered products of rotations the deterministic
+rational atlas makes the whole arc calculus bounded and exactly rational on $S^3$ (errors add in round angle).  For ordered products of rotations the deterministic
 convergence criterion is the angular sum, not the sagitta sum (both directions fail), and holonomy words in the binary icosahedral
 group recognise exactly nonuniform $\mathrm{NC}^1$, while commutative words cannot compute two-input AND under a two-output promise.
 The diagonal operation is an involutory quandle whose closed-braid colouring spaces on $S^3$ are $S^3\times(\{1\}\sqcup S^2)$ for the
@@ -152,11 +152,17 @@ chord, cap arc and two-arc route of a right cell and shows that the logarithm of
 triangles (arc-body invariants, curvature from rotors, the sharp numbers $3N-6$ and $3N-5$ of scalar comparisons for local and global
 recovery on $S^3$, chord and barrier identities, polyhedral defects).  Section~\ref{sec:m4} inserts a clock
 phase at each step of the recurrence: the attainable comparisons are exactly the bounded polynomials of the permitted degree and parity;
+Section~\ref{sec:m11} iterates two reflections (walks, the secular equation of the central defect, bridge ranks with the corrected
+cut scope);
 Section~\ref{sec:m4atlas} replaces the Cayley chart by a bounded two-chart rational atlas on all of $S^3$ with uniform error bounds.
 Part~\ref{part:arith} (Section~\ref{sec:m6}) treats the arithmetic of $S^3$: prime-norm gates and their covering exponents (from the
 cited spectral gap), products of rotations (the angular sum decides deterministic convergence, the sagitta sum only the random
 dispersion), a prime-indexed example with its scope, finite Hermite--Biehler kernels, fixed points, and word holonomy (Barrington's
-theorem in the icosahedral group against the commutative obstruction).  Part~\ref{part:final}
+theorem in the icosahedral group against the commutative obstruction).  Section~\ref{sec:m9} reads numeration from the circle: the round
+trip is a factor of angle doubling, a fixed step gives three gaps, words avoiding $1^K$ give the greedy Pisot numeration and the Parry
+law, and absolutely convergent Euler products become a positive scale times oriented arcs.  Section~\ref{sec:m11b} bounds compilation
+errors in round angle and in the square root of the sagitta, identifies the comparison Hessian with the Fubini--Study metric, and
+reads the parameter-shift rule as the two-readout law.  Part~\ref{part:final}
 (Sections~\ref{sec:known}--\ref{sec:open}) places the results in the literature, records what is formalised, and lists the open problems.
 In the arc calculus the guiding observation is that linear calculus discards two second-order quantities
 that are exact and computable in the heap: the radial sagitta of each step, and the failure of the
@@ -7755,6 +7761,382 @@ ordered pulse kernels) and the entanglement of a coined walk on a cycle concern 
 paper and are not reproduced here.  Hardware is a hypothesis there; nothing in this section depends on it.
 \end{remark}
 
+\section{Two reflections, comparison walks and bridge ranks}\label{sec:m11}
+
+A product of two orthogonal reflections resolves into rotations whose angles
+are determined by the cross Gram matrix of the comparison frames. This is the
+two-readout law of Theorem~\ref{m2:two-readout} iterated: on each rotation
+plane every readout obeys the Chebyshev recurrence of Theorem~\ref{thm:recur}.
+We use the decomposition for comparison walks, give the secular equation and
+endpoint weights of the central-defect path of Theorem~\ref{m4:defect}, and
+treat the Gram ranks of a width-three bridge, whose cut statements need a
+corrected scope. Section~\ref{sec:m11b} contains the compilation and
+readout-derivative half of the same material.
+
+\emph{Placement.} Theorem~\ref{m11:reflections}, Corollary~\ref{m11:graph-walk},
+Theorem~\ref{m11:defect} and the bridge results are proved here. The
+minimum-gap limit has a single statement, Conjecture~\ref{m4:gap-limit}; this
+section supplies the secular equation it would need.
+Remarks~\ref{m11:walk-examples} and~\ref{m11:cut-scope} record refuted readings
+with their counterexamples. Remark~\ref{m11:bridge-programme} is a programme.
+
+\subsection{Two reflections and comparison walks}
+
+\begin{theorem}[Two reflections]\label{m11:reflections}
+Let $A$ and $B$ be subspaces of a finite-dimensional real or complex
+Hilbert space $\mathcal H$, with isometric frames $X,Y$, respectively.
+Set $P=XX^*$, $Q=YY^*$, $D=X^*Y$ and $W=(2P-I)(2Q-I)$.
+For each singular value $s\in(0,1)$ of $D$, counted with multiplicity,
+there is one plane on which $W$ has eigenvalues
+$e^{\pm2i\arccos s}$ (after complexification in the real case).
+The remaining summands are the four intersections of $A,A^\perp$
+with $B,B^\perp$. The eigenvalue is $+1$ for matching signs and $-1$
+for opposite signs. If $r$ counts the singular values in $(0,1)$ and
+$k=\dim(A\cap B)$, the multiplicities of $+1$ and $-1$ are
+$\dim\mathcal H-\dim A-\dim B+2k$ and
+$\dim A+\dim B-2k-2r$, respectively.
+On each rotation plane, for $z_{j+1}=Wz_j$ and $c=2s^2-1$,
+\[
+ z_{j+1}=2c z_j-z_{j-1}.
+\]
+Every linear readout satisfies the same recurrence. For unit real vectors
+$x,y$ and line reflections about them, $s=|\langle x,y\rangle|$,
+so $c=2(2\kappa(x,y)-1)^2-1$. This is the iteration form of
+Theorem~\ref{m2:two-readout} and Theorem~\ref{thm:recur}.
+\end{theorem}
+\begin{proof}
+Take singular pairs with unit representatives $a_j\in A$ and
+$b_j\in B$, so $Pb_j=s_j a_j$ and $Qa_j=s_j b_j$. For $0<s_j<1$ put
+$u_j=(b_j-s_j a_j)/\sqrt{1-s_j^2}$. The planes
+$\operatorname{span}(a_j,u_j)$ are orthogonal by the diagonal cross
+Gram relations. With $h=\sqrt{1-s^2}$ the matrix on one plane is
+$\bigl(\begin{smallmatrix}2s^2-1&2sh\\-2sh&2s^2-1\end{smallmatrix}\bigr)$.
+Its determinant is $1$ and its trace is $2c$, giving the claimed
+eigenvalues and recurrence by its characteristic polynomial.
+A singular value $1$ gives $a_j=b_j$ and these vectors span the common
+intersection (a vector in the intersection is preserved by $PQP$).
+The unpaired or zero directions are $A\cap B^\perp$ and
+$A^\perp\cap B$, of dimensions $\dim A-k-r$ and $\dim B-k-r$.
+The orthogonal complement of $A+B$ gives the last intersection.
+Each reflection acts there by its prescribed sign. These statements
+include zero-dimensional frames and cover the parallel and orthogonal
+line cases without choosing a rotation plane.
+\end{proof}
+
+\begin{corollary}[Reversible walks]\label{m11:graph-walk}
+For a finite reversible row-stochastic matrix $p$ with a positive
+stationary law $\pi$, take $Xe_i=\sum_j\sqrt{p_{ij}}e_i\otimes e_j$
+and $Y=SX$ for the coordinate swap $S$. Then
+$D_{ij}=\sqrt{p_{ij}p_{ji}}=\sqrt{\pi_i}\,p_{ij}/\sqrt{\pi_j}$.
+A Markov eigenvalue $\lambda$ in $(-1,1)$ produces the two walk
+eigenvalues $e^{\pm2i\arccos|\lambda|}$, with a pair of $-1$ eigenvalues
+when $\lambda=0$. The eigenspaces for $|\lambda|=1$ give fixed directions
+in $A+B$. The walk spectrum also depends on the ambient dimension.
+For general complex frames the matrix of squared entry moduli may
+lose the spectrum.
+\end{corollary}
+\begin{proof}
+The frames are isometric by row sums and the cross entries follow
+from their sole shared coordinate. Detailed balance gives the
+diagonal similarity, so the singular values of $D$ are the moduli of the
+Markov eigenvalues. Zero singular values here have both an $A$ and
+a $B$ direction because $D$ is square. For the last assertion compare
+$D_+=\frac12\bigl(\begin{smallmatrix}1&1\\1&1\end{smallmatrix}\bigr)$ with
+$D_-=\frac12\bigl(\begin{smallmatrix}1&1\\1&-1\end{smallmatrix}\bigr)$,
+which have the same squared entry moduli.
+Their singular values are $(1,0)$ and $(1/\sqrt2,1/\sqrt2)$.
+Both are realized in $\mathbb C^4$ by $X=(I,0)^{\mathsf T}$ and
+$Y=(D,\sqrt{I-D^*D})^{\mathsf T}$. Thus the products have spectra
+$(1,1,-1,-1)$ and $(i,i,-i,-i)$. The required frame data extend
+the line comparison of Theorem~\ref{m2:two-readout} and use the
+full complex Gram information in Proposition~\ref{m2:gram}.
+\end{proof}
+
+\begin{remark}[Spectral mapping and query scope]\label{m11:walk-literature}
+The block decomposition is the finite-dimensional two-subspace theorem
+of Halmos \cite[Thm.~2]{m11:Halmos}, which is Jordan's lemma on two
+projections. The reversible construction is the discriminant
+construction of Szegedy \cite{m11:Szegedy}. The same singular
+frames support the polynomial lift of Theorem~\ref{m4:lift},
+while Remark~\ref{m4:phases} records the ordered Laurent factors.
+The glued-trees query separation uses a continuous-time adjacency walk,
+a random alternating weld and sparse random vertex names.
+In the oracle model of Childs et al., at most $2^{d/6}$ classical
+queries give success probability at most $4\cdot2^{-d/6}$
+\cite[Theorem~9, arXiv v2]{m4:Childs}. The column reduction and
+finite-window probability enter the quantum algorithm. The static
+completion laws of Proposition~\ref{m4:forest} and the orientation
+fibers of Proposition~\ref{m4:orientation} describe fixed edge
+constraints. To reuse those laws in a new adaptive query model one must
+identify its conditional distribution given the full transcript,
+including revealed names and all returned neighbors; this is a programme.
+\end{remark}
+
+\begin{theorem}[Secular equation of the central defect]\label{m11:defect}
+Let $J_n(b)$ be the symmetric path on $2n$ vertices, $n\ge1$,
+with zero diagonals, unit edges and central edge $b>0$.
+Let $U_j$ denote the Chebyshev polynomials of the second kind
+with $U_{-1}=0$. The eigenvalues of reflection parity $\eta=\pm1$ are
+the roots of
+\[
+ p_\eta(t)=U_n(t/2)-\eta b U_{n-1}(t/2).
+\]
+Each is simple and the two lists strictly interlace.
+The even sector has exactly one eigenvalue above $2$ if
+$b>(n+1)/n$, has $2$ as an eigenvalue at equality, and has none
+at or above $2$ below that threshold. The odd sector supplies
+the opposite lower edge under sign reversal. For a root $t$ of
+$p_\eta$, a normalized eigenvector has first-coordinate weight
+\[
+ w(t)=\left(2\sum_{j=0}^{n-1}U_j(t/2)^2\right)^{-1}
+\]
+and last coordinate $\eta$ times its first. For $b=\sqrt2$,
+$J_n(\sqrt2)$ is the matrix $J_n$ of Theorem~\ref{m4:defect}, and
+its infinite-window transfer equals $\sum_t w(t)^2$.
+\end{theorem}
+\begin{proof}
+The folding isometry sends a half-path vector $y$ to
+$(y,\eta\,\operatorname{rev} y)/\sqrt2$. Expansion of the half-path
+determinant by its last row gives the displayed polynomial, since
+the preceding free principal minors are $U_j(t/2)$ by the
+three-term determinant recurrence. The left boundary recursion
+gives $y_j=U_{j-1}(t/2)y_1$ for $1\le j\le n$. Both endpoint
+coordinates of any nonzero half-path eigenvector are nonzero, as
+a zero at either endpoint would propagate along the path.
+Each eigenspace therefore has dimension one. The two folded
+matrices differ by $2b ee^*$ for the last unit vector $e$.
+If $u,v$ were eigenvectors of both sectors at the same eigenvalue,
+pairing the difference against $u,v$ would give
+$0=2b\langle u,e\rangle\langle e,v\rangle$, a contradiction.
+The min--max principle interlaces the spectra by intersecting the
+lower eigenspaces with $e^\perp$, so the interlacing is strict.
+For $t\ge2$ the ratio $U_n(t/2)/U_{n-1}(t/2)$ is positive,
+strictly increasing and unbounded. Indeed the ratios start at
+$t$ and satisfy $r_j=t-1/r_{j-1}$, so induction gives strict increase,
+positivity from $r_j(2)=(j+1)/j$, and divergence.
+This gives the upper threshold. Alternating coordinate signs
+conjugate the even half-path matrix to the negative odd matrix.
+The odd upper and even lower exterior edges are excluded also by
+the positive ratio and this symmetry. The vector normalization
+gives $w(t)$. Substituting it into the finite-window expansion in
+the proof of Theorem~\ref{m4:defect} leaves oscillatory terms of size
+at most $2(1-\sum_t w(t)^2)/(\tau\delta_n)$.
+\end{proof}
+
+For $b=\sqrt2$ the threshold $(n+1)/n$ lies below $\sqrt2$ exactly when
+$n\ge3$, so from $n=3$ on the secular equation isolates both exterior
+eigenvalues. Conjecture~\ref{m4:gap-limit} is the one statement of the
+minimum-gap limit in this paper; its numerical values are reproduced
+independently from $J_n(\sqrt2)$ in the accompanying script, and a proof
+would control the interior root spacings of $p_\pm$ uniformly.
+
+\begin{remark}[Line and ring walks]\label{m11:walk-examples}\sloppy
+Let the Hadamard step on $\mathbb C^2\otimes\mathbb C^{\mathbb Z}$ act by
+$(W_H\psi)_{0,x}=(\psi_{0,x+1}+\psi_{1,x+1})/\sqrt2$ and
+$(W_H\psi)_{1,x}=(\psi_{0,x-1}-\psi_{1,x-1})/\sqrt2$, the same formula on a
+cycle $\mathbb Z/p$. It is a coin reflection followed by a conditional shift.
+With the symmetric coin $(1,i)/\sqrt2$ at the origin, the maximal
+position probability after $50$ steps occurs at $\pm34$ and the standard
+deviation rounds to $27.07$; at $60$ steps it rounds to $32.5$.
+For the real coin $(1,1)/\sqrt2$ at step $50$, the maximum over $x$ of
+$|\Pr(0,x)-\Pr(1,-x)|$ for the mirror modes rounds to $0.145$. The
+classical fair walk has variance $n$. On the $9$-cycle after $20$ steps
+the symmetric coin still gives a reflection-symmetric position law.
+These line values are finite computations on $[-n,n]$, since the support
+grows by at most one per step.
+
+\emph{Refuted reading.} The interference law does not cancel all
+returns: starting at coin $0$ at the origin, the coin-$1$ amplitude at
+the origin after two steps is $1/2$. Spectral interference can suppress
+selected channels for particular inputs only. The statement that the
+symmetric coin maximizes the geometric entanglement of the walk state on
+a cycle is a physical reading of the kind set aside in
+Remark~\ref{m4:physical}; the library proves it as
+\texttt{SymmetricCoinMaximalWalkEntanglement}\allowbreak\texttt{.result} \cite{Tru}.
+\end{remark}
+
+\subsection{Gram ranks and cut capacities of a bridge}
+
+\begin{definition}[Width-three bridge]\label{m11:bridge-def}
+For nonnegative integer dimensions $a,b,c,d$, let
+$F=\sum_{r=0}^2 M_r\otimes N_r$ with $M_r\in\mathbb C^{a\times b}$
+and $N_r\in\mathbb C^{d\times c}$. Its column comparisons form
+$G=F^*F$ on $\mathbb C^b\otimes\mathbb C^c$. Write
+$Q_{\max}$ for the maximum rank over the factors and
+$Q_{\min}=\min(3ac,ad,bc)$ for the three-cut capacity, the convention
+of \cite{m11:GLS} and of the library.
+The full graph min-cut is $\min(3ac,ad,bc,3bd)$.
+Placing both internal vertices on one side gives an outer cut,
+and the two placements on opposite sides give $3ac$ and $3bd$.
+On $a\le b,c\le d$ the term $3bd$ is redundant.
+\end{definition}
+
+\begin{theorem}[Rank bound and capacity facets]\label{m11:bridge-bound}
+For every bridge, $\operatorname{rank}G=\operatorname{rank}F\le
+\min(3ac,ad,bc,3bd)\le Q_{\min}$, and the maximum rank is attained. If
+$a,c>0$ and $a^2+b^2\le3ab$, $c^2+d^2\le3cd$, then $Q_{\min}=\min(ad,bc)$.
+In positive dimensions, writing $(u,v,w,z)=(\log a,\log b,\log c,\log d)$
+gives the lower envelope
+\[
+ \log Q_{\min}=\min(\log3+u+w,u+z,v+w).
+\]
+Under the two cone inequalities the boundary between the active
+outer cuts is $u+z=v+w$.
+\end{theorem}
+\begin{proof}
+$\ker G=\ker F$ by $\langle x,Gx\rangle=\|Fx\|^2$.
+The outer dimensions bound the rank by $ad$ and $bc$.
+The factorization through the $3ac$ intermediate entries
+indexed by $(r,i,k)$ uses the right factor sending $e_{j,k}$
+to the entries $(M_r)_{ij}$ in slice $k$, and a left factor sending
+$e_{r,i,k}$ to $e_i\otimes N_re_k$. These compose to $F$.
+The other opposite placement factors through $3bd$ entries,
+by first applying the maps $N_r$ and then the maps $M_r$.
+The attainable ranks form a nonempty subset of the finite interval
+from $0$ to $\min(ad,bc)$, so the maximum is attained. The cone conditions
+force $b,d>0$, $b<3a$ and $d<3c$ by division by $b,d$, respectively.
+Thus both outer cuts are strictly below $3ac$. Taking logarithms
+of positive products proves the piecewise affine expression.
+This applies the rank viewpoint of Theorem~\ref{d4:rank} to
+unnormalized Gram entries with arbitrary column norms.
+\end{proof}
+
+\begin{theorem}[Ordered-cone attainment]\label{m11:cone-rank}
+If additionally $0<a\le b$ and $0<c\le d$, under the two cone
+inequalities in Theorem~\ref{m11:bridge-bound} the maximum Gram rank
+is $Q_{\min}=\min(ad,bc)$.
+\end{theorem}
+\begin{proof}
+Gesmundo, Lysikov and Steffan formulated the ordered-cone bridge
+problem \cite[Conjecture~3.15]{m11:GLS}. The library theorem
+\texttt{QuantumMaxFlowMinCut.result} \cite{Tru}, whose hypotheses are
+the positivity, order and cone conditions above, with the same
+three-term tensor sum and complex factors, gives
+$Q_{\max}=Q_{\min}=\min(ad,bc)$ for the bridge flow.
+Theorem~\ref{m11:bridge-bound} identifies each attainable flow rank
+with its column Gram rank.
+\end{proof}
+
+\begin{theorem}[Scalar column Gram]\label{m11:scalar-gram}
+If $2b\le3a$ and $3c\le2d$, then for every $\lambda>0$ there
+are three pairs of factors with $F^*F=\lambda I_{bc}$. In
+particular, for $d=3q,c=2q$ with $q>0$, an identity column Gram
+is attainable exactly when $2b\le3a$.
+\end{theorem}
+\begin{proof}
+Put $q_0=\lfloor c/2\rfloor$. Use three pairs of partial coordinate
+maps. The left maps send $j<a$ to $j$, $j\ge a$ to $2(j-a)$,
+and $j\ge a$ to $2(j-a)+1$, respectively. The right maps send
+all $k$ to $k$, $k<q_0$ to $c+k$, and $k\ge q_0$ to $c+k-q_0$,
+respectively. A coordinate outside a map's stated domain is sent to
+zero. These targets are in range since $2(b-a)\le a$ and
+$c+(c-q_0)=\lceil3c/2\rceil\le d$.
+Each input selects exactly one tensor summand. The output of the
+first has second coordinate below $c$. The other two have second
+coordinate at least $c$ and first coordinates of opposite parity.
+Within each branch the coordinates recover the input, so the map
+sends the input basis to distinct output coordinates. Its Gram
+is the identity and multiplying each left factor by $\sqrt\lambda$
+gives the prescribed Gram. Empty input gives the empty Gram and
+the construction includes $c=1$, for which the second branch is empty.
+Necessity for $c=2q,d=3q$ follows from
+Proposition~\ref{m11:flat-obstruction}, whose first bound gives
+$d\ge2c$ whenever $3a<2b$, and $3q<4q$.
+\end{proof}
+
+\begin{proposition}[Obstructions to a flat Gram spectrum]\label{m11:flat-obstruction}
+If $F^*F=\lambda I_{bc}$ with $\lambda>0$ and $3a<2b$, then
+$d\ge2c$. If $c>0$ and $b>2a$ the stronger bound is $d\ge3c$.
+In particular the cone point $(3,5,3,5)$ attains rank $15$, and
+every width-three flow there has $F^*F\ne\lambda I_{15}$ for
+all $\lambda>0$. For any nonzero flow of rank $R$, the entropy
+of the normalized squared singular values is at most $\log R$,
+with equality exactly at a flat nonzero spectrum.
+\end{proposition}
+\begin{proof}
+The first obstruction is the library theorem
+\texttt{NativeRectangularBound.bound} \cite{Tru}, with the same six
+rectangular factors, positive scalar and strict inequality, including
+zero dimensions. Here is a direct proof of
+the stronger obstruction in its stated range. The stacked map
+$Vx=(M_0x,M_1x,M_2x)$ is injective since $Vx=0$ implies
+$F(x\otimes y)=0$ for each $y$ and $c>0$. Its $b$-dimensional
+range meets every $a$-dimensional space $z\otimes\mathbb C^a$
+nontrivially for $z\ne0$, since $a+b>3a$.
+For such an intersection choose $x,u$ with $M_rx=z_ru$
+for all $r$. Then for $y,y'\in\mathbb C^c$,
+\[
+ \sum_{r,s}\bar z_rz_s\langle N_r y,N_s y'\rangle
+ =\lambda\|x\|^2\langle y,y'\rangle/\|u\|^2 .
+\]
+For each $z$, the operator $\sum_{r,s}\bar z_rz_s N_r^*N_s$ is
+therefore scalar. Polarization (evaluate at $e_r,e_r+e_s,e_r+i e_s$)
+shows every $N_r^*N_s$ is scalar. The coefficient matrix $(k_{rs})$
+defined by $N_r^*N_s=k_{rs}I_c$ is positive definite, since the
+display gives a strictly positive scalar for each $z\ne0$.
+Changing basis by its inverse square root yields three isometries
+with mutually orthogonal images in $\mathbb C^d$. Hence $d\ge3c$.
+
+At $(3,5,3,5)$ the cone tests give $34\le45$, the outer
+capacities are $15$ and the inner capacity is $27$.
+Theorem~\ref{m11:cone-rank} gives attainment and the first
+obstruction would require $5\ge6$. For positive weights
+$p_j=\sigma_j^2/\sum_i\sigma_i^2$ with $j=1,\ldots,R$,
+concavity of $\log$ gives
+$\sum_j p_j\log(1/p_j)\le\log(\sum_j p_j/p_j)=\log R$
+with equality exactly for equal $p_j$.
+\end{proof}
+
+\begin{remark}[Corrected scope of the cut statements]\label{m11:cut-scope}\sloppy
+Two readings of the bridge results are refuted.
+(i) \emph{The three-cut expression is the full min-cut.} At
+$(a,b,c,d)=(5,1,5,1)$ the three-cut capacity is $\min(75,5,5)=5$, while the
+opposite internal placement has cost $3bd=3$; every flow there is a sum of
+three rank-one terms, so the maximum rank is $3$. Under the ordered-cone
+conditions of Theorem~\ref{m11:cone-rank} the extra cut is redundant and the
+two expressions agree.
+(ii) \emph{Every attainable rank in the ordered cone is attained with a flat
+spectrum.} The cone point $(3,5,3,5)$ attains rank $15$, yet no flow there has
+a scalar column Gram, by Proposition~\ref{m11:flat-obstruction}; the library
+records this case as \texttt{NativeWidthAtMostThreeRefutation}\allowbreak\texttt{.positive\_scalar\_obstruction}
+\cite{Tru}. The corrected cone theorem concerns maximum rank only.
+The companion paper uses these rank statements in its section on tensor cuts
+and finite cap entropy \cite{Companion}; physical readings of the entropy
+bound belong there.
+\end{remark}
+
+\begin{example}[Cuts at a seam and coordinate witnesses]\label{m11:bridge-examples}
+For $(a,b,c)=(2,3,2)$ and $d=2,3,4$ the triples
+$(3ac,ad,bc)$ are $(12,4,6),(12,6,6),(12,8,6)$,
+so the maximum Gram ranks are $4,6,6$ by the ordered-cone
+result. The middle bridge has a permutation witness by
+Theorem~\ref{m11:scalar-gram} with $q=1$. At $(2,3,3,5)$
+the same routing for $\lambda=2$ gives $2I_9$ and leaves just
+output coordinate $(0,4)$ unused. At $(1,5,1,5)$ each term has
+rank at most one, and selecting three distinct input and output
+coordinates realizes rank $3$ with capacities $(3,5,5)$.
+\end{example}
+
+\begin{remark}[Bridge extensions]\label{m11:bridge-programme}
+Partition $X\times Y$ into rectangles $I_t\times J_t$ with
+bijections $\phi_t:J_t\to I_t$. For the partial permutation $A_t$
+of $\phi_t$, $\sum_t A_t\otimes A_t^*$ is unitary.
+Indeed $(j,l)$ routes to $(\phi_t(j),\phi_t^{-1}(l))$ for the
+unique block containing $(l,j)$, and the output is in that same block,
+so this route has a unique inverse. After flattening in the two local
+map spaces, choosing one occupied entry from each nonempty block and
+its transpose exhibits an identity minor. Each tensor term contributes
+rank at most one to the flattening, so the least number of terms is
+the number of nonempty blocks. The general bridge literature allows a
+strict inequality between maximum rank and min-cut
+\cite{m11:Cui,m11:GLS}. \emph{Programme:} a classification of scalar Gram
+attainment would have to match the rectangular obstructions with
+constructions outside the sufficient region of
+Theorem~\ref{m11:scalar-gram}. A continuum entropy identification would in
+addition require a specified family of states, a limiting geometry and
+quantitative control of their Schmidt weights.
+\end{remark}
+
 \setcounter{section}{6}
 \renewcommand{\thesection}{\arabic{section}}
 \renewcommand{\theHsection}{\arabic{section}}
@@ -11977,6 +12359,1932 @@ approximation of arbitrary geometric gates before application
 of the rational arc observables.
 \end{remark}
 
+\section{Numeration, completions and arithmetic arc products}\label{sec:m9}
+
+Which arithmetic structures can be read from the circle comparison, and
+which require a choice of digits, metric or weights? On the circle of
+Theorem~\ref{thm:main}, the round trip gives the binary shift and the
+arcsine law for the scalar comparison. A fixed irrational step gives
+the three-gap partition. A different coding, by words avoiding \(1^K\),
+gives the greedy \(K\)-Bonacci numeration, its Parry law and a
+contracting algebraic representation. We use the same distinction
+between a readout and its representation to describe the real and
+\(p\)-adic completions and to turn absolutely convergent prime factors
+into a product of a positive scale and oriented arcs.
+
+\emph{Placement.} The round trip as a dynamical system
+(Theorem~\ref{m9:doubling}, Remark~\ref{m9:circle-boundaries}) continues
+Theorem~\ref{thm:recur} and Section~\ref{sec:m4}. The prime material
+continues Section~\ref{sec:m6} and the prime subsection of
+Section~\ref{sec:m8}; finite Euler products, their M\"obius inverses and the
+independence of prime logarithms are Proposition~\ref{m8:prime} and are used
+here without repetition. Nothing in this section is claimed about the zeros
+of the Riemann zeta function; the library facts about $\zeta$ quoted below
+are quoted as library results. Remark~\ref{m9:refuted} collects the refuted
+readings with their counterexamples. Hypothesis~\ref{m9:physical} is a
+hypothesis, Conjecture~\ref{m9:fract-conjecture} is a conjecture without an
+established scaling example, and Remark~\ref{m9:programme} is a programme.
+
+\subsection{The circle and its two iterations}
+
+Write \(x=w e^{2\pi i t}\) in the circle model, with \(t\in\R/\Z\).
+Here \(c=2\kappa(w,x)-1=\re(\bar wx)\), whereas the oriented coordinate
+retains \(\bar wx\). The round trip with \(w\) fixed sends \(x\) to
+\(\hp{x}{w}{x}=w e^{4\pi i t}\).
+
+\begin{theorem}\label{m9:doubling}
+The oriented round trip is angle doubling \(D(t)=2t\bmod1\). The map
+\(t\mapsto c=\cos 2\pi t\) is a factor map from \(D\) onto
+\(f(c)=2c^2-1\) on \([-1,1]\), and \(f\) is conjugate to the full tent map on
+\([0,1]\). Both have topological entropy \(\log 2\). The iterates satisfy
+\(f^n(c)=T_{2^n}(c)\), where \(T_m(\cos u)=\cos(mu)\).
+Normalized circle length is invariant and is coded by fair independent
+binary digits. Its scalar pushforward is invariant with density
+\((\pi\sqrt{1-c^2})^{-1}\) on \((-1,1)\) and no endpoint atoms.
+\end{theorem}
+\begin{proof}
+The identity \(\cos(2u)=2\cos^2u-1\) gives the factor, and
+\(x\mapsto\cos(\pi x)\) conjugates the tent map
+\(g(x)=1-|1-2x|\) to \(f\). Iterating the double-angle identity gives
+the Chebyshev formula, including \(n=0\) and \(c=\pm1\).
+On \([0,1)\) the binary coding uses terminating expansions at dyadics.
+Shifting the digits realizes \(D\), and a prescribed \(n\)-digit block
+at the origin specifies a half-open interval of length \(2^{-n}\).
+This proves the product law and invariance. In the scalar pushforward,
+each interior value has two inverse images per turn, each of derivative
+magnitude \(2\pi\sqrt{1-c^2}\). This gives the density.
+
+In their angle and tent coordinates both maps are \(2\)-Lipschitz.
+An initial mesh of size \(\varepsilon 2^{-n}\) spans \(n\) iterates at
+scale \(\varepsilon\), giving the entropy upper bound. For the lower
+bound \(g^m\) has \(2^m\) consecutive closed intervals of length
+\(2^{-m}\) mapping onto \([0,1]\), by iterating its two inverse
+branches. Select every other interval. A word of length \(n\) in
+these \(2^{m-1}\) intervals is realized by successive inverse
+branches, and distinct words are separated at one of the first \(n\)
+iterates of \(g^m\) by at least \(2^{-m}\). Thus
+\(h_{\rm top}(g)\ge (m-1)\log 2/m\) for each \(m\).
+For any fixed scale on the interval, uniform continuity of the
+scalar factor gives a scale on the circle at which lifts of separated
+sets remain separated. Hence \(D\) has the same lower bound.
+\end{proof}
+
+\begin{remark}[Factor, conjugacy and invariant laws]\label{m9:circle-boundaries}
+The factor map \(t\mapsto\cos2\pi t\) identifies \(t\) with \(-t\); for
+instance \(t=1/4\) and \(t=3/4\) both give \(c=0\). So circle doubling
+factors onto the round trip and is not conjugate to it; the conjugacy holds
+on the scalar level, with the tent map. The arcsine law is the pushforward of
+normalized circle length. It is one invariant law among several: the fixed
+point \(c=1\) gives the invariant law \(\delta_1\), so ``the invariant
+measure'' of the round trip needs the initial ensemble to be specified.
+Theorem~\ref{m9:doubling} iterates the round trip at one fixed origin, and
+its iterates \(T_{2^n}\) are the Chebyshev polynomials of
+Theorem~\ref{thm:recur} at the indices \(2^n\). The equally spaced
+recurrence of Theorem~\ref{thm:recur}, Proposition~\ref{m1:chebyshev} and
+Section~\ref{sec:m4} instead reads successive integer powers of one fixed
+increment, a rotation of zero entropy.
+\end{remark}
+
+\begin{theorem}[Three gaps]\label{m9:three-gaps}
+For irrational \(a\in(0,1)\), the circular gaps among
+\(\{ja\bmod1:0\le j<N\}\) have at most three lengths. If there are
+three, the largest is the sum of the other two.
+Let \(F_0=0,F_1=1,F_{n+2}=F_{n+1}+F_n\),
+\(\varphi=(1+\sqrt5)/2\) and \(\alpha=\varphi^{-1}\).
+For \(a=\alpha\), \(n\ge3\), \(N=F_n+j\) with \(0\le j\le F_{n-1}\),
+the lengths and counts are
+\[
+\begin{array}{c|ccc}
+\text{length} & \alpha^{n-2}&\alpha^{n-1}&\alpha^n\\
+\text{count}& F_{n-1}-j & F_{n-2}+j & j .
+\end{array}
+\]
+A fixed step is an isometry and has zero topological entropy.
+\end{theorem}
+\begin{proof}
+The case \(N=1\) has one gap. For \(N\ge2\) use positive indices \(u,v\)
+and positive displacements \(A\equiv ua,\ B\equiv-va\bmod1\), with
+\(\max(u,v)\le N\le u+v\) and \(vA+uB=1\).
+Start at \(N=2\) with \(u=v=1,\ A=a,\ B=1-a\).
+These data continue to work until \(N=u+v\).
+At the next \(N\), replace \((u,A)\) by \((u+v,A-B)\) if \(A>B\),
+or \((v,B)\) by \((u+v,B-A)\) if \(B>A\). Irrationality rules
+out equality and the weighted sum is unchanged. From index \(i\),
+use displacement \(A\) by \(i\mapsto i+u\) if \(i<N-u\), use
+\(B\) by \(i\mapsto i-v\) if \(i\ge v\), and use \(A+B\) by
+\(i\mapsto i+u-v\) otherwise. The three image intervals in index
+order are \([u,N)\), \([0,N-v)\), \([N-v,u)\).
+The sum of all positive displacements is \(vA+uB=1\).
+Each permutation cycle winds a positive integer number of times
+around the circle, so there is one cycle, winding once. This proves
+that the displayed steps give the successive gaps.
+
+At \(N=F_n\), in direction \((-1)^{n-1}\), the gaps beginning at
+indices \(i<F_{n-1}\) have index step \(F_{n-2}\), and those
+beginning at the other indices have step \(-F_{n-1}\).
+Indeed these steps are addition by \(F_{n-2}\) modulo \(F_n\),
+and consecutive Fibonacci numbers are coprime by the recurrence.
+The displacement identity
+\(F_k\alpha-F_{k-1}=(-1)^{k-1}\alpha^k\) follows by induction
+from \(\alpha+\alpha^2=1\). The lengths in the indicated direction
+are therefore \(\alpha^{n-2}\) and \(\alpha^{n-1}\).
+The total length is \(1\), since
+\(F_{n-1}\alpha^{n-2}+F_{n-2}\alpha^{n-1}=1\) holds at \(n=3\)
+and is unchanged on advancing \(n\). For each \(0\le i<j\) the new
+point with index \(F_n+i\) lies \(\alpha^n\) ahead of \(i\) in that
+direction, splitting one distinct long gap into lengths
+\(\alpha^n,\alpha^{n-1}\). The isometry assertion follows because
+an \(\varepsilon\)-net for time zero spans every orbit at that scale.
+\end{proof}
+
+The gap bound is the theorem of S\'os and \'Swierczkowski
+\cite{m9:Sos,m9:Swierczkowski}, with a later continued-fraction
+treatment by Slater \cite{m9:Slater}. The readout here is the cyclic
+order of signed arcs. Sorting the real scalar comparisons can fold
+that order.
+
+\subsection{Legal digits, Pisot contraction and the Parry law}
+
+For \(K\ge2\), let \(W_n\) be the length-\(n\) binary words avoiding
+\(1^K\), including \(W_0=\{\emptyset\}\), and let \(Z_n=|W_n|\).
+Write \(B_K(X)=X^K-\sum_{j=0}^{K-1}X^j\).
+
+\begin{theorem}\label{m9:digits}
+For \(0\le n<K\), \(Z_n=2^n\), and for \(n\ge K\),
+\(Z_n=\sum_{d=1}^K Z_{n-d}\). Legal words of length \(n\), with
+place values \(Z_0,\ldots,Z_{n-1}\) in increasing order of significance,
+read bijectively as \([0,Z_n)\cap\Z\). This gives unique finite
+expansions up to padding at the most significant end. For \(K=2\)
+the weights are \(F_{j+2}\), the Zeckendorf convention
+\cite{m9:Zeckendorf}. For \(K=3\) the first five counts are
+\(1,2,4,7,13\).
+\end{theorem}
+\begin{proof}
+For \(n<K\) use ordinary binary. For \(n\ge K\), each legal word
+starts at its significant end with \(1^{d-1}0\) for some
+\(1\le d\le K\). For this prefix, the lower \(n-d\) places contribute
+by induction exactly the integers from \(0\) through \(Z_{n-d}-1\).
+The offset from the leading ones is
+\(\sum_{a=1}^{d-1}Z_{n-a}\). Consecutive choices of \(d\) therefore
+give adjacent disjoint intervals, exhausting the total count.
+Padding preserves the value and legality, so uniqueness at a common
+length implies uniqueness modulo padding. \(Z_n\) grows without bound
+because every word with at most one \(1\) is legal. For \(K=2\) the
+recurrence and initial values give the stated indexing.
+\end{proof}
+
+\begin{corollary}[Finite generating sums and golden readouts]\label{m9:thread}
+For \(|x|<1\), the sum of \(x^{\mathrm{value}(w)}\) over
+the length-\(n\) Zeckendorf words is
+\((1-x^{F_{n+2}})/(1-x)\).
+For \(y\ge0\), the sequence of canonical Zeckendorf words
+for \(\lfloor\varphi^n y\rfloor\), \(n\ge0\), determines \(y\).
+One extra sign suffices on \(\R\), with sign zero at zero.
+\end{corollary}
+\begin{proof}
+The finite sum enumerates the consecutive exponents by
+Theorem~\ref{m9:digits}. The integer readout divided by
+\(\varphi^n\) is at most \(y\) and differs from it by less
+than \(\varphi^{-n}\). Decoding and taking the limit recover \(y\).
+\end{proof}
+
+\begin{theorem}\label{m9:pisot}
+\(B_K\) is irreducible over \(\Q\). It has a simple root
+\(\beta_K\in(1,2)\) and every other root lies in the open unit disk.
+The root satisfies \(2-\beta_K=\beta_K^{-K}\), and
+\(\beta_2=\varphi<\beta_3<\cdots\nearrow2\) with
+\(2-\beta_K\sim2^{-K}\). The substitution on \(0,\ldots,K-1\)
+given by \(j\mapsto0(j+1)\) for \(j<K-1\) and \(K-1\mapsto0\)
+is primitive with incidence characteristic polynomial \(B_K\).
+\end{theorem}
+\begin{proof}
+The equation \(\sum_{d=1}^K x^{-d}=1\) has exactly one positive
+solution, in \((1,2)\), since its left side strictly decreases and
+straddles \(1\). Its derivative is strictly negative, giving
+simplicity. Adding a positive summand strictly increases the root.
+Multiplication by \(X-1\) gives \(X^K(X-2)+1\). For a root \(z\),
+the triangle inequality gives \(|z|\le\beta_K\) whenever \(|z|\ge1\),
+and \(2-|z|\le |2-z|=|z|^{-K}\). On \((1,\beta_K)\) the function
+\(x-2+x^{-K}\) is strictly convex and lies below its zero secant.
+Thus \(|z|\) can only be \(1\) or \(\beta_K\).
+Equality in the reverse triangle inequality forces \(z=|z|\)
+in either case, and \(B_K(1)=1-K\ne0\). Any proper monic integral
+factor missing \(\beta_K\) would now have a nonzero integer
+constant term of modulus less than \(1\). Gauss's lemma gives
+irreducibility. Also \(2-\beta_K\le\varphi^{-K}\), so
+\((2/\beta_K)^K\to1\) by taking logarithms. This proves the
+asymptotic. The incidence matrix has first row all ones and
+subdiagonal all ones, giving \(B_K\) by expansion along the first
+row. Its graph reaches every letter from \(0\), reaches \(0\) from
+every letter and has a loop at \(0\), so a sufficiently large
+common length connects every pair.
+\end{proof}
+
+\begin{theorem}\label{m9:beta}
+Put \(\beta=\beta_K,\ p=\beta^{-1}\), and
+\(w_j=\sum_{d=1}^{K-j}p^d\) for \(0\le j<K\).
+For \(T_\beta(x)=\beta x-\lfloor\beta x\rfloor\) on \([0,1)\),
+the greedy binary digits have exactly the finite language \(W_n\).
+After a prefix ending in \(j\) consecutive ones, the remainder
+ranges over \([0,w_j)\). The full greedy itinerary is injective
+and reads \(x=\sum_{n\ge1} d_n\beta^{-n}\).
+Its closure is the one-sided \(1^K\)-avoiding shift. That shift
+and its two-sided extension have entropy \(\log\beta\).
+\end{theorem}
+\begin{proof}
+Start with \(w_0=1\). Inside \([0,w_j)\), digit \(0\) reads the
+subinterval \([0,p)\) onto \([0,1)\). Digit \(1\) reads the remaining
+interval onto \([0,w_{j+1})\) when \(j+1<K\), since
+\(w_j=p(1+w_{j+1})\). For \(j=K-1\) it is absent (\(w_j=p\)).
+Pulling back establishes the interval statement, including endpoints,
+and shows every allowed finite prefix has a nonempty cylinder.
+Iteration leaves a remainder at most \(\beta^{-n}\), proving the
+series formula. Every allowed prefix extends by zeros, which also
+gives the closure statement. In either shift, \(n\)-word cylinders
+give a separated-set lower bound at a fixed coordinate scale, and
+agreements on \(n+O(1)\) consecutive coordinates span \(n\) iterates
+at each fixed scale. The recurrence and the initial ratios
+\(Z_j/\beta^j\) for \(0\le j<K\) bound \(Z_n\) above and below by
+positive multiples of \(\beta^n\), by induction using
+\(\sum p^d=1\). The resulting entropy is \(\log\beta\).
+\end{proof}
+
+This is the finite-language case of Parry's greedy expansion
+theory \cite{m9:ParryBeta}. Its partition cylinders have lengths
+\(p^n w_j\), and hence exhibit exactly \(\min(K,n+1)\) lengths
+for \(n\ge0\). Each \(j\le\min(n,K-1)\) occurs by taking
+\(0^{n-j}1^j\). The sorted left endpoints are the finite
+name grid. For adjacent grid points the final cylinder is
+excluded. When \(n<K\) the final word \(1^n\) uniquely
+exhibits \(j=n\). When \(n\ge K\), all \(0^{n-j}1^j\) for
+\(0\le j<K\) begin with zero and are earlier than the final
+word. Thus the adjacent gap count, excluding the gap to \(1\),
+is \(\min(K,n)\), also at \(n=0\).
+For \(K=2\), the point \(p\) has greedy expansion \(100\cdots\)
+and the admissible periodic expansion \(0101\cdots\) because
+\(p^2/(1-p^2)=p\). The greedy convention fixes this endpoint
+duplication. The two positive golden fixed points from Remark~\ref{m6:golden}
+also give the greedy constants \(\beta_2\) and \(\beta_2^{-1}\). The regular pentagon gives
+\(2\cos(2\pi/5)=\varphi^{-1}\) and \(2\cos(\pi/5)=\varphi\):
+if \(u=e^{2\pi i/5}\), summing its five powers gives
+\((u+u^{-1})^2+(u+u^{-1})-1=0\), and doubling gives the second
+positive cosine.
+
+\begin{theorem}[Parry law and return times]\label{m9:parry}
+Let \(J_t\) count the consecutive ones just before site \(t\) in the
+two-sided legal shift. Set \(M=\sum_{j=0}^{K-1}p^j w_j=\sum_{d=1}^K d p^d\).
+The transition law and stationary distribution on suffix states are
+\[
+ P_{ij}=p\,w_j/w_i\quad(j=0\ \text{or}\ j=i+1<K),\qquad
+ \pi_j=p^j w_j/M
+\]
+with other entries zero. This gives the unique invariant measure of
+maximal entropy, with entropy \(\log\beta\). A stationary signed
+extension keeps its sign on \(1\) and flips it on \(0\); the initial
+sign is independent and fair even given the entire relation sequence,
+and the signed extension is mixing.
+
+On the section \(A=\{J_0=0\}\), \(\mu(A)=1/M\).
+A legal raw block of length \(m\) ending at suffix \(j\) has
+conditional probability \(p^m w_j\). In particular the probabilities
+of a zero at sites \(0\) and \(1\) are \(p\) and \(2p^2\).
+Under first return, consecutive durations are independent with
+\(q_d=p^d\) for \(1\le d\le K\). The return entropy is
+\(M\log\beta\), and the entropy per original site is \(\log\beta\).
+\end{theorem}
+\begin{proof}
+The weight recurrence shows row stochasticity. Into \(j>0\) there
+is one predecessor, giving the listed mass. Into \(0\), summing
+the incoming contributions gives \(\sum_{i=0}^{K-1}p^{i+1}/M=1/M\).
+Finite interval path masses \(\pi_{j_0}\prod P_{j_tj_{t+1}}\)
+are consistent and define the stationary law. The edge label
+\(1_{\{J_{t+1}>0\}}\) recovers the word and a bounded look into the
+past recovers its suffix states. In the signed extension XOR of the
+zero indicators along the interval from \(0\) to \(t\) recovers the
+sign at \(t\) from the anchor and the relation sequence. The product
+of the word law and a fair anchor is stationary under the resulting
+skew shift. Its finite-state graph is strongly connected and has
+cycles of lengths \(2\) and \(3\) at a signed zero state (two resets,
+with or without one advance). A sufficiently large matrix power
+is strictly positive, and subtracting the uniform minorant in
+that power gives geometric contraction of total variation on
+probability vectors. Cylinder correlations thus tend to the product
+of their masses, which extends to all measurable events by
+approximation by finite-coordinate events.
+
+For any stationary word law \(\nu\), the entropy rate is the
+conditional entropy of the next suffix given the entire past.
+Indeed the block chain rule and the martingale convergence of
+finite-past conditional probabilities give this limit. The word
+and suffix finite generators give the same rate by their bounded
+coordinate conversion. On allowed edges, the expectation under
+\(\nu\) of \(-\log P_{ij}\) is \(-\log p\), because stationarity
+cancels the two \(\log w\) terms. Subtracting the conditional
+relative entropy from this cross entropy gives the entropy rate.
+That relative entropy is nonnegative by \(\log x\le x-1\), with
+equality exactly when the next-state conditional law is \(P\)
+almost surely. Equality makes \(\nu\) Markov with stationary
+distribution \(\pi\), the latter unique by the incoming equations.
+For the law just constructed the relative entropy vanishes.
+
+Condition on \(A\) and multiply the transition probabilities.
+The weight ratios telescope to \(w_j/w_0\), giving the raw-block
+formula. The windows \(00,10\) yield the second zero marginal.
+In particular conditioning on \(A\) does not give an invariant
+law for the single-site shift. A duration \(d\) reads \(1^{d-1}0\);
+products of these block probabilities prove the duration claim.
+Bilateral duration sequences recover every path in \(A\) by
+concatenation, with position \(0\) after the preceding zero.
+The duration coding conjugates the induced shift to the bilateral
+Bernoulli shift. Its entropy is
+\(-\sum_d p^d\log(p^d)=M\log\beta\).
+Every original path lies in a unique layer \(T^i(A\cap\{\tau>i\})\),
+\(0\le i<K\), where \(T\) is the shift and \(\tau\) the next return.
+The last zero recovers the origin of that layer. Consequently
+\(\mu=\mu(A)\sum_{i=0}^{K-1}(T^i)_*(\mu_A|_{\{\tau>i\}})\),
+where \(\mu_A\) is the conditional law on \(A\).
+\end{proof}
+
+\begin{remark}\label{m9:parry-scope}
+Parry's intrinsic Markov law \cite{m9:ParryMarkov} appears here in
+suffix coordinates. The window law explains the extra factor \(w_j\)
+when a return block is incomplete. For any duration law \(a\),
+\(H(a)\le \log\beta\sum_d d a_d\), with equality exactly at \(q\):
+the difference is \(D(a\Vert q)\). Across \(K=2,3,4\) the roots
+rounded to six places are \(1.618034,1.839287,1.927562\).
+Thus the rates approach one bit per site as \(K\) increases.
+\end{remark}
+
+\begin{proposition}[Mixing and measurable sign selection]\label{m9:sign}
+For two cylinders of the signed process ending and starting
+\(g\) steps apart, the joint mass is the sum over endpoint
+states of the two within-cylinder weights joined by the
+\(g\)-step transition. Their correlation in absolute value
+is at most \((3/4)^{\lfloor g/3\rfloor}\).
+On the relation shift, every measurable sign selector
+\(h:W_{\Z}\to\{0,1\}\), where \(W_{\Z}\) is the two-sided legal
+space, has positive defect
+\(\mu\{h(Tr)\ne h(r)\oplus(1-r_0)\}\).
+The infimum of the defect is zero.
+\end{proposition}
+\begin{proof}
+For the signed kernel, starting in any state use a reset
+followed either by two resets or by an advance and a reset.
+The resulting sign-zero-suffix state may have either sign,
+with each probability at least \(p^3\ge1/8\). The advance
+and reset have product probability \(p^2\) by cancellation
+of \(w_1\). Thus the three-step kernel shares a minorant
+with mass \(1/4\) equally split between the two zero-suffix
+states. Subtracting it and rescaling leaves a stochastic
+kernel, so total variation contracts by \(3/4\).
+The joint-cylinder identity is the Markov product formula
+summed over the bridge. Conditioning on the end state of
+the first cylinder and applying the contraction to the
+starting state of the second gives the correlation bound.
+
+If a selector had zero defect, XOR of the actual anchor and
+the selected one would be a shift-invariant bit of the signed
+extension. Its two values have equal mass by independence of
+the fair anchor, contradicting mixing.
+For length \(d\) use as markers the starting sites of a block
+of \(d\) zeros. Their stationary probability is \(p^{d-1}/M\);
+ergodicity gives markers arbitrarily far in the past almost
+surely. Set the selector by placing sign zero at the last
+marker at or before the origin and flipping after every zero
+from there to the origin. This rule is measurable. It is
+consistent from one site to the next except possibly when
+the latter is a marker. Its mass is
+\(\sum_j\pi_j P_{j0}p^{d-1}=p^{d-1}/M\), which tends to
+zero as \(d\to\infty\).
+\end{proof}
+
+\begin{proposition}[Binary fractional maps]\label{m9:fractional}
+For \(a,b,c,d\in\{0,1\}\) and \(ad-bc\ne0\), the real fixed
+points of \((ax+b)/(cx+d)\) are the roots of
+\(cx^2+(d-a)x-b=0\) on the domain of the map. The possible maps,
+with their fixed sets, are
+\[
+\begin{array}{c|cccccc}
+ & x & x+1 & x/(1+x) & 1/x & 1+1/x & 1/(1+x)\\
+\text{fixed set}&\R&\emptyset&\{0\}&\{\pm1\}
+ &\{\varphi,-\varphi^{-1}\}&\{\varphi^{-1},-\varphi\}.
+\end{array}
+\]
+\end{proposition}
+\begin{proof}
+Exactly one of \(ad,bc\) is \(1\), giving three choices in each
+case. Cross multiplication gives the quadratic. If \(cx+d=0\)
+at one of its roots then \(ax+b=0\), contrary to invertibility.
+Solving the six equations gives the table. Inversion conjugates
+the last two maps on the projective line.
+\end{proof}
+
+\subsection{The Tribonacci window}
+
+\begin{theorem}\label{m9:rauzy}
+Write \(\beta=\beta_3\) and let \(z\) be the upper-half-plane root
+of \(B_3\). The closed window
+\[
+ \mathcal R=\overline{\left\{\sum_{j=0}^{n-1}d_jz^j:
+                   d_0\cdots d_{n-1}\in W_n,\ n\ge0\right\}}
+\]
+is compact and equals the union of its images under
+\(y\mapsto zy,\ y\mapsto1+z^2y,\ y\mapsto1+z+z^3y\).
+It has interior, equals the closure of its interior and has
+boundary of planar measure zero. In these coordinates it is the
+closure of the projected prefix-count vectors of the fixed word
+for \(A\mapsto AB,\ B\mapsto AC,\ C\mapsto A\).
+\end{theorem}
+\begin{proof}
+The cubic has derivative \(3X^2-2X-1\), with both local
+extremum values negative. It therefore has the indicated nonreal
+pair \(z,\bar z\). Vi\`ete gives
+\(z+\bar z=1-\beta,\ |z|^2=\beta^{-1}\).
+By the uniform geometric tail bound, the window consists of
+all sums of infinite legal sequences, including finite sequences
+padded by zero. It is compact as a continuous image of the
+compact language and is contained in \(|y|\le(1-|z|)^{-1}\).
+Every infinite sequence begins with precisely one of
+\(0,10,110\), and any such initial block can precede a legal
+sequence. This proves the cover.
+
+For the substitution, let \(U\) be the fixed word starting at
+\(A\) and let \(L:\R^3\to\C\) take the three letter vectors to
+\(1,z-1,z^2-z-1\). If \(M_\sigma\) is the substitution incidence
+matrix, then \(LM_\sigma=zL\), by the cubic. A proper prefix of
+\(\sigma^n(A)\) is obtained by following the position of its first
+excluded letter down the \(n\) substitution levels. In an image,
+choosing the first letter contributes no prefix and resets the
+type to \(A\). Choosing the second contributes \(A\) and advances
+from \(A\) to \(B\) or \(B\) to \(C\). Starting at \(A\), the
+choices from top to bottom are precisely the length-\(n\) words
+without \(111\). Their contributions after projection carry
+powers \(z^{n-1},\ldots,1\). Reversal preserves legality.
+The lengths of \(\sigma^n(A)\) strictly increase to infinity,
+so this proves the claimed prefix-count description.
+
+The real kernel of \(L\) is the line spanned by
+\(v=(\beta^2,\beta,1)\): the images of the first two basis vectors
+are independent over \(\R\) and \(LM_\sigma v=\beta Lv=zLv\).
+The plane of coordinate sum zero is complementary to \(v\), so
+the images of the two difference vectors \(e_B-e_A,e_C-e_A\)
+generate a lattice \(\Lambda\) in \(\C\). Modulo \(\Lambda\),
+the projected prefix of length \(n\) is \(nLe_A\).
+A real linear functional \(\ell\) integral on \(\Lambda\) and
+on \(Le_A\) would give integer coordinates for \(\ell L\),
+which annihilates \(v\). Irreducibility over \(\Q\) then forces
+all coordinates to vanish. This is the torus density criterion:
+averages of the characters on \(nLe_A\) tend to their Haar
+averages by geometric summation and trigonometric approximation.
+Thus the compact window projects onto \(\C/\Lambda\).
+Its lattice translates cover \(\C\), so Baire gives nonempty
+interior.
+
+For any address its prefix images of \(\mathcal R\) shrink to the
+address point, and each contains an open set in \(\mathcal R\).
+This proves regular closure. Write \(r=|z|\); the cover's three
+area factors \(r^2,r^4,r^6\) sum to \(1\), so the images overlap
+only in sets of measure zero. Choose a fixed composition \(g\) of
+the three maps such that \(g(\mathcal R)\subset\operatorname{int}\mathcal R\).
+Such a composition exists by taking a sufficiently long prefix
+of an address of an interior point. If \(g\) uses \(m\) maps and
+has area factor \(b>0\), every address containing this block at
+an aligned group of \(m\) steps maps into the interior. At depth
+\(km\), the cylinders omitting the block in all \(k\) groups
+have summed area \(|\mathcal R|(1-b)^k\). They cover the boundary
+and the bound tends to zero.
+\end{proof}
+
+\begin{remark}[Classical geometry and scale]\label{m9:rauzy-classical}
+Rauzy's realization of this substitution uses the contracted
+projection along the Perron line and gives a torus translation
+with a piecewise translation model \cite{m9:Rauzy}. The preceding
+linear map gives that projection in a complex coordinate, and an
+index shift of the digit exponents by \(h\) multiplies the window
+by \(z^h\). The topology of a family of cubic Rauzy fractals containing
+the Tribonacci tile is studied in \cite{m9:Loridant}, and its boundary in
+\cite{m9:MessaoudiBoundary}. The boundary dimension reported there is
+approximately \(1.09336\); in this normalization it is
+\(2\log\lambda/\log\beta\), where \(\lambda\) is the root greater than
+\(1\) of \(X^4-2X-1\). We have checked the numerical value of this formula
+only; the topological and dimension statements are cited.
+\end{remark}
+
+\begin{proposition}\label{m9:scales}
+The map \(a+b\beta+c\beta^2\mapsto(a+b\beta+c\beta^2,a+bz+cz^2)\)
+is the real Minkowski coordinate map for this cubic. The trace
+is \(3a+b+3c\). Multiplication by \(\beta\) scales the real
+coordinate by \(\beta\) and acts on the plane by \(z\), with
+real determinant \(1\). In \(\mathrm{Cl}_{3,0}(\R)\), the
+internal coordinate may be identified with the span of \(1\)
+and \(B=e_2e_3\), where \(B^2=-1\). In that plane multiplication
+by \(z\) reads \(r(\cos\arg z+B\sin\arg z)\).
+The numerical values are \(z\simeq-0.419643+0.606291i\),
+\(r\simeq0.737353\), and \(\arg z\simeq124.69^\circ\).
+The positive solution \(\theta\) of \(\cos\theta=\theta\) is
+approximately \(0.739085\). It exceeds \(r\), with
+\((\theta-r)/\theta\simeq0.234\%\).
+\end{proposition}
+\begin{proof}
+The real coordinate change is invertible by the Vandermonde
+determinant of the three distinct roots. Their sum is \(1\)
+and their pairwise product sum is \(-1\), so the sum of
+their squares is \(3\). The determinant of multiplication is
+\(\beta |z|^2=1\). The Clifford relations give
+\(B^2=-e_2^2e_3^2=-1\); multiplication within its two-dimensional
+subalgebra is ordinary complex multiplication.
+The cosine fixed point is the one in Theorem~\ref{m6:cosine}.
+Bounding the cosine by its alternating series gives \(0.73908513<\theta<0.73908514\).
+From \(r^6+r^4+r^2=1\) one obtains
+\(0.73735270<r<0.73735271\) by substitution and monotonicity.
+These intervals give the separation and rounded ratio. The complex
+coordinate and angle follow from \(\re z=(1-\beta)/2\) and
+\(|z|^2=\beta^{-1}\).
+\end{proof}
+
+Theorem~\ref{m6:cosine} also proves transcendence of \(\theta\).
+The modulus \(r\) is algebraic by the sextic in
+Proposition~\ref{m9:scales}. In the golden case the other
+embedding is real, \(z=-\varphi^{-1}\). Its legal series give the
+interval \([-1,\varphi]\): the two affine images \(zI\) and
+\(1+z^2 I\) of this interval meet at \(\varphi^{-1}\) and cover it.
+Successive inverse choices and the geometric tail bound identify
+the interval with the whole address space image.
+
+\begin{remark}[Beyond the cubic]\label{m9:pisot-programme}
+For larger Pisot substitutions, a translation or tiling model
+requires control of coincidences and strip multiplicity in the
+chosen contracting projection. A finite collision computation can
+begin by comparing two admissible addresses and retaining the
+normalized difference states under simultaneous extension. Exact
+overlap requires an infinite compatible path with vanishing
+unscaled difference, and a boundary dimension calculation
+requires a graph that exhausts boundary addresses and a separation
+or measure estimate for its graph-directed pieces. The base
+\(p=\beta^{-1}\) of the Parry law is real. A prime \(p\)-adic
+congruence tree uses prime-power divisibility.
+\end{remark}
+
+\subsection{Comparison quotients and the two absolute-value completions}
+
+\begin{proposition}\label{m9:quotient}
+For a readout \(r:X\to Y\), give \(X\) the topology of unions
+of fibers. Topological indistinguishability is equality of
+readouts, and the quotient is \(r(X)\) with the discrete topology.
+For a discrete target \(E\), a function \(X\to E\) is continuous
+exactly when it factors through this quotient, where the factor
+is unique. For a comparison \(C:X^2\to Y\) one may take \(r(x)\)
+to be its full row and column. If \(X=\{a,b\}\) and \(C\) is
+constant, the quotient has one point.
+\end{proposition}
+\begin{proof}
+Each fiber is an open neighborhood of each of its points and
+is contained in any neighborhood of one of them. Thus points
+in distinct fibers are distinguished, and points in one fiber
+have the same neighborhoods. Every singleton in the quotient is
+open, and a fiber-constant map descends by assigning the common
+value. Continuity to a discrete set forces fiber constancy by
+pulling back singletons.
+\end{proof}
+
+For nested finite readouts, let \(r_n(X)\) be the nonempty
+cells at level \(n\), indexed with level \(0\) trivial. The
+common prefix depth \(j\) gives a pseudoultrametric \(b^{-j}\)
+for \(b>1\), with \(b^{-\infty}=0\). At horizon \(H\), the
+quantity \(H-\min(H,j)\) is another pseudoultrametric. If two
+pairs agree down to depth \(j_1,j_2\), the outer pair agrees
+down to depth \(\min(j_1,j_2)\), proving both strong triangle
+inequalities. After identifying zero-distance pairs, the
+completion in the infinite-prefix metric is the inverse limit
+of the finite images. Each sequence of compatible cells is
+approached by choosing a point in its \(n\)-th cell. A Cauchy
+sequence has an eventually constant readout at each level,
+which defines the compatible limit and proves completeness.
+The same argument allows arbitrary discrete readouts in
+place of finite ones, with compactness in the finite case
+by a diagonal subsequence argument.
+
+\begin{proposition}\label{m9:absolute}
+Every nontrivial absolute value on \(\Q\) is either
+\(|\cdot|_\infty^a\) with \(0<a\le1\), or
+\(|\cdot|_p^a\) with \(p\) prime and \(a>0\), where
+\(|x|_p=p^{-v_p(x)}\) for \(x\ne0\).
+The completions, up to equivalent absolute values, are
+\(\R\) and \(\Q_p\). For the displayed standard normalizations
+and \(x\in\Q^\times\),
+\[
+ |x|_\infty\prod_{p}|x|_p=1,\qquad
+ \Z=\{x\in\Q:|x|_p\le1\text{ for every prime }p\}.
+\]
+\end{proposition}
+\begin{proof}
+Suppose first that all nonzero integers have absolute value at
+most \(1\) for the given value \(v\). The binomial bound
+\(v(x+y)^n\le(n+1)\max(v(x),v(y))^n\) gives the strong
+triangle inequality by taking \(n\)-th roots.
+Nontriviality yields a prime of value less than \(1\), by
+factorization and multiplicativity. Two such primes would make
+a B\'ezout expression for \(1\) have value less than \(1\).
+Thus the value is a positive power of the normalized \(p\)-adic
+one. In the other case choose \(m>1\) with \(v(m)>1\).
+Writing \(n^k\) in base \(m\) gives
+\(v(n)^k\le C_m\sum_{j=0}^{\lfloor k\log_m n\rfloor}v(m)^j\).
+Here \(C_m\) bounds the values of the finitely many digits.
+Taking \(k\)-th roots gives
+\(v(n)\le n^{\log_m v(m)}\). If \(v(n)\le1\)
+for any \(n>1\), the same expansion of \(m^k\) in base \(n\)
+would bound \(v(m)^k\) by \(O(k)\), a contradiction.
+Interchanging \(n,m\) therefore gives equality.
+The triangle inequality yields \(v(m)\le m\).
+Extend from positive integers to rationals by multiplicativity.
+Taking positive powers preserves the Cauchy sequences and their
+equivalence, giving the two completions. The two formulas follow
+from the finite signed prime exponent vector of \(x\).
+\end{proof}
+
+\begin{corollary}\label{m9:padic}
+The completion of \(\Z\) in \(|\cdot|_p\) is
+\(\Z_p=\varprojlim_k\Z/p^k\Z\), and \(\Q_p=\Z_p[1/p]\).
+Integers \(x\ne y\) first differ in their \(p^k\)-readouts at
+\(k=v_p(x-y)+1\). The fiber of the readout at level \(k\) is the
+radius-\(p^{-k}\) closed ball intersected with the embedded integers.
+For coprime positive moduli the joint readout is the one modulo
+their product, and is onto the product of the residue sets.
+\end{corollary}
+\begin{proof}
+The first differing level follows from divisibility. The same
+criterion gives the ball radius and the prefix metric on \(\Z\),
+so the inverse limit follows by the preceding argument.
+For each rational \(a/b\) with \(p\nmid b\), the inverse of \(b\)
+modulo \(p^k\) supplies an integer approximant at distance at
+most \(p^{-k}\). Hence the closure of the rationals of value at
+most \(1\) equals the closed unit ball, and equals the closure
+of \(\Z\). Scaling any Cauchy sequence of rationals by a power
+of \(p\) puts its bounded tail in the unit ball.
+For coprime \(m,n\), equality of residues modulo both is
+equivalent to equality modulo \(mn\). B\'ezout coefficients give
+a representative of each residue pair, and induction gives
+the finite family assertion.
+\end{proof}
+
+\begin{theorem}[Ostrowski numeration]\label{m9:ostrowski-digits}
+Let \(a=[0;a_1,a_2,\ldots]\) be irrational with convergent
+denominators \(q_{-1}=0,\ q_0=1,\ q_{i+1}=a_{i+1}q_i+q_{i-1}\).
+Every nonnegative integer has a unique finite sum
+\(\sum_{i\ge0}b_iq_i\) up to leading zeros, with
+\(0\le b_0<a_1\), \(0\le b_i\le a_{i+1}\) for \(i\ge1\),
+and \(b_i=a_{i+1}\) implying \(b_{i-1}=0\).
+For \(a=\varphi^{-1}\) it is Zeckendorf coding after removal
+of the forced first zero.
+\end{theorem}
+\begin{proof}
+Values from places below \(i\) form precisely \([0,q_i)\cap\Z\)
+by induction. The assertion for \(i=1\) is the bound on \(b_0\),
+and for \(i=0\) it is the empty sum. At place \(i\ge1\), each
+digit \(b_i<a_{i+1}\) gives a successive interval of length
+\(q_i\). The maximal digit forces a zero at place \(i-1\)
+and appends exactly \(q_{i-1}\) further values. Thus all the
+intervals are disjoint and exhaust \([0,q_{i+1})\cap\Z\).
+Since \(q_i\to\infty\), this proves the finite representation.
+For the golden continued fraction all \(a_i=1\),
+so \(b_0=0\) and the remaining places start at \(1,2,3,\ldots\)
+with the Fibonacci recurrence and the no-adjacency condition.
+\end{proof}
+
+\begin{remark}[Existence inputs]\label{m9:inputs}
+Ostrowski's two results concern different data, an irrational
+rotation parameter for numeration and an absolute value for
+completion \cite{m9:Ostrowski}. In the comparison framework the
+choice of a norm and the passage to Cauchy classes are structural
+inputs. For example, rational truncations of \(\sqrt2\) are
+Cauchy in \(\Q\), and \(\Q^2\) is incomplete by taking those
+truncations in one coordinate. A finite metric space is
+complete because its nonzero distances have a positive minimum.
+A real orthogonal map \(J\) with \(J^{\mathsf T}=-J\) satisfies
+\(J^2=-I\). This implies even dimension by determinants, and
+pairs of orthogonal coordinate axes supply such a \(J\) in each
+even dimension. The same multiplication gives \(J^2=-I\)
+for a skew-adjoint complex unitary. Choosing the plane after
+real completion realizes \(\C=\R[X]/(X^2+1)\).
+An orthogonal-successor construction needs a fresh orthogonal
+complement at each stage. This is available for every finite
+span in an infinite-dimensional inner-product space by subtracting
+the projection of a vector outside the span. In \(\R^n\) a
+full orthonormal basis exhausts it, and a cyclic residue successor
+returns to zero after its modulus.
+\end{remark}
+
+\begin{remark}[Comparison and diagonalization]\label{m9:diagonal}
+If readouts are replaced by the represented functors of a locally
+small category, the Yoneda identification sends a natural
+transformation \(\operatorname{Hom}(-,X)\to\operatorname{Hom}(-,Y)\)
+to its value on \(\operatorname{id}_X\). Naturality forces the
+transformation to be postcomposition by this morphism.
+For any proposed map \(d:A\to\{0,1\}^{A}\),
+the predicate \(a\mapsto1-d(a)(a)\) is missed.
+The diagonal argument is a failure of that surjectivity.
+External existence axioms enter separately. For example the
+finite cumulative set \(V_5\), starting at \(V_0=\emptyset\)
+and using \(V_{n+1}=\mathcal P(V_n)\), has \(65536\) elements.
+It is transitive and closed under taking subsets of its
+elements. It has no infinite set, and the singleton of its
+element \(V_4\) and the powerset of \(V_4\) are both outside
+\(V_5\) by rank. The hereditarily finite sets \(V_\omega\)
+are closed under pairing, powerset, union and replacement
+of their internally finite sets, and every member is finite.
+For a finite family of nonempty finite sets a choice function
+exists by finite induction and is again hereditarily finite.
+\end{remark}
+
+\subsection{Prime clocks, finite sieves and Euler products}
+
+\begin{proposition}\label{m9:clocks}
+For a finite set of distinct primes the frequencies \(\log p\)
+are rationally independent. The joint positive-time orbit
+\((e^{-it\log p})_p\) is dense in the corresponding torus. For
+a sampling interval \(\tau>0\), the sampled orbit is dense
+provided \(\tau\sum_p k_p\log p\notin2\pi\Z\) for all nonzero
+integer vectors \(k\). Only countably many \(\tau\) fail the
+condition. For any integer \(n\ge2\), the single clock at
+\(t=2\pi m\), \(m\ge0\), is dense.
+\end{proposition}
+\begin{proof}
+Independence is part of Proposition~\ref{m8:prime}. For a nonzero character the continuous-time
+average of \(e^{-it\sum k_p\log p}\) tends to zero by integration.
+Under the sampling hypothesis a geometric sum gives the corresponding
+discrete limit. Trigonometric approximation gives convergence of
+averages to Haar averages, implying density by testing a nonnegative
+continuous bump on any open set. The exceptional values are contained
+in a countable union of countable sets. If \(\log n\) were rational,
+it would be nonzero algebraic and Lindemann's theorem
+\cite[Ch.~1]{m6:Baker} would make \(n\) transcendental. Thus the sampled
+character condition holds for the single clock.
+\end{proof}
+
+For a nonzero finite integer vector \(k\), the composite clock
+is \(e^{-it\log(A/B)}\) for \(A/B=\prod_p p^{k_p}\).
+Writing it in lowest terms gives
+\(|\log(A/B)|\ge\log(1+1/\min(A,B))\).
+The corresponding periods \(2\pi/\log(A/B)\) are
+\[
+\begin{array}{c|rrrr}
+ A/B & 3^{12}/2^{19} & 81/80 & 5\cdot3^8/2^{15} & 128/125\\
+ \text{period} & 463.67 & 505.79 & 5567.67 & 264.93
+\end{array}
+\]
+to two decimal places. For distinct \(p,q\) the two clocks have no common
+positive return to their initial phase, since such a return would
+give a nonzero integer relation between their logarithms.
+
+\begin{theorem}\label{m9:euler}
+Let \(s=\sigma+it\) with \(\sigma>1\), \(S\) a finite prime set,
+and \(P_S(s)=\prod_{p\in S}(1-p^{-s})^{-1}\).
+It sums \(n^{-s}\) over the \(S\)-smooth integers, including \(1\).
+The all-prime limit equals \(\zeta(s)=\sum_{n\ge1} n^{-s}\), and
+its inverse is \(\sum_{n\ge1}\mu(n)n^{-s}\), with \(\mu\) the
+M\"obius function. The convergence is absolute and locally uniform.
+For \(S=\{p:p\le y\}\) and \(q\) the first omitted prime,
+\[
+ R_S(s)=\zeta(s)-P_S(s)=
+  \sum_{\substack{n\ge2\\P^+(n)>y}} n^{-s},\qquad
+ |R_S(s)|\le q^{-\sigma}+\frac{q^{1-\sigma}}{\sigma-1}.
+\]
+Here \(P^+(n)\) is the largest prime factor of \(n\).
+For real \(s>1\), \(R_S(s)>q^{-s}\).
+With \(\ell_p=\sum_{m\ge1}p^{-ms}/m\), the local factor splits as
+\[
+ (1-p^{-s})^{-1}=e^{\re\ell_p}\,e^{i\,\operatorname{Im}\ell_p},
+ \qquad
+ \sum_p|\operatorname{Im}\ell_p|<\infty,\qquad
+ \sum_p(1-\cos(\operatorname{Im}\ell_p))<\infty .
+\]
+The logarithms sum absolutely, so the arc product and its positive
+scale are independent of prime order.
+\end{theorem}
+
+
+\begin{proof}
+The finite product identity is Proposition~\ref{m8:prime}. Absolute
+domination by \(\sum n^{-\sigma}\) permits exhaustion of the
+primes and yields the omitted series. The integral bound on
+the tail of the majorant gives the stated estimate. At real \(s\)
+the terms at \(q\) and \(q^2\) are both positive.
+The power series for \(-\log(1-z)\) gives \(\ell_p\) and
+\(|\ell_p|\le p^{-\sigma}/(1-p^{-\sigma})\). Its sum is
+uniform on every closed half-plane bounded away from \(1\).
+Exponentiation proves the scale and phase formulas, with the
+sagitta bound \(1-\cos u\le u^2/2\). Inverting the product
+and expanding the finite factors \(1-p^{-s}\) picks exactly
+squarefree indices with the sign \((-1)^{\#\{p:p\mid n\}}\).
+Absolute domination again gives the limit. Equivalently,
+\(\sum_{d\mid n}\mu(d)=1_{\{n=1\}}\) follows from
+\((1-1)^{\#\{p:p\mid n\}}\) when \(n>1\).
+\end{proof}
+
+{\sloppy The identification of the conventional Dirichlet series and Euler product
+with the library's \(\zeta\) is quoted from the library declarations
+\texttt{riemann\_zeta\_dirichlet\_sum} and
+\texttt{riemann\_zeta\_euler\_product} \cite{Tru}, as library results.
+Theorem~\ref{m9:euler} concerns the half-plane \(\sigma>1\) only and says
+nothing about zeros of \(\zeta\).\par}
+
+\begin{example}\label{m9:sieve}
+At \(S=\{2,3,5\}\), \(P_S(2)=25/16\). The first missing
+indices are \(7,11,13,14\), with weights \(1/49,1/121,1/169,1/196\).
+The gap is \(\pi^2/6-25/16\simeq0.082434\), using the Basel
+value \cite[Eq.~25.6.1]{m9:DLMF}. For \(S=\{p:p\le31\}\) the
+first omitted index is \(37\). Euclid's construction gives a new prime
+\emph{factor}, and the integer itself need not be prime: the product of the
+primes through \(13\), plus \(1\), is \(30031=59\cdot509\). Each prime
+factor of \(1+\prod_{p\in S}p\) lies outside \(S\), so it escapes every
+readout of divisibility by a prime in \(S\) and is an omitted index of the
+finite sieve. For real \(s\downarrow1\), comparison of
+the sum with \(\int_1^\infty x^{-s}\,dx\) gives
+\((s-1)\zeta(s)\to1\), while a fixed finite prime factor product
+has finite limit. For \(\sigma\le1\) the Dirichlet series fails
+absolute convergence by the harmonic comparison. At \(s=1\) the
+raw partial sums diverge.
+\end{example}
+
+\begin{remark}\label{m9:sagitta}
+The quantity \(\operatorname{Im}\ell_p\) is the oriented
+phase of a normalized \emph{local geometric sum}. Its
+first-order term is \(-p^{-\sigma}\sin(t\log p)\), and the
+error has absolute value at most \(p^{-2\sigma}/(1-p^{-\sigma})\).
+Theorem~\ref{m6:det-product} and Remark~\ref{m6:sagitta-link}
+distinguish accumulated angle from accumulated sagitta. Here
+the logarithmic expansion provides absolute angular summability.
+An unweighted product of the prime clocks is a different
+sequence. For example \(\sum_{p}(-t\log p)\) does not converge
+as a real sum for \(t\ne0\). The scalar comparison reads the
+cosine only after the oriented phases have been composed.
+\end{remark}
+
+\begin{proposition}[Alternating sums]\label{m9:eta}
+The paired series for \(\eta(s)=\sum_{n\ge1}(-1)^{n-1}n^{-s}\)
+converges locally uniformly on \(\operatorname{Re}s>0\) and
+equals the limit of the ordinary alternating partial sums.
+For \(\operatorname{Re}s>1\), it is
+\((1-2^{1-s})\zeta(s)\). At \(s=1\) its value is \(\log2\).
+\end{proposition}
+\begin{proof}
+The \(m\)-th pair is
+\((2m-1)^{-s}-(2m)^{-s}=s\int_{2m-1}^{2m}x^{-s-1}\,dx\).
+The summed tail is bounded by \(|s|(2m-1)^{-\sigma}/\sigma\)
+from index \(m\) onward. The unpaired last term tends to zero
+locally uniformly. In the absolute convergence region
+subtracting twice the even terms gives the identity.
+At \(s=1\), integrate the finite geometric sum
+\(\sum_{j=0}^{n-1}(-x)^j\) over \([0,1]\); the integrated
+remainder from \(1/(1+x)\) has magnitude at most \(1/(n+1)\).
+\end{proof}
+
+\begin{proposition}[Prime powers and colored partitions]\label{m9:partitions}
+On \(\sigma>1\),
+\[
+ -\frac{\zeta'(s)}{\zeta(s)}=
+  \sum_p\sum_{m\ge1}(\log p)p^{-ms}.
+\]
+For \(\psi(x)=\sum_{p^m\le x,\ m\ge1}\log p\), the midpoint
+value at \(8\) is \(\log(420\sqrt2)\) and the value at \(9.5\)
+is \(\log2520\).
+For integers \(c_n\ge0\), the coefficient of \(x^N\) in
+\(\prod_{n\ge1}(1-x^n)^{-c_n}\) counts partitions of \(N\)
+into colored parts, with \(c_n\) colors for size \(n\).
+If \(\sum_n c_n |x|^n<\infty\) and \(|x|<1\), the analytic
+product converges. For \(c_n=1\), the coefficient at \(N=4\)
+is \(5\). For \(c_n=2\) and \(c_n=n\), the coefficients at
+\(N=2\) are \(5\) and \(3\), respectively.
+\end{proposition}
+\begin{proof}
+Termwise differentiation of \(\sum\ell_p\) is justified by the
+majorant \(C_\sigma\sum_{n\ge2}(\log n)n^{-\sigma}\), locally
+uniformly in the half-plane. Multiplying the prime powers'
+contributions to the exponentiated staircase gives \(420\)
+immediately before \(8\), \(840\) at \(8\) and \(2520\)
+after \(9\) and before \(11\). For the coefficient, each color
+independently supplies a geometric series in the number of
+parts of its size. Only factors at \(n\le N\) affect the
+coefficient, and a zero color count contributes the factor \(1\).
+The logarithm bound gives analytic convergence. For \(N=4\)
+the uncolored shapes are \(4,3+1,2+2,2+1+1,1+1+1+1\).
+For \(N=2\) the two shapes give \(c_2+\binom{c_1+1}{2}\).
+\end{proof}
+
+Equivalently an occupation of prime modes \(p\) with energies
+\(\log p\) has finite occupation vector \((a_p)_p\), energy
+\(\log\prod p^{a_p}\), and partition sum \(\zeta(s)\) at real
+inverse temperature \(s>1\). This realization and the analogous
+integer-frequency construction use independent mode occupations.
+For ordinary and plane partitions see \cite{m9:HardyRamanujan,m9:MacMahon}.
+
+\subsection{Trace and norm lattices}
+
+\begin{proposition}\label{m9:lattices}
+For \(a,b\in\Q^\times\), let \((a,b)_{\Q}\) have generators
+\(i^2=a,\ j^2=b,\ ij=-ji\). Its reduced trace and norm at
+\(x=x_0+x_1i+x_2j+x_3ij\) are \(2x_0\) and
+\(x_0^2-a x_1^2-b x_2^2+abx_3^2\).
+In the Hurwitz order of \(\HH\), the element
+\(u=(1+i+j+ij)/2\) gives a copy of \(\Z[u]\) with
+\(u^2-u+1=0\). The norm there is \(E(P,Q)=P^2+PQ+Q^2\).
+For integer \(t\), the form
+\[
+ Q_t(P,Q)=P^2-(2t+1)PQ+(t^2+t+1)Q^2
+\]
+has discriminant \(-3\) and the same integer value set as \(E\).
+In the split quaternion order \(M_2(\Z)\), set
+\(J=\left(\begin{smallmatrix}0&1\\1&1\end{smallmatrix}\right)\).
+Then \(g=aI+bJ\), for \(a,b\in\Z\), has trace \(2a+b\) and
+norm \(a^2+ab-b^2\), with
+\((2a+b)^2-5b^2=4\det g\).
+\end{proposition}
+\begin{proof}
+Quaternion conjugation negates the three nonscalar coordinates.
+The cross terms cancel by anticommutation, giving the formulas.
+For \(u\), its trace and norm are \(1,1\), and the scalar
+quadratic follows by multiplying out
+\((u-u)(u-\bar u)=0\). Thus its two-dimensional lattice is
+closed under multiplication and realizes the Eisenstein lattice,
+with \(E(P,Q)\) from the norm of \(P+Qu\).
+The integral change \(P\mapsto P-(t+1)Q\) has determinant \(1\)
+and converts \(Q_t\) to \(E\). Expansion gives the discriminant,
+and the complex lattice has covolume \(\sqrt3/2\).
+For the split model \(J^2=J+I\), so \(\Z[J]\) is the golden order
+and ordinary matrix trace and determinant are the reduced
+quantities. Expanding those expressions gives the identity.
+\end{proof}
+
+\begin{theorem}\label{m9:pell}
+The integer solutions of \(X^2-5Y^2=\pm4\) are
+\((X,Y)=\epsilon(L_n,F_n)\) with \(\epsilon=\pm1,\ n\in\Z\),
+where \(L_n=\varphi^n+(1-\varphi)^n\) and \(F_n\) is extended
+by the Fibonacci recurrence to negative indices. The sign
+on \(4\) is \((-1)^n\).
+\end{theorem}
+\begin{proof}
+Modulo \(4\), \(X\equiv Y\bmod2\), so the equation is exactly
+norm \(\pm1\) for \(g=(X-Y)/2+Y\varphi\).
+Norm \(\pm1\) gives a unit by conjugation, and any unit has
+norm \(\pm1\). Change the sign of \(g\) if needed and multiply
+by a power of \(\varphi\) to put its first real embedding
+\(h\) in \([1,\varphi)\). Its other embedding is \(\pm1/h\).
+The golden coefficient of \(h\) is
+\((h-\bar h)/\sqrt5\), nonnegative and strictly less than \(1\).
+For norm \(+1\) use \(h-1/h<\varphi\); for norm \(-1\) use
+\(h+1/h<\varphi+\varphi^{-1}=\sqrt5\), since \(x+1/x\) increases
+on \([1,\varphi]\). That coefficient is an integer, hence
+zero, and the resulting unit in the interval is \(1\).
+It follows that every unit is \(\epsilon\varphi^n\).
+Taking trace and coefficient of \(\varphi\), the recurrence
+from \(\varphi^2=\varphi+1\) gives \(L_n,F_n\) for all integers,
+and \(\operatorname{Norm}(\varphi)=-1\) gives the parity rule.
+\end{proof}
+
+\begin{example}\label{m9:lattice-examples}
+\(Q_2(8,3)=E(-1,3)=7\), and the golden element
+\(2+\varphi\) has trace \(5\), norm \(5\), and \(5^2-5=20\).
+The first six Pell pairs for \(n\ge0\) are
+\((2,0),(1,1),(3,1),(4,2),(7,3),(11,5)\).
+The ordinary integral Hamilton lattice has \(8,24,32,24\)
+points of norms \(1,2,3,4\), respectively. For the first three
+norms choose \(1,2,3\) distinct coordinates equal to \(\pm1\),
+and for norm \(4\) use four such coordinates or one coordinate
+equal to \(\pm2\). Their reduced traces are even.
+A nonscalar Hamilton quaternion has negative reduced
+discriminant \(-4(x_1^2+x_2^2+x_3^2)\). Hence the golden
+field cannot be embedded in this rational Hamilton algebra.
+Its split realization above gives the indicated indefinite norm.
+\end{example}
+
+Remark~\ref{m6:definability} gives the separate local-to-global
+use of quaternion norm-one traces over \(\Q\), including the
+Poonen localization identity and the quantifier scope of the
+resulting definitions. The norm-form sections here exhibit two
+explicit order lattices over \(\Z\). At each prime the underlying
+local integrality test is the valuation-ball condition in
+Proposition~\ref{m9:absolute}.
+
+\subsection{Finite cuts and a substitution-chain application}
+
+\begin{proposition}[The equal-amplitude cut]\label{m9:cut}
+Let \(\Psi_{m,n}\) be the normalized all-positive equal
+superposition of the words in \(W_{m+n}\), cut after \(m\)
+places. Let \(A_i,B_j\) be the counts of legal left and right
+words with trailing and leading run lengths \(i,j\).
+The nonzero Schmidt spectrum is that of the matrix
+\[
+ C_{ij}=Z_{m+n}^{-1/2}\sqrt{A_i B_j}\,1_{\{i+j<K\}}.
+\]
+Writing \(u=\min(m,K-1),v=\min(n,K-1)\), its rank is
+\(1+\max(0,u+v-K+1)\). For fixed \(K\), as both lengths
+increase, \(CC^*\) tends to the trace-one matrix obtained
+from \(C^\infty_{ij}=1_{\{i+j<K\}}p^{(i+j+1)/2}/\sqrt M\).
+Its entropy is strictly between \(0\) and \(\log K\).
+Uniformly over all lengths, the entropy is bounded above by
+\[
+ h_2(d_K)+d_K\log(K-1),\qquad d_K=(K-1)2^{-K},
+ \quad h_2(t)=-t\log t-(1-t)\log(1-t).
+\]
+\end{proposition}
+\begin{proof}
+A pair of separately legal words can be joined exactly when
+the two boundary runs sum to less than \(K\). Grouping the
+coefficient rows and columns into normalized class sums gives
+\(C\). All groups from \(0\) to \(u\) or \(v\) are nonempty.
+Remove the nonzero diagonal weights. After the first row,
+each successive row difference is either zero or minus the
+coordinate vector at column \(K-i\) if that column occurs.
+The nonzero differences have distinct positive column indices,
+and the first row has nonzero column \(0\). This proves the rank.
+For fixed \(i\) and \(m>K\), \(A_i=Z_{m-i-1}\), and likewise
+\(B_j=Z_{n-j-1}\) for \(n>K\). The generating function is
+\((\sum_{i=0}^{K-1} x^i)/(1-\sum_{d=1}^K x^d)\) by the
+recurrence, since the residual coefficient at each \(i<K\)
+is \(1\). Its simple dominant pole at \(p\) gives
+\(Z_l p^l\to (\sum_{i=0}^{K-1}p^i)/M=1/(pM)\), by the
+root location in Theorem~\ref{m9:pisot} and partial fractions.
+The limiting matrix follows by taking the ratios. Its rank
+is \(K\), its squared singular values sum to \(1\), and its
+distinct rows have a common positive column. The positive
+off-diagonal entries of \(C^\infty(C^\infty)^*\) preclude the
+uniform spectrum. Continuity of the eigenvalues and of
+\(-x\log x\) on \([0,1]\) gives the stated limit.
+
+For the uniform bound, start with independent fair bits
+and condition on separate legality. This conditioning is a
+decreasing event, whereas a forbidden run crossing the cut
+is increasing. Increasing and decreasing events are negatively
+correlated on a product of bits: induction conditioning on
+one bit uses the two conditional covariances and the
+nonpositive covariance of the two conditional means.
+There are at most \(K-1\) crossing windows, so the conditional
+failure probability is \(\delta=1-Z_{m+n}/(Z_m Z_n)\le d_K\).
+The product of the two separately legal equal-amplitude
+vectors has squared overlap \(1-\delta\) with \(\Psi_{m,n}\).
+The largest reduced eigenvalue is at least this by the
+singular-value bound for any product overlap. If its complement
+is \(t\le d_K\), the entropy is at most \(h_2(t)+t\log(K-1)\)
+by concavity, since there are at most \(K-1\) remaining
+eigenvalues. This upper bound increases up to \(t=1-1/K\),
+and \(d_K\le1/4\). In particular the bound tends to zero
+as \(K\to\infty\).
+\end{proof}
+
+\begin{example}\label{m9:phase}
+For \(m=n=1\) and \(K\ge3\), the matrices of two normalized
+states can be \(\frac12\left(\begin{smallmatrix}1&1\\1&1\end{smallmatrix}\right)\)
+and \(\frac12\left(\begin{smallmatrix}1&1\\1&-1\end{smallmatrix}\right)\).
+Their computational probabilities all equal \(1/4\).
+The first has reduced spectrum \((1,0)\), and the second
+\((1/2,1/2)\), by multiplication with the adjoint.
+For \(K=2\) the positive equal-amplitude state on \(00,01,10\)
+has spectrum \(((3+\sqrt5)/6,(3-\sqrt5)/6)\).
+\end{example}
+
+\begin{proposition}[Direct encoding]\label{m9:encoder}
+Take two logic pages of dimensions \(M_0,M_1>0\), for
+example the nonprime and prime labels of \(\{0,\ldots,N\}\),
+\(N\ge2\). Each page is encoded isometrically into legal word
+pairs whose two first bits both equal the page label. Require that
+tracing out the right register on any input operator \(A\)
+gives \(\sum_b\operatorname{Tr}(\Pi_b A)\sigma_b\), with
+\(\Pi_b\) the page projection and \(\sigma_b\) a density matrix.
+Write \(c_{m,b},c_{n,b}\) for separately legal row and column
+counts with first bit \(b\), where \(m,n\ge1\).
+For page \(1\), let \(a_s\) count rows with trailing run \(<s\)
+and \(n_s\) count columns with leading run \(<K-s\).
+The attainable ranks are exactly \(1\le r_b\le R_b\), where
+\[
+ R_0=\min(c_{m,0},\lfloor c_{n,0}/M_0\rfloor),\qquad
+ R_1=\min\left(c_{m,1},\min_{0\le s<K}
+                       (a_s+\lfloor n_s/M_1\rfloor)\right).
+\]
+The maximum page entropies \(\log R_b\) are jointly attainable
+whenever both \(R_b>0\).
+\end{proposition}
+\begin{proof}
+For one page diagonalize \(\sigma=\sum_{\ell=1}^r
+\lambda_\ell |v_\ell\rangle\langle v_\ell|\).
+For orthonormal inputs \(e_j\), the encoded states are
+\(\sum_\ell \sqrt{\lambda_\ell}v_\ell\otimes u_{j,\ell}\).
+The partial trace condition on \(|e_j\rangle\langle e_{j'}|\)
+makes all \(Mr\) vectors \(u_{j,\ell}\) orthonormal.
+For any rows of run at least \(s\), the weighted coefficient
+rows \((\sqrt{\lambda_\ell}v_\ell(x))_\ell\) span a space
+of dimension at least \(r-a_s\), because all rows span
+dimension \(r\). The isometric copies of this span for all
+\(j\) are orthogonal and lie in the \(n_s\) compatible
+columns, giving \(M(r-a_s)\le n_s\). Page \(0\) has no
+crossing violation since right words start in zero.
+
+For sufficiency choose the \(r\) least restrictive rows of the page
+and process these rows from most restrictive to least restrictive.
+On page \(1\) a row of run \(s\) has all previously used columns
+in its neighborhood, by nesting. The number of chosen rows
+with run at least \(s\) is \(\max(0,r-a_s)\). Thus there
+are at least \(M\) unused compatible columns when assigning
+a disjoint batch of \(M\) to this row. The identical allocation
+works on the complete page \(0\) rectangle. For input \(e_j\)
+take the equal superposition over the chosen rows with the \(j\)-th
+column of each batch. The orthogonal column assignments give
+the required trace on matrix units and make the encoding
+isometric. The two pages have disjoint column supports, so
+mixed-page terms trace to zero. The resulting \(\sigma_b\)
+is uniform on its rank, which attains the entropy bound by
+concavity. Every normalized input in a single page has the
+same reduced state and hence that Schmidt rank.
+\end{proof}
+
+For \(N=2,K=3,m=4,n=5\), the row counts by page are \((7,6)\),
+the column counts \((13,11)\), and \((a_0,a_1,a_2)=(0,3,5)\),
+\((n_0,n_1,n_2)=(11,7,0)\), by enumerating binary words.
+The maximal ranks are \(6,5\), while the minimum ranks
+are \(1,1\). The equal-amplitude state and the direct encoding
+each specify additional amplitude data beyond legal support.
+
+\begin{theorem}[A local parent on legal words]\label{m9:parent}
+On an open length-\(N\) register penalize each forbidden
+length-\(K\) window by its diagonal projector. For each site,
+add the flip Laplacian with the flip enabled exactly when no
+length-\(K\) window containing that site has all other bits \(1\).
+The sum \(H\) has the unique normalized zero ground state
+up to phase \(\Psi_{0,N}\). For \(N\ge1\) its first positive
+eigenvalue is at least \(2/(\ell^2 2^\ell)\), where
+\(\ell=2K-1\). The exact gap for \(1\le N<K\) is \(2\).
+At \(N=K=2\) the spectrum is \(0,1,1,3\).
+\end{theorem}
+\begin{proof}
+The legal subspace is invariant, and each allowed flip contributes an
+edge Laplacian. Every legal word can delete its ones to reach
+zero, so the legal graph is connected and its only null vectors
+are constant. The orthogonal illegal sector has energy at
+least \(1\) from the diagonal penalties. In the uniform law
+on \(W_N\), write \(E_B\) for resampling a block \(B\)
+conditional on its exterior. It is the orthogonal projection
+onto functions of the exterior. Each graph-edge term on the
+legal sector is twice the corresponding single-site heat-bath
+term, hence \(H=2\sum_i (I-E_{\{i\}})\) there.
+
+Use length-\(\ell\) blocks, intersected with \([1,N]\), whose
+starts run from \(2-\ell\) through \(N\), counted with
+multiplicity. For configurations differing at one site, a block
+containing that site has common exterior and can remove the
+difference. There are \(\ell\) such starts. Blocks whose
+exteriors differ farther than \(K-1\) from the block can use
+identical samples, since no forbidden window sees the discrepancy.
+For the at most \(2(K-1)\) remaining starts, expose the block
+from the side of the difference. Each next bit has conditional
+chance of being \(1\) at most \(1/2\): changing that bit to
+zero injects its completions into those with zero. A common
+uniform random variable at each site therefore gives a common
+zero with conditional probability at least \(1/2\).
+After a common zero, remaining completion laws coincide
+because windows crossing it are allowed. Thus the
+probability of a disagreement at the \(j\)-th bit is at most
+\(2^{-j}\) for \(j\ge1\), and the expected added Hamming
+distance is at most \(1\). The same argument of sequential
+coupling gives the common-zero tail \(2^{-j}\) for \(j\)
+uniformly exposed free sites, with coalescence after a shared
+zero if the scan is increasing toward common remaining data
+and covers the remaining free positions.
+
+For the block operator \(\sum_B(I-E_B)\), divide the operator
+sum of the \(E_B\)'s by the number of starts \(D=N+\ell-1\).
+This Markov update contracts expected Hamming distance of
+adjacent legal words by a factor at most \(1-1/D\) under the
+couplings just described. The legal graph has Hamming distance
+as its path metric, by deleting differences then adding them.
+Thus for any function the update contracts its Lipschitz
+seminorm by at least this factor, using the coupled expectation
+on each adjacent pair. Applying it to nonconstant eigenfunctions
+of the self-adjoint update proves a block gap of at least \(1\)
+in the unnormalized sum.
+
+On a fixed exterior fiber of size \(h\le2^\ell\), connect two
+completions by at most \(\ell\) flips via their coordinatewise
+minimum. The uniform variance equals \((2h^2)^{-1}\) times
+the ordered sum of squared differences. Bounding each such
+difference by \(\ell\) times the sum of squared edge differences
+gives a variance at most \((\ell/2)\) times the unweighted
+edge sum. The single-site conditional energy on this fiber
+is \(1/(2h)\) times that same edge sum, since an enabled
+flip fiber has size two. Hence block energy is bounded by
+\(\ell 2^\ell\) times the sum of its single-site energies.
+Average over exteriors and use that every site lies in
+\(\ell\) blocks. This proves the stated lower bound on the
+full spectrum. When \(N<K\) all sites flip independently
+and the Walsh characters diagonalize the single-site energy
+with eigenvalues given by their support sizes. For \(N=K=2\)
+the legal graph is a three-vertex path with Laplacian
+eigenvalues \(0,1,3\), and the sole illegal state has energy
+\(1\). The empty register has only its vacuum.
+\end{proof}
+
+\begin{proposition}[Alternating Tribonacci sums]\label{m9:alternating}
+Let \(U\) be the Tribonacci fixed word above, with weights
+\(b(A)=2,b(B)=1,b(C)=0\). Put
+\(Q(s,m)=\sum_{i=0}^{m-1}(-1)^i b(U_{s+i})\).
+Uniformly in \(s,m\), \(|Q(s,m)|=O(\log^2(m+2))\).
+There are actual prefixes showing this worst-case order
+and refuting a uniform \(O(\log(m+2))\) bound.
+\end{proposition}
+\begin{proof}
+Write \(\tau=\sigma^4\). Its images, all of odd length, are
+\[
+ A\mapsto\mathrm{ABACABAABACAB},\qquad
+ B\mapsto\mathrm{ABACABAABAC},\qquad
+ C\mapsto\mathrm{ABACABA}.
+\]
+Every \(\tau^l\)-letter image is odd by induction.
+In each image summing alternate letter-block charges gives
+\(a_{l+1}=a_l,\ b_{l+1}=2a_l-b_l,\ c_{l+1}=4a_l-2b_l-c_l\)
+with initial row \((2,1,0)\). The solutions are
+\(2,\ 2-(-1)^l,\ 2-(2l+2)(-1)^l\), as substitution checks.
+Thus full image charges are \(O(l+1)\).
+For \(m\ge1\) choose \(l=\lceil\log_7 m\rceil\). Each
+\(\tau^l\)-block has length at least \(7^l\), so an interval
+of length \(m\) meets at most two such blocks. In each,
+an incomplete prefix or suffix can be decomposed into at
+most \(13\) full images per level, by descending inside its
+one incomplete lower-level block. If the interval is contained
+inside a block, subtract the signed charges of its two
+prefixes. Summing \(O(j+1)\) over the levels proves the
+upper bound. The empty interval has zero charge.
+
+With \(U_0'=\emptyset\), set \(U_{l+1}'=\tau^{l+1}(C)U_l'\).
+The identity \(\tau(A)=\tau(C)A\,BACAB\) proves inductively
+that \(U_l'\) is a prefix of \(\tau^l(A)\).
+Its charge \(q_l\) obeys \(q_{l+1}=c_{l+1}-q_l\), since
+the prepended length is odd, and hence
+\(q_l=1-(-1)^l(l^2+3l+1)\) by induction.
+For \(l\ge1\), \(|q_l|\ge l^2\) and
+\(0<|U_l'|\le13^l\). These charges rule out the logarithmic
+bound. They also bound the maximum over prefixes of
+length at most \(M_0\) below by a constant times
+\(\log^2(M_0+2)\) for large \(M_0\), by choosing
+\(l=\lfloor\log_{13}M_0\rfloor\). There are also arbitrarily
+long exact prefix lengths \(|\tau^l(A)|\) of charge \(2\).
+\end{proof}
+
+\begin{theorem}[Even open Tribonacci prefixes]\label{m9:chain}
+For \(0<\rho<1\) put \(t_i=\rho^{b(U_i)}\) and let
+\(N_j=2\lfloor|\sigma^j(A)|/2\rfloor\).
+On the \(N_j\)-site open path with zero diagonal and
+neighboring hopping \(t_i\), the smallest absolute
+eigenvalue \(\delta_{\rho,j}\) is positive for \(j\ge1\)
+and for \(j\ge4\) satisfies
+\(\delta_{\rho,j}\le73728/N_j\). In particular it tends to
+zero uniformly on \(0<\rho<1\).
+\end{theorem}
+\begin{proof}
+For \(j\ge4\) take \(k=4\lfloor(j-4)/4\rfloor\), and
+\(A'=\sigma^k(A), B'=\sigma^k(B), C'=\sigma^k(C)\).
+The decomposition of \(\sigma^4(A)\) into
+\(ABAC\,|\,ABA\,|\,ABA\,|\,CAB\) gives two consecutive
+copies of \(A'B'A'\). Their starting index \(s=|A'B'A'C'|\)
+is even, and their length \(m=|A'B'A'|=2q+1\ge3\)
+is odd, by the parity argument above. The nonempty terminal
+block guarantees \(s+2m\le N_j\). Also
+\(N_j\le|\sigma^{k+7}(A)|\le128 |\sigma^k(A)|\le128m\).
+In this window \(t_{s+i+m}=t_{s+i}\) for \(0\le i<m-1\).
+
+Ordering even sites first gives an off-diagonal block with
+positive diagonal \(t_{2i}\) and subdiagonal \(t_{2i+1}\).
+Conjugating by alternating row and column signs makes its
+subdiagonal negative. Call the resulting block \(L\) and
+\(G=L^{-1}\). The eigenvalues of the full path matrix are
+the positive and negative singular values of \(L\).
+For \(j'\ge i'\), forward substitution gives
+\[
+ G_{j',i'}=\frac{\prod_{v=i'}^{j'-1}t_{2v+1}}
+                 {\prod_{v=i'}^{j'}t_{2v}},
+\]
+and entries above the diagonal are zero.
+Within the window reindex \(t\) from \(s\), which is even.
+For \(0\le l<q,\ 0\le d<q-l\), pair the entries
+\(G_{l+d+1,l}\) and \(G_{q+l+d+1,q+l+1}\) in window
+indices. Shifting the second entry's factors back by
+\(2q+1\) cancels the first's odd numerator and the
+interior even denominators. Their product is
+\(1/(t_{2l}t_{2(l+d+1)})\ge1\) in these indices.
+Thus the sum of these pairs is at least \(q(q+1)\).
+The window inverse entries are exactly the corresponding
+full inverse entries, by the product formula. Each entry in
+the paired sum is counted at most twice, since it is used
+once in either triangular range. All entries are nonnegative.
+By testing the all-ones vector in the full inverse,
+\(q(q+1)\le N_j\|G\|=N_j/\delta_{\rho,j}\).
+Now \((2q+1)^2/(q(q+1))\le9/2\) for \(q\ge1\).
+This gives \(73728=128^2(9/2)\) and the stated bound.
+The lengths grow by at least one per substitution, so
+\(N_j\ge j\) and convergence is uniform.
+\end{proof}
+
+\begin{proposition}[Localization with exterior rows]\label{m9:localization}
+For a bounded tridiagonal operator \(A\) on \(\ell^2(\Z)\),
+write \(M_\pm\) for the sup norms of the two off-diagonals and
+\(\nu(A)=\inf_{\|x\|=1}\|Ax\|\). Let \(E_{n,k}\) consist
+of vectors supported on \(k+1,\ldots,k+n\), \(n\ge1\). Then
+\[
+ \inf_k\nu(A|_{E_{n,k}})\le
+ \nu(A)+2(M_-+M_+)\sin\frac{\pi}{2(n+1)}.
+\]
+The restriction has output in the full space and retains
+the exterior rows at \(k,k+n+1\).
+\end{proposition}
+\begin{proof}
+Extend \(w_j=\sin(\pi j/(n+1))\) on \(1\le j\le n\) by zero,
+and let \(D_k\) multiply coordinate \(i\) by \(w_{i-k}\).
+The sine recurrence and expansion of the squared difference
+give \(\sum_j|w_{j+1}-w_j|^2
+=4\sin^2(\pi/(2(n+1)))\sum_j|w_j|^2\).
+For every vector \(x\), summing over translations gives
+\(\sum_k\|D_k x\|^2=\|w\|^2\|x\|^2\).
+In \(AD_k-D_k A\) the diagonal cancels, and the two shifts
+carry the forward and backward first differences of \(w\).
+Applying the same translation sum and the triangle inequality
+in the space of squared-summable families gives
+\[
+ \left(\sum_k\|AD_k x\|^2\right)^{1/2}
+ \le\|w\|\|Ax\|
+   +2(M_-+M_+)\sin\frac{\pi}{2(n+1)}\,\|w\|\|x\|.
+\]
+The infimum of the nonzero window output/input ratios is
+at most their ratio of quadratic sums. Take unit vectors
+approaching \(\nu(A)\) to conclude. This sine-window
+estimate is the tridiagonal case of \cite[\S5.1]{m9:CWL}.
+\end{proof}
+
+\begin{proposition}[Finite collision and Slater readouts]\label{m9:readouts}
+For a finite set of \(N\ge2\) equiprobable labels read into
+fibers of sizes \(n_a\), the fraction of ordered distinct
+pairs separated by the readout is
+\((N^2-\sum_a n_a^2)/(N(N-1))\).
+For a join of readouts, an ordered pair is separated if it
+is separated by at least one constituent. The pairs lost
+on removing a constituent are exactly those separated by
+it alone. The order-two R\'enyi entropy of the readout
+law is \(-\log\sum_a(n_a/N)^2\). With \(\mathcal E\) denoting
+the fraction of distinct ordered pairs that agree, the mean
+fiber size seen by a uniform input is
+\(1+(N-1)\mathcal E=\sum_a n_a^2/N\).
+The same \(\mathcal E\) results from counting unordered pairs.
+
+For \(V\in\C^{N\times k}\) with \(V^*V=I_k\), a normalized
+Slater vector in the ordered site basis has coefficient
+\(\det V_S\) at the \(k\)-subset \(S\) and zero otherwise.
+For a prefix cut, the reduced matrix between left subsets
+\(X,X'\) has entry
+\(\sum_Y \det V_{X\cup Y}\,\overline{\det V_{X'\cup Y}}\),
+with minors interpreted as zero at the wrong size.
+\end{proposition}
+\begin{proof}
+The first numerator counts all ordered pairs minus the
+same-fiber pairs, including diagonal pairs in both counts.
+The union and difference assertions follow from the definition
+of a joint readout. The entropy identity uses the squared
+fiber masses. Removing the diagonal leaves
+\(\sum_a n_a(n_a-1)\) agreeing pairs, and exchanging the order
+pairs them into two-element classes. Cauchy--Binet gives \(\sum_S |\det V_S|^2=1\),
+also at \(k=0\) with empty determinant \(1\).
+Expanding the ordered exterior product gives these minors,
+and all sites at a prefix cut precede the right sites.
+Thus the amplitude matrix has the stated rows and columns,
+and multiplication by its adjoint is the partial trace.
+\end{proof}
+
+\begin{proposition}[Which spatial cuts admit the mode spectrum]\label{m9:slater}
+Let \(I,J\) partition the ordered sites of a \(k\)-particle Slater
+vector, and let \(P_I=V_I V_I^*\). For the grouped fermionic cut
+with all \(I\) sites first, the full reduced spectrum consists
+of the products of the Bernoulli weights of the \(|I|\) eigenvalues
+of \(P_I\), including zeros. This spectrum applies to the ordinary
+site tensor cut for all Slater vectors at fixed \(k\) if either
+side is an interval or \(\min(k,N-k)\le1\).
+If \(2\le k\le N-2\) and neither side is an interval,
+the ordinary reduced spectrum can vary at fixed \(P_I\).
+\end{proposition}
+\begin{proof}
+A unitary change of occupied orbitals diagonalizes the Gram matrix
+of their \(I\) components and rotates the Slater vector by a scalar
+of modulus one. The \(J\) components now also have diagonal Gram
+matrix since the sum of the two Gram matrices is \(I_k\).
+For every orbital with \(I\)-norm squared \(\nu\in(0,1)\),
+its two normalized components are orthogonal to the corresponding
+components of the other orbitals on each side. Expanding the
+wedge gives mutually orthogonal occupancy choices in both sides,
+with squared amplitudes products of \(\nu,1-\nu\). The endpoint
+orbitals with \(\nu=0,1\) enforce deterministic occupancy.
+Additional left coordinates give zero modes, so the products over
+all eigenvalues of \(P_I\) give the complete spectrum with
+multiplicity. Its entropy is \(\sum_i h_2(\nu_i)\) by independence.
+
+In the original site order, the coefficient for occupancies
+\(X\subset I,\ Y\subset J\) differs from the grouped coefficient
+by \((-1)^{c(X,Y)}\), where \(c(X,Y)=\#\{(i,j)\in X\times Y:j<i\}\).
+If \(I\) is an interval, this exponent is
+\((k-|Y|)\) times the number of occupied \(J\)-sites to its left,
+so the sign acts on the column only. If \(J\) is an interval it
+acts on the row only. For \(k\le1\) the mixed exponent vanishes.
+The identity
+\(c(X,Y)+c(I,J)=c(X,J)+c(I,Y)+c(I\setminus X,J\setminus Y)\)
+handles \(N-k\le1\) the same way by using holes and row and column
+phases. All these phases preserve the singular values.
+
+Otherwise choose four alternating sites in increasing order.
+This is possible because the membership word has at least four
+runs. On four sites \(0,1,2,3\) in order take the orthogonal orbitals
+\((e_0+e_2)/\sqrt2\) and \((e_1+e_3)/\sqrt2\).
+For \(I=\{0,2\}\), the two nonzero right columns in the ordinary
+amplitude matrix are \((1,-1)/2\) and \((1,1)/2\), in the
+left one-particle sector. The reduced eigenvalues are \(1/2,1/2\).
+The compressed projection is rank one, and replacing the other
+orbital by \(e_3\) fixes \(P_I\) and makes the ordinary reduced
+state pure. The reverse alternating order gives the same two singular values,
+and localizing the orbital on the traced side again fixes the
+retained compression. At fixed interior filling \(k\), add \(k-2\) distinct fixed
+site orbitals off these four sites. Moving their rows to the end
+of a minor introduces a product of a left and a right phase
+because each occupied variable site crosses a fixed number of
+added rows. Hence the two reduced spectra persist, with zero
+eigenvalues on the unused occupancy sectors, and \(P_I\) adds the
+same fixed coordinate projections.
+\end{proof}
+
+\begin{corollary}\label{m9:slater-pairs}
+Take \(a\) disjoint two-site orbitals supported in \(I\) and
+\(b\) disjoint two-site orbitals supported in \(J\), all with
+equal positive amplitudes. Let \(A\) have entry \(1\) over
+\(\mathbb F_2\) exactly when the two corresponding pairs of
+endpoints interlace. If \(r=\operatorname{rank}_{\mathbb F_2}A\),
+the ordinary reduced spectrum has \(2^r\) equal nonzero
+values \(2^{-r}\). Localizing each \(J\)-orbital to one of its
+sites preserves \(P_I\) and gives zero entropy.
+\end{corollary}
+\begin{proof}
+The position choice in each pair is a bit. A sign contribution
+from comparing a selected left site with a selected right site
+is a Boolean polynomial in the two corresponding bits. Its
+mixed coefficient is the parity of the number of right endpoints
+strictly inside the left pair, which is \(1\) exactly for
+interlacing. Single-side terms can be absorbed into phases.
+Thus the amplitude entries on the occupied support are
+\(2^{-(a+b)/2}(-1)^{x^{\mathsf T}Ay}\).
+Character orthogonality groups the reduced rows by \(A^{\mathsf T}x\)
+into \(2^r\) square constant blocks, each of size \(2^{a-r}\)
+and entry \(2^{-a}\). Each contributes a single \(2^{-r}\).
+The localized state has only one right occupancy column.
+\end{proof}
+
+\begin{remark}[Refuted readings]\label{m9:refuted}\sloppy
+Each item is refuted by the indicated example.
+(i) \emph{The round trip is conjugate to circle doubling}: \(t=1/4,3/4\)
+both give \(c=0\) (Remark~\ref{m9:circle-boundaries}).
+(ii) \emph{The round trip has one invariant measure}: \(\delta_1\) is
+invariant besides the arcsine law.
+(iii) \emph{Tribonacci alternating sums are uniformly \(O(\log(m+2))\)}:
+the prefixes of Proposition~\ref{m9:alternating} have size at most
+\(13^l\) and charge of modulus at least \(l^2\); the uniform bound is
+\(O(\log^2(m+2))\). The library proves both directions as
+\texttt{TribonacciPrefixRefutation}\allowbreak\texttt{.result} and
+\texttt{TribonacciUniformLogSquared}\allowbreak\texttt{.uniform\_log\_squared} \cite{Tru}.
+(iv) \emph{A product of primes plus one is prime}: \(30031=59\cdot509\)
+(Example~\ref{m9:sieve}).
+(v) \emph{Legal support determines entanglement, or the cut rank is the
+constant \(K\)}: the two states of Example~\ref{m9:phase} have the same
+support and probabilities and entropies \(0,\log2\); the direct encoding
+after Proposition~\ref{m9:encoder} has ranks ranging from \((1,1)\) to
+\((6,5)\) for \(K=3\).
+(vi) \emph{Every fermionic compression determines the ordinary site-cut
+spectrum}: the interlaced four-site example in the proof of
+Proposition~\ref{m9:slater} has the same compressed projection for a mixed
+and a pure reduced state.
+The physical readings of (v) and (vi), entanglement of spatial cuts and
+fermionic compressions, are the subject of the companion paper's section on
+tensor cuts and finite cap entropy \cite{Companion}; here each is kept as
+one precise statement.
+\end{remark}
+
+\begin{hypothesis}[Physical realization]\label{m9:physical}
+A geometric interpretation of an internal Pisot plane as an
+observer's phase plane, or of a Rauzy window as an acceptance
+window for a quantum spatial cut, requires a specified embedding
+and observable. For an area-scaling question one must also
+choose the state or local Hamiltonian, the spatial regions, and
+the correspondence between their size and the internal windows.
+\end{hypothesis}
+
+\begin{conjecture}[A sector-counting criterion for anomalous scaling; no scaling example is established]\label{m9:fract-conjecture}
+In the Tribonacci case there exists a cut-and-project encoding
+with bounded local Hilbert dimension and an actual family of
+physical spatial cuts of size \(R\), whose entanglement entropy
+is comparable to \(R^{\dim_H(\partial\mathcal R)}\).
+An indication for this candidate law is that the boundary
+address geometry has a noninteger dimension, while orthogonal
+Schmidt sectors of comparable bounded entropy can contribute
+additively when arranged in independent tensor factors.
+No example with this scaling is established, in this paper or in the
+module from which the conjecture is taken; the indication above is a
+heuristic.
+\end{conjecture}
+
+\begin{remark}[Remaining geometric and physical identifications]\label{m9:programme}
+This remark is a programme. For Conjecture~\ref{m9:fract-conjecture}, a proof must realize
+spatially local degrees of freedom, count the sectors across
+those cuts and bound the actual reduced-state spectrum. To
+derive an entropy from geometric address collisions one must
+specify a probability on addresses and show which collisions
+are identified by the physical readout. Proposition~\ref{m9:readouts}
+explains the finite order-two collision statistic, and
+Example~\ref{m9:phase} shows why a classical collision count
+alone cannot fix quantum entanglement. The actual open-chain
+calculation in Theorem~\ref{m9:chain} supplies a concrete
+single-particle operator for a Slater construction. Its
+address-register cut, its spatial occupation cut, and the
+internal window cut need an explicit relation to be used
+interchangeably. This is separate from the postulates about
+physical composition in the companion paper \cite{Companion}
+(independent systems and the product rule). A unified operator realizing
+all these readouts requires a domain and intertwiners that
+recover the separate dynamics above.
+\end{remark}
+
+\section{Compilation in arc distance and readout derivatives}\label{sec:m11b}
+
+How do local arc errors propagate through a finite gate word, and which
+derivative information does the comparison carry? The round angle and the
+square root of the sagitta add along ordered words. On the qubit sphere the diagonal comparison
+Hessian is the Fubini--Study metric, and the planar rotation law of
+Theorem~\ref{m11:reflections} gives an exact two-sample derivative. This
+section continues Section~\ref{sec:m11} and uses the conditioning bounds of
+Section~\ref{sec:m4atlas} and the gate-synthesis results cited in
+Section~\ref{sec:m6}.
+
+\emph{Placement.} Theorem~\ref{m11:compile} is the error theorem;
+Remark~\ref{m11:sagitta-refuted} records the refuted subadditivity of the
+unrooted sagitta. Theorem~\ref{m11:hessian} identifies the metric, with the
+refuted fixed-readout reading in Remark~\ref{m11:readout-refuted}.
+Theorem~\ref{m11:shift} is the two-readout derivative with its scope.
+Hypothesis~\ref{m11:random-input} is a hypothesis.
+
+\subsection{Compilation in arc distance}
+
+\begin{theorem}[Error of an ordered word]\label{m11:compile}
+Use unit quaternions for $\mathrm{SU}(2)$ with the round distance $d$ and
+sagitta $v=1-\cos d$ of Definition~\ref{def:arc}.
+For intended steps $g_j$ and compiled steps $h_j$, let $G_j,H_j$
+be their respective prefix products in the same order, including
+the empty product. Write $v_j=v(g_j,h_j)$ and
+$B_k=\min\{\pi,\sum_{j=1}^k 2\arcsin\sqrt{v_j/2}\}=\min\{\pi,\sum_j d(g_j,h_j)\}$.
+The quantities that add are the round angle and the square root of the
+sagitta: $d$ and $\sqrt v=|g-h|/\sqrt2$ are bi-invariant metrics, and
+\[
+ d(G_k,H_k)\le B_k,\qquad
+ \sqrt{v(G_k,H_k)}\le\sum_{j=1}^k\sqrt{v_j},\qquad
+ \|G_k-H_k\|_{\rm op}\le\sum_{j=1}^k\sqrt{2v_j}.
+\]
+Consequently
+\[
+ v(G_k,H_k)\le1-\cos B_k
+ \le \min\{2,(\textstyle\sum_{j=1}^k\sqrt{v_j})^2\}
+ \le k\sum_{j=1}^k v_j\qquad(k\ge1).
+\]
+For a nonnegative budget $B<\pi$, choosing local angles whose sum
+is at most $B$ controls all prefix errors by $B$. On approximate and
+intended edges whose intended lengths are at most $\pi-\delta$, with
+$0<\delta<\pi$ and $B<\delta/4$, synchronizing the two normalized
+chord parametrizations bounds their pointwise distance by
+$\pi B/\sin(\delta/4)$. A specified antipodal arc can be subdivided
+first. Each endpoint approximation can come from any finite
+alphabet generating a dense subgroup, using its inverses as
+needed. A finite alphabet generates only countably many exact
+endpoint values.
+\end{theorem}
+\begin{proof}
+Multiplication on either side is an isometry for round distance and
+Euclidean chord length, and $\sqrt{2v}=|g-h|$ is the chord by
+Definition~\ref{def:arc}. In the matrix model the squared operator norm
+of $g-h$ is $2-2\cos d(g,h)$, since $g^*h$ has eigenvalues
+$e^{\pm id(g,h)}$. The triangle inequality applied successively to
+the prefix products, $d(G_k,H_k)\le d(G_{k-1}g_k,G_{k-1}h_k)+d(G_{k-1}h_k,H_{k-1}h_k)$,
+gives the angle and chord bounds; the chord bound is the telescoping
+estimate of Proposition~\ref{m4:conditioning}.
+To compare $1-\cos B_k$ with the sum of square roots, take
+$\alpha_j\in[0,d(g_j,h_j)]$ with sum $B_k$, truncating the final
+needed term if necessary. The points on the unit circle with
+successive positive angles $\alpha_j$ have endpoint chord
+$2\sin(B_k/2)$, bounded by the sum of their chords. Monotonicity
+of $\sin(\alpha_j/2)$ gives the claimed estimate, and
+Cauchy--Schwarz gives the last inequality. For a common axis and
+coherent positive errors with sum at most $\pi$, the angle bound is
+an equality.
+
+For each sampled edge the two prefix endpoints are at most $B$
+apart. The normalized-chord argument of Proposition~\ref{m6:arcs}
+uses only this endpoint bound and the angular margin, and applies to
+compiled vertices without an arithmetic condition. When $B=0$ the
+two paths coincide. Subdivision removes the antipodal ambiguity.
+Density gives an approximant to each of finitely many steps at any
+positive local error target. If inverses are absent, their values
+lie in the closure of positive powers: compactness gives positive
+powers returning arbitrarily close to $I$, and reducing the exponent
+by one approximates the inverse. Thus the closure of positive words
+also contains the generated subgroup. Countability follows by taking
+the union of the finite word sets at each budget.
+\end{proof}
+
+\begin{remark}[The unrooted sagitta is not subadditive]\label{m11:sagitta-refuted}
+Plain additivity or subadditivity of $v$ along a word is false. Two equal
+errors about a common axis, each of angle $0<\alpha<\pi/2$, compose to the
+angle $2\alpha$, and
+\[
+ v(2\alpha)-2v(\alpha)=(1-\cos2\alpha)-2(1-\cos\alpha)=2\cos\alpha\,(1-\cos\alpha)>0 .
+\]
+Theorem~\ref{m11:compile} therefore states the bound with $\sqrt v$, which
+is the chord over $\sqrt2$, and with the angle. The quadratic loss
+$(\sum\sqrt{v_j})^2\le k\sum v_j$ is the price of returning to $v$.
+Remark~\ref{m6:sagitta-link} distinguishes accumulated angle from
+accumulated sagitta in the same way for infinite products.
+\end{remark}
+
+\begin{remark}[Arithmetic and asymptotic gate lengths]\label{m11:compilers}
+For an inverse-closed finite dense alphabet in $\mathrm{SU}(2)$,
+Dawson--Nielsen's Solovay--Kitaev construction gives length
+$O(\log^c(1/\epsilon))$ in operator norm,
+$c=\log 5/\log(3/2)\simeq3.97$ \cite{d4-dawson}.
+The commutator uses two corrections of size $O(\sqrt\epsilon)$:
+multiplying the exponential Taylor expansions through degree
+two gives $e^Ae^Be^{-A}e^{-B}=I+[A,B]+O((\|A\|+\|B\|)^3)$.
+With error recursion $\epsilon_j=C\epsilon_{j-1}^{3/2}$ and
+$L_j\le5L_{j-1}$, $\log(1/(C^2\epsilon_j))$ is multiplied by $3/2$
+at each stage. This yields the exponent after choosing a sufficiently
+small initial net. The number-theoretic construction of Selinger
+gives $O(\log(1/\epsilon))$ Clifford$+T$ length for an arbitrary
+one-qubit gate up to phase \cite{m11:Selinger}. Ross--Selinger
+treat ancilla-free axial $z$-rotations in operator norm with their
+Clifford$+T$ phase convention; their typical-case bound is
+$3\log_2(1/\epsilon)+O(\log\log(1/\epsilon))$ on $T$-count under
+the stated arithmetic conditions, and their optimal search uses a
+factoring oracle \cite{m6:RS}.
+
+A metric ball of radius $\epsilon$ in the unit $3$-sphere has
+volume $O(\epsilon^3)$ since its radial volume element is proportional
+to $\sin^2 r\,dr$. The fixed projective quotient obeys the same estimate.
+A finite alphabet with at least two letters has at most exponentially
+many words of length at most $L$, so a gate net requires
+$L=\Omega(\log(1/\epsilon))$ in the worst case. The round and
+operator distances are comparable since the chord is $2\sin(d/2)$,
+and the same relation applies after minimizing over central signs.
+For a common per-step operator tolerance $\epsilon$, Theorem~\ref{m11:compile}
+gives endpoint error at most $k\epsilon$, and with the local decoding error
+$50\delta$ of Proposition~\ref{m4:conditioning} per rational step the two
+budgets add. Proposition~\ref{m6:arcs}
+uses rational approximating vertices and Theorem~\ref{m6:cover}
+uses a particular prime-norm alphabet with logarithmic lengths.
+The continuous two-axis word theorem is Proposition~\ref{m4:axes}.
+The exact amplification word and its source-query convention are
+Proposition~\ref{m4:amplify}. With $p=1/4,1/16,1/64$ the step
+counts are $1,3,6$, giving $3,7,13$ source or inverse-source calls.
+\end{remark}
+
+\begin{example}[Finite Clifford and phase orbits]\label{m11:orbits}\sloppy
+Let $H=(X+Z)/\sqrt2$ and $T=\operatorname{diag}(1,e^{i\pi/4})$ in
+the usual Pauli basis. Their determinant-one lifts are $iH$ and
+$e^{-i\pi/8}T$. Projectively the inverses are $H$ and $T^7$.
+The lifted inverses are $(iH)^3$ and $(e^{-i\pi/8}T)^{15}$,
+by taking fourth and sixteenth powers. The adjoint action of
+$\mathrm{SU}(2)$ on imaginary quaternions has kernel $\{I,-I\}$,
+so its gate orbit lives in $\mathrm{SO}(3)\simeq\mathbb{RP}^3$.
+A fixed-state orbit lives on $S^2$: all axial phases about the
+initial vector stabilize that vector.
+
+From the north pole $e_z$, applying the two rotations
+$(x,y,z)\mapsto(z,-y,x)$ and
+$(x,y,z)\mapsto((x-y)/\sqrt2,(x+y)/\sqrt2,z)$ to all
+previously reached points successively adds
+$e_x$, $(e_x+e_y)/\sqrt2$, and finally
+$e_y,(e_z-e_y)/\sqrt2$ at budgets $1,2,3$.
+Thus the cumulative sizes are $1,2,3,5$ and the hull dimensions
+are $0,1,2,3$. At budget $3$ all points have $x,z\ge0$. The support
+gaps $1-\max_u\langle u,n\rangle$ in directions $n=e_y$ and $n=-e_x$ are
+$0$ and $1$. For the coordinate octahedron the gap normal to an octant
+facet is $1-1/\sqrt3$. Remark~\ref{m6:finite-gates} gives the support-gap
+formula $1-\cos d(u,S_L)$ and the radial projection to a geodesic mesh
+once the origin lies inside the hull. Finite budget gives positive
+worst-case distance, including for dense alphabets.
+
+Continuing the same enumeration gives $19$, $64$ and $971$ points
+at budgets $6$, $10$ and $20$, respectively. At budgets $6$ and $20$
+the hull contains the origin and the worst angular gaps round to
+$47.27^\circ$ and $9.10^\circ$; the gap is $\arccos h$ for the smallest
+distance $h$ from the origin to a facet plane, which is the spherical
+covering radius of the point set.
+At budget $10$ the target with polar angle $110^\circ$ and azimuth
+$200^\circ$ has a nearest point given by $HTHTTTTTH$, with rightmost
+gate acting first; the angle and support height round to $17.04^\circ$
+and $0.956$. These are finite numerical examples.
+\end{example}
+
+\subsection{Comparison Hessians and readout derivatives}
+
+\begin{theorem}[Metric from the comparison Hessian]\label{m11:hessian}
+On the round unit sphere with the comparison $\kappa$,
+$\operatorname{Hess}_s [2(1-\kappa(r,s))]_{s=r}$ is the
+round metric $g_{S^2}$. For pure qubit rays put
+$B(r,s)=\operatorname{Tr}(\rho_r\rho_s)$, where
+$\rho_r=(I+r\cdot\sigma)/2$ and $\sigma=(X,Y,Z)$ is the Pauli triple.
+Then $B(r,s)=\kappa(r,s)$ in Bloch coordinates and
+\[
+ g_{\rm FS}=
+ \operatorname{Hess}_s[(1-B(r,s))/2]_{s=r}
+ =\tfrac14 g_{S^2},\qquad g_{\rm QFI}=4g_{\rm FS}.
+\]
+Here $g_{\rm FS}$ uses the squared horizontal spinor norm, and
+$g_{\rm QFI}$ is the quantum Fisher metric defined with the symmetric
+logarithmic derivative. For a smooth parameterized family the comparison
+Hessian pulls back to the same metric on its parameter space, with kernel
+the directions invisible to the state differential.
+\end{theorem}
+\begin{proof}
+Use $s(t)=r\cos(t\|u\|)+u\sin(t\|u\|)/\|u\|$ for $u\perp r$,
+and the constant curve for $u=0$. Then $1-r\cdot s(t)$ has
+second derivative $\|u\|^2$, giving the bilinear form by polarization.
+Pauli traces give $B=(1+r\cdot s)/2$, as in
+Proposition~\ref{m2:bloch}. For a unit spinor $\psi(t)$ its
+overlap deficit with $\psi(0)$ is
+$\|(I-\psi(0)\psi(0)^*)\psi(t)\|^2$, whose quadratic term is the
+squared horizontal derivative. Thus $\tfrac12(1-B)$ has exactly
+the stated Fubini--Study Hessian. In spherical coordinates its
+line element is $(d\theta^2+\sin^2\theta\,d\varphi^2)/4$.
+For $\dot\rho$ tangent to projectors, $L=2\dot\rho$ solves
+$\dot\rho=(\rho L+L\rho)/2$ by differentiating $\rho^2=\rho$.
+In a horizontal lift, $\dot\rho\psi=\dot\psi_\perp$.
+Consequently $\operatorname{Re}\operatorname{Tr}(\rho L_uL_v)$
+is four times the real horizontal pairing. A different solution
+of the logarithmic derivative equation vanishes on $\psi$ after
+subtracting $L$, so the metric is independent of the choice.
+On pulling back a Hessian, the term involving the second derivative
+of the parameter map vanishes at the diagonal critical point.
+See \cite{m11:BC,m11:Stokes} for these metric conventions.
+\end{proof}
+
+\begin{remark}[A fixed classical readout can lose the metric]\label{m11:readout-refuted}
+The identity $g_{\rm QFI}=4g_{\rm FS}$ holds for the symmetric-logarithmic-derivative
+quantum Fisher metric. It fails for the classical Fisher metric of an
+arbitrary fixed measurement: a fixed $Z$ measurement along the equatorial
+circle $\theta=\pi/2$ has outcome probabilities $(1/2,1/2)$ identically,
+hence zero classical Fisher information along a tangent of positive
+Fubini--Study length $1/2$.
+\end{remark}
+
+\begin{proposition}[Natural gradient and dissipation]\label{m11:gradient}
+For a smooth real function $V$ near $S^2$,
+$\operatorname{grad}_{S^2} V=(I-rr^{\mathsf T})\nabla V$ and
+$\operatorname{grad}_{\rm FS}V=4\operatorname{grad}_{S^2}V$.
+For a $C^1$ path satisfying $\dot r=-\operatorname{grad}_g V$
+on $[0,T]$, for either metric,
+$V(r(0))-V(r(T))=\int_0^T\|\dot r(t)\|_g^2\,dt$.
+In a smooth redundant parametrization, the metric equation
+$Gv=dV$ for a pulled-back cost is solvable, and the Moore--Penrose
+solution has the same projected velocity as every other solution.
+This velocity is the gradient for the induced metric on the
+image tangent space.
+\end{proposition}
+\begin{proof}
+Orthogonal projection leaves the pairings with tangent vectors
+unchanged, and scaling the metric by $1/4$ scales its dual by $4$.
+The chain rule gives derivative $-\|\dot r\|_g^2$ and integrating
+the continuous integrand gives the identity. For a differential $J$
+into the state tangent space, $G=J^*gJ$ and $\ker G=\ker J$ by
+positivity of $g$. The cost differential vanishes on this kernel,
+so lies in the image of the real symmetric $G$. Solutions differ
+by a vector in $\ker J$. Pairing with all other projected vectors
+gives the defining property of the gradient on the image tangent.
+\end{proof}
+
+\begin{theorem}[Two readouts for a derivative]\label{m11:shift}
+Let $A=A^*$, $\rho$ be a density matrix, and $P=P^*$ with $P^2=I$.
+With all other circuit factors fixed, a single gate
+$R_P(\theta)=e^{-i\theta P/2}$ in which $\theta$ occurs once gives the
+expectation $f(\theta)=\operatorname{Tr}(A R_P(\theta)\rho R_P(\theta)^*)$.
+Then $f=a+b\cos\theta+c\sin\theta$ with real coefficients, and
+for any $s$ with $\sin s\ne0$,
+\[
+ f'(\theta)=\frac{f(\theta+s)-f(\theta-s)}{2\sin s}.
+\]
+In particular $s=\pi/2$ has denominator $2$. For a Hermitian
+generator $H$ without an involution assumption, write
+$\rho_t=e^{-itH}\rho e^{itH}$. The derivative of
+$\operatorname{Tr}(A\rho_t)$ is the real quantity
+$i\operatorname{Tr}(\rho_t[H,A])$, so commutation gives conservation.
+\end{theorem}
+\begin{proof}
+Decompose the state into its four blocks for $P$'s eigenspaces.
+The diagonal blocks are fixed and the opposite blocks acquire
+phases $e^{\pm i\theta}$. Their traces against $A$ are complex
+conjugates, so the oscillating part has the displayed real form.
+The sine and cosine subtraction identities give the formula.
+Equivalently the off-diagonal part evolves by a planar rotation,
+as in Theorem~\ref{m11:reflections}, with two samples picking out
+its tangent component: this is the two-readout law in derivative form.
+The direct derivative follows from $\rho_t'=-i[H,\rho_t]$ and cyclicity
+of trace. Both $\rho_t$ and $i[H,A]$ are Hermitian, giving reality.
+The single-gate shift rule is the two-eigenvalue rule of
+Schuld et al.\ \cite{m11:Schuld}.
+\end{proof}
+
+The rule requires the single-frequency response. A parameter used in two
+successive copies of the gate can give $f(\theta)=\cos(2\theta)$; its two
+$\pi/2$ shifts at $\theta=\pi/4$ coincide, $f(3\pi/4)=f(-\pi/4)=0$, although
+$f'(\pi/4)=-2$. For a repeated parameter the rule is applied to each
+occurrence separately and the results are summed by the chain rule.
+
+\begin{proposition}[Measurement branches and a cluster step]\label{m11:cluster}
+Any complete projective record $E_s$ has
+$\sum_s\operatorname{Tr}(\rho E_s)=\operatorname{Tr}\rho$,
+even for a general matrix $\rho$. For an input spinor $\psi$
+and an auxiliary $|+\rangle=(|0\rangle+|1\rangle)/\sqrt2$,
+apply $\mathrm{CZ}=\operatorname{diag}(1,1,1,-1)$ and measure
+the first qubit in the basis
+$(|0\rangle+(-1)^s e^{i\alpha}|1\rangle)/\sqrt2$.
+The second qubit in branch $s$ is the unnormalized vector
+\[
+ 2^{-1/2}X^s H\operatorname{diag}(1,e^{-i\alpha})\psi ,
+\]
+where here $H$ is Hadamard. Each branch has weight $1/2$
+for unit input. Feedforward by $X^s$ produces the same logical
+state $H R_z(-\alpha)\psi$ up to phase, where
+$R_z(\lambda)=e^{-i\lambda Z/2}$.
+\end{proposition}
+\begin{proof}
+The record sum follows by linearity from $\sum_sE_s=I$.
+For $\psi=a|0\rangle+b|1\rangle$ the entangled state is
+$a|0\rangle|+\rangle+b|1\rangle| -\rangle$, where
+$|-\rangle=Z|+\rangle$. Taking the measurement inner product
+gives $2^{-1/2}(a|+\rangle+(-1)^se^{-i\alpha}b|-\rangle)$.
+Since $X|\pm\rangle=\pm|\pm\rangle$, this is the displayed
+formula. When an $X$ correction is deferred, $XZ=-ZX$ reverses the
+sign of the next $z$-angle. This supplies the local adaptive
+rule in the measurement-based setting of
+Raussendorf and Briegel \cite{m11:RB}.
+\end{proof}
+
+\begin{example}[Shift and spherical retraction]\label{m11:gradient-example}\sloppy
+For $A=Z$, $P=Y$ and input $|0\rangle$, $f(\theta)=\cos\theta$.
+At $\theta=\pi/3$ the unshifted, plus-shifted and minus-shifted
+values are $1/2,-\sqrt3/2,\sqrt3/2$, giving $f'=-\sqrt3/2$.
+With $V(r)=r_z$ and $r=(\sqrt3/2,0,1/2)$, the round gradient
+is $(-\sqrt3/4,0,3/4)$ with squared norm $3/4$.
+A $1/10$ step in its negative direction, followed by normalization,
+gives $(21\sqrt3,0,17)/(2\sqrt{403})$ with height below $1/2$,
+by normalizing $(21\sqrt3,0,17)/40$.
+The gradient vanishes at both poles and nowhere else, by
+the tangent projection formula. In the cluster step with
+$\psi=|0\rangle,\alpha=\pi/3$ the corrected state is $|+\rangle$
+in both branches.
+\end{example}
+
+\begin{proposition}[Two counting bounds]\label{m11:concentration}
+If $x$ is uniform on the real unit sphere in $\mathbb R^d$,
+then $\mathbb E x_1^2=1/d$ and for $\epsilon>0$,
+$\Pr(|x_1|\ge\epsilon)\le 1/(d\epsilon^2)$.
+For a nonnegative sequence of sum $RW/\pi<\infty$ and
+$\tau>0$, the number of terms at least $\tau$ is at most
+$RW/(\pi\tau)$. For $d=2^{20}$ and $\epsilon=1/10$ the
+first bound is $100/2^{20}$. For the sequence $2^{-(j+1)}$
+with $j\ge0$ and $RW/\pi=1$, threshold $1/8$ selects exactly
+three terms, and its bound is $8$.
+\end{proposition}
+\begin{proof}
+Coordinate symmetry and $\sum_i x_i^2=1$ give the moment,
+and integrating $x_1^2\ge\epsilon^2$ on the event gives the bound.
+For the sequence, every finite subset of the superlevel set
+costs at least its cardinality times $\tau$. This uniformly
+bounds all finite subsets, proving finiteness and the inequality.
+The examples follow by substitution and geometric summation.
+\end{proof}
+
+\begin{hypothesis}[Random-circuit input]\label{m11:random-input}
+To infer gradient fluctuation bounds for a circuit family one
+specifies its random circuit law, the position of the differentiated
+gate, the measurement locality and the required moment or design
+conditions for the relevant subcircuits. The real-sphere estimate
+above concerns a restricted real-state model. The circuit distribution
+and cost locality govern the barren-plateau estimates in
+\cite{m11:McClean,m11:Cerezo}.
+\end{hypothesis}
+
+\begin{remark}[Clock exchange and pulses]\label{m11:clock-pointer}
+With $N_\varphi=\cos\varphi X+\sin\varphi Y$, $R_\varphi(\theta)=e^{-i\theta N_\varphi/2}$
+and $R_z(\lambda)=e^{-i\lambda Z/2}$ one has
+$R_z(\lambda)R_\varphi(\theta)R_z(-\lambda)=R_{\varphi+\lambda}(\theta)$, the clock
+phase of Remark~\ref{m4:phases} moved through an equatorial rotation; the
+resulting virtual-$Z$ scheduling, pulse areas and rotating-wave error bounds
+are physical identities and are stated in the companion paper's section of
+physical examples \cite{Companion}, in line with Remark~\ref{m4:physical}.
+\end{remark}
+
 \setcounter{section}{10}
 \renewcommand{\thesection}{\arabic{section}}
 \renewcommand{\theHsection}{\arabic{section}}
@@ -12003,6 +14311,11 @@ Thm.~\ref{m8:poly} & Descartes defect sum classical; piecewise-flat curvature \c
 Thm.~\ref{m10:ladder}, Prop.~\ref{m10:pieces}, Ex.~\ref{m10:zero} & Doubling, Artin, Moufang \cite{Baez02,Schafer66}; sedenion zero divisors \cite{m10:Moreno}; the witnesses elementary\\
 Prop.~\ref{m10:spin-geometry}, Thm.~\ref{m10:orientation} & Spin factors \cite{m2:JNW,m10:HOS}; the orientation classification is a library theorem (\S\ref{sec:leanlib})\\
 Thm.~\ref{m10:curl}, Rem.~\ref{m10:folklore} & Hodge duality classical; vector cross products \cite{m10:Eckmann,m10:BrownGray}\\
+Thm.~\ref{m11:reflections}, Cor.~\ref{m11:graph-walk} & Two subspaces \cite{m11:Halmos}; quantized walks \cite{m11:Szegedy}; the comparison reading elementary\\
+Thms.~\ref{m11:bridge-bound}--\ref{m11:scalar-gram} & Bridge max-flow \cite{m11:GLS,m11:Cui}; ordered-cone case a library theorem\\
+Thm.~\ref{m11:compile}, Thm.~\ref{m11:hessian}, Thm.~\ref{m11:shift} & \cite{d4-dawson,m11:Selinger,m6:RS}; \cite{m11:BC,m11:Stokes}; \cite{m11:Schuld}\\
+Thms.~\ref{m9:three-gaps}, \ref{m9:beta}, \ref{m9:rauzy} & Three gaps \cite{m9:Sos,m9:Swierczkowski,m9:Slater}; Parry \cite{m9:ParryBeta,m9:ParryMarkov}; Rauzy \cite{m9:Rauzy}\\
+Prop.~\ref{m9:absolute}, Thm.~\ref{m9:ostrowski-digits} & Ostrowski \cite{m9:Ostrowski}; Zeckendorf \cite{m9:Zeckendorf}; proofs here elementary\\
 Thm.~\ref{m6:cover} & Spectral gap \cite{m6:LPS,m6:PS}; strong approximation \cite{m6:Sardari}; synthesis \cite{m6:RS}; the covering consequences elementary given these\\
 \bottomrule
 \end{tabular}
@@ -12196,7 +14509,7 @@ black box; a formal statement of Theorem~\ref{thm:main} can avoid it by assuming
 
 All identities and limits of Part~\ref{part:arc} that are not textbook facts, and the identities of Part~\ref{part:axiom} used there, were
 checked numerically on random or explicit inputs by the accompanying script \texttt{check\_arc\_calculus.py} (numpy and the
-standard library; 238 checks, eight of them for Part~\ref{part:alg}, six for Section~\ref{sec:m2}, fourteen for Section~\ref{sec:m3}, eight for Section~\ref{sec:d4}, six for Section~\ref{sec:m7}, fifteen for Section~\ref{sec:m10}, seven for Section~\ref{sec:m5}, six for Section~\ref{sec:m8}, twelve for Sections~\ref{sec:m4}, \ref{sec:m4atlas} and seven for Section~\ref{sec:m6}), which also runs the module scripts registered in it from the subdirectory \texttt{checks/} (at present nineteen: one for Part~\ref{part:alg}, five for Section~\ref{sec:m2}, of which four were written independently of the section, with a shared helper file, one each for Sections~\ref{sec:m3}, \ref{sec:d4}, \ref{sec:m7}, \ref{sec:m10}, \ref{sec:m5}, \ref{sec:m8} and \ref{sec:m6}, and one for Sections~\ref{sec:m4}, \ref{sec:m4atlas}); everything runs
+standard library; 262 checks, eight of them for Part~\ref{part:alg}, six for Section~\ref{sec:m2}, fourteen for Section~\ref{sec:m3}, eight for Section~\ref{sec:d4}, six for Section~\ref{sec:m7}, fifteen for Section~\ref{sec:m10}, thirteen for Sections~\ref{sec:m11} and~\ref{sec:m11b}, eleven for Section~\ref{sec:m9}, seven for Section~\ref{sec:m5}, six for Section~\ref{sec:m8}, twelve for Sections~\ref{sec:m4}, \ref{sec:m4atlas} and seven for Section~\ref{sec:m6}), which also runs the module scripts registered in it from the subdirectory \texttt{checks/} (at present twenty-one: one for Part~\ref{part:alg}, five for Section~\ref{sec:m2}, of which four were written independently of the section, with a shared helper file, one each for Sections~\ref{sec:m3}, \ref{sec:d4}, \ref{sec:m7}, \ref{sec:m10}, \ref{sec:m5}, \ref{sec:m8}, \ref{sec:m6} and \ref{sec:m9}, one for Sections~\ref{sec:m11} and~\ref{sec:m11b}, and one for Sections~\ref{sec:m4}, \ref{sec:m4atlas}); everything runs
 from the directory of this paper.  These include the recurrence and its Chebyshev form, the residual expansion of
 Theorem~\ref{thm:consist}, the inequality of Theorem~\ref{thm:action}, the split and the Brownian limits of
 Theorem~\ref{thm:sagitta} (simulated, $\tfrac32T$ to two decimals), the transport formula of
@@ -12530,6 +14843,66 @@ every pure qutrit state).
 No declaration was found by name search for Theorem~\ref{m10:ladder}, Proposition~\ref{m10:pieces}, Example~\ref{m10:zero} or
 Theorem~\ref{m10:curl}.
 
+For Sections~\ref{sec:m11} and~\ref{sec:m11b} the following declarations were located (no \texttt{sorry} in their files).
+{\small\raggedright
+\begin{itemize}[leftmargin=1.5em]
+\item Theorem~\ref{m11:defect} at $b=\sqrt2$: \texttt{D5/S3/Quantum/Matrix/CentralSqrtTwoDefectGap.lean}, \texttt{recurrence\_endpoint\_observability},
+\texttt{central\_spectral\_gap}.
+\item Remark~\ref{m11:walk-examples}: \texttt{D5/S3/Quantum/Walks/SymmetricCoinMaximalWalkEntanglement.lean}, \texttt{result}.
+\item Theorems~\ref{m11:bridge-bound}, \ref{m11:cone-rank}: \texttt{D5/S3/Quantum/TensorNetworks/BridgeGraph/QuantumMaxFlowBound.lean},
+\texttt{QMaxFlow\_le\_QMinCut}, \texttt{QMaxFlow\_attained}, \texttt{cone\_QMinCut}; \texttt{QuantumMaxFlowMinCut.lean}, \texttt{result}.
+\item Theorem~\ref{m11:scalar-gram}: \texttt{NativeScalarGram.lean}, \texttt{native\_scalar\_gram\_exists}; \texttt{NativeSaturation.lean},
+\texttt{native\_saturation\_iff}.
+\item Proposition~\ref{m11:flat-obstruction}, Remark~\ref{m11:cut-scope}: \texttt{NativeRectangularBound.lean}, \texttt{bound};
+\texttt{RestrictedFlatSpectrum.lean}, \texttt{obstruction}; \texttt{D5/S3/Quantum/Algebra/NativeWidthAtMostThreeRefutation.lean},
+\texttt{positive\_scalar\_obstruction} (the point $(3,5,3,5)$).
+\item Remark~\ref{m11:bridge-programme}: \texttt{RectangularBlockPartition.lean}, \texttt{unitary\_exact\_width}.
+\item Proposition~\ref{m11:gradient}: \texttt{D5/S3/Geometry/Riemannian/GradientDissipation.lean}, \texttt{S2\_dissipation}.
+\item Theorem~\ref{m11:shift}, projection case of the commutator derivative: \texttt{D5/S3/Quantum/Dynamics/ProjectionProbabilityFlow.lean},
+\texttt{projection\_probability\_flow}.
+\item Proposition~\ref{m11:cluster}, record sum: \texttt{D5/S3/Observer/Conditioning.lean}, \texttt{recordWeight\_sum};
+Proposition~\ref{m11:concentration}: \texttt{FiniteRankConcentrationModeBound.lean}, \texttt{finite\_rank\_concentration\_mode\_bound}.
+\end{itemize}}
+No declaration was found for Theorem~\ref{m11:reflections}, Theorem~\ref{m11:compile} or Theorem~\ref{m11:hessian}.
+
+For Section~\ref{sec:m9} the following declarations were located (no \texttt{sorry} in their files).
+{\small\raggedright
+\begin{itemize}[leftmargin=1.5em]
+\item Theorem~\ref{m9:digits}: \texttt{D5/S0/Automata/BinaryZeckendorfLanguage.lean}, \texttt{base\_success\_iff\_noAdjacentOnes};
+\texttt{D5/S0/Tower/DBonacci/Names.lean}, \texttt{dbonacci\_name\_card}. Corollary~\ref{m9:thread}:
+\texttt{FiniteZeckendorfEulerIdentity.lean}, \texttt{finite\_zeckendorf\_interval\_and\_euler}; \texttt{ZeckendorfRealThread.lean},
+\texttt{zeckendorf\_real\_thread\_injective}.
+\item Theorem~\ref{m9:pisot}: \texttt{D5/S0/Tower/DBonacci/Irreducibility.lean}, \texttt{dbonacci\_complex\_root\_location},
+\texttt{dbonacci\_irreducible}; Theorem~\ref{m9:beta}: \texttt{Gaps.lean}, \texttt{adjacent\_gap\_spectrum\_card}.
+\item Theorem~\ref{m9:parry}, Proposition~\ref{m9:sign}: \texttt{D5/S3/TotalVariation/}, \texttt{parry\_stationary\_law},
+\texttt{bilateral\_parry\_law}, \texttt{bilateral\_parry\_maximizer}, \texttt{actual\_return\_entropy}, \texttt{bilateral\_parry\_mixing}.
+\item Proposition~\ref{m9:fractional}: \texttt{D5/S0/Diagonal/SelfApplicationFates.lean}, \texttt{self\_application\_four\_fates}.
+\item Theorem~\ref{m9:rauzy}: \texttt{D5/S3/Geometry/Rauzy/}, \texttt{rauzyFractal\_prefix\_cover}, \texttt{rauzyFractal\_interior\_nonempty},
+\texttt{rauzyFractal\_closure\_interior}, \texttt{rauzyFractal\_frontier\_volume\_zero}. Proposition~\ref{m9:scales}:
+\texttt{TribonacciTraceLattice.lean}, \texttt{tribonacci\_secondary\_root\_add\_conjugate}, \texttt{tribonacci\_secondary\_root\_mul\_conjugate}.
+\item Proposition~\ref{m9:quotient}: \texttt{PartitionTopologyKernel.lean}, \texttt{partition\_inseparable\_iff\_kernel};
+\texttt{TargetContinuityFactorization.lean}, \texttt{target\_factors\_iff\_continuous\_partition}; \texttt{RefinementUltrametric.lean},
+\texttt{refinementDistance\_ultrametric}.
+\item Proposition~\ref{m9:absolute}, Corollary~\ref{m9:padic}: \texttt{OstrowskiClassification.lean}, \texttt{rational\_absolute\_value\_classification};
+\texttt{RationalPadicProductFormula.lean}, \texttt{rational\_padic\_product\_formula}; \texttt{PadicPrecisionBlindSpot.lean},
+\texttt{first\_distinguishing\_precision}; \texttt{PadicBallFiberCorrespondence.lean}, \texttt{congruenceFiber\_eq\_closedBall\_inter\_range}.
+\item Proposition~\ref{m9:clocks}: \texttt{PrimeLogIndependence.lean}, \texttt{prime\_log\_indep}; \texttt{TorusOrbitClosure.lean}, \texttt{result};
+\texttt{LogNaturalIrrationality.lean}, \texttt{irrational\_log\_natCast}. Theorem~\ref{m9:euler}: \texttt{D5/S3/Zeros/ZetaIdentities.lean},
+\texttt{riemann\_zeta\_dirichlet\_sum}, \texttt{riemann\_zeta\_euler\_product} (library results; nothing about zeros is used).
+\item Proposition~\ref{m9:partitions}: \texttt{ColouredEulerLedger.lean}, \texttt{coloured\_coefficient}. Proposition~\ref{m9:lattices},
+Theorem~\ref{m9:pell}: \texttt{CrossingNormForm.lean}, \texttt{Qform\_eq\_eisNorm}, \texttt{Qform\_range\_eq\_eisNorm}; \texttt{GoldenPell.lean},
+\texttt{pell\_form\_eq\_four\_mul\_norm}, \texttt{pell\_pm\_four\_iff\_signed\_lucas\_fib}.
+\item Proposition~\ref{m9:encoder}: \texttt{KBonacciDirectRankEntropy.lean}, \texttt{complete\_original\_direct\_rank\_entropy};
+\texttt{KBonacciDirectSupportObstruction.lean}, \texttt{actual\_encoder\_spectral\_obstruction}. Theorem~\ref{m9:parent}, coupling steps:
+\texttt{KBonacciEmittedTail.lean}, \texttt{prefix\_coupling\_emitted\_tail}; \texttt{KBonacciSupportedCoalescence.lean},
+\texttt{prefix\_coupling\_supported\_coalescence}.
+\item Proposition~\ref{m9:alternating}: \texttt{D5/S1/Words/TribonacciPrefixRefutation.lean}, \texttt{result};
+\texttt{TribonacciUniformLogSquared.lean}, \texttt{uniform\_log\_squared}. Theorem~\ref{m9:chain}: \texttt{TribonacciAlignedWindows.lean},
+\texttt{aligned\_windows}; \texttt{OddSquareGreenMass.lean}, \texttt{odd\_square\_inverse\_paired\_mass}; \texttt{TribonacciOpenPathGap.lean},
+\texttt{gap\_tendsto\_zero} (fixed-parameter limit).
+\item Proposition~\ref{m9:readouts}: \texttt{EscapePairs.lean}, \texttt{escapePairs\_without\_eq\_union}; \texttt{CompoundMatrices.lean}, \texttt{cauchyBinet}.
+\end{itemize}}
+
 \section{What remains open}\label{sec:open}
 
 \begin{enumerate}[label=\textbf{Q\arabic*.},leftmargin=2.6em]
@@ -12596,6 +14969,11 @@ Remark~\ref{m8:programmes}.
 \item \emph{Doubling, spin factors and fields.}  The programme of Remark~\ref{m10:programme}: a comparison-defined differential
 complex that would justify Hypothesis~\ref{m10:field-model}, and the directed relations satisfying the contracts of
 Definition~\ref{m10:contract} on spin factors of spatial dimension other than three.
+\item \emph{Walks, bridges and compilation.}  Conjecture~\ref{m4:gap-limit} through the secular equation of Theorem~\ref{m11:defect};
+adaptive query laws (Remark~\ref{m11:walk-literature}); scalar Gram attainment beyond Theorem~\ref{m11:scalar-gram}
+(Remark~\ref{m11:bridge-programme}).
+\item \emph{Numeration and cuts.}  Conjecture~\ref{m9:fract-conjecture} (no scaling example is established) and the programme of
+Remark~\ref{m9:programme}; tiling and boundary statements for larger Pisot substitutions (Remark~\ref{m9:pisot-programme}).
 \end{enumerate}
 
 \section*{Use of AI tools}
@@ -12907,6 +15285,34 @@ The authors used AI tools, namely Claude Fable 5.2 and Claude Opus 5.5 (via Clau
 \bibitem{m10:BrownGray} R.~B.~Brown and A.~Gray, Vector cross products, \emph{Comment. Math. Helv.} \textbf{42} (1967), 222--236.
 \bibitem{m10:Eckmann} B.~Eckmann, Stetige L\"osungen linearer Gleichungssysteme, \emph{Comment. Math. Helv.} \textbf{15} (1942), 318--339.
 \bibitem{m10:Moreno} G.~Moreno, The zero divisors of the Cayley--Dickson algebras over the real numbers, \emph{Bol. Soc. Mat. Mexicana (3)} \textbf{4} (1998), 13--28, arXiv:q-alg/9710013.
+% Sections 6B, 10C, 10D references (checked 2026-11-20 via Crossref, titles included; Zeckendorf, Sos, Swierczkowski, Rauzy,
+% MacMahon and Loridant via zbMATH; Swierczkowski: zbMATH 1959, Crossref 1958 for the same volume 46; the module's Loridant entry
+% did not exist and was replaced by the Osaka paper; DLMF bibliographic).
+\bibitem{m11:Halmos} P.~R. Halmos, Two subspaces, \emph{Trans. Amer. Math. Soc.} \textbf{144} (1969), 381--389.
+\bibitem{m11:Szegedy} M.~Szegedy, Quantum speed-up of Markov chain based algorithms, \emph{Proc. 45th IEEE FOCS} (2004), 32--41.
+\bibitem{m11:Selinger} P.~Selinger, Efficient Clifford$+T$ approximation of single-qubit operators, \emph{Quantum Inf. Comput.} \textbf{15} (2015), 159--180.
+\bibitem{m11:GLS} F.~Gesmundo, V.~Lysikov, and V.~Steffan, Quantum max-flow in the bridge graph, \emph{Transform. Groups} \textbf{30} (2025), 1751--1784.
+\bibitem{m11:Cui} S.~X. Cui, M.~H. Freedman, O.~Sattath, R.~Stong, and G.~Minton, Quantum max-flow/min-cut, \emph{J. Math. Phys.} \textbf{57} (2016), 062206.
+\bibitem{m11:BC} S.~L. Braunstein and C.~M. Caves, Statistical distance and the geometry of quantum states, \emph{Phys. Rev. Lett.} \textbf{72} (1994), 3439--3443.
+\bibitem{m11:Stokes} J.~Stokes, J.~Izaac, N.~Killoran, and G.~Carleo, Quantum natural gradient, \emph{Quantum} \textbf{4} (2020), 269.
+\bibitem{m11:Schuld} M.~Schuld, V.~Bergholm, C.~Gogolin, J.~Izaac, and N.~Killoran, Evaluating analytic gradients on quantum hardware, \emph{Phys. Rev. A} \textbf{99} (2019), 032331.
+\bibitem{m11:RB} R.~Raussendorf and H.~J. Briegel, A one-way quantum computer, \emph{Phys. Rev. Lett.} \textbf{86} (2001), 5188--5191.
+\bibitem{m11:McClean} J.~R. McClean, S.~Boixo, V.~N. Smelyanskiy, R.~Babbush, and H.~Neven, Barren plateaus in quantum neural network training landscapes, \emph{Nat. Commun.} \textbf{9} (2018), 4812.
+\bibitem{m11:Cerezo} M.~Cerezo, A.~Sone, T.~Volkoff, L.~Cincio, and P.~J. Coles, Cost function dependent barren plateaus in shallow parametrized quantum circuits, \emph{Nat. Commun.} \textbf{12} (2021), 1791.
+\bibitem{m9:Zeckendorf} E.~Zeckendorf, Repr\'esentation des nombres naturels par une somme de nombres de Fibonacci ou de nombres de Lucas, \emph{Bull. Soc. Roy. Sci. Li\`ege} \textbf{41} (1972), 179--182.
+\bibitem{m9:Sos} V.~T.~S\'os, On the distribution mod $1$ of the sequence $n\alpha$, \emph{Ann. Univ. Sci. Budapest. E\"otv\"os Sect. Math.} \textbf{1} (1958), 127--134.
+\bibitem{m9:Swierczkowski} S.~\'Swierczkowski, On successive settings of an arc on the circumference of a circle, \emph{Fund. Math.} \textbf{46} (1959), 187--189.
+\bibitem{m9:Slater} N.~B.~Slater, Gaps and steps for the sequence $n\theta\bmod 1$, \emph{Proc. Cambridge Philos. Soc.} \textbf{63} (1967), 1115--1123.
+\bibitem{m9:ParryBeta} W.~Parry, On the $\beta$-expansions of real numbers, \emph{Acta Math. Acad. Sci. Hungar.} \textbf{11} (1960), 401--416.
+\bibitem{m9:ParryMarkov} W.~Parry, Intrinsic Markov chains, \emph{Trans. Amer. Math. Soc.} \textbf{112} (1964), 55--66.
+\bibitem{m9:Rauzy} G.~Rauzy, Nombres alg\'ebriques et substitutions, \emph{Bull. Soc. Math. France} \textbf{110} (1982), 147--178.
+\bibitem{m9:Loridant} B.~Loridant, Topological properties of a class of cubic Rauzy fractals, \emph{Osaka J. Math.} \textbf{53} (2016), 161--219.
+\bibitem{m9:MessaoudiBoundary} A.~Messaoudi, Fronti\`ere du fractal de Rauzy et syst\`eme de num\'eration complexe, \emph{Acta Arith.} \textbf{95} (2000), 195--224.
+\bibitem{m9:Ostrowski} A.~Ostrowski, \"Uber einige L\"osungen der Funktionalgleichung $\varphi(x)\cdot\varphi(y)=\varphi(xy)$, \emph{Acta Math.} \textbf{41} (1916), 271--284; Bemerkungen zur Theorie der Diophantischen Approximationen, \emph{Abh. Math. Sem. Univ. Hamburg} \textbf{1} (1922), 77--98.
+\bibitem{m9:DLMF} F.~W.~J.~Olver et al.\ (eds.), \emph{NIST Digital Library of Mathematical Functions}, \S25.6, Eq.~25.6.1.
+\bibitem{m9:HardyRamanujan} G.~H.~Hardy and S.~Ramanujan, Asymptotic formulae in combinatory analysis, \emph{Proc. London Math. Soc. (2)} \textbf{17} (1918), 75--115.
+\bibitem{m9:MacMahon} P.~A.~MacMahon, \emph{Combinatory Analysis}, vol.~II, Cambridge University Press, 1916.
+\bibitem{m9:CWL} S.~N.~Chandler-Wilde, R.~Chonchaiya, and M.~Lindner, On spectral inclusion sets and computing the spectra and pseudospectra of bounded linear operators, \emph{J. Spectr. Theory} \textbf{14} (2024), 719--804.
 \end{thebibliography}
 
 \end{document}
