@@ -192,11 +192,6 @@ def check_windows():
     close(r**6+r**4+r**2, 1)
     close(beta*r**2, 1)
     assert 0.73735270 < r < 0.73735271
-    lower, upper = 0.73908513, 0.73908514
-    assert np.cos(lower) > lower and np.cos(upper) < upper
-    theta = (lower+upper)/2
-    close(theta, 0.739085, atol=5e-7, rtol=0)
-    close(100*(theta-r)/theta, 0.234, atol=0.0005, rtol=0)
     lambda_boundary = max(np.roots([1, 0, 0, -2, -1]).real)
     close(2*np.log(lambda_boundary)/np.log(beta), 1.09336, atol=5e-6, rtol=0)
     p = (5**0.5-1)/2

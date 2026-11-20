@@ -1,726 +1,748 @@
-# Numbering concordance for "Ternions and minimal arcs" (Round 35 restructuring)
+# Numbering concordance for "Ternions and minimal arcs"
 
-Generated from the `.aux` files of the Round 34 source (lettered sections) and of the Round 35 source (sequential sections). Every label is unchanged; only printed numbers change. Columns: label, kind, old printed number, new printed number. Labels added in Round 35 are listed at the end.
+Generated from the `.aux` files of three builds: Round 34 (lettered sections), Round 36 (sequential sections, before the Round 37 fixes) and Round 37 (current). Labels never change; only printed numbers do. Columns: label, kind, Round 34 number, Round 36 number, current number.
 
-Old labels: 687; all present in the new source (missing: 0). New labels: 26.
+Round 34 labels: 687; Round 36 labels: 713; current labels: 740. Missing in the current source: 0. Printed numbers changed in Round 37: 72.
 
-| label | kind | old | new |
-|---|---|---|---|
-| `part:alg` | part | 0 | 0 |
-| `sec:intro` | section | 1 | 1 |
-| `sec:m1` | section | 0 | 2 |
-| `m1:section` | section | 0 | 2 |
-| `m1:algebra` | proposition | 0.1 | 2.1 |
-| `m1:chord-eq` | equation | 0.1 | 2.1 |
-| `m1:algebra-boundaries` | example | 0.2 | 2.2 |
-| `m1:cheb-eq` | equation | 0.2 | 2.2 |
-| `m1:chebyshev` | proposition | 0.3 | 2.3 |
-| `m1:stab-eq` | equation | 0.3 | 2.3 |
-| `m1:trichotomy` | theorem | 0.4 | 2.4 |
-| `m1:positivity` | definition | 0.5 | 2.5 |
-| `m1:positive-powers` | corollary | 0.6 | 2.6 |
-| `m1:power-boundaries` | example | 0.7 | 2.7 |
-| `m1:time` | proposition | 0.8 | 2.8 |
-| `m1:matrix` | remark | 0.9 | 2.9 |
-| `m1:spin` | remark | 0.10 | 2.10 |
-| `m1:gains` | definition | 0.11 | 2.11 |
-| `m1:chordal` | theorem | 0.12 | 2.12 |
-| `m1:sharp` | proposition | 0.13 | 2.13 |
-| `m1:complete` | proposition | 0.14 | 2.14 |
-| `m1:gauge-def` | definition | 0.15 | 2.15 |
-| `m1:gauge` | theorem | 0.16 | 2.16 |
-| `m1:anchored` | corollary | 0.17 | 2.17 |
-| `m1:clique` | proposition | 0.18 | 2.18 |
-| `m1:topology` | remark | 0.19 | 2.19 |
-| `m1:cycles` | example | 0.20 | 2.20 |
-| `m1:stokes-link` | remark | 0.21 | 2.21 |
-| `m1:continuum-input` | remark | 0.22 | 2.22 |
-| `m1:continuum-programme` | remark | 0.23 | 2.23 |
-| `m1:gram` | proposition | 0.24 | 2.24 |
-| `m1:distance` | proposition | 0.25 | 2.25 |
-| `m1:readout-identities` | proposition | 0.26 | 2.26 |
-| `m1:negative-gram` | example | 0.27 | 2.27 |
-| `m1:near-gram` | proposition | 0.28 | 2.28 |
-| `m1:unitarize` | remark | 0.29 | 2.29 |
-| `m1:spherical` | example | 0.30 | 2.30 |
-| `m1:phase` | remark | 0.31 | 2.31 |
-| `m1:overlap-boundaries` | example | 0.32 | 2.32 |
-| `m1:sequential` | example | 0.33 | 2.33 |
-| `m1:links` | remark | 0.34 | 2.34 |
-| `sec:m12` | section | 0A | 3 |
-| `m12:angles` | definition | 0A.1 | 3.1 |
-| `m12:cycle-ineq` | equation | 0A.1 | 3.1 |
-| `m12:completion` | theorem | 0A.2 | 3.2 |
-| `m12:triangle-interval` | equation | 0A.2 | 3.2 |
-| `m12:triangle` | lemma | 0A.3 | 3.3 |
-| `m12:joint-ineq` | equation | 0A.3 | 3.3 |
-| `m12:joint` | lemma | 0A.4 | 3.4 |
-| `m12:lift-choice` | equation | 0A.4 | 3.4 |
-| `m12:gram-literature` | remark | 0A.5 | 3.5 |
-| `m12:rank-two` | equation | 0A.5 | 3.5 |
-| `m12:gram-examples` | example | 0A.6 | 3.6 |
-| `m12:euler` | equation | 0A.6 | 3.6 |
-| `m12:window` | remark | 0A.8 | 3.7 |
-| `m12:face-map` | equation | 0A.7 | 3.7 |
-| `m12:rotation` | definition | 0A.9 | 3.8 |
-| `m12:region-euler` | equation | 0A.8 | 3.8 |
-| `m12:face-exact` | theorem | 0A.10 | 3.9 |
-| `m12:side-parity` | equation | 0A.9 | 3.9 |
-| `m12:sides` | theorem | 0A.11 | 3.10 |
-| `m12:interlace-formula` | equation | 0A.10 | 3.10 |
-| `m12:embedding` | remark | 0A.12 | 3.11 |
-| `m12:weighted` | equation | 0A.11 | 3.11 |
-| `m12:nice` | definition | 0A.13 | 3.12 |
-| `m12:flip` | equation | 0A.12 | 3.12 |
-| `m12:face-odd` | theorem | 0A.14 | 3.13 |
-| `m12:interlace` | lemma | 0A.15 | 3.14 |
-| `m12:pfaffian` | theorem | 0A.16 | 3.15 |
-| `m12:enumeration` | corollary | 0A.17 | 3.16 |
-| `m12:planar-examples` | example | 0A.18 | 3.17 |
-| `m12:ghrv` | theorem | 0A.19 | 3.18 |
-| `m12:census` | example | 0A.20 | 3.19 |
-| `m12:complexity` | remark | 0A.21 | 3.20 |
-| `m12:minors` | remark | 0A.22 | 3.21 |
-| `m12:programme` | remark | 0A.23 | 3.22 |
-| `m12:refuted` | refuted | 0A.24 | 3.23 |
-| `sec:m15` | section | 0B | 4 |
-| `m15:grid` | definition | 0B.1 | 4.1 |
-| `m15:parity-eq` | equation | 0B.1 | 4.1 |
-| `m15:classification` | theorem | 0B.2 | 4.2 |
-| `m15:partition` | align | 0B.2 | 4.2 |
-| `m15:rank` | theorem | 0B.3 | 4.3 |
-| `m15:loop` | align | 0B.3 | 4.3 |
-| `m15:parity` | proposition | 0B.4 | 4.4 |
-| `m15:torus` | equation | 0B.4 | 4.4 |
-| `m15:measure` | definition | 0B.5 | 4.5 |
-| `m15:bound` | equation | 0B.5 | 4.5 |
-| `m15:wilson` | corollary | 0B.6 | 4.6 |
-| `m15:shift` | equation | 0B.6 | 4.6 |
-| `m15:area` | corollary | 0B.7 | 4.7 |
-| `m15:projected` | equation | 0B.7 | 4.7 |
-| `m15:area-example` | example | 0B.8 | 4.8 |
-| `m15:averaging` | remark | 0B.9 | 4.9 |
-| `m15:local` | proposition | 0B.10 | 4.10 |
-| `m15:weighted` | theorem | 0B.11 | 4.11 |
-| `m15:translation` | lemma | 0B.12 | 4.12 |
-| `m15:projection` | lemma | 0B.13 | 4.13 |
-| `m15:sagitta` | corollary | 0B.14 | 4.14 |
-| `m15:spin-example` | example | 0B.15 | 4.15 |
-| `m15:parts` | proposition | 0B.16 | 4.16 |
-| `m15:cube` | proposition | 0B.17 | 4.17 |
-| `m15:staples` | proposition | 0B.18 | 4.18 |
-| `m15:rectangular` | proposition | 0B.19 | 4.19 |
-| `m15:planar-group` | proposition | 0B.20 | 4.20 |
-| `m15:tension` | corollary | 0B.21 | 4.21 |
-| `m15:group-torus` | proposition | 0B.22 | 4.22 |
-| `m15:transfer` | proposition | 0B.23 | 4.23 |
-| `m15:s3-tension` | example | 0B.24 | 4.24 |
-| `m15:reflection` | remark | 0B.25 | 4.25 |
-| `m15:kinetic` | proposition | 0B.26 | 4.26 |
-| `m15:kinetic-example` | example | 0B.27 | 4.27 |
-| `m15:compact-kinetic` | proposition | 0B.28 | 4.28 |
-| `m15:cubical` | lemma | 0B.29 | 4.29 |
-| `m15:strong` | proposition | 0B.30 | 4.30 |
-| `m15:duality` | proposition | 0B.31 | 4.31 |
-| `m15:twist-example` | example | 0B.32 | 4.32 |
-| `m15:phases` | corollary | 0B.33 | 4.33 |
-| `m15:small-period` | example | 0B.34 | 4.34 |
-| `m15:input` | hypothesis | 0B.35 | 4.35 |
-| `m15:confinement` | conjecture | 0B.36 | 4.36 |
-| `m15:programme` | remark | 0B.37 | 4.37 |
-| `m15:refuted` | refuted | 0B.38 | 4.38 |
-| `sec:def` | section | 2 | 5 |
-| `lem:certaine` | lemma | 2.1 | 5.1 |
-| `lem:lie` | lemma | 2.2 | 5.2 |
-| `def:cs` | definition | 2.3 | 5.3 |
-| `ex:models` | example | 2.4 | 5.4 |
-| `sec:class` | section | 3 | 6 |
-| `thm:main` | theorem | 3.1 | 6.1 |
-| `sec:regularity` | subsection | 3.1 | 6.1 |
-| `lem:class` | lemma | 3.2 | 6.2 |
-| `lem:dup` | lemma | 3.3 | 6.3 |
-| `lem:closing` | lemma | 3.4 | 6.4 |
-| `lem:rankone` | lemma | 3.5 | 6.5 |
-| `rem:dalembert` | remark | 3.6 | 6.6 |
-| `lem:noline` | lemma | 3.8 | 6.8 |
-| `lem:circle` | lemma | 3.9 | 6.9 |
-| `lem:elliptic` | lemma | 3.10 | 6.10 |
-| `thm:noreg` | theorem | 3.11 | 6.11 |
-| `cor:interference` | corollary | 3.12 | 6.12 |
-| `rem:quotient` | remark | 3.13 | 6.13 |
-| `sec:closing` | section | 4 | 7 |
-| `thm:parsimony` | theorem | 4.1 | 7.1 |
-| `sec:operational` | subsection | 4.1 | 7.1 |
-| `eq:op1` | equation | 4.1 | 7.1 |
-| `thm:cc` | theorem | 4.2 | 7.2 |
-| `eq:op2` | equation | 4.2 | 7.2 |
-| `eq:op3` | equation | 4.3 | 7.3 |
-| `lem:opmodel` | lemma | 4.4 | 7.4 |
-| `eq:op4` | equation | 4.4 | 7.4 |
-| `thm:operational` | theorem | 4.5 | 7.5 |
-| `rem:operational` | remark | 4.6 | 7.6 |
-| `sec:geom` | section | 5 | 8 |
-| `prop:linear` | proposition | 5.1 | 8.1 |
-| `sec:round` | subsection | 5.1 | 8.1 |
-| `eq:reflection` | equation | 5.1 | 8.1 |
-| `prop:aut` | proposition | 5.2 | 8.2 |
-| `sec:onesided` | subsection | 5.2 | 8.2 |
-| `prop:conn` | proposition | 5.3 | 8.3 |
-| `prop:LCarc` | proposition | 5.4 | 8.4 |
-| `thm:obstruction` | theorem | 5.5 | 8.5 |
-| `prop:moufang` | proposition | 5.6 | 8.6 |
-| `prop:moufangclass` | proposition | 5.7 | 8.7 |
-| `lem:K3` | lemma | 5.8 | 8.8 |
-| `prop:mfauto` | proposition | 5.9 | 8.9 |
-| `prop:weaknot` | proposition | 5.10 | 8.10 |
-| `lem:hurwitz` | lemma | 5.11 | 8.11 |
-| `lem:normal` | lemma | 5.12 | 8.12 |
-| `prop:dim` | proposition | 5.13 | 8.13 |
-| `rem:dim` | remark | 5.14 | 8.14 |
-| `thm:rigid` | theorem | 5.15 | 8.15 |
-| `prop:S7` | proposition | 5.16 | 8.16 |
-| `prop:C` | proposition | 5.17 | 8.17 |
-| `thm:round` | theorem | 5.18 | 8.18 |
-| `cor:round` | corollary | 5.19 | 8.19 |
-| `lem:roundG` | lemma | 5.20 | 8.20 |
-| `lem:roundLie` | lemma | 5.21 | 8.21 |
-| `lem:roundgeo` | lemma | 5.22 | 8.22 |
-| `lem:roundcurv` | lemma | 5.23 | 8.23 |
-| `rem:roundaudit` | remark | 5.24 | 8.24 |
-| `rem:roundrel` | remark | 5.25 | 8.25 |
-| `prop:onesided` | proposition | 5.26 | 8.26 |
-| `prop:onesidedpos` | proposition | 5.27 | 8.27 |
-| `rem:onesidedlit` | remark | 5.28 | 8.28 |
-| `rem:onesidedreg` | remark | 5.29 | 8.29 |
-| `sec:m2` | section | 5A | 9 |
-| `m2:def` | definition | 5A.1 | 9.1 |
-| `m2:reflection` | equation | 5A.1 | 9.1 |
-| `m2:closing` | equation | 5A.2 | 9.2 |
-| `m2:classification` | theorem | 5A.2 | 9.2 |
-| `m2:normalization` | equation | 5A.3 | 9.3 |
-| `m2:placement` | remark | 5A.3 | 9.3 |
-| `m2:tent` | equation | 5A.4 | 9.4 |
-| `m2:torus` | example | 5A.4 | 9.4 |
-| `m2:models` | proposition | 5A.5 | 9.5 |
-| `m2:sphere` | equation | 5A.5 | 9.5 |
-| `m2:associative` | equation | 5A.6 | 9.6 |
-| `m2:jordan` | remark | 5A.6 | 9.6 |
-| `m2:albert` | equation | 5A.7 | 9.7 |
-| `m2:roundness` | remark | 5A.7 | 9.7 |
-| `m2:fixed` | equation | 5A.8 | 9.8 |
-| `m2:programme` | remark | 5A.8 | 9.8 |
-| `m2:projectivegeo` | equation | 5A.9 | 9.9 |
-| `m2:conjecture` | conjecture | 5A.9 | 9.9 |
-| `m2:bargmann` | theorem | 5A.10 | 9.10 |
-| `m2:interference` | equation | 5A.10 | 9.10 |
-| `m2:cycle` | equation | 5A.11 | 9.11 |
-| `m2:two-readout` | theorem | 5A.11 | 9.11 |
-| `m2:primitive` | equation | 5A.12 | 9.12 |
-| `m2:witness-ex` | refuted | 5A.12 | 9.12 |
-| `m2:witness` | equation | 5A.13 | 9.13 |
-| `m2:phase-variation` | remark | 5A.13 | 9.13 |
-| `m2:witness-values` | gather | 5A.14 | 9.14 |
-| `m2:gram` | proposition | 5A.14 | 9.14 |
-| `m2:chain` | equation | 5A.15 | 9.15 |
-| `m2:rephasing` | remark | 5A.15 | 9.15 |
-| `m2:ranktwo` | equation | 5A.16 | 9.16 |
-| `m2:bloch` | proposition | 5A.16 | 9.16 |
-| `m2:bloch-cycle` | equation | 5A.17 | 9.17 |
-| `m2:triangle-link` | remark | 5A.17 | 9.17 |
-| `m2:octant` | example | 5A.18 | 9.18 |
-| `m2:polarization` | remark | 5A.19 | 9.19 |
-| `m2:instruments` | example | 5A.21 | 9.20 |
-| `m2:paper2` | remark | 5A.22 | 9.21 |
-| `sec:m3` | section | 5B | 10 |
-| `m3:axiom` | definition | 5B.1 | 10.1 |
-| `m3:rational-rotation` | equation | 5B.1 | 10.1 |
-| `m3:classification` | theorem | 5B.2 | 10.2 |
-| `m3:interference` | corollary | 5B.3 | 10.3 |
-| `m3:hermitian-sub` | subsection | 5B.3 | 10.3 |
-| `m3:abelian` | proposition | 5B.4 | 10.4 |
-| `m3:obstructions` | refuted | 5B.5 | 10.5 |
-| `m3:ads` | proposition | 5B.6 | 10.6 |
-| `m3:causal` | refuted | 5B.7 | 10.7 |
-| `m3:trichotomy` | proposition | 5B.8 | 10.8 |
-| `m3:iteration` | corollary | 5B.9 | 10.9 |
-| `m3:spin` | proposition | 5B.10 | 10.10 |
-| `m3:quarterturn` | example | 5B.13 | 10.11 |
-| `m3:hyperboloid` | theorem | 5B.17 | 10.12 |
-| `m3:velocity` | remark | 5B.18 | 10.13 |
-| `m3:transport` | proposition | 5B.19 | 10.14 |
-| `m3:recurrence` | theorem | 5B.20 | 10.15 |
-| `m3:action` | theorem | 5B.21 | 10.16 |
-| `m3:sagitta` | proposition | 5B.22 | 10.17 |
-| `m3:brownian` | proposition | 5B.23 | 10.18 |
-| `m3:triangle` | theorem | 5B.24 | 10.19 |
-| `m3:triangleExample` | example | 5B.25 | 10.20 |
-| `m3:twocolumn` | remark | 5B.26 | 10.21 |
-| `m3:finite` | proposition | 5B.27 | 10.22 |
-| `m3:gauge` | proposition | 5B.28 | 10.23 |
-| `m3:product` | theorem | 5B.29 | 10.24 |
-| `m3:areaBound` | proposition | 5B.30 | 10.25 |
-| `m3:charts` | proposition | 5B.31 | 10.26 |
-| `m3:transfer` | remark | 5B.32 | 10.27 |
-| `m3:physicalGauge` | proposition | 5B.34 | 10.28 |
-| `m3:leastArea` | conjecture | 5B.36 | 10.29 |
-| `m3:programme` | remark | 5B.37 | 10.30 |
-| `sec:d4` | section | 5C | 11 |
-| `d4:def` | definition | 5C.1 | 11.1 |
-| `d4:mapkernel` | equation | 5C.1 | 11.1 |
-| `d4:rank` | theorem | 5C.2 | 11.2 |
-| `d4:gram-tail` | equation | 5C.2 | 11.2 |
-| `d4:small` | example | 5C.3 | 11.3 |
-| `d4:defect` | align | 5C.3 | 11.3 |
-| `d4:spectral` | proposition | 5C.4 | 11.4 |
-| `d4:iteration` | align | 5C.4 | 11.4 |
-| `d4:tower` | remark | 5C.5 | 11.5 |
-| `d4:full` | equation | 5C.5 | 11.5 |
-| `d4:topology` | remark | 5C.6 | 11.6 |
-| `d4:record-bound` | equation | 5C.6 | 11.6 |
-| `d4:diagonal` | theorem | 5C.7 | 11.7 |
-| `d4:tables` | example | 5C.8 | 11.8 |
-| `d4:logic` | remark | 5C.9 | 11.9 |
-| `d4:fixed` | theorem | 5C.10 | 11.10 |
-| `d4:fixed-catalogue` | corollary | 5C.11 | 11.11 |
-| `d4:stopping` | example | 5C.12 | 11.12 |
-| `d4:cosine` | example | 5C.13 | 11.13 |
-| `d4:readouts` | remark | 5C.14 | 11.14 |
-| `d4:tickhyp` | hypothesis | 5C.15 | 11.15 |
-| `d4:caps` | proposition | 5C.16 | 11.16 |
-| `d4:resources` | remark | 5C.17 | 11.17 |
-| `d4:record` | theorem | 5C.18 | 11.18 |
-| `d4:krylov` | proposition | 5C.19 | 11.19 |
-| `d4:monitor` | example | 5C.20 | 11.20 |
-| `d4:clockhyp` | hypothesis | 5C.21 | 11.21 |
-| `d4:clock` | corollary | 5C.22 | 11.22 |
-| `d4:differential` | corollary | 5C.23 | 11.23 |
-| `d4:blind` | example | 5C.24 | 11.24 |
-| `d4:quotients` | remark | 5C.25 | 11.25 |
-| `d4:cloning` | remark | 5C.26 | 11.26 |
-| `d4:refuted` | refuted | 5C.27 | 11.27 |
-| `d4:conjecture` | conjecture | 5C.28 | 11.28 |
-| `sec:m7` | section | 5D | 12 |
-| `m7:core` | theorem | 5D.1 | 12.1 |
-| `m7:reflection` | remark | 5D.2 | 12.2 |
-| `m7:braid-def` | definition | 5D.3 | 12.3 |
-| `m7:braids` | proposition | 5D.4 | 12.4 |
-| `m7:link` | remark | 5D.5 | 12.5 |
-| `m7:reidemeister` | remark | 5D.6 | 12.6 |
-| `m7:comparison` | proposition | 5D.7 | 12.7 |
-| `m7:cut` | example | 5D.8 | 12.8 |
-| `m7:knot-roots` | theorem | 5D.9 | 12.9 |
-| `m7:counts` | example | 5D.10 | 12.10 |
-| `m7:knot-comparison` | corollary | 5D.11 | 12.11 |
-| `m7:cocycle` | proposition | 5D.12 | 12.12 |
-| `m7:cocycle-ex` | refuted | 5D.13 | 12.13 |
-| `m7:clifford` | proposition | 5D.17 | 12.14 |
-| `m7:bloch` | example | 5D.18 | 12.15 |
-| `m7:zyz` | theorem | 5D.19 | 12.16 |
-| `m7:rotors` | example | 5D.20 | 12.17 |
-| `m7:weyl` | proposition | 5D.21 | 12.18 |
-| `m7:clifford-circuits` | remark | 5D.22 | 12.19 |
-| `m7:syndrome` | proposition | 5D.23 | 12.20 |
-| `m7:phase-limits` | remark | 5D.24 | 12.21 |
-| `m7:recovery` | proposition | 5D.25 | 12.22 |
-| `m7:repetition` | example | 5D.26 | 12.23 |
-| `m7:jw` | proposition | 5D.27 | 12.24 |
-| `m7:clone` | remark | 5D.28 | 12.25 |
-| `m7:cloning-machine` | proposition | 5D.29 | 12.26 |
-| `m7:clone-bound` | proposition | 5D.30 | 12.27 |
-| `m7:placement` | remark | 5D.31 | 12.28 |
-| `m7:companion` | remark | 5D.32 | 12.29 |
-| `sec:m10` | section | 5E | 13 |
-| `m10:ladder` | theorem | 5E.1 | 13.1 |
-| `m10:fano` | example | 5E.2 | 13.2 |
-| `m10:pieces` | proposition | 5E.3 | 13.3 |
-| `m10:zero` | example | 5E.4 | 13.4 |
-| `m10:moreno` | remark | 5E.5 | 13.6 |
-| `m10:fit` | remark | 5E.6 | 13.7 |
-| `m10:restrictions` | remark | 5E.7 | 13.8 |
-| `m10:spin` | definition | 5E.8 | 13.9 |
-| `m10:spin-geometry` | proposition | 5E.9 | 13.10 |
-| `m10:spin-5A` | remark | 5E.10 | 13.11 |
-| `m10:contract` | definition | 5E.11 | 13.12 |
-| `m10:orientation` | theorem | 5E.12 | 13.13 |
-| `m10:pauli` | proposition | 5E.13 | 13.14 |
-| `m10:exclusion` | remark | 5E.14 | 13.15 |
-| `m10:clifford` | remark | 5E.15 | 13.16 |
-| `m10:rotors` | example | 5E.16 | 13.17 |
-| `m10:phase` | remark | 5E.17 | 13.18 |
-| `m10:curl` | theorem | 5E.18 | 13.19 |
-| `m10:cross-curl` | example | 5E.19 | 13.20 |
-| `m10:four` | proposition | 5E.20 | 13.21 |
-| `m10:lorentz` | remark | 5E.21 | 13.22 |
-| `m10:blocks` | proposition | 5E.22 | 13.23 |
-| `m10:modes` | proposition | 5E.23 | 13.24 |
-| `m10:prefix` | example | 5E.24 | 13.25 |
-| `m10:tensor-companion` | remark | 5E.25 | 13.26 |
-| `m10:folklore` | refuted | 5E.27 | 13.27 |
-| `sec:recur` | section | 6 | 14 |
-| `def:arc` | definition | 6.1 | 14.1 |
-| `thm:recur` | theorem | 6.2 | 14.2 |
-| `thm:action` | theorem | 6.4 | 14.4 |
-| `thm:consist` | theorem | 6.5 | 14.5 |
-| `sec:m4` | section | 6A | 15 |
-| `m4:real` | theorem | 6A.1 | 15.1 |
-| `m4:sos` | lemma | 6A.2 | 15.2 |
-| `m4:pair` | proposition | 6A.3 | 15.3 |
-| `m4:repeated` | proposition | 6A.4 | 15.4 |
-| `m4:phases` | remark | 6A.5 | 15.5 |
-| `m4:direct` | proposition | 6A.6 | 15.6 |
-| `m4:lift` | theorem | 6A.7 | 15.7 |
-| `m4:amplify` | proposition | 6A.8 | 15.8 |
-| `m4:axes` | proposition | 6A.9 | 15.9 |
-| `m4:defect` | theorem | 6A.10 | 15.10 |
-| `m4:gap-limit` | conjecture | 6A.11 | 15.11 |
-| `m4:forest` | proposition | 6A.12 | 15.12 |
-| `m4:orientation` | proposition | 6A.13 | 15.13 |
-| `m4:physical` | remark | 6A.14 | 15.14 |
-| `sec:m11` | section | 6B | 16 |
-| `m11:reflections` | theorem | 6B.1 | 16.1 |
-| `m11:graph-walk` | corollary | 6B.2 | 16.2 |
-| `m11:walk-literature` | remark | 6B.3 | 16.3 |
-| `m11:defect` | theorem | 6B.4 | 16.4 |
-| `m11:walk-examples` | remark | 6B.5 | 16.5 |
-| `m11:bridge-def` | definition | 6B.6 | 16.7 |
-| `m11:bridge-bound` | theorem | 6B.7 | 16.8 |
-| `m11:cone-rank` | theorem | 6B.8 | 16.9 |
-| `m11:scalar-gram` | theorem | 6B.9 | 16.10 |
-| `m11:flat-obstruction` | proposition | 6B.10 | 16.11 |
-| `m11:cut-scope` | refuted | 6B.11 | 16.12 |
-| `m11:bridge-examples` | example | 6B.12 | 16.13 |
-| `m11:bridge-programme` | remark | 6B.13 | 16.14 |
-| `prop:split` | proposition | 7.1 | 17.1 |
-| `thm:sagitta` | theorem | 7.2 | 17.2 |
-| `prop:clt` | proposition | 7.4 | 17.4 |
-| `eq:telescope` | equation | 8.1 | 18.1 |
-| `thm:ftc` | theorem | 8.1 | 18.1 |
-| `sec:stokes` | section | 9 | 19 |
-| `eq:rebase` | equation | 9.1 | 19.1 |
-| `lem:cut` | lemma | 9.1 | 19.1 |
-| `eq:subadd` | equation | 9.2 | 19.2 |
-| `lem:glue` | lemma | 9.3 | 19.3 |
-| `eq:tri` | equation | 9.3 | 19.3 |
-| `ex:shellings` | example | 9.4 | 19.4 |
-| `thm:stokes` | theorem | 9.5 | 19.5 |
-| `prop:grid` | proposition | 9.6 | 19.6 |
-| `cor:poincare` | corollary | 9.7 | 19.7 |
-| `prop:plaquette` | proposition | 9.8 | 19.8 |
-| `thm:triangle` | theorem | 9.9 | 19.9 |
-| `lem:sign` | lemma | 9.10 | 19.10 |
-| `cor:excess` | corollary | 9.11 | 19.11 |
-| `thm:continuum` | theorem | 9.12 | 19.12 |
-| `cor:area` | corollary | 9.13 | 19.13 |
-| `thm:disk` | theorem | 9.14 | 19.14 |
-| `cor:convex` | corollary | 9.15 | 19.15 |
-| `lem:comb` | lemma | 9.16 | 19.16 |
-| `prop:converse` | proposition | 9.17 | 19.17 |
-| `rem:converse` | remark | 9.18 | 19.18 |
-| `sec:m5` | section | 9A | 20 |
-| `m5:body` | definition | 9A.1 | 20.1 |
-| `m5:three` | equation | 9A.1 | 20.1 |
-| `m5:ladder` | theorem | 9A.2 | 20.2 |
-| `m5:depth` | equation | 9A.2 | 20.2 |
-| `m5:excess` | equation | 9A.3 | 20.3 |
-| `m5:scales` | example | 9A.3 | 20.3 |
-| `m5:gram-interval` | proposition | 9A.4 | 20.4 |
-| `m5:gramschur` | equation | 9A.4 | 20.4 |
-| `m5:angles` | remark | 9A.5 | 20.5 |
-| `m5:rate` | equation | 9A.5 | 20.5 |
-| `m5:projection` | proposition | 9A.6 | 20.6 |
-| `m5:sum` | equation | 9A.6 | 20.6 |
-| `m5:tropical` | theorem | 9A.7 | 20.7 |
-| `m5:walk-rate` | equation | 9A.7 | 20.7 |
-| `m5:sign` | corollary | 9A.8 | 20.8 |
-| `m5:recurrence` | equation | 9A.8 | 20.8 |
-| `m5:walksum` | proposition | 9A.9 | 20.9 |
-| `m5:closure` | equation | 9A.9 | 20.9 |
-| `m5:counter` | example | 9A.10 | 20.10 |
-| `m5:abel` | equation | 9A.10 | 20.10 |
-| `m5:scales-compatibility` | remark | 9A.11 | 20.11 |
-| `m5:gauss-bonnet` | equation | 9A.11 | 20.11 |
-| `m5:pivot` | theorem | 9A.12 | 20.12 |
-| `m5:six` | example | 9A.13 | 20.13 |
-| `m5:fill` | proposition | 9A.14 | 20.14 |
-| `m5:dictionary` | remark | 9A.15 | 20.15 |
-| `m5:stokes` | proposition | 9A.17 | 20.16 |
-| `m5:gb` | proposition | 9A.18 | 20.17 |
-| `m5:hemisphere` | example | 9A.19 | 20.18 |
-| `m5:holonomy` | remark | 9A.20 | 20.19 |
-| `m5:sagitta` | remark | 9A.21 | 20.20 |
-| `m5:programme` | remark | 9A.23 | 20.21 |
-| `m5:literature` | remark | 9A.24 | 20.22 |
-| `sec:m8` | section | 9B | 21 |
-| `m8:body` | definition | 9B.1 | 21.1 |
-| `m8:invariants` | theorem | 9B.2 | 21.2 |
-| `m8:right` | example | 9B.3 | 21.3 |
-| `m8:volume-note` | remark | 9B.4 | 21.4 |
-| `m8:subentropy` | proposition | 9B.6 | 21.5 |
-| `m8:rotor` | theorem | 9B.7 | 21.6 |
-| `m8:octant` | proposition | 9B.8 | 21.7 |
-| `m8:latitude` | example | 9B.9 | 21.8 |
-| `m8:repair` | lemma | 9B.10 | 21.9 |
-| `m8:phaseselection` | proposition | 9B.11 | 21.10 |
-| `m8:gram` | proposition | 9B.12 | 21.11 |
-| `m8:counts` | theorem | 9B.13 | 21.12 |
-| `m8:prior-rigidity` | remark | 9B.14 | 21.13 |
-| `m8:flex` | example | 9B.15 | 21.15 |
-| `m8:chord` | proposition | 9B.16 | 21.16 |
-| `m8:pivots` | proposition | 9B.17 | 21.17 |
-| `m8:pivot-example` | example | 9B.18 | 21.18 |
-| `m8:complex-step` | proposition | 9B.23 | 21.19 |
-| `m8:increments` | proposition | 9B.24 | 21.20 |
-| `m8:phase-bundle` | example | 9B.25 | 21.21 |
-| `m8:prime-arcs` | definition | 9B.26 | 21.22 |
-| `m8:prime` | proposition | 9B.27 | 21.23 |
-| `m8:finite` | proposition | 9B.28 | 21.24 |
-| `m8:toy` | example | 9B.29 | 21.25 |
-| `m8:toeplitz` | proposition | 9B.30 | 21.26 |
-| `m8:staircase` | example | 9B.31 | 21.27 |
-| `m8:programmes` | remark | 9B.32 | 21.28 |
-| `m8:poly` | theorem | 9B.33 | 21.29 |
-| `m8:icosa` | example | 9B.34 | 21.30 |
-| `m8:conjecture` | conjecture | 9B.35 | 21.31 |
-| `m8:topology` | proposition | 9B.36 | 21.32 |
-| `sec:rational` | section | 10 | 22 |
-| `prop:cayley` | proposition | 10.1 | 22.1 |
-| `sec:m4atlas` | subsection | 10A | 22.1 |
-| `thm:rational` | theorem | 10.2 | 22.2 |
-| `prop:ratdq` | proposition | 10.3 | 22.3 |
-| `m4:atlas` | theorem | 10A.1 | 22.4 |
-| `m4:conditioning` | proposition | 10A.2 | 22.5 |
-| `m4:sine` | proposition | 10A.3 | 22.6 |
-| `m4:seams` | example | 10A.4 | 22.7 |
-| `m4:arithmetic` | corollary | 10A.5 | 22.8 |
-| `m4:obstructions` | example | 10A.6 | 22.9 |
-| `m4:approxphase` | corollary | 10A.7 | 22.10 |
-| `m4:models` | proposition | 10A.8 | 22.11 |
-| `m4:hopf` | proposition | 10A.9 | 22.12 |
-| `m4:heap` | remark | 10A.10 | 22.13 |
-| `sec:m6` | section | 10B | 23 |
-| `m6:hurwitz` | proposition | 10B.1 | 23.1 |
-| `m6:icosians` | remark | 10B.2 | 23.2 |
-| `m6:norm-forms` | proposition | 10B.3 | 23.3 |
-| `m6:norm-example` | example | 10B.4 | 23.4 |
-| `m6:definability` | remark | 10B.5 | 23.5 |
-| `m6:arithmetic-anchors` | remark | 10B.6 | 23.6 |
-| `m6:cover` | theorem | 10B.7 | 23.7 |
-| `m6:cover-conjecture` | conjecture | 10B.8 | 23.8 |
-| `m6:arcs` | proposition | 10B.9 | 23.9 |
-| `m6:finite-gates` | remark | 10B.10 | 23.10 |
-| `m6:det-product` | theorem | 10B.11 | 23.11 |
-| `m6:three` | theorem | 10B.12 | 23.12 |
-| `m6:centered` | corollary | 10B.13 | 23.13 |
-| `m6:sagitta-link` | remark | 10B.14 | 23.14 |
-| `m6:prime-products` | theorem | 10B.15 | 23.16 |
-| `m6:prime-scope` | remark | 10B.16 | 23.17 |
-| `m6:hb` | proposition | 10B.17 | 23.18 |
-| `m6:kernel-local` | proposition | 10B.18 | 23.19 |
-| `m6:moment` | corollary | 10B.19 | 23.20 |
-| `m6:quartet` | example | 10B.20 | 23.21 |
-| `m6:phase` | proposition | 10B.21 | 23.22 |
-| `m6:kernel-programme` | remark | 10B.22 | 23.23 |
-| `m6:cosine` | theorem | 10B.23 | 23.24 |
-| `m6:readouts` | corollary | 10B.24 | 23.25 |
-| `m6:inverse` | proposition | 10B.25 | 23.26 |
-| `m6:golden` | remark | 10B.26 | 23.27 |
-| `m6:dottie-conj` | conjecture | 10B.27 | 23.28 |
-| `m6:fixed` | proposition | 10B.28 | 23.29 |
-| `m6:unread` | proposition | 10B.29 | 23.30 |
-| `m6:word-model` | definition | 10B.30 | 23.31 |
-| `m6:barrington` | theorem | 10B.31 | 23.32 |
-| `m6:rational-word` | corollary | 10B.32 | 23.33 |
-| `m6:abelian` | theorem | 10B.33 | 23.34 |
-| `m6:torus-refutation` | refuted | 10B.34 | 23.35 |
-| `sec:m9` | section | 10C | 24 |
-| `m9:doubling` | theorem | 10C.1 | 24.1 |
-| `m9:circle-boundaries` | remark | 10C.2 | 24.2 |
-| `m9:three-gaps` | theorem | 10C.3 | 24.3 |
-| `m9:digits` | theorem | 10C.4 | 24.4 |
-| `m9:thread` | corollary | 10C.5 | 24.5 |
-| `m9:pisot` | theorem | 10C.6 | 24.6 |
-| `m9:beta` | theorem | 10C.7 | 24.7 |
-| `m9:parry` | theorem | 10C.8 | 24.8 |
-| `m9:parry-scope` | remark | 10C.9 | 24.9 |
-| `m9:sign` | proposition | 10C.10 | 24.10 |
-| `m9:fractional` | proposition | 10C.11 | 24.11 |
-| `m9:rauzy` | theorem | 10C.12 | 24.12 |
-| `m9:rauzy-classical` | remark | 10C.13 | 24.13 |
-| `m9:scales` | proposition | 10C.14 | 24.14 |
-| `m9:pisot-programme` | remark | 10C.15 | 24.15 |
-| `m9:quotient` | proposition | 10C.16 | 24.16 |
-| `m9:absolute` | proposition | 10C.17 | 24.17 |
-| `m9:padic` | corollary | 10C.18 | 24.18 |
-| `m9:ostrowski-digits` | theorem | 10C.19 | 24.19 |
-| `m9:inputs` | remark | 10C.20 | 24.20 |
-| `m9:diagonal` | remark | 10C.21 | 24.21 |
-| `m9:clocks` | proposition | 10C.22 | 24.22 |
-| `m9:euler` | theorem | 10C.23 | 24.23 |
-| `m9:sieve` | example | 10C.24 | 24.24 |
-| `m9:sagitta` | remark | 10C.25 | 24.25 |
-| `m9:eta` | proposition | 10C.26 | 24.26 |
-| `m9:partitions` | proposition | 10C.27 | 24.27 |
-| `m9:lattices` | proposition | 10C.28 | 24.28 |
-| `m9:pell` | theorem | 10C.29 | 24.29 |
-| `m9:lattice-examples` | example | 10C.30 | 24.30 |
-| `m9:cut` | proposition | 10C.31 | 24.31 |
-| `m9:phase` | example | 10C.32 | 24.32 |
-| `m9:encoder` | proposition | 10C.33 | 24.33 |
-| `m9:parent` | theorem | 10C.34 | 24.34 |
-| `m9:alternating` | proposition | 10C.35 | 24.35 |
-| `m9:chain` | theorem | 10C.36 | 24.36 |
-| `m9:localization` | proposition | 10C.37 | 24.37 |
-| `m9:readouts` | proposition | 10C.38 | 24.38 |
-| `m9:slater` | proposition | 10C.39 | 24.39 |
-| `m9:slater-pairs` | corollary | 10C.40 | 24.40 |
-| `m9:refuted` | refuted | 10C.41 | 24.41 |
-| `m9:fract-conjecture` | conjecture | 10C.43 | 24.42 |
-| `m9:programme` | remark | 10C.44 | 24.43 |
-| `sec:m11b` | section | 10D | 25 |
-| `m11:compile` | theorem | 10D.1 | 25.1 |
-| `m11:sagitta-refuted` | refuted | 10D.2 | 25.2 |
-| `m11:compilers` | remark | 10D.3 | 25.3 |
-| `m11:orbits` | example | 10D.4 | 25.4 |
-| `m11:hessian` | theorem | 10D.5 | 25.5 |
-| `m11:readout-refuted` | refuted | 10D.6 | 25.6 |
-| `m11:gradient` | proposition | 10D.7 | 25.7 |
-| `m11:shift` | theorem | 10D.8 | 25.8 |
-| `m11:cluster` | proposition | 10D.9 | 25.10 |
-| `m11:gradient-example` | example | 10D.10 | 25.11 |
-| `m11:concentration` | proposition | 10D.11 | 25.12 |
-| `sec:m13` | section | 10E | 26 |
-| `m13:strip` | definition | 10E.1 | 26.1 |
-| `m13:route` | equation | 10E.1 | 26.1 |
-| `m13:golden` | theorem | 10E.2 | 26.2 |
-| `m13:norm-separation` | equation | 10E.2 | 26.2 |
-| `m13:closed-inflation` | corollary | 10E.3 | 26.3 |
-| `m13:window-density` | equation | 10E.3 | 26.3 |
-| `m13:readout-fibers` | corollary | 10E.4 | 26.4 |
-| `m13:hurwitz-bound` | equation | 10E.4 | 26.4 |
-| `m13:density` | proposition | 10E.5 | 26.5 |
-| `m13:liminf` | equation | 10E.5 | 26.5 |
-| `m13:return` | corollary | 10E.6 | 26.6 |
-| `m13:zono` | equation | 10E.6 | 26.6 |
-| `m13:return-example` | example | 10E.7 | 26.7 |
-| `m13:birkhoff` | theorem | 10E.8 | 26.8 |
-| `m13:factor` | proposition | 10E.9 | 26.9 |
-| `m13:doubling-example` | example | 10E.10 | 26.10 |
-| `m13:hurwitz` | theorem | 10E.11 | 26.11 |
-| `m13:universal` | remark | 10E.12 | 26.12 |
-| `m13:shortest-gap` | corollary | 10E.13 | 26.13 |
-| `m13:gap-ratio` | remark | 10E.14 | 26.14 |
-| `m13:gap-example` | example | 10E.15 | 26.15 |
-| `m13:survivor` | proposition | 10E.16 | 26.16 |
-| `m13:survivor-lean` | remark | 10E.17 | 26.17 |
-| `m13:icosian` | theorem | 10E.18 | 26.18 |
-| `m13:phase` | proposition | 10E.19 | 26.19 |
-| `m13:placement` | remark | 10E.20 | 26.20 |
-| `m13:programme` | remark | 10E.22 | 26.21 |
-| `m13:context` | remark | 10E.24 | 26.22 |
-| `m13:refuted` | refuted | 10E.25 | 26.23 |
-| `sec:m14` | section | 10F | 27 |
-| `m14:xi` | proposition | 10F.1 | 27.1 |
-| `m14:eta` | proposition | 10F.2 | 27.2 |
-| `m14:xi-example` | example | 10F.3 | 27.3 |
-| `m14:pnt` | theorem | 10F.4 | 27.4 |
-| `m14:pnt-consequences` | corollary | 10F.5 | 27.5 |
-| `m14:explicit` | remark | 10F.6 | 27.6 |
-| `m14:sampling` | remark | 10F.7 | 27.7 |
-| `m14:robin-eight` | theorem | 10F.8 | 27.8 |
-| `m14:robin-endpoints` | example | 10F.9 | 27.9 |
-| `m14:gronwall` | remark | 10F.10 | 27.10 |
-| `m14:integrated-error` | proposition | 10F.11 | 27.11 |
-| `m14:response` | proposition | 10F.12 | 27.12 |
-| `m14:robin-lcm` | theorem | 10F.13 | 27.13 |
-| `m14:window-size` | example | 10F.14 | 27.14 |
-| `m14:rh` | conjecture | 10F.15 | 27.15 |
-| `m14:rh-forms` | proposition | 10F.16 | 27.16 |
-| `m14:symmetry` | remark | 10F.17 | 27.17 |
-| `m14:carry` | theorem | 10F.18 | 27.18 |
-| `m14:carry-sharp` | example | 10F.19 | 27.19 |
-| `m14:local-model` | hypothesis | 10F.20 | 27.20 |
-| `m14:local-bound` | corollary | 10F.21 | 27.21 |
-| `m14:avoid` | theorem | 10F.23 | 27.22 |
-| `m14:crt` | theorem | 10F.24 | 27.23 |
-| `m14:crt-example` | example | 10F.25 | 27.24 |
-| `m14:thread` | definition | 10F.26 | 27.25 |
-| `m14:charge` | theorem | 10F.27 | 27.26 |
-| `m14:charge-example` | example | 10F.28 | 27.27 |
-| `m14:refuted` | refuted | 10F.29 | 27.28 |
-| `sec:known` | section | 11 | 28 |
-| `sec:lean` | section | 12 | 29 |
-| `sec:ready` | subsection | 12.1 | 29.1 |
-| `sec:leanlib` | subsection | 12.2 | 29.2 |
-| `sec:open` | section | 13 | 30 |
-| `m12:records` | hypothesis | 0A.7 | A.1 |
-| `m2:reading-input` | remark | 5A.20 | A.2 |
-| `m3:calibration` | hypothesis | 5B.11 | A.3 |
-| `m3:frames` | proposition | 5B.12 | A.4 |
-| `m3:proper` | example | 5B.14 | A.5 |
-| `m3:rapidityBoundary` | example | 5B.15 | A.6 |
-| `m3:nonlinear` | refuted | 5B.16 | A.7 |
-| `m3:chiral` | proposition | 5B.33 | A.8 |
-| `m3:timing` | proposition | 5B.35 | A.9 |
-| `d4:programme` | remark | 5C.29 | A.10 |
-| `m7:topology` | remark | 5D.14 | A.11 |
-| `m7:anyons-input` | hypothesis | 5D.15 | A.12 |
-| `m7:anyons-programme` | remark | 5D.16 | A.13 |
-| `m10:field-model` | hypothesis | 5E.26 | A.14 |
-| `m10:interpretations` | remark | 5E.28 | A.15 |
-| `m10:programme` | remark | 5E.29 | A.16 |
-| `m5:algorithm` | remark | 9A.16 | A.17 |
-| `m5:hypotheses` | remark | 9A.22 | A.18 |
-| `m8:observers` | proposition | 9B.5 | A.19 |
-| `m8:dynamics` | hypothesis | 9B.19 | A.20 |
-| `m8:barrier` | proposition | 9B.20 | A.21 |
-| `m8:histories` | example | 9B.21 | A.22 |
-| `m8:resolution` | hypothesis | 9B.22 | A.23 |
-| `m4:updates` | proposition | 10A.11 | A.24 |
-| `m4:programme` | remark | 10A.12 | A.25 |
-| `m6:architecture-ops` | proposition | 10B.35 | A.26 |
-| `m6:architecture` | definition | 10B.36 | A.27 |
-| `m6:position` | example | 10B.37 | A.28 |
-| `m6:architecture-programme` | remark | 10B.38 | A.29 |
-| `m6:algorithms` | remark | 10B.39 | A.30 |
-| `m9:physical` | hypothesis | 10C.42 | A.31 |
-| `m11:random-input` | hypothesis | 10D.12 | A.32 |
-| `m11:clock-pointer` | remark | 10D.13 | A.33 |
-| `m13:observer` | remark | 10E.21 | A.34 |
-| `m13:lorenz` | remark | 10E.23 | A.35 |
-| `m14:carry-model` | remark | 10F.22 | A.36 |
-| `part:axiom` | part | I | I |
-| `part:beyond` | part | II | II |
-| `part:arc` | part | III | III |
-| `part:arith` | part | IV | IV |
-| `part:final` | part | V | V |
-
-## Labels added in Round 35
-
-| label | kind | new |
-|---|---|---|
-| `m10:zero-inference` | refuted | 13.5 |
-| `m11:walk-refuted` | refuted | 16.6 |
-| `m8:refuted` | refuted | 21.14 |
-| `m6:sagitta-refuted` | refuted | 23.15 |
-| `m11:shift-refuted` | refuted | 25.9 |
-| `sec:open-inventory` | subsection | 30.1 |
-| `sec:open-further` | subsection | 30.2 |
-| `app:physics` | section | A |
-| `app:m12` | subsection | A.1 |
-| `app:m2` | subsection | A.2 |
-| `app:m3` | subsection | A.3 |
-| `app:d4` | subsection | A.4 |
-| `app:m7` | subsection | A.5 |
-| `app:m10` | subsection | A.6 |
-| `app:m5` | subsection | A.7 |
-| `app:m8` | subsection | A.8 |
-| `app:m4atlas` | subsection | A.9 |
-| `app:m6` | subsection | A.10 |
-| `app:m9` | subsection | A.11 |
-| `app:m11b` | subsection | A.12 |
-| `app:m13` | subsection | A.13 |
-| `app:m14` | subsection | A.14 |
-| `app:occur` | subsection | A.15 |
-| `app:notation` | section | B |
-| `app:concordance` | section | C |
-| `app:refuted` | section | D |
+| label | kind | R34 | R36 | current |
+|---|---|---|---|---|
+| `part:alg` | part | 0 | 0 | 0 |
+| `sec:intro` | section | 1 | 1 | 1 |
+| `m1:section` | section | 0 | 2 | 2 |
+| `sec:m1` | section | 0 | 2 | 2 |
+| `m1:chord-eq` | equation | 0.1 | 2.1 | 2.1 |
+| `m1:algebra` | proposition | 0.1 | 2.1 | 2.1 |
+| `m1:cheb-eq` | equation | 0.2 | 2.2 | 2.2 |
+| `m1:algebra-boundaries` | example | 0.2 | 2.2 | 2.2 |
+| `m1:stab-eq` | equation | 0.3 | 2.3 | 2.3 |
+| `m1:chebyshev` | proposition | 0.3 | 2.3 | 2.3 |
+| `m1:trichotomy` | theorem | 0.4 | 2.4 | 2.4 |
+| `m1:positivity` | definition | 0.5 | 2.5 | 2.5 |
+| `m1:positive-powers` | corollary | 0.6 | 2.6 | 2.6 |
+| `m1:power-boundaries` | example | 0.7 | 2.7 | 2.7 |
+| `m1:time` | proposition | 0.8 | 2.8 | 2.8 |
+| `m1:matrix` | remark | 0.9 | 2.9 | 2.9 |
+| `m1:spin` | remark | 0.10 | 2.10 | 2.10 |
+| `m1:gains` | definition | 0.11 | 2.11 | 2.11 |
+| `m1:chordal` | theorem | 0.12 | 2.12 | 2.12 |
+| `m1:sharp` | proposition | 0.13 | 2.13 | 2.13 |
+| `m1:complete` | proposition | 0.14 | 2.14 | 2.14 |
+| `m1:gauge-def` | definition | 0.15 | 2.15 | 2.15 |
+| `m1:gauge` | theorem | 0.16 | 2.16 | 2.16 |
+| `m1:anchored` | corollary | 0.17 | 2.17 | 2.17 |
+| `m1:clique` | proposition | 0.18 | 2.18 | 2.18 |
+| `m1:topology` | remark | 0.19 | 2.19 | 2.19 |
+| `m1:cycles` | example | 0.20 | 2.20 | 2.20 |
+| `m1:stokes-link` | remark | 0.21 | 2.21 | 2.21 |
+| `m1:continuum-input` | remark | 0.22 | 2.22 | 2.22 |
+| `m1:continuum-programme` | remark | 0.23 | 2.23 | 2.23 |
+| `m1:gram` | proposition | 0.24 | 2.24 | 2.24 |
+| `m1:distance` | proposition | 0.25 | 2.25 | 2.25 |
+| `m1:readout-identities` | proposition | 0.26 | 2.26 | 2.26 |
+| `m1:negative-gram` | example | 0.27 | 2.27 | 2.27 |
+| `m1:near-gram` | proposition | 0.28 | 2.28 | 2.28 |
+| `m1:unitarize` | remark | 0.29 | 2.29 | 2.29 |
+| `m1:spherical` | example | 0.30 | 2.30 | 2.30 |
+| `m1:phase` | remark | 0.31 | 2.31 | 2.31 |
+| `m1:overlap-boundaries` | example | 0.32 | 2.32 | 2.32 |
+| `m1:sequential` | example | 0.33 | 2.33 | 2.33 |
+| `m1:links` | remark | 0.34 | 2.34 | 2.34 |
+| `sec:m12` | section | 0A | 3 | 3 |
+| `m12:cycle-ineq` | equation | 0A.1 | 3.1 | 3.1 |
+| `m12:angles` | definition | 0A.1 | 3.1 | 3.1 |
+| `m12:completion` | theorem | 0A.2 | 3.2 | 3.2 |
+| `m12:triangle-interval` | equation | 0A.2 | 3.2 | 3.2 |
+| `m12:triangle` | lemma | 0A.3 | 3.3 | 3.3 |
+| `m12:joint-ineq` | equation | 0A.3 | 3.3 | 3.3 |
+| `m12:lift-choice` | equation | 0A.4 | 3.4 | 3.4 |
+| `m12:joint` | lemma | 0A.4 | 3.4 | 3.4 |
+| `m12:rank-two` | equation | 0A.5 | 3.5 | 3.5 |
+| `m12:gram-literature` | remark | 0A.5 | 3.5 | 3.5 |
+| `m12:gram-examples` | example | 0A.6 | 3.6 | 3.6 |
+| `m12:euler` | equation | 0A.6 | 3.6 | 3.6 |
+| `m12:face-map` | equation | 0A.7 | 3.7 | 3.7 |
+| `m12:window` | remark | 0A.8 | 3.7 | 3.7 |
+| `m12:region-euler` | equation | 0A.8 | 3.8 | 3.8 |
+| `m12:rotation` | definition | 0A.9 | 3.8 | 3.8 |
+| `m12:face-exact` | theorem | 0A.10 | 3.9 | 3.9 |
+| `m12:side-parity` | equation | 0A.9 | 3.9 | 3.9 |
+| `m12:interlace-formula` | equation | 0A.10 | 3.10 | 3.10 |
+| `m12:sides` | theorem | 0A.11 | 3.10 | 3.10 |
+| `m12:embedding` | remark | 0A.12 | 3.11 | 3.11 |
+| `m12:weighted` | equation | 0A.11 | 3.11 | 3.11 |
+| `m12:flip` | equation | 0A.12 | 3.12 | 3.12 |
+| `m12:nice` | definition | 0A.13 | 3.12 | 3.12 |
+| `m12:face-odd` | theorem | 0A.14 | 3.13 | 3.13 |
+| `m12:interlace` | lemma | 0A.15 | 3.14 | 3.14 |
+| `m12:pfaffian` | theorem | 0A.16 | 3.15 | 3.15 |
+| `m12:enumeration` | corollary | 0A.17 | 3.16 | 3.16 |
+| `m12:planar-examples` | example | 0A.18 | 3.17 | 3.17 |
+| `m12:ghrv` | theorem | 0A.19 | 3.18 | 3.18 |
+| `m12:census` | example | 0A.20 | 3.19 | 3.19 |
+| `m12:complexity` | remark | 0A.21 | 3.20 | 3.20 |
+| `m12:minors` | remark | 0A.22 | 3.21 | 3.21 |
+| `m12:programme` | remark | 0A.23 | 3.22 | 3.22 |
+| `m12:refuted` | refuted | 0A.24 | 3.23 | 3.23 |
+| `sec:m15` | section | 0B | 4 | 4 |
+| `m15:parity-eq` | equation | 0B.1 | 4.1 | 4.1 |
+| `m15:grid` | definition | 0B.1 | 4.1 | 4.1 |
+| `m15:classification` | theorem | 0B.2 | 4.2 | 4.2 |
+| `m15:partition` | align | 0B.2 | 4.2 | 4.2 |
+| `m15:loop` | align | 0B.3 | 4.3 | 4.3 |
+| `m15:rank` | theorem | 0B.3 | 4.3 | 4.3 |
+| `m15:torus` | equation | 0B.4 | 4.4 | 4.4 |
+| `m15:parity` | proposition | 0B.4 | 4.4 | 4.4 |
+| `m15:bound` | equation | 0B.5 | 4.5 | 4.5 |
+| `m15:measure` | definition | 0B.5 | 4.5 | 4.5 |
+| `m15:shift` | equation | 0B.6 | 4.6 | 4.6 |
+| `m15:wilson` | corollary | 0B.6 | 4.6 | 4.6 |
+| `m15:area` | corollary | 0B.7 | 4.7 | 4.7 |
+| `m15:projected` | equation | 0B.7 | 4.7 | 4.7 |
+| `m15:area-example` | example | 0B.8 | 4.8 | 4.8 |
+| `m15:averaging` | remark | 0B.9 | 4.9 | 4.9 |
+| `m15:local` | proposition | 0B.10 | 4.10 | 4.10 |
+| `m15:weighted` | theorem | 0B.11 | 4.11 | 4.11 |
+| `m15:translation` | lemma | 0B.12 | 4.12 | 4.12 |
+| `m15:projection` | lemma | 0B.13 | 4.13 | 4.13 |
+| `m15:sagitta` | corollary | 0B.14 | 4.14 | 4.14 |
+| `m15:spin-example` | example | 0B.15 | 4.15 | 4.15 |
+| `m15:parts` | proposition | 0B.16 | 4.16 | 4.16 |
+| `m15:cube` | proposition | 0B.17 | 4.17 | 4.17 |
+| `m15:staples` | proposition | 0B.18 | 4.18 | 4.18 |
+| `m15:rectangular` | proposition | 0B.19 | 4.19 | 4.19 |
+| `m15:planar-group` | proposition | 0B.20 | 4.20 | 4.20 |
+| `m15:tension` | corollary | 0B.21 | 4.21 | 4.21 |
+| `m15:group-torus` | proposition | 0B.22 | 4.22 | 4.22 |
+| `m15:transfer` | proposition | 0B.23 | 4.23 | 4.23 |
+| `m15:s3-tension` | example | 0B.24 | 4.24 | 4.24 |
+| `m15:reflection` | remark | 0B.25 | 4.25 | 4.25 |
+| `m15:kinetic` | proposition | 0B.26 | 4.26 | 4.26 |
+| `m15:kinetic-example` | example | 0B.27 | 4.27 | 4.27 |
+| `m15:compact-kinetic` | proposition | 0B.28 | 4.28 | 4.28 |
+| `m15:cubical` | lemma | 0B.29 | 4.29 | 4.29 |
+| `m15:strong` | proposition | 0B.30 | 4.30 | 4.30 |
+| `m15:duality` | proposition | 0B.31 | 4.31 | 4.31 |
+| `m15:twist-example` | example | 0B.32 | 4.32 | 4.32 |
+| `m15:phases` | corollary | 0B.33 | 4.33 | 4.33 |
+| `m15:small-period` | example | 0B.34 | 4.34 | 4.34 |
+| `m15:input` | hypothesis | 0B.35 | 4.35 | 4.35 |
+| `m15:confinement` | conjecture | 0B.36 | 4.36 | 4.36 |
+| `m15:refuted` | refuted | 0B.38 | 4.38 | 4.37 |
+| `sec:def` | section | 2 | 5 | 5 |
+| `lem:certaine` | lemma | 2.1 | 5.1 | 5.1 |
+| `lem:lie` | lemma | 2.2 | 5.2 | 5.2 |
+| `def:cs` | definition | 2.3 | 5.3 | 5.3 |
+| `ex:models` | example | 2.4 | 5.4 | 5.4 |
+| `sec:class` | section | 3 | 6 | 6 |
+| `sec:regularity` | subsection | 3.1 | 6.1 | 6.1 |
+| `thm:main` | theorem | 3.1 | 6.1 | 6.1 |
+| `lem:class` | lemma | 3.2 | 6.2 | 6.2 |
+| `lem:dup` | lemma | 3.3 | 6.3 | 6.3 |
+| `lem:closing` | lemma | 3.4 | 6.4 | 6.4 |
+| `lem:rankone` | lemma | 3.5 | 6.5 | 6.5 |
+| `rem:dalembert` | remark | 3.6 | 6.6 | 6.6 |
+| `lem:noline` | lemma | 3.8 | 6.8 | 6.8 |
+| `lem:circle` | lemma | 3.9 | 6.9 | 6.9 |
+| `lem:elliptic` | lemma | 3.10 | 6.10 | 6.10 |
+| `thm:noreg` | theorem | 3.11 | 6.11 | 6.11 |
+| `cor:interference` | corollary | 3.12 | 6.12 | 6.12 |
+| `rem:quotient` | remark | 3.13 | 6.13 | 6.13 |
+| `sec:closing` | section | 4 | 7 | 7 |
+| `sec:operational` | subsection | 4.1 | 7.1 | 7.1 |
+| `thm:parsimony` | theorem | 4.1 | 7.1 | 7.1 |
+| `eq:op1` | equation | 4.1 | 7.1 | 7.1 |
+| `thm:cc` | theorem | 4.2 | 7.2 | 7.2 |
+| `eq:op2` | equation | 4.2 | 7.2 | 7.2 |
+| `eq:op3` | equation | 4.3 | 7.3 | 7.3 |
+| `lem:opmodel` | lemma | 4.4 | 7.4 | 7.4 |
+| `eq:op4` | equation | 4.4 | 7.4 | 7.4 |
+| `thm:operational` | theorem | 4.5 | 7.5 | 7.5 |
+| `rem:operational` | remark | 4.6 | 7.6 | 7.6 |
+| `sec:geom` | section | 5 | 8 | 8 |
+| `eq:reflection` | equation | 5.1 | 8.1 | 8.1 |
+| `sec:round` | subsection | 5.1 | 8.1 | 8.1 |
+| `prop:linear` | proposition | 5.1 | 8.1 | 8.1 |
+| `prop:aut` | proposition | 5.2 | 8.2 | 8.2 |
+| `sec:onesided` | subsection | 5.2 | 8.2 | 8.2 |
+| `prop:conn` | proposition | 5.3 | 8.3 | 8.3 |
+| `prop:LCarc` | proposition | 5.4 | 8.4 | 8.4 |
+| `thm:obstruction` | theorem | 5.5 | 8.5 | 8.5 |
+| `prop:moufang` | proposition | 5.6 | 8.6 | 8.6 |
+| `prop:moufangclass` | proposition | 5.7 | 8.7 | 8.7 |
+| `lem:K3` | lemma | 5.8 | 8.8 | 8.8 |
+| `prop:mfauto` | proposition | 5.9 | 8.9 | 8.9 |
+| `prop:weaknot` | proposition | 5.10 | 8.10 | 8.10 |
+| `lem:hurwitz` | lemma | 5.11 | 8.11 | 8.11 |
+| `lem:normal` | lemma | 5.12 | 8.12 | 8.12 |
+| `prop:dim` | proposition | 5.13 | 8.13 | 8.13 |
+| `rem:dim` | remark | 5.14 | 8.14 | 8.14 |
+| `thm:rigid` | theorem | 5.15 | 8.15 | 8.15 |
+| `prop:S7` | proposition | 5.16 | 8.16 | 8.16 |
+| `prop:C` | proposition | 5.17 | 8.17 | 8.17 |
+| `thm:round` | theorem | 5.18 | 8.18 | 8.18 |
+| `cor:round` | corollary | 5.19 | 8.19 | 8.19 |
+| `lem:roundG` | lemma | 5.20 | 8.20 | 8.20 |
+| `lem:roundLie` | lemma | 5.21 | 8.21 | 8.21 |
+| `lem:roundgeo` | lemma | 5.22 | 8.22 | 8.22 |
+| `lem:roundcurv` | lemma | 5.23 | 8.23 | 8.23 |
+| `rem:roundaudit` | remark | 5.24 | 8.24 | 8.24 |
+| `rem:roundrel` | remark | 5.25 | 8.25 | 8.25 |
+| `prop:onesided` | proposition | 5.26 | 8.26 | 8.26 |
+| `prop:onesidedpos` | proposition | 5.27 | 8.27 | 8.27 |
+| `rem:onesidedlit` | remark | 5.28 | 8.28 | 8.28 |
+| `rem:onesidedreg` | remark | 5.29 | 8.29 | 8.29 |
+| `sec:m2` | section | 5A | 9 | 9 |
+| `m2:def` | definition | 5A.1 | 9.1 | 9.1 |
+| `m2:reflection` | equation | 5A.1 | 9.1 | 9.1 |
+| `m2:closing` | equation | 5A.2 | 9.2 | 9.2 |
+| `m2:classification` | theorem | 5A.2 | 9.2 | 9.2 |
+| `m2:normalization` | equation | 5A.3 | 9.3 | 9.3 |
+| `m2:placement` | remark | 5A.3 | 9.3 | 9.3 |
+| `m2:tent` | equation | 5A.4 | 9.4 | 9.4 |
+| `m2:torus` | example | 5A.4 | 9.4 | 9.4 |
+| `m2:sphere` | equation | 5A.5 | 9.5 | 9.5 |
+| `m2:models` | proposition | 5A.5 | 9.5 | 9.5 |
+| `m2:associative` | equation | 5A.6 | 9.6 | 9.6 |
+| `m2:jordan` | remark | 5A.6 | 9.6 | 9.6 |
+| `m2:roundness` | remark | 5A.7 | 9.7 | 9.7 |
+| `m2:albert` | equation | 5A.7 | 9.7 | 9.7 |
+| `m2:programme` | remark | 5A.8 | 9.8 | 9.8 |
+| `m2:fixed` | equation | 5A.8 | 9.8 | 9.8 |
+| `m2:conjecture` | conjecture | 5A.9 | 9.9 | 9.9 |
+| `m2:projectivegeo` | equation | 5A.9 | 9.9 | 9.9 |
+| `m2:interference` | equation | 5A.10 | 9.10 | 9.10 |
+| `m2:bargmann` | theorem | 5A.10 | 9.10 | 9.10 |
+| `m2:two-readout` | theorem | 5A.11 | 9.11 | 9.11 |
+| `m2:cycle` | equation | 5A.11 | 9.11 | 9.11 |
+| `m2:primitive` | equation | 5A.12 | 9.12 | 9.12 |
+| `m2:witness-ex` | refuted | 5A.12 | 9.12 | 9.12 |
+| `m2:phase-variation` | remark | 5A.13 | 9.13 | 9.13 |
+| `m2:witness` | equation | 5A.13 | 9.13 | 9.13 |
+| `m2:witness-values` | gather | 5A.14 | 9.14 | 9.14 |
+| `m2:gram` | proposition | 5A.14 | 9.14 | 9.14 |
+| `m2:chain` | equation | 5A.15 | 9.15 | 9.15 |
+| `m2:rephasing` | remark | 5A.15 | 9.15 | 9.15 |
+| `m2:ranktwo` | equation | 5A.16 | 9.16 | 9.16 |
+| `m2:bloch` | proposition | 5A.16 | 9.16 | 9.16 |
+| `m2:triangle-link` | remark | 5A.17 | 9.17 | 9.17 |
+| `m2:bloch-cycle` | equation | 5A.17 | 9.17 | 9.17 |
+| `m2:octant` | example | 5A.18 | 9.18 | 9.18 |
+| `m2:polarization` | remark | 5A.19 | 9.19 | 9.19 |
+| `m2:instruments` | example | 5A.21 | 9.20 | 9.20 |
+| `m2:paper2` | remark | 5A.22 | 9.21 | 9.21 |
+| `sec:m3` | section | 5B | 10 | 10 |
+| `m3:rational-rotation` | equation | 5B.1 | 10.1 | 10.1 |
+| `m3:axiom` | definition | 5B.1 | 10.1 | 10.1 |
+| `m3:classification` | theorem | 5B.2 | 10.2 | 10.2 |
+| `m3:interference` | corollary | 5B.3 | 10.3 | 10.3 |
+| `m3:hermitian-sub` | subsection | 5B.3 | 10.3 | 10.3 |
+| `m3:abelian` | proposition | 5B.4 | 10.4 | 10.4 |
+| `m3:obstructions` | refuted | 5B.5 | 10.5 | 10.5 |
+| `m3:ads` | proposition | 5B.6 | 10.6 | 10.6 |
+| `m3:causal` | refuted | 5B.7 | 10.7 | 10.7 |
+| `m3:trichotomy` | proposition | 5B.8 | 10.8 | 10.8 |
+| `m3:iteration` | corollary | 5B.9 | 10.9 | 10.9 |
+| `m3:spin` | proposition | 5B.10 | 10.10 | 10.10 |
+| `m3:quarterturn` | example | 5B.13 | 10.11 | 10.11 |
+| `m3:hyperboloid` | theorem | 5B.17 | 10.12 | 10.12 |
+| `m3:velocity` | remark | 5B.18 | 10.13 | 10.13 |
+| `m3:transport` | proposition | 5B.19 | 10.14 | 10.14 |
+| `m3:recurrence` | theorem | 5B.20 | 10.15 | 10.15 |
+| `m3:action` | theorem | 5B.21 | 10.16 | 10.16 |
+| `m3:sagitta` | proposition | 5B.22 | 10.17 | 10.17 |
+| `m3:brownian` | proposition | 5B.23 | 10.18 | 10.18 |
+| `m3:triangle` | theorem | 5B.24 | 10.19 | 10.19 |
+| `m3:triangleExample` | example | 5B.25 | 10.20 | 10.20 |
+| `m3:twocolumn` | remark | 5B.26 | 10.21 | 10.21 |
+| `m3:finite` | proposition | 5B.27 | 10.22 | 10.22 |
+| `m3:gauge` | proposition | 5B.28 | 10.23 | 10.23 |
+| `m3:product` | theorem | 5B.29 | 10.24 | 10.24 |
+| `m3:areaBound` | proposition | 5B.30 | 10.25 | 10.25 |
+| `m3:charts` | proposition | 5B.31 | 10.26 | 10.26 |
+| `m3:transfer` | remark | 5B.32 | 10.27 | 10.27 |
+| `m3:physicalGauge` | proposition | 5B.34 | 10.28 | 10.28 |
+| `m3:leastArea` | conjecture | 5B.36 | 10.29 | 10.29 |
+| `m3:programme` | remark | 5B.37 | 10.30 | 10.30 |
+| `sec:d4` | section | 5C | 11 | 11 |
+| `d4:mapkernel` | equation | 5C.1 | 11.1 | 11.1 |
+| `d4:def` | definition | 5C.1 | 11.1 | 11.1 |
+| `d4:gram-tail` | equation | 5C.2 | 11.2 | 11.2 |
+| `d4:rank` | theorem | 5C.2 | 11.2 | 11.2 |
+| `d4:defect` | align | 5C.3 | 11.3 | 11.3 |
+| `d4:small` | example | 5C.3 | 11.3 | 11.3 |
+| `d4:spectral` | proposition | 5C.4 | 11.4 | 11.4 |
+| `d4:iteration` | align | 5C.4 | 11.4 | 11.4 |
+| `d4:tower` | remark | 5C.5 | 11.5 | 11.5 |
+| `d4:full` | equation | 5C.5 | 11.5 | 11.5 |
+| `d4:topology` | remark | 5C.6 | 11.6 | 11.6 |
+| `d4:record-bound` | equation | 5C.6 | 11.6 | 11.6 |
+| `d4:diagonal` | theorem | 5C.7 | 11.7 | 11.7 |
+| `d4:tables` | example | 5C.8 | 11.8 | 11.8 |
+| `d4:logic` | remark | 5C.9 | 11.9 | 11.9 |
+| `d4:fixed` | theorem | 5C.10 | 11.10 | 11.10 |
+| `d4:fixed-catalogue` | corollary | 5C.11 | 11.11 | 11.11 |
+| `d4:stopping` | example | 5C.12 | 11.12 | 11.12 |
+| `d4:cosine` | example | 5C.13 | 11.13 | 11.13 |
+| `d4:readouts` | remark | 5C.14 | 11.14 | 11.14 |
+| `d4:tickhyp` | hypothesis | 5C.15 | 11.15 | 11.15 |
+| `d4:caps` | proposition | 5C.16 | 11.16 | 11.16 |
+| `d4:resources` | remark | 5C.17 | 11.17 | 11.17 |
+| `d4:record` | theorem | 5C.18 | 11.18 | 11.18 |
+| `d4:krylov` | proposition | 5C.19 | 11.19 | 11.19 |
+| `d4:monitor` | example | 5C.20 | 11.20 | 11.20 |
+| `d4:clockhyp` | hypothesis | 5C.21 | 11.21 | 11.21 |
+| `d4:clock` | corollary | 5C.22 | 11.22 | 11.22 |
+| `d4:differential` | corollary | 5C.23 | 11.23 | 11.23 |
+| `d4:blind` | example | 5C.24 | 11.24 | 11.24 |
+| `d4:quotients` | remark | 5C.25 | 11.25 | 11.25 |
+| `d4:cloning` | remark | 5C.26 | 11.26 | 11.26 |
+| `d4:refuted` | refuted | 5C.27 | 11.27 | 11.27 |
+| `d4:conjecture` | conjecture | 5C.28 | 11.28 | 11.28 |
+| `sec:m7` | section | 5D | 12 | 12 |
+| `m7:core` | theorem | 5D.1 | 12.1 | 12.1 |
+| `m7:reflection` | remark | 5D.2 | 12.2 | 12.2 |
+| `m7:braid-def` | definition | 5D.3 | 12.3 | 12.3 |
+| `m7:braids` | proposition | 5D.4 | 12.4 | 12.4 |
+| `m7:link` | remark | 5D.5 | 12.5 | 12.5 |
+| `m7:reidemeister` | remark | 5D.6 | 12.6 | 12.6 |
+| `m7:comparison` | proposition | 5D.7 | 12.7 | 12.7 |
+| `m7:cut` | example | 5D.8 | 12.8 | 12.8 |
+| `m7:knot-roots` | theorem | 5D.9 | 12.9 | 12.9 |
+| `m7:counts` | example | 5D.10 | 12.10 | 12.10 |
+| `m7:knot-comparison` | corollary | 5D.11 | 12.11 | 12.11 |
+| `m7:cocycle` | proposition | 5D.12 | 12.12 | 12.12 |
+| `m7:cocycle-ex` | refuted | 5D.13 | 12.13 | 12.13 |
+| `m7:clifford` | proposition | 5D.17 | 12.14 | 12.14 |
+| `m7:bloch` | example | 5D.18 | 12.15 | 12.15 |
+| `m7:zyz` | theorem | 5D.19 | 12.16 | 12.16 |
+| `m7:rotors` | example | 5D.20 | 12.17 | 12.17 |
+| `m7:weyl` | proposition | 5D.21 | 12.18 | 12.18 |
+| `m7:clifford-circuits` | remark | 5D.22 | 12.19 | 12.19 |
+| `m7:syndrome` | proposition | 5D.23 | 12.20 | 12.20 |
+| `m7:phase-limits` | remark | 5D.24 | 12.21 | 12.21 |
+| `m7:recovery` | proposition | 5D.25 | 12.22 | 12.22 |
+| `m7:repetition` | example | 5D.26 | 12.23 | 12.23 |
+| `m7:jw` | proposition | 5D.27 | 12.24 | 12.24 |
+| `m7:clone` | remark | 5D.28 | 12.25 | 12.25 |
+| `m7:cloning-machine` | proposition | 5D.29 | 12.26 | 12.26 |
+| `m7:clone-bound` | proposition | 5D.30 | 12.27 | 12.27 |
+| `m7:placement` | remark | 5D.31 | 12.28 | 12.28 |
+| `m7:companion` | remark | 5D.32 | 12.29 | 12.29 |
+| `sec:m10` | section | 5E | 13 | 13 |
+| `m10:ladder` | theorem | 5E.1 | 13.1 | 13.1 |
+| `m10:or-det` | equation | — | — | 13.1 |
+| `m10:fano` | example | 5E.2 | 13.2 | 13.2 |
+| `m10:or-unit` | equation | — | — | 13.2 |
+| `m10:or-F` | equation | — | — | 13.3 |
+| `m10:pieces` | proposition | 5E.3 | 13.3 | 13.3 |
+| `m10:or-eq` | equation | — | — | 13.4 |
+| `m10:zero` | example | 5E.4 | 13.4 | 13.4 |
+| `m10:zero-inference` | refuted | — | 13.5 | 13.5 |
+| `m10:or-rot` | equation | — | — | 13.5 |
+| `m10:moreno` | remark | 5E.5 | 13.6 | 13.6 |
+| `m10:or-pure` | equation | — | — | 13.6 |
+| `m10:fit` | remark | 5E.6 | 13.7 | 13.7 |
+| `m10:or-T` | equation | — | — | 13.7 |
+| `m10:restrictions` | remark | 5E.7 | 13.8 | 13.8 |
+| `m10:or-axis` | equation | — | — | 13.8 |
+| `m10:or-inv` | equation | — | — | 13.9 |
+| `m10:spin` | definition | 5E.8 | 13.9 | 13.9 |
+| `m10:or-supp` | equation | — | — | 13.10 |
+| `m10:spin-geometry` | proposition | 5E.9 | 13.10 | 13.10 |
+| `m10:spin-5A` | remark | 5E.10 | 13.11 | 13.11 |
+| `m10:contract` | definition | 5E.11 | 13.12 | 13.12 |
+| `m10:orientation-lemma` | lemma | — | — | 13.13 |
+| `m10:orientation` | theorem | 5E.12 | 13.13 | 13.14 |
+| `m10:pauli` | proposition | 5E.13 | 13.14 | 13.15 |
+| `m10:exclusion` | remark | 5E.14 | 13.15 | 13.16 |
+| `m10:clifford` | remark | 5E.15 | 13.16 | 13.17 |
+| `m10:rotors` | example | 5E.16 | 13.17 | 13.18 |
+| `m10:phase` | remark | 5E.17 | 13.18 | 13.19 |
+| `m10:curl` | theorem | 5E.18 | 13.19 | 13.20 |
+| `m10:cross-curl` | example | 5E.19 | 13.20 | 13.21 |
+| `m10:four` | proposition | 5E.20 | 13.21 | 13.22 |
+| `m10:lorentz` | remark | 5E.21 | 13.22 | 13.23 |
+| `m10:blocks` | proposition | 5E.22 | 13.23 | 13.24 |
+| `m10:modes` | proposition | 5E.23 | 13.24 | 13.25 |
+| `m10:prefix` | example | 5E.24 | 13.25 | 13.26 |
+| `m10:tensor-companion` | remark | 5E.25 | 13.26 | 13.27 |
+| `m10:folklore` | refuted | 5E.27 | 13.27 | 13.28 |
+| `sec:recur` | section | 6 | 14 | 14 |
+| `def:arc` | definition | 6.1 | 14.1 | 14.1 |
+| `thm:recur` | theorem | 6.2 | 14.2 | 14.2 |
+| `thm:action` | theorem | 6.4 | 14.4 | 14.4 |
+| `thm:consist` | theorem | 6.5 | 14.5 | 14.5 |
+| `sec:m4` | section | 6A | 15 | 15 |
+| `m4:real` | theorem | 6A.1 | 15.1 | 15.1 |
+| `m4:sos` | lemma | 6A.2 | 15.2 | 15.2 |
+| `m4:pair` | proposition | 6A.3 | 15.3 | 15.3 |
+| `m4:repeated` | proposition | 6A.4 | 15.4 | 15.4 |
+| `m4:phases` | remark | 6A.5 | 15.5 | 15.5 |
+| `m4:direct` | proposition | 6A.6 | 15.6 | 15.6 |
+| `m4:lift` | theorem | 6A.7 | 15.7 | 15.7 |
+| `m4:amplify` | proposition | 6A.8 | 15.8 | 15.8 |
+| `m4:axes` | proposition | 6A.9 | 15.9 | 15.9 |
+| `m4:defect` | theorem | 6A.10 | 15.10 | 15.10 |
+| `m4:gap-limit` | conjecture | 6A.11 | 15.11 | 15.11 |
+| `m4:forest` | proposition | 6A.12 | 15.12 | 15.12 |
+| `m4:orientation` | proposition | 6A.13 | 15.13 | 15.13 |
+| `m4:physical` | remark | 6A.14 | 15.14 | 15.14 |
+| `sec:m11` | section | 6B | 16 | 16 |
+| `m11:rect-pair` | equation | — | — | 16.1 |
+| `m11:reflections` | theorem | 6B.1 | 16.1 | 16.1 |
+| `m11:graph-walk` | corollary | 6B.2 | 16.2 | 16.2 |
+| `m11:rect-w` | equation | — | — | 16.2 |
+| `m11:walk-literature` | remark | 6B.3 | 16.3 | 16.3 |
+| `m11:rect-cross` | equation | — | — | 16.3 |
+| `m11:defect` | theorem | 6B.4 | 16.4 | 16.4 |
+| `m11:walk-examples` | remark | 6B.5 | 16.5 | 16.5 |
+| `m11:walk-refuted` | refuted | — | 16.6 | 16.6 |
+| `m11:bridge-def` | definition | 6B.6 | 16.7 | 16.7 |
+| `m11:bridge-bound` | theorem | 6B.7 | 16.8 | 16.8 |
+| `m11:swap` | lemma | — | — | 16.9 |
+| `m11:width-two` | lemma | — | — | 16.10 |
+| `m11:concise` | lemma | — | — | 16.11 |
+| `m11:castling` | lemma | — | — | 16.12 |
+| `m11:descent` | corollary | — | — | 16.13 |
+| `m11:pencil-block` | lemma | — | — | 16.14 |
+| `m11:beatty` | lemma | — | — | 16.15 |
+| `m11:cycle` | lemma | — | — | 16.16 |
+| `m11:cyclic` | lemma | — | — | 16.17 |
+| `m11:base` | lemma | — | — | 16.18 |
+| `m11:cone-rank` | theorem | 6B.8 | 16.9 | 16.19 |
+| `m11:scalar-gram` | theorem | 6B.9 | 16.10 | 16.20 |
+| `m11:rect-lemma` | lemma | — | — | 16.21 |
+| `m11:flat-obstruction` | proposition | 6B.10 | 16.11 | 16.22 |
+| `m11:cut-scope` | refuted | 6B.11 | 16.12 | 16.23 |
+| `m11:bridge-examples` | example | 6B.12 | 16.13 | 16.24 |
+| `m11:bridge-programme` | remark | 6B.13 | 16.14 | 16.25 |
+| `prop:split` | proposition | 7.1 | 17.1 | 17.1 |
+| `thm:sagitta` | theorem | 7.2 | 17.2 | 17.2 |
+| `prop:clt` | proposition | 7.4 | 17.4 | 17.4 |
+| `thm:ftc` | theorem | 8.1 | 18.1 | 18.1 |
+| `eq:telescope` | equation | 8.1 | 18.1 | 18.1 |
+| `sec:stokes` | section | 9 | 19 | 19 |
+| `lem:cut` | lemma | 9.1 | 19.1 | 19.1 |
+| `eq:rebase` | equation | 9.1 | 19.1 | 19.1 |
+| `eq:subadd` | equation | 9.2 | 19.2 | 19.2 |
+| `eq:tri` | equation | 9.3 | 19.3 | 19.3 |
+| `lem:glue` | lemma | 9.3 | 19.3 | 19.3 |
+| `ex:shellings` | example | 9.4 | 19.4 | 19.4 |
+| `thm:stokes` | theorem | 9.5 | 19.5 | 19.5 |
+| `prop:grid` | proposition | 9.6 | 19.6 | 19.6 |
+| `cor:poincare` | corollary | 9.7 | 19.7 | 19.7 |
+| `prop:plaquette` | proposition | 9.8 | 19.8 | 19.8 |
+| `thm:triangle` | theorem | 9.9 | 19.9 | 19.9 |
+| `lem:sign` | lemma | 9.10 | 19.10 | 19.10 |
+| `cor:excess` | corollary | 9.11 | 19.11 | 19.11 |
+| `thm:continuum` | theorem | 9.12 | 19.12 | 19.12 |
+| `cor:area` | corollary | 9.13 | 19.13 | 19.13 |
+| `thm:disk` | theorem | 9.14 | 19.14 | 19.14 |
+| `cor:convex` | corollary | 9.15 | 19.15 | 19.15 |
+| `lem:comb` | lemma | 9.16 | 19.16 | 19.16 |
+| `prop:converse` | proposition | 9.17 | 19.17 | 19.17 |
+| `rem:converse` | remark | 9.18 | 19.18 | 19.18 |
+| `sec:m5` | section | 9A | 20 | 20 |
+| `m5:body` | definition | 9A.1 | 20.1 | 20.1 |
+| `m5:three` | equation | 9A.1 | 20.1 | 20.1 |
+| `m5:ladder` | theorem | 9A.2 | 20.2 | 20.2 |
+| `m5:depth` | equation | 9A.2 | 20.2 | 20.2 |
+| `m5:excess` | equation | 9A.3 | 20.3 | 20.3 |
+| `m5:scales` | example | 9A.3 | 20.3 | 20.3 |
+| `m5:gram-interval` | proposition | 9A.4 | 20.4 | 20.4 |
+| `m5:gramschur` | equation | 9A.4 | 20.4 | 20.4 |
+| `m5:angles` | remark | 9A.5 | 20.5 | 20.5 |
+| `m5:rate` | equation | 9A.5 | 20.5 | 20.5 |
+| `m5:projection` | proposition | 9A.6 | 20.6 | 20.6 |
+| `m5:sum` | equation | 9A.6 | 20.6 | 20.6 |
+| `m5:walk-rate` | equation | 9A.7 | 20.7 | 20.7 |
+| `m5:tropical` | theorem | 9A.7 | 20.7 | 20.7 |
+| `m5:recurrence` | equation | 9A.8 | 20.8 | 20.8 |
+| `m5:sign` | corollary | 9A.8 | 20.8 | 20.8 |
+| `m5:walksum` | proposition | 9A.9 | 20.9 | 20.9 |
+| `m5:closure` | equation | 9A.9 | 20.9 | 20.9 |
+| `m5:counter` | example | 9A.10 | 20.10 | 20.10 |
+| `m5:abel` | equation | 9A.10 | 20.10 | 20.10 |
+| `m5:scales-compatibility` | remark | 9A.11 | 20.11 | 20.11 |
+| `m5:gauss-bonnet` | equation | 9A.11 | 20.11 | 20.11 |
+| `m5:pivot` | theorem | 9A.12 | 20.12 | 20.12 |
+| `m5:six` | example | 9A.13 | 20.13 | 20.13 |
+| `m5:fill` | proposition | 9A.14 | 20.14 | 20.14 |
+| `m5:dictionary` | remark | 9A.15 | 20.15 | 20.15 |
+| `m5:stokes` | proposition | 9A.17 | 20.16 | 20.16 |
+| `m5:gb` | proposition | 9A.18 | 20.17 | 20.17 |
+| `m5:hemisphere` | example | 9A.19 | 20.18 | 20.18 |
+| `m5:holonomy` | remark | 9A.20 | 20.19 | 20.19 |
+| `m5:sagitta` | remark | 9A.21 | 20.20 | 20.20 |
+| `m5:programme` | remark | 9A.23 | 20.21 | 20.21 |
+| `m5:literature` | remark | 9A.24 | 20.22 | 20.22 |
+| `sec:m8` | section | 9B | 21 | 21 |
+| `m8:body` | definition | 9B.1 | 21.1 | 21.1 |
+| `m8:invariants` | theorem | 9B.2 | 21.2 | 21.2 |
+| `m8:right` | example | 9B.3 | 21.3 | 21.3 |
+| `m8:volume-note` | remark | 9B.4 | 21.4 | 21.4 |
+| `m8:subentropy` | proposition | 9B.6 | 21.5 | 21.5 |
+| `m8:rotor` | theorem | 9B.7 | 21.6 | 21.6 |
+| `m8:octant` | proposition | 9B.8 | 21.7 | 21.7 |
+| `m8:latitude` | example | 9B.9 | 21.8 | 21.8 |
+| `m8:repair` | lemma | 9B.10 | 21.9 | 21.9 |
+| `m8:phaseselection` | proposition | 9B.11 | 21.10 | 21.10 |
+| `m8:gram` | proposition | 9B.12 | 21.11 | 21.11 |
+| `m8:counts` | theorem | 9B.13 | 21.12 | 21.12 |
+| `m8:prior-rigidity` | remark | 9B.14 | 21.13 | 21.13 |
+| `m8:refuted` | refuted | — | 21.14 | 21.14 |
+| `m8:flex` | example | 9B.15 | 21.15 | 21.15 |
+| `m8:chord` | proposition | 9B.16 | 21.16 | 21.16 |
+| `m8:pivots` | proposition | 9B.17 | 21.17 | 21.17 |
+| `m8:pivot-example` | example | 9B.18 | 21.18 | 21.18 |
+| `m8:complex-step` | proposition | 9B.23 | 21.19 | 21.19 |
+| `m8:increments` | proposition | 9B.24 | 21.20 | 21.20 |
+| `m8:phase-bundle` | example | 9B.25 | 21.21 | 21.21 |
+| `m8:prime-arcs` | definition | 9B.26 | 21.22 | 21.22 |
+| `m8:prime` | proposition | 9B.27 | 21.23 | 21.23 |
+| `m8:finite` | proposition | 9B.28 | 21.24 | 21.24 |
+| `m8:toy` | example | 9B.29 | 21.25 | 21.25 |
+| `m8:toeplitz` | proposition | 9B.30 | 21.26 | 21.26 |
+| `m8:staircase` | example | 9B.31 | 21.27 | 21.27 |
+| `m8:programmes` | remark | 9B.32 | 21.28 | 21.28 |
+| `m8:poly` | theorem | 9B.33 | 21.29 | 21.29 |
+| `m8:icosa` | example | 9B.34 | 21.30 | 21.30 |
+| `m8:conjecture` | conjecture | 9B.35 | 21.31 | 21.31 |
+| `m8:topology` | proposition | 9B.36 | 21.32 | 21.32 |
+| `sec:rational` | section | 10 | 22 | 22 |
+| `sec:m4atlas` | subsection | 10A | 22.1 | 22.1 |
+| `prop:cayley` | proposition | 10.1 | 22.1 | 22.1 |
+| `thm:rational` | theorem | 10.2 | 22.2 | 22.2 |
+| `prop:ratdq` | proposition | 10.3 | 22.3 | 22.3 |
+| `m4:atlas` | theorem | 10A.1 | 22.4 | 22.4 |
+| `m4:conditioning` | proposition | 10A.2 | 22.5 | 22.5 |
+| `m4:sine` | proposition | 10A.3 | 22.6 | 22.6 |
+| `m4:seams` | example | 10A.4 | 22.7 | 22.7 |
+| `m4:arithmetic` | corollary | 10A.5 | 22.8 | 22.8 |
+| `m4:obstructions` | example | 10A.6 | 22.9 | 22.9 |
+| `m4:approxphase` | corollary | 10A.7 | 22.10 | 22.10 |
+| `m4:models` | proposition | 10A.8 | 22.11 | 22.11 |
+| `m4:hopf` | proposition | 10A.9 | 22.12 | 22.12 |
+| `m4:heap` | remark | 10A.10 | 22.13 | 22.13 |
+| `sec:m6` | section | 10B | 23 | 23 |
+| `m6:hurwitz` | proposition | 10B.1 | 23.1 | 23.1 |
+| `m6:icosians` | remark | 10B.2 | 23.2 | 23.2 |
+| `m6:norm-forms` | proposition | 10B.3 | 23.3 | 23.3 |
+| `m6:norm-example` | example | 10B.4 | 23.4 | 23.4 |
+| `m6:definability` | remark | 10B.5 | 23.5 | 23.5 |
+| `m6:arithmetic-anchors` | remark | 10B.6 | 23.6 | 23.6 |
+| `m6:cover` | theorem | 10B.7 | 23.7 | 23.7 |
+| `m6:cover-conjecture` | conjecture | 10B.8 | 23.8 | 23.8 |
+| `m6:arcs` | proposition | 10B.9 | 23.9 | 23.9 |
+| `m6:finite-gates` | remark | 10B.10 | 23.10 | 23.10 |
+| `m6:det-product` | theorem | 10B.11 | 23.11 | 23.11 |
+| `m6:three` | theorem | 10B.12 | 23.12 | 23.12 |
+| `m6:centered` | corollary | 10B.13 | 23.13 | 23.13 |
+| `m6:sagitta-link` | remark | 10B.14 | 23.14 | 23.14 |
+| `m6:sagitta-refuted` | refuted | — | 23.15 | 23.15 |
+| `m6:prime-products` | theorem | 10B.15 | 23.16 | 23.16 |
+| `m6:prime-scope` | remark | 10B.16 | 23.17 | 23.17 |
+| `m6:hb` | proposition | 10B.17 | 23.18 | 23.18 |
+| `m6:kernel-local` | proposition | 10B.18 | 23.19 | 23.19 |
+| `m6:moment` | corollary | 10B.19 | 23.20 | 23.20 |
+| `m6:quartet` | example | 10B.20 | 23.21 | 23.21 |
+| `m6:phase` | proposition | 10B.21 | 23.22 | 23.22 |
+| `m6:kernel-programme` | remark | 10B.22 | 23.23 | 23.23 |
+| `m6:cosine` | theorem | 10B.23 | 23.24 | 23.24 |
+| `m6:readouts` | corollary | 10B.24 | 23.25 | 23.25 |
+| `m6:inverse` | proposition | 10B.25 | 23.26 | 23.26 |
+| `m6:golden` | remark | 10B.26 | 23.27 | 23.27 |
+| `m6:dottie-conj` | conjecture | 10B.27 | 23.28 | 23.28 |
+| `m6:fixed` | proposition | 10B.28 | 23.29 | 23.29 |
+| `m6:unread` | proposition | 10B.29 | 23.30 | 23.30 |
+| `m6:word-model` | definition | 10B.30 | 23.31 | 23.31 |
+| `m6:barrington` | theorem | 10B.31 | 23.32 | 23.32 |
+| `m6:rational-word` | corollary | 10B.32 | 23.33 | 23.33 |
+| `m6:abelian` | theorem | 10B.33 | 23.34 | 23.34 |
+| `m6:torus-refutation` | refuted | 10B.34 | 23.35 | 23.35 |
+| `sec:m9` | section | 10C | 24 | 24 |
+| `m9:doubling` | theorem | 10C.1 | 24.1 | 24.1 |
+| `m9:circle-boundaries` | remark | 10C.2 | 24.2 | 24.2 |
+| `m9:three-gaps` | theorem | 10C.3 | 24.3 | 24.3 |
+| `m9:digits` | theorem | 10C.4 | 24.4 | 24.4 |
+| `m9:thread` | corollary | 10C.5 | 24.5 | 24.5 |
+| `m9:pisot` | theorem | 10C.6 | 24.6 | 24.6 |
+| `m9:beta` | theorem | 10C.7 | 24.7 | 24.7 |
+| `m9:parry` | theorem | 10C.8 | 24.8 | 24.8 |
+| `m9:parry-scope` | remark | 10C.9 | 24.9 | 24.9 |
+| `m9:sign` | proposition | 10C.10 | 24.10 | 24.10 |
+| `m9:fractional` | proposition | 10C.11 | 24.11 | 24.11 |
+| `m9:rauzy` | theorem | 10C.12 | 24.12 | 24.12 |
+| `m9:rauzy-classical` | remark | 10C.13 | 24.13 | 24.13 |
+| `m9:scales` | proposition | 10C.14 | 24.14 | 24.14 |
+| `m9:pisot-programme` | remark | 10C.15 | 24.15 | 24.15 |
+| `m9:quotient` | proposition | 10C.16 | 24.16 | 24.16 |
+| `m9:absolute` | proposition | 10C.17 | 24.17 | 24.17 |
+| `m9:padic` | corollary | 10C.18 | 24.18 | 24.18 |
+| `m9:ostrowski-digits` | theorem | 10C.19 | 24.19 | 24.19 |
+| `m9:inputs` | remark | 10C.20 | 24.20 | 24.20 |
+| `m9:diagonal` | remark | 10C.21 | 24.21 | 24.21 |
+| `m9:clocks` | proposition | 10C.22 | 24.22 | 24.22 |
+| `m9:euler` | theorem | 10C.23 | 24.23 | 24.23 |
+| `m9:sieve` | example | 10C.24 | 24.24 | 24.24 |
+| `m9:sagitta` | remark | 10C.25 | 24.25 | 24.25 |
+| `m9:eta` | proposition | 10C.26 | 24.26 | 24.26 |
+| `m9:partitions` | proposition | 10C.27 | 24.27 | 24.27 |
+| `m9:lattices` | proposition | 10C.28 | 24.28 | 24.28 |
+| `m9:pell` | theorem | 10C.29 | 24.29 | 24.29 |
+| `m9:lattice-examples` | example | 10C.30 | 24.30 | 24.30 |
+| `m9:cut` | proposition | 10C.31 | 24.31 | 24.31 |
+| `m9:phase` | example | 10C.32 | 24.32 | 24.32 |
+| `m9:encoder` | proposition | 10C.33 | 24.33 | 24.33 |
+| `m9:parent` | theorem | 10C.34 | 24.34 | 24.34 |
+| `m9:alternating` | proposition | 10C.35 | 24.35 | 24.35 |
+| `m9:chain` | theorem | 10C.36 | 24.36 | 24.36 |
+| `m9:localization` | proposition | 10C.37 | 24.37 | 24.37 |
+| `m9:readouts` | proposition | 10C.38 | 24.38 | 24.38 |
+| `m9:slater` | proposition | 10C.39 | 24.39 | 24.39 |
+| `m9:slater-pairs` | corollary | 10C.40 | 24.40 | 24.40 |
+| `m9:refuted` | refuted | 10C.41 | 24.41 | 24.41 |
+| `m9:fract-conjecture` | conjecture | 10C.43 | 24.42 | 24.42 |
+| `m9:programme` | remark | 10C.44 | 24.43 | 24.43 |
+| `sec:m11b` | section | 10D | 25 | 25 |
+| `m11:compile` | theorem | 10D.1 | 25.1 | 25.1 |
+| `m11:sagitta-refuted` | refuted | 10D.2 | 25.2 | 25.2 |
+| `m11:compilers` | remark | 10D.3 | 25.3 | 25.3 |
+| `m11:orbits` | example | 10D.4 | 25.4 | 25.4 |
+| `m11:hessian` | theorem | 10D.5 | 25.5 | 25.5 |
+| `m11:readout-refuted` | refuted | 10D.6 | 25.6 | 25.6 |
+| `m11:gradient` | proposition | 10D.7 | 25.7 | 25.7 |
+| `m11:shift` | theorem | 10D.8 | 25.8 | 25.8 |
+| `m11:shift-refuted` | refuted | — | 25.9 | 25.9 |
+| `m11:cluster` | proposition | 10D.9 | 25.10 | 25.10 |
+| `m11:gradient-example` | example | 10D.10 | 25.11 | 25.11 |
+| `m11:concentration` | proposition | 10D.11 | 25.12 | 25.12 |
+| `sec:m13` | section | 10E | 26 | 26 |
+| `m13:strip` | definition | 10E.1 | 26.1 | 26.1 |
+| `m13:route` | equation | 10E.1 | 26.1 | 26.1 |
+| `m13:golden` | theorem | 10E.2 | 26.2 | 26.2 |
+| `m13:norm-separation` | equation | 10E.2 | 26.2 | 26.2 |
+| `m13:window-density` | equation | 10E.3 | 26.3 | 26.3 |
+| `m13:closed-inflation` | corollary | 10E.3 | 26.3 | 26.3 |
+| `m13:hurwitz-bound` | equation | 10E.4 | 26.4 | 26.4 |
+| `m13:readout-fibers` | corollary | 10E.4 | 26.4 | 26.4 |
+| `m13:density` | proposition | 10E.5 | 26.5 | 26.5 |
+| `m13:liminf` | equation | 10E.5 | 26.5 | 26.5 |
+| `m13:zono` | equation | 10E.6 | 26.6 | 26.6 |
+| `m13:return` | corollary | 10E.6 | 26.6 | 26.6 |
+| `m13:return-example` | example | 10E.7 | 26.7 | 26.7 |
+| `m13:birkhoff` | theorem | 10E.8 | 26.8 | 26.8 |
+| `m13:factor` | proposition | 10E.9 | 26.9 | 26.9 |
+| `m13:doubling-example` | example | 10E.10 | 26.10 | 26.10 |
+| `m13:hurwitz` | theorem | 10E.11 | 26.11 | 26.11 |
+| `m13:universal` | remark | 10E.12 | 26.12 | 26.12 |
+| `m13:shortest-gap` | corollary | 10E.13 | 26.13 | 26.13 |
+| `m13:gap-ratio` | remark | 10E.14 | 26.14 | 26.14 |
+| `m13:gap-example` | example | 10E.15 | 26.15 | 26.15 |
+| `m13:survivor` | proposition | 10E.16 | 26.16 | 26.16 |
+| `m13:survivor-lean` | remark | 10E.17 | 26.17 | 26.17 |
+| `m13:icosian` | theorem | 10E.18 | 26.18 | 26.18 |
+| `m13:phase` | proposition | 10E.19 | 26.19 | 26.19 |
+| `m13:placement` | remark | 10E.20 | 26.20 | 26.20 |
+| `m13:programme` | remark | 10E.22 | 26.21 | 26.21 |
+| `m13:context` | remark | 10E.24 | 26.22 | 26.22 |
+| `m13:refuted` | refuted | 10E.25 | 26.23 | 26.23 |
+| `sec:m14` | section | 10F | 27 | 27 |
+| `m14:xi` | proposition | 10F.1 | 27.1 | 27.1 |
+| `m14:eta` | proposition | 10F.2 | 27.2 | 27.2 |
+| `m14:xi-example` | example | 10F.3 | 27.3 | 27.3 |
+| `m14:pnt` | theorem | 10F.4 | 27.4 | 27.4 |
+| `m14:pnt-consequences` | corollary | 10F.5 | 27.5 | 27.5 |
+| `m14:explicit` | remark | 10F.6 | 27.6 | 27.6 |
+| `m14:sampling` | remark | 10F.7 | 27.7 | 27.7 |
+| `m14:robin-eight` | theorem | 10F.8 | 27.8 | 27.8 |
+| `m14:robin-endpoints` | example | 10F.9 | 27.9 | 27.9 |
+| `m14:gronwall` | remark | 10F.10 | 27.10 | 27.10 |
+| `m14:integrated-error` | proposition | 10F.11 | 27.11 | 27.11 |
+| `m14:response` | proposition | 10F.12 | 27.12 | 27.12 |
+| `m14:robin-lcm` | libresult | 10F.13 | 27.13 | 27.13 |
+| `m14:window-size` | example | 10F.14 | 27.14 | 27.14 |
+| `m14:rh` | conjecture | 10F.15 | 27.15 | 27.15 |
+| `m14:rh-forms` | proposition | 10F.16 | 27.16 | 27.16 |
+| `m14:symmetry` | remark | 10F.17 | 27.17 | 27.17 |
+| `m14:carry` | theorem | 10F.18 | 27.18 | 27.18 |
+| `m14:carry-sharp` | example | 10F.19 | 27.19 | 27.19 |
+| `m14:local-model` | hypothesis | 10F.20 | 27.20 | 27.20 |
+| `m14:local-bound` | corollary | 10F.21 | 27.21 | 27.21 |
+| `m14:avoid` | theorem | 10F.23 | 27.22 | 27.22 |
+| `m14:crt` | theorem | 10F.24 | 27.23 | 27.23 |
+| `m14:crt-example` | example | 10F.25 | 27.24 | 27.24 |
+| `m14:thread` | definition | 10F.26 | 27.25 | 27.25 |
+| `m14:charge` | theorem | 10F.27 | 27.26 | 27.26 |
+| `m14:charge-example` | example | 10F.28 | 27.27 | 27.27 |
+| `m14:refuted` | refuted | 10F.29 | 27.28 | 27.28 |
+| `sec:known` | section | 11 | 28 | 28 |
+| `sec:lean` | section | 12 | 29 | 29 |
+| `sec:ready` | subsection | 12.1 | 29.1 | 29.1 |
+| `sec:leanlib` | subsection | 12.2 | 29.2 | 29.2 |
+| `sec:open` | section | 13 | 30 | 30 |
+| `sec:open-inventory` | subsection | — | 30.1 | 30.1 |
+| `sec:open-further` | subsection | — | 30.2 | 30.2 |
+| `app:physics` | section | — | A | A |
+| `app:m12` | subsection | — | A.1 | A.1 |
+| `m12:records` | hypothesis | 0A.7 | A.1 | A.1 |
+| `m15:hamiltonian-reading` | remark | — | — | A.2 |
+| `app:m15` | subsection | — | — | A.2 |
+| `m15:programme` | remark | 0B.37 | 4.37 | A.3 |
+| `app:m2` | subsection | — | A.2 | A.3 |
+| `app:m3` | subsection | — | A.3 | A.4 |
+| `m2:reading-input` | remark | 5A.20 | A.2 | A.4 |
+| `m3:calibration` | hypothesis | 5B.11 | A.3 | A.5 |
+| `app:d4` | subsection | — | A.4 | A.5 |
+| `m3:frames` | proposition | 5B.12 | A.4 | A.6 |
+| `app:m7` | subsection | — | A.5 | A.6 |
+| `m3:proper` | example | 5B.14 | A.5 | A.7 |
+| `app:m10` | subsection | — | A.6 | A.7 |
+| `app:m5` | subsection | — | A.7 | A.8 |
+| `m3:rapidityBoundary` | example | 5B.15 | A.6 | A.8 |
+| `app:m8` | subsection | — | A.8 | A.9 |
+| `m3:nonlinear` | refuted | 5B.16 | A.7 | A.9 |
+| `app:m4atlas` | subsection | — | A.9 | A.10 |
+| `m3:chiral` | proposition | 5B.33 | A.8 | A.10 |
+| `m3:timing` | proposition | 5B.35 | A.9 | A.11 |
+| `app:m6` | subsection | — | A.10 | A.11 |
+| `app:m9` | subsection | — | A.11 | A.12 |
+| `d4:programme` | remark | 5C.29 | A.10 | A.12 |
+| `m7:topology` | remark | 5D.14 | A.11 | A.13 |
+| `app:m11b` | subsection | — | A.12 | A.13 |
+| `app:m13` | subsection | — | A.13 | A.14 |
+| `m7:anyons-input` | hypothesis | 5D.15 | A.12 | A.14 |
+| `m7:anyons-programme` | remark | 5D.16 | A.13 | A.15 |
+| `app:m14` | subsection | — | A.14 | A.15 |
+| `app:occur` | subsection | — | A.15 | A.16 |
+| `m10:field-model` | hypothesis | 5E.26 | A.14 | A.16 |
+| `m10:interpretations` | remark | 5E.28 | A.15 | A.17 |
+| `m10:programme` | remark | 5E.29 | A.16 | A.18 |
+| `m5:algorithm` | remark | 9A.16 | A.17 | A.19 |
+| `m5:hypotheses` | remark | 9A.22 | A.18 | A.20 |
+| `m8:observers` | proposition | 9B.5 | A.19 | A.21 |
+| `m8:dynamics` | hypothesis | 9B.19 | A.20 | A.22 |
+| `m8:barrier` | proposition | 9B.20 | A.21 | A.23 |
+| `m8:histories` | example | 9B.21 | A.22 | A.24 |
+| `m8:resolution` | hypothesis | 9B.22 | A.23 | A.25 |
+| `m4:updates` | proposition | 10A.11 | A.24 | A.26 |
+| `m4:programme` | remark | 10A.12 | A.25 | A.27 |
+| `m6:architecture-ops` | proposition | 10B.35 | A.26 | A.28 |
+| `m6:architecture` | definition | 10B.36 | A.27 | A.29 |
+| `m6:position` | example | 10B.37 | A.28 | A.30 |
+| `m6:architecture-programme` | remark | 10B.38 | A.29 | A.31 |
+| `m6:algorithms` | remark | 10B.39 | A.30 | A.32 |
+| `m9:physical` | hypothesis | 10C.42 | A.31 | A.33 |
+| `m11:random-input` | hypothesis | 10D.12 | A.32 | A.34 |
+| `m11:clock-pointer` | remark | 10D.13 | A.33 | A.35 |
+| `m13:observer` | remark | 10E.21 | A.34 | A.36 |
+| `m13:lorenz` | remark | 10E.23 | A.35 | A.37 |
+| `m14:carry-model` | remark | 10F.22 | A.36 | A.38 |
+| `app:notation` | section | — | B | B |
+| `app:concordance` | section | — | C | C |
+| `app:refuted` | section | — | D | D |
+| `part:beyond` | part | II | II | II |
+| `part:axiom` | part | I | I | I |
+| `part:arc` | part | III | III | III |
+| `part:arith` | part | IV | IV | IV |
+| `part:final` | part | V | V | V |

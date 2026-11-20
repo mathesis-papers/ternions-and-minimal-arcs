@@ -15,11 +15,11 @@ import subprocess as _sp, sys as _sys, os as _os
 
 CHECK_MODULES = [
     # (script in checks/, string that must occur in its output, optional predicate on the output)
-    ("roundness_models.py",   "All finite checks passed", None),                                  # Thm 5.18, models
-    ("roundness_witnesses.py", "All finite checks passed", None),                                 # Thm 5.18, Remark 5.24
-    ("roundness_extra.py",    "TOTAL FAILURES: 0", lambda out: out.count("PASS") >= 60),           # Thm 5.18, lemmas
+    ("roundness_models.py",   "All finite checks passed", None),                                  # Thm 8.18, models
+    ("roundness_witnesses.py", "All finite checks passed", None),                                 # Thm 8.18, Remark 8.24
+    ("roundness_extra.py",    "TOTAL FAILURES: 0", lambda out: out.count("PASS") >= 60),           # Thm 8.18, lemmas
     ("onesided_models.py",    "PASS all NumPy checks", lambda out: "FAIL" not in out),             # Props 5.26, 5.27
-    ("onesided_witnesses.py", "PASS", lambda out: "FAIL" not in out),                              # Prop 5.26
+    ("onesided_witnesses.py", "PASS", lambda out: "FAIL" not in out),                              # Prop 8.26
     ("m1_algebra_graphs.py",  "PASS: algebra, powers, spin", None),                            # Part 0
     ("m2_reflection_spaces.py", "PASS: reflections, closing law", None),                         # Section 5A
     ("m2_indep_t_albert.py",  "Albert witness / phase family OK", None),                          # Section 5A, independent
@@ -40,6 +40,9 @@ CHECK_MODULES = [
     ("m13_golden_model_sets.py", "All 7 check groups passed.", None),                      # Section 10E
     ("m14_arithmetic_readouts.py", "PASS m14", None),                                    # Section 10F
     ("m15_lattice_gauge.py", "All m15 checks passed.", None),                            # Section 0B
+    ("m10_orientation_proof.py", "SUMMARY: 59/59 checks passed", None),              # Theorem m10:orientation, hand proof
+    ("m11_rect_bound.py", "all checks passed", None),                                 # Lemma m11:rect-lemma, Prop. m11:flat-obstruction
+    ("m11_cone_rank_proof.py", "ALL CHECKS PASSED", None),                           # Theorem m11:cone-rank, hand proof
     # register new modules here: (file in checks/, success marker, optional predicate)
 ]
 _chk = _os.path.join(_os.path.dirname(_os.path.abspath(__file__)), "checks")
@@ -603,7 +606,7 @@ for _ in range(200):
     e = max(e, abs(Hb[0] - np.cos(tot / 2)))
 report("8 great 2-sphere, mixed orientations: Re H = cos(sum sigma_T E_T / 2)", e, 1e-12)
 
-# d'Alembert: on SO(3) psi = cos(rotation angle) satisfies duplication but not d'Alembert (Remark 3.6)
+# d'Alembert: on SO(3) psi = cos(rotation angle) satisfies duplication but not d'Alembert (Remark 6.6)
 def rot_q(axis, ang):
     return qexp(ang / 2 * np.asarray(axis, float))
 psi_so3 = lambda q: np.cos(2 * np.arccos(np.clip(abs(q[0]), -1, 1)))
@@ -987,9 +990,9 @@ for _ in range(300):
     # transport of the normal along a minimal arc in the great sphere: Ad(h)(nu ubar) = nu wbar
     h = halfdisp(y, x)
     e = max(e, np.abs(Ad(h) @ qmul(nu, qc(x))[1:] - qmul(nu, qc(y))[1:]).max())
-report("12 Lemma 9.10 (sign) Im(yx^-1) x Im(zx^-1) = det(x,y,z,nu) nu x^-1, and Ad(h) nu x^-1 = nu y^-1", e, 1e-12)
+report("12 Lemma 19.10 (sign) Im(yx^-1) x Im(zx^-1) = det(x,y,z,nu) nu x^-1, and Ad(h) nu x^-1 = nu y^-1", e, 1e-12)
 
-# Remark 3.7: kappa = (2 + c(x1,y1) + c(x2,y2))/4 on S^3 x S^3 satisfies (Omega2) incl. unique zero, not (Omega3)
+# Remark 6.7: kappa = (2 + c(x1,y1) + c(x2,y2))/4 on S^3 x S^3 satisfies (Omega2) incl. unique zero, not (Omega3)
 k2 = lambda X, Y: (2 + X[0] @ Y[0] + X[1] @ Y[1]) / 4
 H2 = lambda X, Y, Z: (heap(X[0], Y[0], Z[0]), heap(X[1], Y[1], Z[1]))
 e_inv = 0.0; viol = 0.0
@@ -1002,7 +1005,7 @@ report("12 product example: bi-invariance and zero at (-x1,-x2)", e_inv, 1e-12)
 report("12 product example violates the round-trip law (1e-2 / max violation)", 1e-2 / viol, 1.0)
 
 # =========================================================== 13. regularity-free classification
-# (a) on R the duplication equation has continuous non-cosine solutions, but none is faithful (Lemma 3.8):
+# (a) on R the duplication equation has continuous non-cosine solutions, but none is faithful (Lemma 6.8):
 qper = lambda u: 1.3 + 0.4 * np.sin(2 * np.pi * u)              # 1-periodic, positive
 f_line = lambda t: np.cos(np.abs(t) * qper(np.log2(np.abs(t)))) if t != 0 else 1.0
 ts = np.linspace(-20, 20, 4001)
@@ -1081,7 +1084,7 @@ for s_ in ss:
 Theta = 2 * np.arccos(np.clip(Uex[0], -1, 1))
 report("15 continuum excess bound: Theta(U_gamma) <= Area(F) (violation)", max(0.0, Theta - area), 1e-9)
 
-# Cor 9.10(ii), full quaternion: H = cos(S/2) + sin(S/2) nu pbar for fans in a great sphere, mixed orientations
+# Cor 19.11(ii), full quaternion: H = cos(S/2) + sin(S/2) nu pbar for fans in a great sphere, mixed orientations
 e = 0.0
 nvec = np.array([0., 0, 0, 1])
 for _ in range(200):
@@ -1095,9 +1098,9 @@ for _ in range(200):
     S = sum(signed_excess(centre, ps[i], ps[(i + 1) % k], nvec) for i in range(k))
     pred = np.cos(S / 2) * np.array([1., 0, 0, 0]) + np.sin(S / 2) * qmul(nvec, qc(p0))
     e = max(e, np.abs(H - pred).max())
-report("15 Cor 9.11(ii) full spin holonomy cos(S/2)+sin(S/2) nu pbar (fans, mixed orientation)", e, 1e-12)
+report("15 Cor 19.11(ii) full spin holonomy cos(S/2)+sin(S/2) nu pbar (fans, mixed orientation)", e, 1e-12)
 
-# =========================================================== 16. octonion tangent algebra (inputs of Prop 5.7)
+# =========================================================== 16. octonion tangent algebra (inputs of Prop 8.7)
 def oct_unit():
     v = rng.normal(size=8); return v / np.linalg.norm(v)
 def oim():
@@ -1146,7 +1149,7 @@ report("17 C.9 rotation angle of boundary holonomy <= sum min(E_T, 2pi-E_T) (max
 # degenerate triangle on a great circle, 120 degrees apart: a = -1 (E_T = 2pi), area 0
 x = np.array([1., 0, 0, 0]); y = np.array([np.cos(2 * np.pi / 3), np.sin(2 * np.pi / 3), 0, 0]); z = np.array([np.cos(4 * np.pi / 3), np.sin(4 * np.pi / 3), 0, 0])
 report("17 C.9 degenerate triangle 120 deg apart: a = -1", np.abs(tri_hol(x, y, z) + np.array([1., 0, 0, 0])).max(), 1e-12)
-# C.14 sharpness of d < pi/2 in Theorem 6.4: (x0, x1, -x0, -x1) critical, not the recurrence
+# C.14 sharpness of d < pi/2 in Theorem 14.4: (x0, x1, -x0, -x1) critical, not the recurrence
 x0 = unit(); tdir = unit(); tdir -= (tdir @ x0) * x0; tdir /= np.linalg.norm(tdir)
 x1 = np.cos(0.4) * x0 + np.sin(0.4) * tdir
 seq = [x0, x1, -x0, -x1]
@@ -1176,7 +1179,7 @@ for rep_ in range(400):
 report("17 D.7 CLT: |var(2^{n/2}(V-3T/2)) - 3T^2/2| (400 paths, n=8; MC error ~0.15)", abs(np.var(vals) - 1.5), 0.45)
 
 # =========================================================== 18. further items
-# Thm 6.4 sharpness at pi/2: (x0, x1, -x0, -x1) with d(x0,x1) = pi/2 - eps is critical, steps pi/2 -+ eps, defect 2 sin eps
+# Thm 14.4 sharpness at pi/2: (x0, x1, -x0, -x1) with d(x0,x1) = pi/2 - eps is critical, steps pi/2 -+ eps, defect 2 sin eps
 worst = 0.0
 for eps in (0.3, 0.05, 0.005):
     x0 = unit(); t_ = unit(); t_ -= (t_ @ x0) * x0; t_ /= np.linalg.norm(t_)
@@ -1185,8 +1188,8 @@ for eps in (0.3, 0.05, 0.005):
     crit = max(np.abs((lambda g, p: g - (g @ p) * p)(seq[k - 1] + seq[k + 1], seq[k])).max() for k in (1, 2))
     defect = np.linalg.norm(seq[2] - heap(seq[1], seq[0], seq[1]))
     worst = max(worst, crit, abs(defect - 2 * np.sin(eps)), abs(dist(seq[1], seq[2]) - (np.pi / 2 + eps)))
-report("18 Thm 6.4 sharpness at pi/2: critical, step pi/2+eps, defect 2 sin eps", worst, 1e-9)
-# Cor 9.14 star-shaped regions in the great sphere x_3 = 0 around p = 1 (non-convex, and area > 2 pi)
+report("18 Thm 14.4 sharpness at pi/2: critical, step pi/2+eps, defect 2 sin eps", worst, 1e-9)
+# Cor 19.15 star-shaped regions in the great sphere x_3 = 0 around p = 1 (non-convex, and area > 2 pi)
 def star_check(rho_fun, n=4000):
     phis = np.linspace(0, 2 * np.pi, n + 1)
     pts = [np.array([np.cos(rho_fun(f)), np.sin(rho_fun(f)) * np.cos(f), np.sin(rho_fun(f)) * np.sin(f), 0.]) for f in phis]
@@ -1200,19 +1203,19 @@ e_ = 0.0
 for rf in (lambda f: 0.9 * (1 + 0.45 * np.cos(5 * f)), lambda f: 1.75 * (1 + 0.12 * np.cos(3 * f))):
     H, A = star_check(rf)
     e_ = max(e_, abs(H[0] - np.cos(A / 2)))
-report("18 Cor 9.14(b) star-shaped (non-convex; area>2pi): Re U = cos(A/2)", e_, 1e-5)
-# Prop 7.4 moment formulas: E cos d = exp(-3h/2), E cos^2 d = 1/4 + 3/4 exp(-4h) (simulated), and limit of exact variance
+report("18 Cor 19.15(b) star-shaped (non-convex; area>2pi): Re U = cos(A/2)", e_, 1e-5)
+# Prop 17.4 moment formulas: E cos d = exp(-3h/2), E cos^2 d = 1/4 + 3/4 exp(-4h) (simulated), and limit of exact variance
 hh = 0.05; nfine = 400; samples = []
 for rep_ in range(4000):
     xs = bm_path(hh, nfine); samples.append(xs[0] @ xs[-1])
 samples = np.array(samples)
-report("18 Prop 7.4 E cos d vs exp(-3h/2) (4000 samples, MC err ~0.003)", abs(samples.mean() - np.exp(-1.5 * hh)), 0.01)
-report("18 Prop 7.4 E cos^2 d vs 1/4+3/4 exp(-4h)", abs((samples ** 2).mean() - (0.25 + 0.75 * np.exp(-4 * hh))), 0.01)
+report("18 Prop 17.4 E cos d vs exp(-3h/2) (4000 samples, MC err ~0.003)", abs(samples.mean() - np.exp(-1.5 * hh)), 0.01)
+report("18 Prop 17.4 E cos^2 d vs 1/4+3/4 exp(-4h)", abs((samples ** 2).mean() - (0.25 + 0.75 * np.exp(-4 * hh))), 0.01)
 T = 1.0; N = 10 ** 6; h = T / N
 var_exact = N ** 2 * ((1 + 3 * np.exp(-4 * h)) / 4 - np.exp(-3 * h))
-report("18 Prop 7.4 exact variance N^2[(1+3e^{-4h})/4 - e^{-3h}] -> 3T^2/2 (N=1e6)", abs(var_exact - 1.5), 1e-3)
+report("18 Prop 17.4 exact variance N^2[(1+3e^{-4h})/4 - e^{-3h}] -> 3T^2/2 (N=1e6)", abs(var_exact - 1.5), 1e-3)
 bias = np.sqrt(N) * (N * (1 - np.exp(-1.5 * h)) - 1.5 * T)
-report("18 Prop 7.4 bias sqrt(N)(EV - 3T/2) vs -9T^2/(8 sqrt N)", abs(bias - (-9 * T ** 2 / (8 * np.sqrt(N)))) * np.sqrt(N), 1e-2)
+report("18 Prop 17.4 bias sqrt(N)(EV - 3T/2) vs -9T^2/(8 sqrt N)", abs(bias - (-9 * T ** 2 / (8 * np.sqrt(N)))) * np.sqrt(N), 1e-2)
 # (K2) step (d): the split octonion norm restricted to the traceless part has signature (3,4)
 G = np.diag([1., 1, 1, 1, -1, -1, -1, -1])          # split norm in a standard basis, 1 = e0
 sig = np.linalg.eigvalsh(G[1:, 1:])
@@ -1235,7 +1238,7 @@ for _ in range(2000):
     e9 = max(e9, abs(cc ** 2 - ((-x) @ w) ** 2)); n9 += 1                    # descends to S^3/{+-1}
 B4 = np.eye(4)
 e9 = max(e9, max(abs((B4[i] @ B4[j]) ** 2) for i in range(4) for j in range(i))); n9 += 1   # four orthogonal classes
-report(f"19 Rem 3.13: SO(3) solution kappa' = c^2 on S^3/{{+-1}} ({n9} assertions from check_round9.py)", e9, 1e-12)
+report(f"19 Rem 6.13: SO(3) solution kappa' = c^2 on S^3/{{+-1}} ({n9} assertions from check_round9.py)", e9, 1e-12)
 # zero set of c^2 from [x] is a 2-sphere of representatives (dimension check: tangent rank 3 inside R^4 at a zero)
 # diffusion normalisation: physical rotation vector increments theta ~ N(0, 2D dt I), spinor step exp(theta/2)
 D = 1.0; tphys = 0.8; nst = 200; dt = tphys / nst; vals = []
@@ -1247,7 +1250,7 @@ for _ in range(3000):
 report("19 pointer (iv): E c(psi_0, psi_t) = exp(-3Dt/4) for physical D (3000 walks, MC err ~0.01)",
        abs(np.mean(vals) - np.exp(-0.75 * D * tphys)), 0.03)
 
-# =========================================================== 20. Theorem 9.14 (holonomy of a disk in a great 2-sphere)
+# =========================================================== 20. Theorem 19.14 (holonomy of a disk in a great 2-sphere)
 # inlined from an earlier verification script (40 assertions): non-convex, non-star-shaped regions, not in a hemisphere
 def _r12_sph(colat, lon): return np.array([np.sin(colat) * np.cos(lon), np.sin(colat) * np.sin(lon), np.cos(colat)])
 def _r12_horseshoe(c1, c2, span, m=400, rot=None):
@@ -1290,8 +1293,8 @@ for P in cases12:
         H = qmul(halfdisp(X[(k + 1) % len(X)], X[k]), H)
     pred = np.cos(A / 2) * np.array([1., 0, 0, 0]) - np.sin(A / 2) * qc(X[0])
     e_ours = max(e_ours, np.abs(H - pred).max())
-report(f"20 Thm 9.14: round-12 cases, Re U = cos(area/2) etc. ({n12} assertions from check_round12.py)", e12, 1e-8)
-report("20 Thm 9.14 in the paper's convention: H = exp(-(A/2) nu xbar0) for negative traversal", e_ours, 1e-8)
+report(f"20 Thm 19.14: round-12 cases, Re U = cos(area/2) etc. ({n12} assertions from check_round12.py)", e12, 1e-8)
+report("20 Thm 19.14 in the paper's convention: H = exp(-(A/2) nu xbar0) for negative traversal", e_ours, 1e-8)
 # orientation map: det(x,t1,t2,e0) = -x.(t1 x t2) for x, t1, t2 imaginary
 x_, t1_, t2_ = [np.concatenate([[0.], rng.normal(size=3)]) for _ in range(3)]
 report("20 orientation: det(x,t1,t2,e0) = -x.(t1 x t2)", abs(np.linalg.det(np.array([x_, t1_, t2_, [1., 0, 0, 0]]).T) + x_[1:] @ np.cross(t1_[1:], t2_[1:])), 1e-12)
@@ -1325,7 +1328,7 @@ violA = sum(_FT(_FT(p_, q_, r_), s_, t_) != _FT(p_, q_, _FT(r_, s_, t_)) for p_,
 o_ = 1; mulF = lambda x, y: _FT(x, o_, y); invF = lambda x: _FT(o_, x, o_)
 formA = sum(_FT(x, y, z) != mulF(mulF(x, invF(y)), z) for x in _FP for y in _FP for z in _FP)
 okA &= violA == 7560 and formA == 192; nA += 2
-report(f"21 Prop 5.10(A) Fano: Mal'cev, lines are Z3 heaps, 7560 violations, 192 formula failures ({nA} assertions)", 0.0 if okA else 1.0, 0.5)
+report(f"21 Prop 8.10(A) Fano: Mal'cev, lines are Z3 heaps, 7560 violations, 192 formula failures ({nA} assertions)", 0.0 if okA else 1.0, 0.5)
 # (B) S^3 example
 TB = lambda a, b, x: qmul(qmul(qmul(qmul(qmul(qmul(a, qc(b)), a), qc(b)), x), qc(a)), b)
 eB = 0.0; w3 = wR = 0.0
@@ -1335,12 +1338,12 @@ for _ in range(400):
              np.abs(TB(x, w, x) - heap(x, w, x)).max(), abs(kappa(TB(a, b, x), TB(a, b, y)) - kappa(x, y)))
     w3 = max(w3, np.linalg.norm(TB(TB(a, b, x), y, w) - TB(a, b, TB(x, y, w))))
     wR = max(wR, abs(kappa(TB(x, b, a), TB(y, b, a)) - kappa(x, y)))
-report("21 Prop 5.10(B): Mal'cev, standard round trip, left isometry", eB, 1e-12)
-report("21 Prop 5.10(B): third identity and right invariance fail (1/defects)", max(1 / w3, 1 / (20 * wR)), 1.0)
+report("21 Prop 8.10(B): Mal'cev, standard round trip, left isometry", eB, 1e-12)
+report("21 Prop 8.10(B): third identity and right invariance fail (1/defects)", max(1 / w3, 1 / (20 * wR)), 1.0)
 one = np.array([1., 0, 0, 0]); ii = np.array([0., 1, 0, 0]); u2 = np.array([-0.5, 0, np.sqrt(3) / 2, 0])
 star = lambda u, w_: qmul(qmul(qmul(u, u), w_), qc(u))
-report("21 Prop 5.10(B): 1*i = i = u'*i with u' = -1/2 + (sqrt3/2) j (not a loop)", max(np.abs(star(one, ii) - ii).max(), np.abs(star(u2, ii) - ii).max()), 1e-12)
-# Theorem 5.10 sanity: the interpolating family T_l(a,1,x) = a Rot_{A,-2 l s}(x) is right-isometric only for l in {0,1}
+report("21 Prop 8.10(B): 1*i = i = u'*i with u' = -1/2 + (sqrt3/2) j (not a loop)", max(np.abs(star(one, ii) - ii).max(), np.abs(star(u2, ii) - ii).max()), 1e-12)
+# Theorem 8.15 sanity: the interpolating family T_l(a,1,x) = a Rot_{A,-2 l s}(x) is right-isometric only for l in {0,1}
 def rot_about(Aax, ang, q):
     v = q[1:]; v2 = v * np.cos(ang) + np.cross(Aax, v) * np.sin(ang) + Aax * (Aax @ v) * (1 - np.cos(ang))
     return np.concatenate([[q[0]], v2])
@@ -1354,8 +1357,8 @@ for lam in (0.0, 0.3, 0.7, 1.0):
         a1, a2, x = unit(), unit(), unit()
         worst = max(worst, abs(kappa(Tl(lam, a1, x), Tl(lam, a2, x)) - kappa(a1, a2)))
     devs[lam] = worst
-report("21 Thm 5.15 (earlier proof) sanity: right isometry holds for l = 0 (standard) and l = 1 (x a)", max(devs[0.0], devs[1.0]), 1e-12)
-report("21 Thm 5.15 (earlier proof) sanity: and fails for l = 0.3, 0.7 (1/defect)", 1 / min(devs[0.3], devs[0.7]), 100.0)
+report("21 Thm 8.15 (earlier proof) sanity: right isometry holds for l = 0 (standard) and l = 1 (x a)", max(devs[0.0], devs[1.0]), 1e-12)
+report("21 Thm 8.15 (earlier proof) sanity: and fails for l = 0.3, 0.7 (1/defect)", 1 / min(devs[0.3], devs[0.7]), 100.0)
 
 # =========================================================== 22. Hurwitz form of rigidity; S^7
 o8 = lambda: (lambda v: v / np.linalg.norm(v))(rng.normal(size=8))
@@ -1364,7 +1367,7 @@ def rand_orth_fix1(n, det):
     Qm, _ = np.linalg.qr(rng.normal(size=(n - 1, n - 1)))
     if np.sign(np.linalg.det(Qm)) != det: Qm[:, 0] *= -1
     P = np.eye(n); P[1:, 1:] = Qm; return P
-# Lemma 5.10 (Hurwitz form) on H: isotope by phi in SO(3) is uv, by O(3)\SO(3) is vu
+# Lemma 8.11 (Hurwitz form) on H: isotope by phi in SO(3) is uv, by O(3)\SO(3) is vu
 ep = em = 0.0
 for _ in range(500):
     for det in (1, -1):
@@ -1372,7 +1375,7 @@ for _ in range(500):
         mu = P @ qmul(P.T @ u_, P.T @ v_)
         if det == 1: ep = max(ep, np.abs(mu - qmul(u_, v_)).max())
         else: em = max(em, np.abs(mu - qmul(v_, u_)).max())
-report("22 Lemma 5.11: phi-isotope of H is uv (det 1) / vu (det -1)", max(ep, em), 1e-12)
+report("22 Lemma 8.11: phi-isotope of H is uv (det 1) / vu (det -1)", max(ep, em), 1e-12)
 # composition products on O from O(7): unital, norm-multiplicative
 muP = lambda P: (lambda u_, v_: P @ omul8(P.T @ u_, P.T @ v_))
 e = 0.0
@@ -1380,7 +1383,7 @@ for _ in range(200):
     mu = muP(rand_orth_fix1(8, int(rng.choice([1, -1])))); u_, v_ = o8(), o8()
     e = max(e, abs(np.linalg.norm(mu(u_, v_)) - 1), np.abs(mu(E8[0], v_) - v_).max(), np.abs(mu(u_, E8[0]) - u_).max())
 report("22 phi-isotopes of O (phi in O(7)) are unital composition products", e, 1e-12)
-# Lemma 5.11 (normal form) for T0 = (a bbar) x on S^7: mu_b(u,v) = bbar T(bu,b,bv) is bilinear, unital, norm-multiplicative
+# Lemma 8.11 (normal form) for T0 = (a bbar) x on S^7: mu_b(u,v) = bbar T(bu,b,bv) is bilinear, unital, norm-multiplicative
 T0 = lambda a, b, x: omul8(omul8(a, oc8(b)), x)
 def mu_of(T, b):
     def m(u_, v_):
@@ -1400,9 +1403,9 @@ for _ in range(100):
     u_, v_ = o8(), o8()
     e = max(e, np.abs(m(u_, v_) - omul8(oc8(b), omul8(omul8(omul8(b, u_), oc8(b)), omul8(b, v_)))).max())
     dmu = max(dmu, np.linalg.norm(m(u_, v_) - omul8(u_, v_)))
-report("22 Lemma 5.12 / Prop 5.16(iv): mu_b of (a bbar)x bilinear, unital, multiplicative, formula of (iv)", e, 1e-12)
-report(f"22 Prop 5.16(iv): mu_b of (a bbar)x depends on b (max distance to the octonion product {dmu:.2f}; 1/value)", 1 / dmu, 10.0)
-# the family T_theta of Prop 5.13(iii), theta(b) = 1.3 sin(2 b0) + 0.7 b3 b5, rotation in the plane (e1, e2)
+report("22 Lemma 8.12 / Prop 8.16(iv): mu_b of (a bbar)x bilinear, unital, multiplicative, formula of (iv)", e, 1e-12)
+report(f"22 Prop 8.16(iv): mu_b of (a bbar)x depends on b (max distance to the octonion product {dmu:.2f}; 1/value)", 1 / dmu, 10.0)
+# the family T_theta of Prop 8.13(iii), theta(b) = 1.3 sin(2 b0) + 0.7 b3 b5, rotation in the plane (e1, e2)
 def Rth(th):
     R = np.eye(8); R[1, 1] = R[2, 2] = np.cos(th); R[1, 2] = -np.sin(th); R[2, 1] = np.sin(th); return R
 theta = lambda b: 1.3 * np.sin(2 * b[0]) + 0.7 * b[3] * b[5]
@@ -1420,14 +1423,14 @@ for _ in range(200):
     r_, s_, t_ = rng.uniform(-3, 3, 3)
     e = max(e, np.abs(Tth(pt(r_), pt(s_), pt(t_)) - pt(r_ - s_ + t_)).max())
     dist_std = max(dist_std, np.linalg.norm(Tth(a, b, x) - T0(a, b, x)))
-report("22 Prop 5.16: T_theta: Mal'cev, two-sided isometry, round trip 2<x,w>x-w, heap on great circles", e, 1e-12)
-report(f"22 Prop 5.16: T_theta differs from (a bbar)x (max {dist_std:.2f}; 1/value)", 1 / dist_std, 10.0)
+report("22 Prop 8.16: T_theta: Mal'cev, two-sided isometry, round trip 2<x,w>x-w, heap on great circles", e, 1e-12)
+report(f"22 Prop 8.16: T_theta differs from (a bbar)x (max {dist_std:.2f}; 1/value)", 1 / dist_std, 10.0)
 # R_theta is not an automorphism for theta not in 2 pi Z
 dA = min(max(np.linalg.norm(Rth(th) @ omul8(u_, v_) - omul8(Rth(th) @ u_, Rth(th) @ v_)) for u_, v_ in [(o8(), o8()) for _ in range(50)])
          for th in (0.3, 1.0, np.pi, 5.0))
-report("22 Prop 5.16(iii): R_theta in G2 only for theta in 2 pi Z (1/min defect)", 1 / dA, 10.0)
+report("22 Prop 8.16(iii): R_theta in G2 only for theta in 2 pi Z (1/min defect)", 1 / dA, 10.0)
 # G2 elements fix 1, preserve norm, have det 1 (sample automorphism: x -> q x q^{-1} on H + compatible, via basic triple map)
-# Prop 5.14: (C_o) for (a bbar)x and all o; fails for T_theta; holds for isometric conjugates of (a bbar)x
+# Prop 8.17: (C_o) for (a bbar)x and all o; fails for T_theta; holds for isometric conjugates of (a bbar)x
 C_def = lambda T, o, x, y, z: np.linalg.norm(T(x, y, z) - T(T(x, o, T(o, y, o)), o, z))
 eC = eM = eI = 0.0; fC = 0.0
 for _ in range(200):
@@ -1441,8 +1444,8 @@ Tpsi = lambda a, b, x: psi @ T0(psi.T @ a, psi.T @ b, psi.T @ x)
 for _ in range(100):
     o, x, y, z = o8(), o8(), o8(), o8()
     eI = max(eI, C_def(Tpsi, o, x, y, z))
-report("22 Prop 5.17: (C_o) holds for (a bbar)x (all o) and its isometric conjugates; right Moufang identity", max(eC, eM, eI), 1e-12)
-report("22 Prop 5.17: (C_o) fails for T_theta (1/max defect)", 1 / fC, 10.0)
+report("22 Prop 8.17: (C_o) holds for (a bbar)x (all o) and its isometric conjugates; right Moufang identity", max(eC, eM, eI), 1e-12)
+report("22 Prop 8.17: (C_o) fails for T_theta (1/max defect)", 1 / fC, 10.0)
 # base loops of T_theta are Moufang (isomorphic to the unit octonions)
 eL = 0.0
 for _ in range(100):
@@ -1490,13 +1493,13 @@ for _ in range(300):
     ok14 &= bool(np.all(np.minimum(d1, d2) < 0.25)); n14 += 1
     a = ex4(s_, A); x = ex4(t_, X)
     ok14 &= np.allclose(qmul(a, ex4(t_, rodr(A, -2 * s_, X))), qmul(x, a)); n14 += 1
-report(f"22 earlier proof of Thm 5.15 (vectorised): two normal forms agree iff (0,0) or (-2s,2t) ({n14} checks)", 0.0 if ok14 else 1.0, 0.5)
+report(f"22 earlier proof of Thm 8.15 (vectorised): two normal forms agree iff (0,0) or (-2s,2t) ({n14} checks)", 0.0 if ok14 else 1.0, 0.5)
 # Example (B) witnesses
 w_ = 0.5 * np.array([1., 1, 1, 1]); y_ = 0.5 * np.array([1., 1, 1, -1]); ww = 0.5 * np.array([1., 1, -1, 1]); one = np.array([1., 0, 0, 0])
 eW = np.abs(TB(TB(w_, one, w_), y_, ww) + TB(w_, one, TB(w_, y_, ww))).max()
 wr = np.array([0., 1, -1, 0]) / np.sqrt(2)
 eW = max(eW, np.abs(TB(w_, one, wr) - TB(qc(w_), one, wr)).max(), abs(kappa(w_, qc(w_)) - 0.25))
-report("22 Prop 5.10(B): antipodal third-identity witness; right transport identifies u and ubar", eW, 1e-12)
+report("22 Prop 8.10(B): antipodal third-identity witness; right transport identifies u and ubar", eW, 1e-12)
 # tripod loop: U = 1, span of x and the three tips is R^4
 x0 = unit(); Bq = np.linalg.qr(np.column_stack([x0, rng.normal(size=(4, 3))]))[0][:, 1:]
 H = np.array([1., 0, 0, 0]); tips = []
@@ -1534,7 +1537,7 @@ defect = seq[2] - 2 * np.cos(wt) * seq[1] + seq[0]
 e = max(e, abs(defect[0]) + abs(defect[1]), abs(abs(defect[2]) - (2 - 2 * np.cos(wt)) * abs(nvec[2])))
 report("22 pointers (i), (ii): distance branches; transverse vs longitudinal Bloch recurrence", e, 1e-12)
 
-# =========================================================== 23. Prop 5.12 (dimension), base-b products
+# =========================================================== 23. Prop 8.13 (dimension), base-b products
 e = 0.0
 for _ in range(100):
     b = o8(); a, x = o8(), o8()
@@ -1543,16 +1546,16 @@ for _ in range(100):
     e = max(e, np.abs(Bb(al * u1 + be * u2, x) - al * Bb(u1, x) - be * Bb(u2, x)).max(),
             np.abs(Bb(x, al * u1 + be * u2) - al * Bb(x, u1) - be * Bb(x, u2)).max(),
             np.abs(Bb(b, x) - x).max(), np.abs(Bb(a, b) - a).max(), abs(np.linalg.norm(Bb(u1, u2)) - np.linalg.norm(u1) * np.linalg.norm(u2)))
-report("23 Prop 5.13: B_b of (a bbar)x on S^7 is bilinear, norm-multiplicative, with unit b", e, 1e-12)
+report("23 Prop 8.13: B_b of (a bbar)x on S^7 is bilinear, norm-multiplicative, with unit b", e, 1e-12)
 # m = 2: the unital composition product with unit b and B(f,f) = -b (f perp b) is complex multiplication a bbar x
 e = 0.0
 for _ in range(100):
     b = np.exp(1j * rng.uniform(0, 2 * np.pi)); f = 1j * b
     B = lambda a_, x_: a_ * np.conj(b) * x_
     e = max(e, abs(B(f, f) + b), abs(B(b, f) - f), abs(B(f, b) - f), abs(abs(B(f, f)) - 1))
-report("23 Remark 5.14(ii): on S^1 the product with unit b is a bbar x, B(f,f) = -b", e, 1e-12)
+report("23 Remark 8.14(ii): on S^1 the product with unit b is a bbar x, B(f,f) = -b", e, 1e-12)
 
-# =========================================================== 24. comb formula (Lemma 9.16) and equality case (Prop 9.17)
+# =========================================================== 24. comb formula (Lemma 19.16) and equality case (Prop 19.17)
 def _hd(w_, u_):
     q_ = np.array([1., 0, 0, 0]) + qmul(w_, qc(u_)); return q_ / np.linalg.norm(q_)
 def _path_hol(pts):
@@ -1579,10 +1582,10 @@ def _comb_test(F, N=240, hh=1e-5):
 _cliff = lambda u, v: np.array([np.cos(u), np.sin(u), np.cos(v), np.sin(v)]) / np.sqrt(2)
 _gs = lambda u, v: np.array([np.sin(0.3 + 0.9 * v) * np.cos(1.2 * u), np.sin(0.3 + 0.9 * v) * np.sin(1.2 * u), np.cos(0.3 + 0.9 * v), 0.])
 Th_c, A_c, U_c, Q_c, L_c = _comb_test(_cliff); Th_g, A_g, U_g, Q_g, L_g = _comb_test(_gs)
-report("24 Lemma 9.16: comb ODE Q' = W Q reproduces U_gamma (Clifford-torus patch and great-sphere patch)", max(np.abs(Q_c - U_c).max(), np.abs(Q_g - U_g).max()), 1e-5)
-report("24 Lemma 9.16: Theta/2 <= length(Q) <= area/2 (both patches)", max(0, Th_c / 2 - L_c - 1e-6, L_c - A_c / 2 - 1e-6, Th_g / 2 - L_g - 1e-6, L_g - A_g / 2 - 1e-6), 1e-12)
-report(f"24 Prop 9.17: great-sphere patch Theta = area ({Th_g:.6f} vs {A_g:.6f})", abs(Th_g - A_g), 1e-5)
-report(f"24 Prop 9.17: Clifford patch strict, area - Theta = {A_c - Th_c:.4f} (area {A_c:.4f}); 1/gap", 1 / (A_c - Th_c), 100.0)
+report("24 Lemma 19.16: comb ODE Q' = W Q reproduces U_gamma (Clifford-torus patch and great-sphere patch)", max(np.abs(Q_c - U_c).max(), np.abs(Q_g - U_g).max()), 1e-5)
+report("24 Lemma 19.16: Theta/2 <= length(Q) <= area/2 (both patches)", max(0, Th_c / 2 - L_c - 1e-6, L_c - A_c / 2 - 1e-6, Th_g / 2 - L_g - 1e-6, L_g - A_g / 2 - 1e-6), 1e-12)
+report(f"24 Prop 19.17: great-sphere patch Theta = area ({Th_g:.6f} vs {A_g:.6f})", abs(Th_g - A_g), 1e-5)
+report(f"24 Prop 19.17: Clifford patch strict, area - Theta = {A_c - Th_c:.4f} (area {A_c:.4f}); 1/gap", 1 / (A_c - Th_c), 100.0)
 
 # =========================================================== 25. further items
 # sup_{|u|=|v|=1} |mu_b(u,v) - uv| = 4 |Re b| |Im b| for mu_b of (a bbar)x (operator-norm maximisation by power iteration on random starts)
@@ -1604,14 +1607,14 @@ e = 0.0
 for _ in range(6):
     b = o8(); pred = 4 * abs(b[0]) * np.linalg.norm(b[1:])
     e = max(e, abs(_mub_dev(b, trials=8, iters=60) - pred))
-report("25 after Prop 5.16: sup |mu_b(u,v) - uv| = 4|Re b||Im b| (alternating maximisation, 6 random b)", e, 1e-6)
+report("25 after Prop 8.16: sup |mu_b(u,v) - uv| = 4|Re b||Im b| (alternating maximisation, 6 random b)", e, 1e-6)
 # spin angle of a triangle is not the solid angle of the Hopf images: x = 1, y = e^{i/2}, z = e^{j/2}
 xq = np.array([1., 0, 0, 0]); yq = np.array([np.cos(.5), np.sin(.5), 0, 0]); zq = np.array([np.cos(.5), 0, np.sin(.5), 0])
 aq = qmul(halfdisp(xq, zq), qmul(halfdisp(zq, yq), halfdisp(yq, xq))); Eq = 2 * np.arccos(np.clip(aq[0], -1, 1))
 hop = lambda q: qmul(qmul(q, np.array([0., 1, 0, 0])), qc(q))
 report(f"25 pointer (iii): E = {Eq:.4f} for x=1, y=e^(i/2), z=e^(j/2), while Hopf images of x and y coincide", abs(Eq - 0.1302) + np.abs(hop(xq) - hop(yq)).max(), 1e-4)
 
-# =========================================================== 26. roundness without associativity (Thm 5.18)
+# =========================================================== 26. roundness without associativity (Thm 8.18)
 # own checks on the model S^3, B(a,x) = a x, w = 1: X_v(x) = v x, Y_v(x) = x v, gamma_v(t) = exp(tv)
 e = 0.0
 for _ in range(50):
@@ -1627,7 +1630,7 @@ for _ in range(50):
     A = lambda Y: (lambda q: q - (q @ np.array([1., 0, 0, 0])) * np.array([1., 0, 0, 0]))(qmul(v, Y))
     e = max(e, np.abs(-A(A(Z)) - Z).max())
 report("26 Lemmas 5.22-5.23 on the model S^3: addition law, cosine profile, unit Killing field, -A_0^2 = k^2 on v-perp", e, 1e-12)
-# Remark 5.24 witnesses (own code)
+# Remark 8.24 witnesses (own code)
 def _rot(axis, ang):
     axis = np.asarray(axis, float); axis /= np.linalg.norm(axis); K = np.array([[0, -axis[2], axis[1]], [axis[2], 0, -axis[0]], [-axis[1], axis[0], 0]])
     return np.eye(3) + np.sin(ang) * K + (1 - np.cos(ang)) * K @ K
@@ -1639,13 +1642,13 @@ for _ in range(100):
 Hs = [np.eye(3)] + [_rot(ax, np.pi) for ax in np.eye(3)]
 Gm = np.array([[cS(P, Q) for Q in Hs] for P in Hs])
 e = max(e, abs(np.linalg.eigvalsh(Gm).min() + 2), max(abs(cS(np.eye(3), Hq) + 1) for Hq in Hs[1:]))
-report("26 Remark 5.24(i): SO(3) satisfies the round trip, three zero partners at I, Gram eigenvalue -2", e, 1e-12)
+report("26 Remark 8.24(i): SO(3) satisfies the round trip, three zero partners at I, Gram eigenvalue -2", e, 1e-12)
 m_ = 3; ct = lambda x, y: np.mean(np.cos(y - x)); x0 = np.zeros(m_); d0 = np.array([np.pi, 0, 0])
 tor = abs(ct(x0, 2 * d0 - x0) - (2 * ct(x0, d0) ** 2 - 1))                            # T(x,w,x) = 2x - w
 cyl = abs(np.exp(-4.0) - (2 * np.exp(-2.0) - 1))
-report("26 Remark 5.24(ii): torus and cylinder violate the round-trip law (1/min defect)", 1 / min(tor, cyl), 10.0)
+report("26 Remark 8.24(ii): torus and cylinder violate the round-trip law (1/min defect)", 1 / min(tor, cyl), 10.0)
 
-# =========================================================== 27. further checks for Thm 5.18
+# =========================================================== 27. further checks for Thm 8.18
 # polarisation: <X_u, X_v>(x) = <u, v> on the model S^3 (X_v(x) = v x), so X_{e_i} is a global orthonormal Killing frame
 e = 0.0
 for _ in range(50):
@@ -1672,27 +1675,27 @@ for _ in range(100):
     a, b, y = unit(), unit(), unit()
     e = max(e, abs(_c(a, b) - _c(b, a)), abs(_c(_B(y, a), _B(y, b)) - _c(a, b)), abs(_c(one4, _S(a)) - (2 * _c(one4, a) ** 2 - 1)),
             np.abs(_B(one4, y) - y).max(), np.abs(_B(y, one4) - y).max())
-report("28 Prop 5.26(i): units, symmetry, left invariance, round trip at 1 (100 random samples)", e, 1e-12)
+report("28 Prop 8.26(i): units, symmetry, left invariance, round trip at 1 (100 random samples)", e, 1e-12)
 gap = np.pi / 4 - _theta(xw); G3 = np.array([[_c(p_, q_) for q_ in (one4, -one4, xw)] for p_ in (one4, -one4, xw)])
-report(f"28 Prop 5.26(ii): pi/4 - theta(x) = {gap:.4e} > 0, theta(-x) = 3pi/4, Gram(1,-1,x) min eig {np.linalg.eigvalsh(G3).min():.3e}",
+report(f"28 Prop 8.26(ii): pi/4 - theta(x) = {gap:.4e} > 0, theta(-x) = 3pi/4, Gram(1,-1,x) min eig {np.linalg.eigvalsh(G3).min():.3e}",
        max(abs(_theta(-xw) - 3 * np.pi / 4), 0.0 if gap > 1e-5 else 1.0, 0.0 if np.linalg.eigvalsh(G3).min() < -1e-9 else 1.0), 1e-12)
 pp = np.array([0.5, 0.5, 1 / np.sqrt(2), 0]); dd = np.linalg.norm(_B(_S(pp), pp) - _B(pp, _S(pp)))
-report(f"28 Prop 5.26(iii): third identity on <1,p> fails by {dd:.6f} = 2|v| sin(phi(p))", abs(dd - np.sqrt(2) * np.sin(np.exp(-1) / 8)) + (1.0 if dd < 1e-3 else 0.0), 1e-12)
-# Prop 5.27(iii): Kinyon-type and twisted round operations have O_a a = 2<a,w> a - w; check for B_eps(x,y) = x h y h^-1, h = exp(eps Im x)
+report(f"28 Prop 8.26(iii): third identity on <1,p> fails by {dd:.6f} = 2|v| sin(phi(p))", abs(dd - np.sqrt(2) * np.sin(np.exp(-1) / 8)) + (1.0 if dd < 1e-3 else 0.0), 1e-12)
+# Prop 8.27(iii): Kinyon-type and twisted round operations have O_a a = 2<a,w> a - w; check for B_eps(x,y) = x h y h^-1, h = exp(eps Im x)
 e = 0.0
 for _ in range(50):
     a = unit(); im = a.copy(); im[0] = 0; nrm = np.linalg.norm(im); hh = np.concatenate([[np.cos(0.2 * nrm)], np.sin(0.2 * nrm) * im[1:] / nrm])
     Ba = qmul(qmul(qmul(a, hh), a), qc(hh)); e = max(e, np.abs(Ba - (2 * a[0] * a - one4)).max())
-report("28 Prop 5.27(iii): a round one-sided operation satisfies O_a a = 2<a,w>a - w", e, 1e-12)
+report("28 Prop 8.27(iii): a round one-sided operation satisfies O_a a = 2<a,w>a - w", e, 1e-12)
 
-# =========================================================== 29. Prop 5.26(iv), Remark 5.29: U(2) invariance and log-periodic limits
+# =========================================================== 29. Prop 8.26(iv), Remark 8.29: U(2) invariance and log-periodic limits
 e1 = e2 = 0.0
 for _ in range(60):
     a, b = unit(), unit(); al = rng.uniform(0, 2 * np.pi)
     tq = np.array([np.cos(al), np.sin(al), 0, 0]); rq = np.array([np.cos(al), 0, np.sin(al), 0]); q_ = unit()
     e1 = max(e1, abs(_c(qmul(qmul(q_, a), tq), qmul(qmul(q_, b), tq)) - _c(a, b)))
     e2 = max(e2, abs(_c(qmul(a, rq), qmul(b, rq)) - _c(a, b)))
-report(f"29 Prop 5.26(iv): c invariant under x -> q x e^(i a) (U(2)); not under right e^(j a) (max change {e2:.2e})", max(e1, 0.0 if e2 > 1e-5 else 1.0), 1e-12)
+report(f"29 Prop 8.26(iv): c invariant under x -> q x e^(i a) (U(2)); not under right e^(j a) (max change {e2:.2e})", max(e1, 0.0 if e2 > 1e-5 else 1.0), 1e-12)
 _ud = np.array([0., 1, 1, 0]) / np.sqrt(2)
 def _lam(eps_, uu):
     x = np.cos(eps_) * one4 + np.sin(eps_) * uu
@@ -1701,7 +1704,7 @@ L1 = [_lam(2.0 ** -k, _ud) for k in (14, 18, 22)]; L15 = [_lam(1.5 * 2.0 ** -k, 
 e = max(abs(L1[0] - 0.999071031059), abs(L1[1] - 0.999071031057), abs(L1[2] - 0.999071031057),
         abs(L15[1] - 0.999169235236), abs(L15[2] - 0.999169235236))
 e = max(e, abs(_lam(1.5 * 2.0 ** -12, np.array([0., 1, 0, 0])) - 1), abs(_lam(1.5 * 2.0 ** -12, np.array([0., 0, 1, 0])) - 1))
-report("29 Remark 5.29: theta(e^(eps u))/eps -> 0.999071031057 (eps = 2^-k), 0.999169235236 (1.5*2^-k); = 1 along i, j", e, 1e-11)
+report("29 Remark 8.29: theta(e^(eps u))/eps -> 0.999071031057 (eps = 2^-k), 0.999169235236 (1.5*2^-k); = 1 along i, j", e, 1e-11)
 
 # =========================================================== 30. Part 0 (independent checks of the m1 section)
 import itertools as _itt
@@ -4068,12 +4071,9 @@ S12 = set(np.round(sum(wd[j] * z ** j for j in range(12)), 9) for wd in _legal42
 img = set(np.round(z * sum(wd[j] * z ** j for j in range(11)), 9) for wd in _legal42(3, 11)) | set(np.round(1 + z * z * sum(wd[j] * z ** j for j in range(10)), 9) for wd in _legal42(3, 10)) | set(np.round(1 + z + z ** 3 * sum(wd[j] * z ** j for j in range(9)), 9) for wd in _legal42(3, 9))
 e = max(e, 0 if S12 == img else 1)
 lam = max(np.roots([1, 0, 0, -2, -1]).real); dimB = 2 * np.log(lam) / np.log(beta); e = max(e, abs(round(dimB, 5) - 1.09336))
-th = 1.0
-for _ in range(200): th = np.cos(th)
-e = max(e, abs(round(th, 6) - 0.739085), abs(round((th - r) / th * 100, 3) - 0.234))
 # golden window [-1, phi]
 zg = -1 / phi; vals = [sum(wd[j] * zg ** j for j in range(16)) for wd in _legal42(2, 16)]; e = max(e, abs(max(vals) - phi) * 1e-1, abs(min(vals) + 1) * 1e-1)
-report("42 Prop. m9:fractional, Thm m9:rauzy, Prop. m9:scales: six binary maps and fixed sets; 2cos(2pi/5)=1/phi; z=-0.419643+0.606291i, r=0.737353, r^2+r^4+r^6=1, beta r^2=1; L M_sigma=zL; prefix projections = legal sums (n=6); dim 2log(lambda)/log(beta)=1.09336; Dottie 0.739085, ratio 0.234%; golden window [-1,phi]", e, 1e-4)
+report("42 Prop. m9:fractional, Thm m9:rauzy, Prop. m9:scales: six binary maps and fixed sets; 2cos(2pi/5)=1/phi; z=-0.419643+0.606291i, r=0.737353, r^2+r^4+r^6=1, beta r^2=1; L M_sigma=zL; prefix projections = legal sums (n=6); dim 2log(lambda)/log(beta)=1.09336; golden window [-1,phi]", e, 1e-4)
 # (6) absolute values, p-adic readouts, CRT, Ostrowski numeration
 def _v42(n, p):
     k = 0
@@ -4807,14 +4807,14 @@ for _ in range(200):
 report("46 Thm m14:robin-eight, Ex. m14:robin-endpoints: Z(5040)=403/105 > e^g loglog 5040 = max_{m<=5040} Z; 5041..5999 pass; 4204 sorted products in (5040,10^12) pass with C=89/50; n>=10^12 bound; 9th primorial passes; reduction lemma monotone in 1/p", e, 1e-9)
 # (5) window-size arithmetic; Cayley criterion; quartic countermodel
 e = 0.0
-dl, Dd = _F46(1, 10), _F46(24); m0 = 100 * Dd ** 2 / dl ** 2; m1 = 500 * Dd ** 4 / dl ** 2
-e = max(e, abs(m0 - 5760000), abs(m1 - 16588800000), abs(4 * m0 - 23040000), abs(round(4 * (28 * 16588800000 + 20) ** 2 / 1e23, 5) - 8.62990))
+dl, Dd = _F46(1, 10), _F46(30); m0 = 100 * Dd ** 2 / dl ** 2; m1 = 500 * Dd ** 4 / dl ** 2
+e = max(e, abs(m0 - 9000000), abs(m1 - 40500000000), abs(4 * m0 - 36000000), abs(round(4 * (28 * 40500000000 + 20) ** 2 / 1e24, 5) - 5.14382))
 for _ in range(50):
     rho = complex(_r46.uniform(0, 1), _r46.uniform(-30, 30)); e = max(e, abs(abs(rho - 1) ** 2 - abs(rho) ** 2 - (1 - 2 * rho.real)))
 roots = [0.25 + 14j, 0.25 - 14j, 0.75 + 14j, 0.75 - 14j]; P = np.poly(roots)
 for s in (0.3 + 1j, 2 - 3j):
     e = max(e, abs(np.polyval(P, s) - np.polyval(P, 1 - s)) / abs(np.polyval(P, s)), abs(np.polyval(P, np.conj(s)) - np.conj(np.polyval(P, s))) / abs(np.polyval(P, s)))
-report("46 Ex. m14:window-size, Prop. m14:rh-forms, Rem. m14:symmetry: m0=5760000, m1=16588800000, log B0=8.6299e23; |rho-1|^2-|rho|^2=1-2Re rho; the quartic with roots 1/4+-14i, 3/4+-14i has both symmetries", e, 1e-6)
+report("46 Ex. m14:window-size, Prop. m14:rh-forms, Rem. m14:symmetry: m0=9000000, m1=40500000000, log B0=5.14382e24; |rho-1|^2-|rho|^2=1-2Re rho; the quartic with roots 1/4+-14i, 3/4+-14i has both symmetries", e, 1e-6)
 # (6) Zeckendorf carry barrier, sharpness, refuted error-interval sentence
 _FB = [0, 1]
 for _ in range(90): _FB.append(_FB[-1] + _FB[-2])

@@ -281,13 +281,13 @@ def check_robin():
     print(f"  Robin: 959 small cases and {compressed_count} compressed cases")
 
     delta = Fraction(1, 10)
-    d = 14 + 10
+    d = 20 + 10
     m0 = 100 * d**2 / delta**2
     m1 = 500 * d**4 / delta**2
-    require((d, m0, m1, 4 * m0) == (24, 5760000, 16588800000, 23040000),
+    require((d, m0, m1, 4 * m0) == (30, 9000000, 40500000000, 36000000),
             "conditional scale arithmetic")
     log_b0 = 4 * (28 * m1 + 20)**2
-    assert_allclose(float(log_b0), 8.62990e23, rtol=1e-6)
+    assert_allclose(float(log_b0), 5.14382e24, rtol=1e-6)
     require(4 * m0 < 28 * m1, "conditional log window order")
     beta = Fraction(1, 2) + delta
     require(beta**2 + 16 * beta == Fraction(33, 4) + 17 * delta + delta**2,
