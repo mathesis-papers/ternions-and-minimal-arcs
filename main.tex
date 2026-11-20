@@ -351,7 +351,8 @@ the first; the results themselves first appeared in the library.  Statements who
 in Section~\ref{sec:known} as not found in the searched scope.
 
 Section~\ref{sec:known} lists which statements are classical.  Section~\ref{sec:lean} records the
-formalisation status.
+formalisation status: six units written for this paper are formalised in the library, and the formal proofs
+there of further statements are listed.
 
 \subsection{Companion paper}
 A companion paper (in preparation) studies physical readings of the
@@ -18326,8 +18327,10 @@ Theorem~\ref{thm:triangle} are classical spherical trigonometry \cite{Todhunter}
 
 \section{Formalisation status}\label{sec:lean}
 
-Three units of Part~\ref{part:axiom} have Lean~4 formalisations in the library \cite{Tru}; they were merged into branch \texttt{dev} after the
-commit cited in the bibliography, through the pull requests named below (statements read at the merge commits).
+Six units have Lean~4 formalisations in the library \cite{Tru}, written for this paper: three for Part~\ref{part:axiom} and three for the
+statements of Section~\ref{sec:ready} that underlie Part~\ref{part:arc}.  Each was merged into branch \texttt{dev} through the pull request
+named below, after that pull request's required checks, which compile the affected Lean modules, had passed; all six are present at the
+commit cited in the bibliography.  The statements below were read at the merge commits.
 \begin{enumerate}[label=(\alph*),leftmargin=2em]\sloppy
 \item \emph{Rank-one classification} (pull request 31765): \texttt{D5.\allowbreak S3.\allowbreak Quantum.\allowbreak Algebra.\allowbreak Comparison.\allowbreak RoundTripClassification.\allowbreak comparison\_\allowbreak classification}.
 For a Lie algebra with exponential map, an invariant comparison and its Hessian form $h$ as in Lemmas~\ref{lem:class}--\ref{lem:rankone}, it
@@ -18335,16 +18338,44 @@ proves that $h$ is positive definite and invariant, $\varphi(\exp tX)=\cos^2(t\s
 dimension is $0$, $1$ or $3$, and in dimension $3$ there is an $h$-orthonormal basis with the $\su(2)$ brackets: the $C^2$ route of
 Section~\ref{sec:class} at the Lie-algebra level.
 \item \emph{Rigidity of continuous cosine duplication} (pull request 31864): \texttt{D5.\allowbreak S3.\allowbreak Analytic.\allowbreak Dilation.\allowbreak DuplicationCircleRigidity},
-declarations \texttt{no\_\allowbreak faithful\_\allowbreak duplication\_\allowbreak on\_\allowbreak line} and \texttt{eq\_\allowbreak scaled\_\allowbreak cos\_\allowbreak of\_\allowbreak discrete\_\allowbreak fibre}, the items F8 and F16 of
+declarations \texttt{no\_\allowbreak faithful\_\allowbreak duplication\_\allowbreak on\_\allowbreak line}, \texttt{eq\_\allowbreak cos\_\allowbreak of\_\allowbreak circle\_\allowbreak duplication} and \texttt{eq\_\allowbreak scaled\_\allowbreak cos\_\allowbreak of\_\allowbreak discrete\_\allowbreak fibre}, the items F8, F9 and F16 of
 Section~\ref{sec:ready} (Lemmas~\ref{lem:noline}, \ref{lem:circle}).
 \item \emph{Two-readout reduction} (pull request 31928): \texttt{D5.\allowbreak S3.\allowbreak Quantum.\allowbreak Algebra.\allowbreak Comparison.\allowbreak TwoReadoutNormalization.\allowbreak bounded\_\allowbreak dalembert\_\allowbreak of\_\allowbreak affine\_\allowbreak law},
 the item F7 of Section~\ref{sec:ready} (the group-theoretic core of Theorem~\ref{thm:operational}).
+\item \emph{Metric from ray continuity} (pull request 32093): \texttt{D5.\allowbreak S3.\allowbreak Quantum.\allowbreak Algebra.\allowbreak Comparison.\allowbreak RoundTripPeriodMetric.\allowbreak comparison\_\allowbreak classification\_\allowbreak of\_\allowbreak continuous\_\allowbreak rays}.
+In the setting of (a), a finite-dimensional complete real normed algebra with a Lie subalgebra $\g$ and a group of units containing
+$\exp\g$ and normalising $\g$, it replaces the given Hessian form by the assumption that $t\mapsto\varphi(\exp tX)$ is continuous for each
+$X\in\g$, keeps the hypotheses on $\varphi$ ($0\le\varphi\le1$, $\varphi(g)=1$ only at $g=1$, duplication, conjugation invariance), and proves
+that there is a positive definite, symmetric, invariant form $H$ with $\varphi(\exp tX)=\cos^2(t\sqrt{H(X,X)/2})$, that the return times
+of each nonzero ray form the lattice $T\Z$ with $H(X,X)=2\pi^2/T^2$, and the conclusions of (a): abelian subalgebras are lines, the
+dimension is $0$, $1$ or $3$, and in dimension $3$ there is an $H$-orthonormal basis $(b_0,b_1,b_2)$ and $\mu>0$ with
+$[b_0,b_1]=\mu b_2$, $[b_1,b_2]=\mu b_0$, $[b_2,b_0]=\mu b_1$.  This is Steps~1 and~2 of the
+proof of Theorem~\ref{thm:noreg} at the Lie-algebra level for groups of units of such an algebra; the conclusions of
+Theorem~\ref{thm:noreg} about the group $G_o$ and the analyticity of $\kappa$, and Lemma~\ref{lem:lie}, are not formalised.
+\item \emph{Chebyshev recurrence of the heap} (pull request 32449): \texttt{D5.\allowbreak S3.\allowbreak Quantum.\allowbreak Algebra.\allowbreak Comparison.\allowbreak QuaternionHeapRecurrence.\allowbreak normSq\_\allowbreak and\_\allowbreak chebyshev}.
+For a sequence of quaternions it proves the equivalence of ($\|x_0\|=\|x_1\|=1$ and $x_{n+2}=x_{n+1}\bar x_nx_{n+1}$ for all $n$) with
+($\|x_n\|=1$, $x_{n+1}=U_n(c)x_1-U_{n-1}(c)x_0$ and $\ip{x_0}{x_n}=T_n(c)$ for all $n$, where $c=\ip{x_0}{x_1}$).  This is the item F4
+of Section~\ref{sec:ready} together with its converse, and the equivalence of (a) with the formula (ii) of Theorem~\ref{thm:recur}
+including $c(x_0,x_n)=T_n(c)$; the items F1 and the first identity of F2 are private lemmas of the module.  The parts (b), (c) and (i) of
+Theorem~\ref{thm:recur} and the recurrence for $c(y,x_n)$ with arbitrary $y$ are not formalised.
+\item \emph{Discrete least action} (pull request 32477): \texttt{D5.\allowbreak S3.\allowbreak Quantum.\allowbreak Algebra.\allowbreak Comparison.\allowbreak DiscreteLeastAction.\allowbreak sum\_\allowbreak one\_\allowbreak sub\_\allowbreak cos\_\allowbreak least\_\allowbreak action}.
+For a finite family $(t_i)$ of $N$ nonnegative reals with $\sum_it_i=\Theta\le\pi$ it proves
+$\sum_i(1-\cos t_i)\ge N(1-\cos(\Theta/N))$, with equality if and only if all $t_i=\Theta/N$ or $N=2$ and $\Theta=\pi$ (the empty family
+included).  Restricted to $N\ge1$ and $\Theta<\pi$ this is the item F5 of Section~\ref{sec:ready}, the scalar core of
+Theorem~\ref{thm:action}; the reduction from points of $M$ to step lengths, the identification of the minimiser and the
+critical-point clause of Theorem~\ref{thm:action} are not formalised.
 \end{enumerate}
-That no \texttt{sorry} occurs in the three files was established by source inspection, without a kernel build for this paper.  These three units are the only Lean formalisation written for this paper.  Not formalised are: the topological
-steps of Part~\ref{part:axiom} (Lemma~\ref{lem:lie}, the Gleason--Montgomery--Zippin theorem, the regularity-free argument as a whole), the remaining results
+Two binding audits of the library remain open, without affecting the statements or their kernel checks.  For (d), the information-escape
+registration is missing a source-faithful binding for the form $H$ shared by all its conclusions (issue 32083, left open).  For (f),
+the four-slot registration lacks a binding certificate for the readout's dependence on the finite-index \texttt{Fintype} instance
+(issue 32465, left open).
+For each of the six units the pull request's required checks compiled the affected Lean modules before the merge; we did not
+rebuild them for this paper.  For (a)--(c) we also established by source inspection that no \texttt{sorry} occurs in the three
+files, and the word does not occur in the files of (d)--(f).  These six units are the only Lean formalisation written for this paper.  Not formalised are: the topological
+steps of Part~\ref{part:axiom} (Lemma~\ref{lem:lie}, the Gleason--Montgomery--Zippin theorem, and the regularity-free argument beyond the Lie-algebra steps formalised in (d)), the remaining results
 of Sections~\ref{sec:class}--\ref{sec:geom}, including the roundness theorem (Section~\ref{sec:round}) and the one-sided results
-(Section~\ref{sec:onesided}), all of Part~\ref{part:arc}, and Parts~\ref{part:alg} and \ref{part:beyond} as written here, except the statements listed in the next paragraph (for the
-other library declarations that cover parts of them, see Section~\ref{sec:leanlib}).  A preregistered formalisation of the classification core (Sections~\ref{sec:def}--\ref{sec:class}) is tracked at
+(Section~\ref{sec:onesided}), Part~\ref{part:arc} except the parts of Theorems~\ref{thm:recur} and~\ref{thm:action} formalised in (e) and (f), and Parts~\ref{part:alg} and \ref{part:beyond} as written here, except the statements listed in the next paragraph (for the
+other library declarations that cover parts of them, see Section~\ref{sec:leanlib}).  The formalisation of the classification core (Sections~\ref{sec:def}--\ref{sec:class}) was preregistered at
 \begin{center}\small\url{https://github.com/the-omega-institute/trureturing/issues/31739}.\end{center}
 Earlier, the library already contained, in the file
 \begin{center}\small\texttt{D5/S3/Quantum/Algebra/RankOneInvariantMetric.lean} (line 444),\end{center}
@@ -18435,7 +18466,8 @@ The following are finite-dimensional algebra or elementary real analysis.  Lean~
 quaternion with zero real part), unit points = \texttt{Metric.sphere (0 : }$\HH[\R]$\texttt{) 1}, $\cos=$ \texttt{Real.cos},
 $U_n=$ \texttt{Polynomial.Chebyshev.U Real n} with $n:\Z$ and $U_{-1}=0$; the cross product $p\times q$ of pure quaternions is the
 imaginary part of $pq$ (as $pq=-\ip pq+p\times q$), so no separate cross product is needed.  We write
-$\kappa(a,b):=(1+\ip ab)/2$.
+$\kappa(a,b):=(1+\ip ab)/2$.  Formalised so far (Section~\ref{sec:lean}): F1 and the first identity of F2 as private lemmas of unit (e),
+F4 in unit (e), F5 in unit (f) (in a form with $\Theta\le\pi$ that implies it), F7 in unit (c), and F8, F9 and F16 in unit (b).
 \begin{enumerate}[label=\textbf{F\arabic*.},leftmargin=2.4em]\small
 \item (reflection) $\forall\,x\,w:\HH[\R]$, \ $x\bar wx=2\ip xw\,x-\lVert x\rVert^2w$.  No hypotheses.
 \item (interference, round trip) $\forall\,x\,w\,y$, $\lVert x\rVert=1\to\ip y{x\bar wx}+\ip yw=2\ip wx\ip yx$; and
@@ -18443,9 +18475,9 @@ $\lVert x\rVert=1\to\lVert w\rVert=1\to\kappa(w,x\bar wx)=(2\kappa(w,x)-1)^2$.
 \item (exact split) $\lVert x\rVert=1\to\lVert y\rVert=1\to y-x=(y\bar x)_{\im}\,x-(1-\ip xy)\,x$ and
 $\ip x{(y\bar x)_{\im}\,x}=0$.
 \item (Chebyshev) $x:\mathbb N\to\HH[\R]$, $\lVert x_0\rVert=\lVert x_1\rVert=1$, $\forall n$, $x_{n+2}=x_{n+1}\bar x_nx_{n+1}$; with
-$c=\ip{x_0}{x_1}$: $\forall n:\mathbb N$, $x_{n+1}=U_n(c)\,x_1-U_{n-1}(c)\,x_0$, and $\lVert x_n\rVert=1$.
+$c=\ip{x_0}{x_1}$: $\forall n:\mathbb N$, $x_{n+1}=U_n(c)\,x_1-U_{n-1}(c)\,x_0$, and $\lVert x_n\rVert=1$.  [Formalised, unit (e), with the converse.]
 \item (discrete least action) $N\ge1$, $t:\mathrm{Fin}\,N\to\R$, $\forall i,\ t_i\ge0$, $\sum_it_i=\Theta$, $\Theta<\pi$
-$\to\sum_i(1-\cos t_i)\ge N(1-\cos(\Theta/N))$, with equality iff $\forall i,\ t_i=\Theta/N$.
+$\to\sum_i(1-\cos t_i)\ge N(1-\cos(\Theta/N))$, with equality iff $\forall i,\ t_i=\Theta/N$.  [Formalised, unit (f).]
 \item ($b=-1$) $G$ with \texttt{[Group G]}, $\psi:G\to\R$, $\forall g,\ \psi(g^{-1})=\psi(g)$, $\forall g\,h,\ \psi(hgh^{-1})=\psi(g)$,
 $\forall g,\ (\psi(g)=1\leftrightarrow g=1)$; $a\,b\,d:\R$, $u:G$ with $\forall z,\ \psi(zu^{-1})=a\psi(z)+b\psi(zu)+d$, and $u*u\ne1$
 $\to b=-1$.
@@ -18485,7 +18517,7 @@ $uv$ or $vu$) is not on this list: the Mathlib version we inspected (the one pin
 theorem nor composition algebras, so a formal proof would have to supply that classification.
 
 \subsection{Library declarations related to Parts~\ref{part:alg} and \ref{part:beyond}}\label{sec:leanlib}
-\emph{Two commits.}  The library is cited in the bibliography at commit \texttt{153b52e} of branch \texttt{dev}, where the three units of Section~\ref{sec:lean} and \texttt{RankOneInvariantMetric.lean} were read; the declarations listed in this subsection were located in a local clone at commit \texttt{9d18ab6}.  \emph{Scope.}  Every entry below was found by name and its statement read; no build was run, and ``no \texttt{sorry}'' means that the word does not occur in the file. It does not cover transitively imported files, \texttt{axiom} declarations or uses of \texttt{native\_decide}, none of which was audited.  Apart from the formal proofs listed in Section~\ref{sec:lean}, the declarations below are results of the library: they do not verify the theorems of this paper, and where a proof here cites one it is used as a cited result.
+\emph{Commits.}  The library is cited in the bibliography at commit \texttt{b6548c6} of branch \texttt{dev}, the merge of unit (f), at which all six units of Section~\ref{sec:lean} are present; \texttt{RankOneInvariantMetric.lean} was read at the earlier commit \texttt{153b52e}, and the declarations listed in this subsection were located in a local clone at commit \texttt{9d18ab6}; both commits are ancestors of \texttt{b6548c6}.  \emph{Scope.}  Every entry below was found by name and its statement read; no build was run, and ``no \texttt{sorry}'' means that the word does not occur in the file. It does not cover transitively imported files, \texttt{axiom} declarations or uses of \texttt{native\_decide}, none of which was audited.  Apart from the formal proofs listed in Section~\ref{sec:lean}, the declarations below are results of the library: they do not verify the theorems of this paper, and where a proof here cites one it is used as a cited result.
 
 The following declarations of the library \cite{Tru} were located by name and their statements read (local clone at commit
 \texttt{9d18ab6}); no \texttt{sorry} occurs in the files of the first six.  They are results of the library, not formalisations
@@ -19994,7 +20026,7 @@ Sect. & Remark & Claim & Counterexample & Corrected\\
 \end{longtable}}
 
 \section*{Use of AI tools}
-The authors used AI tools, namely Claude Fable 5.2 and Claude Opus 5.5 (via Claude Code) and Codex (gpt-6-astra and gpt-6.2-sol), for literature search, computation and double-checking, including Lean formalisation of the three units listed in Section~\ref{sec:lean}. All proofs in the paper can be checked by hand, except the statements marked as library results in Section~\ref{sec:leanlib}, and the computations can be reproduced from the verification package. The authors take full responsibility for their contributions.
+The authors used AI tools, namely Claude Fable 5.2 and Claude Opus 5.5 (via Claude Code) and Codex (gpt-6-astra and gpt-6.2-sol), for literature search, computation and double-checking, including Lean formalisation of the six units listed in Section~\ref{sec:lean}. All proofs in the paper can be checked by hand, except the statements marked as library results in Section~\ref{sec:leanlib}, and the computations can be reproduced from the verification package. The authors take full responsibility for their contributions.
 
 \begin{thebibliography}{99}\small
 \bibitem{Adams} J.~F.~Adams, On the non-existence of elements of Hopf invariant one, \emph{Ann. of Math.} \textbf{72} (1960), 20--104.
@@ -20059,7 +20091,7 @@ The authors used AI tools, namely Claude Fable 5.2 and Claude Opus 5.5 (via Clau
 \bibitem{Stroock} D.~W.~Stroock, \emph{An Introduction to the Analysis of Paths on a Riemannian Manifold}, Math. Surveys Monogr. \textbf{74}, Amer. Math. Soc., 2000.
 \bibitem{Thomassen} C.~Thomassen, The Jordan--Sch\"onflies theorem and the classification of surfaces, \emph{Amer. Math. Monthly} \textbf{99} (1992), 116--130.
 \bibitem{Todhunter} I.~Todhunter, \emph{Spherical Trigonometry}, 5th ed., Macmillan, London, 1886, Art.~103.
-\bibitem{Tru} The Omega Institute, \emph{trureturing}, Lean~4 library, branch \texttt{dev}, commit \texttt{153b52e}, 2026, \url{https://github.com/the-omega-institute/trureturing}.
+\bibitem{Tru} The Omega Institute, \emph{trureturing}, Lean~4 library, branch \texttt{dev}, commit \texttt{b6548c6}, 2026, \url{https://github.com/the-omega-institute/trureturing}.
 \bibitem{VOS} A.~van Oosterom, J.~Strackee, The solid angle of a plane triangle, \emph{IEEE Trans. Biomed. Eng.} \textbf{BME-30} (1983), 125--126.
 % UNVERIFIED (Veselov 1988: not checked against a source)
 \bibitem{Veselov88} A.~P.~Veselov, Integrable systems with discrete time, and difference operators, \emph{Funct. Anal. Appl.} \textbf{22} (1988), 83--93.
