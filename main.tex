@@ -18365,10 +18365,13 @@ included).  Restricted to $N\ge1$ and $\Theta<\pi$ this is the item F5 of Sectio
 Theorem~\ref{thm:action}; the reduction from points of $M$ to step lengths, the identification of the minimiser and the
 critical-point clause of Theorem~\ref{thm:action} are not formalised.
 \end{enumerate}
-Two binding audits of the library remain open, without affecting the statements or their kernel checks.  For (d), the information-escape
-registration is missing a source-faithful binding for the form $H$ shared by all its conclusions (issue 32083, left open).  For (f),
-the four-slot registration lacks a binding certificate for the readout's dependence on the finite-index \texttt{Fintype} instance
-(issue 32465, left open).
+The library's source-binding audits, which concern the registration of a declaration and not its statement or kernel check, stand as
+follows.  For (f) the audit is complete: pull request 32533 (merge commit \texttt{11d7e55}) registers the declaration of (f) with a
+validated source-equivalence certificate that keeps the finite-index statement, its three hypotheses and every equality case; this
+registration adds no theorem, and the scope of (f) stated above is unchanged.  For (d) one audit gap remains (issue 32083, open): a mirror
+of the theorem with all its clauses under the same existentially bound form passes Lean and the kernel checked the source equivalence,
+but the library's audit tool did not issue the source-equivalence certificate within its work budget, so the registration is recorded as
+unresolved.
 For each of the six units the pull request's required checks compiled the affected Lean modules before the merge; we did not
 rebuild them for this paper.  For (a)--(c) we also established by source inspection that no \texttt{sorry} occurs in the three
 files, and the word does not occur in the files of (d)--(f).  These six units are the only Lean formalisation written for this paper.  Not formalised are: the topological
